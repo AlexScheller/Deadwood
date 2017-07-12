@@ -11,12 +11,12 @@ public class CardLoader {
 	public CardLoader() {}
 
 	// public List<Card> loadCards(List<CardInfo> cis) {
-	public void loadCards(List<CardInfo> cis) {
-		Card c;
+	public List<Card> loadCards(List<CardInfo> cis) {
+		List<Card> ret = new ArrayList<>();
 		for (CardInfo ci : cis) {
-			c = new Card(ci);
-			System.out.println(c.toString());
+			ret.add(new Card(ci));
 		}
+		return ret;
 	}
 
 	public static CardLoader getInstance() { return instance; }
