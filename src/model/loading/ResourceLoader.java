@@ -1,13 +1,11 @@
 package loading;
 
-public class ResourceLoader {
+public class ImageResourceLoader {
 	
-	private static final ResourceLoader instance = new ResourceLoader();
+	private static final ImageResourceLoader instance = new ImageResourceLoader();
 
-	private ResourceLoader() {}
+	private ImageResourceLoader() {}
 
-	private 
-
-	public ResourceLoader getInstance() { return this.instance }
+	public ImageResourceLoader getInstance() { return this.instance }
 
 }

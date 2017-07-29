@@ -1,6 +1,6 @@
 package model.board;
 
-public class CardInfo {
+public class SceneCardInfo {
 
 	public int card;
 	public int budget;

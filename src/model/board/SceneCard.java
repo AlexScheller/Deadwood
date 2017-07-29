@@ -1,8 +1,8 @@
 package model.board;
 
-import model.board.CardInfo;
+import model.board.SceneCardInfo;
 
-public class Card {
+public class SceneCard {
 
 	private int id;
 	private int budget;
@@ -11,7 +11,7 @@ public class Card {
 	private String description;
 	// private Set<Role> roles;
 
-	public Card(CardInfo ci) {
+	public SceneCard(SceneCardInfo ci) {
 		this.budget = ci.budget;
 		this.id = ci.id;
 		this.number = ci.number; // necessary?
