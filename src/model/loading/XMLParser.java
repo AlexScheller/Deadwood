@@ -19,9 +19,9 @@ public class XMLParser {
 
 	private XMLParser() {}
 
-	public List<CardInfo> parseCardInfos() {
+	public List<SceneCardInfo> parseSceneCardInfos() {
 		
-		List<CardInfo> ret = new ArrayList<>();
+		List<SceneCardInfo> ret = new ArrayList<>();
 
 		try {
 			DocumentBuilder db = dbf.newDocumentBuilder();
@@ -33,7 +33,7 @@ public class XMLParser {
 				Node n = cards.item(i);
 				if (n.getNodeType() == Node.ELEMENT_NODE) {
 					Element e = (Element) n;
-					CardInfo curr = new CardInfo();
+					SceneCardInfo curr = new SceneCardInfo();
 					Element currScene = (Element) e.getElementsByTagName("scene").item(0);
 					curr.id = id++;
 					curr.number = Integer.parseInt(currScene.getAttribute("number"));
@@ -68,21 +68,51 @@ public class XMLParser {
 					curr.id = id++;
 					curr.name = e.getAttribute("name");
 					curr.roomType = "set";
+					NodeList neighborNodes = e.getFirstChild().getChildNodes();
+					String[] neighbors = new String[neighborNodes.getLength()];
+					for (int j = 0; i < neighborNodes.getLength(); i++) {
+						System.out.println(neighborNodes.item(i).getTextContent());
+						neighbors[i] = neighborNodes.item(i).getTextContent();
+					}
+					curr.neighbors = neighbors;
 					ret.add(curr);
 				}
 			}
-			
+			Element officeElem = (Element) doc.getElementsByTagName("office").item(0);
 			RoomInfo office = new RoomInfo();
 			office.name = "office";
 			office.roomType = "office";
 			office.id = id++;
-			ret.add(office);
+			NodeList officeNeighborNodes = officeElem.getFirstChild().getChildNodes();
+			String officeNeighbors = new String[officeNeighborNodes.getLength()];
+			for (int j = 0; i < oficeNeighborNodes.getLength(); i++) {
+				System.out.println(officeNeighborNodes.item(i).getTextContent());
+				officeNeighbors[i] = officeNeighborNodes.item(i).getTextContent();
+			}
+			office.neighbors = officeNeighbors;
+			// ret.add(office);
 
-			RoomInfo trailer = new RoomInfo();
-			trailer.name = "trailer";
-			trailer.roomType = "trailer";
-			trailer.id = id++;
-			ret.add(trailer);
+			// NodeList neighborNodes = e.getFirstChild().getChildNodes();
+			// String[] neighbors = new String[neighborNodes.getLength()];
+			// for (int j = 0; i < neighborNodes.getLength(); i++) {
+			// 	System.out.println(neighborNodes.item(i).getTextContent());
+			// 	neighbors[i] = neighborNodes.item(i).getTextContent();
+			// }
+			// curr.neighbors = neighbors;
+
+			// RoomInfo trailer = new RoomInfo();
+			// trailer.name = "trailer";
+			// trailer.roomType = "trailer";
+			// trailer.id = id++;
+			// ret.add(trailer);
+
+			// NodeList neighborNodes = e.getFirstChild().getChildNodes();
+			// String[] neighbors = new String[neighborNodes.getLength()];
+			// for (int j = 0; i < neighborNodes.getLength(); i++) {
+			// 	System.out.println(neighborNodes.item(i).getTextContent());
+			// 	neighbors[i] = neighborNodes.item(i).getTextContent();
+			// }
+			// curr.neighbors = neighbors;
 
 		} catch (Exception e) {
 			e.printStackTrace();

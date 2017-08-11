@@ -20,6 +20,7 @@ public class SceneCard {
 		// this.roles = ci.roles;
 	}
 
+	@Override
 	public String toString() {
 		return title + ": " + description + " Budget: " + Integer.toString(budget);
 	}

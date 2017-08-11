@@ -1,33 +1,35 @@
 package model.loading;
 
 import java.util.List;
+import java.util.Stack;
 
 import model.board.*;
+import model.loading.*;
 
 public class BoardLoader {
 
 	private static final BoardLoader instance = new BoardLoader();
 
-	public BoardLoader() {}
+	private BoardLoader() {}
 
 	private RoomSet loadRooms(List<RoomInfo> ris) {
-		RoomFactory rf = RoomFactory.getInstance();
-		Room r;
-		for (RoomInfo ri : ris) {
-			r = rf.getRoom(ri);
-			System.out.println(r.toString());
-		}
+		// RoomFactory rf = RoomFactory.getInstance();
+		// RoomSet ret = new RoomSet();
+		// for (RoomInfo ri : ris) {
+		// 	ret.addRoom(ri.name, rf.getRoom(ri));
+		// }
+		return new RoomSet(ris);
 	}
 
-	private Stack<Card> loadCards(List<SceneCardInfo> scis) {
+	private SceneCardSet loadCards(List<SceneCardInfo> scis) {
 		Stack<SceneCard> ret = new Stack<SceneCard>();
 		for (SceneCardInfo sci : scis) {
 			ret.push(new SceneCard(sci));
 		}
-		return ret;
+		return new SceneCardSet(ret);
 	}
 
-	public Board getBoard(XMLParse xp) {
+	public Board getBoard(XMLParser xp) {
 		RoomSet rs = loadRooms(xp.parseRoomInfos());
 		SceneCardSet scs = loadCards(xp.parseSceneCardInfos());
 		return new Board(rs, scs);

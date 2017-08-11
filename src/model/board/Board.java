@@ -2,29 +2,29 @@ package model.board;
 
 public class Board {
 
-	// private int[][] roomGraph;
-
-	private List<MovieSet> sets;
+	private RoomSet rs;
 	private SceneCardSet cards;
 
+	public Board(RoomSet rs, SceneCardSet scs) {
+		this.rs = rs;
+		this.cards = scs;
+	}
+
+	@Override
+	public String toString() {
+		return rs.toString() + "\n" + cards.toString();
+	}
+
 	private void dealRooms() {
-		for (MovieSet ms : sets) {
-			ms.setSceneCard(cards.deal());
-		}
+		rs.dealSceneCards(cards);
 	}
 
 	public void newDay() {
 		dealRooms();
 	}
 
-	public boolean oneSceneLeft() {
-		int scenesLeft = 0;
-		for (MovieSet ms : sets) {
-			if(!ms.wrapped()) {
-				scenesLeft++;
-			}
-		}
-		return (scenesLeft == 1);
-	}
+	// public boolean oneSceneLeft() {
+	// 	return rs.oneSceneLeft();
+	// }
 
 }

@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class MovieSet extends Room {
 
-	private Scene scene;
+	private SceneCard scene;
 	private Set<Role> extras;
 
 	public MovieSet (RoomInfo ri) {
@@ -14,6 +14,11 @@ public class MovieSet extends Room {
 
 	public void setSceneCard(SceneCard sc) {
 		this.scene = sc;
+	}
+
+	// TODO IMPLEMENT
+	public boolean isWrapped() {
+		return true;
 	}
 
 	@Override

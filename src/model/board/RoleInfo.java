@@ -1,3 +1,5 @@
+package model.board;
+
 public class RoleInfo {
 
 	public String line;

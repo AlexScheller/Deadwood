@@ -6,6 +6,6 @@ public class ImageResourceLoader {
 
 	private ImageResourceLoader() {}
 
-	public ImageResourceLoader getInstance() { return this.instance }
+	public ImageResourceLoader getInstance() { return this.instance; }
 
 }

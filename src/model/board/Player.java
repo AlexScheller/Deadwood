@@ -1,3 +1,7 @@
+package model.board;
+
+import java.util.Scanner;
+
 public class Player {
 
 	private int playerID = -1;
@@ -11,11 +15,11 @@ public class Player {
 	// temporary
 	private Scanner sc;
 
-	private Room currentRoom;
+	// private Room currentRoom;
 
 	public Player(int id) {
 		this.playerID = id;
-		this.currentRoom = Rooms.getRoom("trailers");
+		// this.currentRoom = Rooms.getRoom("trailers");
 		this.sc = new Scanner(System.in);
 	}
 

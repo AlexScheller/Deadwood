@@ -1,0 +1,1632 @@
+{
+    "cards":[
+        {
+            "name":"Evil Wears a Hat",
+            "img":"01.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Defrocked Priest",
+                    "line":"Look out below!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Marshal Canfield",
+                    "line":"Hold fast!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"One-Eyed Man",
+                    "line":"Balderdash!",
+                    "level":4
+                }
+            ],
+            "scene":{
+                "number":7,
+                "text":"Calhoun is separated from the group during a white-knuckled chase nearDesperation Bluff."
+            },
+            "budget":4
+        },
+        {
+            "name":"Law and the Old West",
+            "img":"02.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Rug Merchant",
+                    "line":"Don't leave my store!",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Banker",
+                    "line":"Trust me.",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Talking Mule",
+                    "line":"Nice work, Johnny!",
+                    "level":4
+                }
+            ],
+            "scene":{
+                "number":20,
+                "text":"Charlie \"Three Guns\" Henderson cooperates with Johnny Law and reluctantlyenters the witless protection program."
+            },
+            "budget":3
+        },
+        {
+            "name":"The Life and Times of John Skywater",
+            "img":"03.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Auctioneer",
+                    "line":"Going once!",
+                    "level":5
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"General Custer",
+                    "line":"Go West!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":22,
+                "text":"Disheartened by his lack of business acumen and his poor choice ofinvestment partners, John Skywater sets off into the Cree Nation toconvince them to kidnap his wife."
+            },
+            "budget":5
+        },
+        {
+            "name":"My Years on the Prairie",
+            "img":"04.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Drunk",
+                    "line":"Where's Willard?",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Librarian",
+                    "line":"Shhhhh!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man with Hay",
+                    "line":"Hey!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":32,
+                "text":"Virgil and Stacy set out at midnight to track down the stray cows, unawarethat they are being pursued by inch-high aliens from outer space."
+            },
+            "budget":5
+        },
+        {
+            "name":"Buffalo Bill: The Lost Years",
+            "img":"05.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Hollering Boy",
+                    "line":"Over here, mister!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Drink Farmer",
+                    "line":"Git outta me barn!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Meek Little Sarah",
+                    "line":"He's so cute!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":12,
+                "text":"Buffalo Bill's companion Marty disappears in a freak electrical storm.Bill enlists the aid of the Sidekick Friends network."
+            },
+            "budget":4
+        },
+        {
+            "name":"Square Deal City",
+            "img":"06.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Squaking Boy",
+                    "line":"I'll say!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Pharaoh Imhotep",
+                    "line":"Attack, soldiers!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Aunt Martha",
+                    "line":"You got nothin'!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":14,
+                "text":"Douglas and Katherine confront Aunt Martha about her missing pies.  Devinsulks quietly in a side room. "
+            },
+            "budget":6
+        },
+        {
+            "name":"Davy Crockett: A Drunkard's Tale",
+            "img":"07.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"The Duck",
+                    "line":"Waaaak!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"His Brother",
+                    "line":"Waaaaaaaak!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":31,
+                "text":"Robert enlists the aid of several farm animals in order to ascertain theefficacy of his new hangover remedy."
+            },
+            "budget":4
+        },
+        {
+            "name":"The Way the West Was Run",
+            "img":"08.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Town Drunk",
+                    "line":"Even me!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Squinting Miner",
+                    "line":"Sure we can!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Poltergeist",
+                    "line":"Wooooo!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":34,
+                "text":"Jose explains patiently, but with thinly veiled contempt, the intricaciesof Arizona bureaucracy, as though speaking to a simple and distracted child."
+            },
+            "budget":4
+        },
+        {
+            "name":"Down in the Valley",
+            "img":"09.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Angry Barber",
+                    "line":"Hold him still!",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Woman with Board",
+                    "line":"Nonsense, Frank!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man in Fire",
+                    "line":"It burns!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":24,
+                "text":"A tripped waiter is the spark igniting a brawl of cataclysmicproportions.  Walter is injured in the neck."
+            },
+            "budget":3
+        },
+        {
+            "name":"Ol' Shooter and Little Doll",
+            "img":"10.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Sleeping Man",
+                    "line":"Snnkkk snnkk snnkk.",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man with Pig",
+                    "line":"Tally-Hooo!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Shooter",
+                    "line":"Where's my britches?",
+                    "level":4
+                }
+            ],
+            "scene":{
+                "number":14,
+                "text":"Shooter discovers that he has been proceeding for days with no trousers.This causes him no small embarrassment as he searches for them with LittleDoll. "
+            },
+            "budget":5
+        },
+        {
+            "name":"The Robbers of Trains",
+            "img":"11.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Buster",
+                    "line":"One two three go!",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man Reading Paper",
+                    "line":"Ouchie!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Fat Pete",
+                    "line":"Nick kick, boss!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":19,
+                "text":"Coogan confronts the toughest thug in his gang, Big Jake, in anabbreviated knife fight.  Coogan settles the dispute with fearless guileand a kick in the family jewels."
+            },
+            "budget":4
+        },
+        {
+            "name":"Beyond the Pail: Life without Lactose",
+            "img":"12.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Martin",
+                    "line":"Have you tried soy cheese?",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":12,
+                "text":"Henry discovers for the first time that his ability to digest cream hasdisappeared along with his hair.  Other cowboys attempt to console him. "
+            },
+            "budget":2
+        },
+        {
+            "name":"A Man Called 'Cow'",
+            "img":"13.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Preacher",
+                    "line":"My word!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Amused Witness",
+                    "line":"Tee hee hee!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":16,
+                "text":"Nothing will settle the debates among the skeptical locals, short of ademonstration of Hector's special talents."
+            },
+            "budget":3
+        },
+        {
+            "name":"Taffy Commercial",
+            "img":"14.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Curious girl",
+                    "line":"Are you sure?",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Ghost of Plato",
+                    "line":"It happened to me!",
+                    "level":4
+                }
+            ],
+            "scene":{
+                "number":2,
+                "text":"Jackson encourages the children to eat only taffy, because gum can killthem stone dead."
+            },
+            "budget":2
+        },
+        {
+            "name":"Gum Commercial",
+            "img":"15.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Surprised Bison",
+                    "line":"Mmrrrrrph!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man with Horn",
+                    "line":"Ta daaaa!",
+                    "level":4
+                }
+            ],
+            "scene":{
+                "number":3,
+                "text":"Inspector Pete speaks to a riveted audience about the many hidden dangersof taffy, not the least of which is that taffy can kill you stone dead."
+            },
+            "budget":2
+        },
+        {
+            "name":"Jesse James: Man of Action",
+            "img":"16.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Shot in Back",
+                    "line":"Arrrggh!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Shot in Leg",
+                    "line":"Ooh, lordy!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Leaps into Cake",
+                    "line":"Dangit, Jesse!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":8,
+                "text":"Jesse's brothers Jed and Henry throw him a surprise birthday party.Jesse's nerves get the better of him when the birthday cake explodes."
+            },
+            "budget":5
+        },
+        {
+            "name":"Disaster at Flying J",
+            "img":"17.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Piano Player",
+                    "line":"It's a nocturne!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man in Turban",
+                    "line":"My stars!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Falls on Hoe",
+                    "line":"Ow!",
+                    "level":4
+                }
+            ],
+            "scene":{
+                "number":6,
+                "text":"After the mine explosion, the traveling circus takes time out to get drunkand start a fight."
+            },
+            "budget":5
+        },
+        {
+            "name":"Shakespear in Lubbock",
+            "img":"18.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Falls from Tree",
+                    "line":"What ho!",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Laughing Woman",
+                    "line":"Tis to laugh!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man with Whistle",
+                    "line":"Tweeeeet!",
+                    "level":4
+                }
+            ],
+            "scene":{
+                "number":23,
+                "text":"William decides that it is time to be movin' on.  Julia convinces him tostick around just long enough to get into big trouble."
+            },
+            "budget":3
+        },
+        {
+            "name":"Go West, You!",
+            "img":"19.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Ex-Convict",
+                    "line":"Never again!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man with Onion",
+                    "line":"Fresh Onions!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":30,
+                "text":"Susan and Peter encounter some of the perils of the Badlands: rutted mudroads, torrential rain storms, and a bad case of \"grumbly tummy.\""
+            },
+            "budget":3
+        },
+        {
+            "name":"The Life and Times of John Skywater",
+            "img":"20.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Staggering Man",
+                    "line":"You never know!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Woman with Beer",
+                    "line":"Howdy, stranger!",
+                    "level":5
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Marcie",
+                    "line":"Welcome home!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":15,
+                "text":"John discovers his long-lost sister Marcie, and instructs her in the waysof gunfighting and whiskey distillation."
+            },
+            "budget":5
+        },
+        {
+            "name":"Gun! The Musical",
+            "img":"21.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Looks like Elvis",
+                    "line":"Thankyouverymuch.",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Singing Dead Man",
+                    "line":"Yeah!",
+                    "level":5
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Apothecary",
+                    "line":"Such drugs I have.",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":25,
+                "text":"A song and dance extravaganza, \"Hunka Hunka Burnin' Lead.\""
+            },
+            "budget":6
+        },
+        {
+            "name":"Humor at the Expense of Others",
+            "img":"22.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Jailer",
+                    "line":"You there!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Mephistopheles",
+                    "line":"Be not afraid!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Breaks a Window",
+                    "line":"Oops!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":16,
+                "text":"Phil and his cohort of unfeeling smart-mouths make fun of Sancho and hisgreat big hat."
+            },
+            "budget":5
+        },
+        {
+            "name":"The Search for Maggie White",
+            "img":"23.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Film Critic",
+                    "line":"Implausible!",
+                    "level":5
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Hobo with Bat",
+                    "line":"Nice house!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":12,
+                "text":"Alone in the wilderness, Maggie makes the best of her situation. In whatseems like no time at all, she constructs a sturdy two-story house frombranches and mud."
+            },
+            "budget":6
+        },
+        {
+            "name":"Picante Sauce Commercial",
+            "img":"24.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Bewhisker'd Cowpoke",
+                    "line":"Oh, sweet Lord!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Dog",
+                    "line":"Wurf!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":1,
+                "text":"A dozen grizzled cowboys surround a fire. Suddenly, they exclaim, \"That'snot mayonnaise!\""
+            },
+            "budget":2
+        },
+        {
+            "name":"Jesse James: Man of Action",
+            "img":"25.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Shot in Head",
+                    "line":"Arrrgh!",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Leaps Out of Cake",
+                    "line":"Oh, for Pete's sake!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Shot Three Times",
+                    "line":"Ow! Ow! Ow!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":14,
+                "text":"A hail of gunfire results when Jesse's friend Barton marries Jesse'schildhood sweetheart."
+            },
+            "budget":5
+        },
+        {
+            "name":"One False Step for Mankind",
+            "img":"26.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Flustered Man",
+                    "line":"Well, I never!",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Space Monkey",
+                    "line":"Ook!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Cowbot Dan",
+                    "line":"Bzzzzzt!\"",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":21,
+                "text":"After a dozen failed attempts, one rocket carries Horatio and his sixchildren to the Moon, where they enjoy a picnic and a spirited game ofbadminton."
+            },
+            "budget":6
+        },
+        {
+            "name":"Thirteen the Hard Way",
+            "img":"27.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man in Poncho",
+                    "line":"Howdy, Jones!",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Ecstatic Housewife",
+                    "line":"This is fine!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Isaac",
+                    "line":"The mail!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":15,
+                "text":"After some delay, the Pony Express arrives. Isaac, Gwen, Francis, Terry,Conrad, Brooke, Jerry, Howard, MacNeill, Jones, Spike, Cornwall andCrawford are all there."
+            },
+            "budget":5
+        },
+        {
+            "name":"How They Get Milk",
+            "img":"28.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Cow",
+                    "line":"Moo.",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"St. Clement of Alexandria",
+                    "line":"Peace be with you, child!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Josie",
+                    "line":"Yikes!",
+                    "level":4
+                }
+            ],
+            "scene":{
+                "number":2,
+                "text":"Josie asks the Milkman how they get milk. After a thoughtful pause, hebegins. \"Not like you'd expect!\""
+            },
+            "budget":4
+        },
+        {
+            "name":"My Years on the Prairie",
+            "img":"29.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Willard",
+                    "line":"Ain't that a sight?",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Leprechaun",
+                    "line":"Begorrah!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Startled Ox",
+                    "line":"Mrr?",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":27,
+                "text":"Louise takes instruction from Henry, the neighbor boy, in an absurdlysuggestive explanation of how to plow a field."
+            },
+            "budget":5
+        },
+        {
+            "name":"Davy Crockett: A Drunkard's Tale",
+            "img":"30.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Voice of God",
+                    "line":"Grab hold, son!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Hands of God",
+                    "line":"!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Jack Kemp",
+                    "line":"America!",
+                    "level":4
+                }
+            ],
+            "scene":{
+                "number":12,
+                "text":"In an absurd dream sequence, Crockett recalls an episode of fear and chaosin which his childhood friend Timmy was trapped at the bottom of a well."
+            },
+            "budget":4
+        },
+        {
+            "name":"Czechs in the Sonora",
+            "img":"31.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Opice (Monkey)",
+                    "line":"Ukk! (Ook)!",
+                    "level":5
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man with Gun",
+                    "line":"Hold it right there!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":25,
+                "text":"Bob reverts to his ancestral ways in a short fightover a disembodied hand."
+            },
+            "budget":4
+        },
+        {
+            "name":"Swing 'em Wide",
+            "img":"32.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Thrifty Mike",
+                    "line":"Call!",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Sober Physician",
+                    "line":"Raise!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man on Floor",
+                    "line":"Fold!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":19,
+                "text":"Black Jack invites Dixon and The Captain to a late-night pokergame. Little do they know that Gertrude and Isabella await them at thetable."
+            },
+            "budget":6
+        },
+        {
+            "name":"Swing 'em Wide",
+            "img":"33.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Liberated Nun",
+                    "line":"Let me have it!",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Witch Doctor",
+                    "line":"Oogie Boogie!",
+                    "level":5
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Voice of Reason",
+                    "line":"Come on, now!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":35,
+                "text":"Hector makes a surprising discovery behind the Chinese grocery store."
+            },
+            "budget":6
+        },
+        {
+            "name":"Trials of the First Pioneers",
+            "img":"34.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Burning Man",
+                    "line":"Make it stop!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Cheese Vendor",
+                    "line":"Opa!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Hit with Table",
+                    "line":"Ow! A table?",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":5,
+                "text":"A fire breaks out in the town livery. Before long, the surroundingbuildings are engulfed in flame. The world falls into chaos."
+            },
+            "budget":4
+        },
+        {
+            "name":"How the Grinch Stole Texas",
+            "img":"35.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Detective",
+                    "line":"I have a hunch.",
+                    "level":3
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"File Clerk",
+                    "line":"My stapler!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Cindy Lou",
+                    "line":"Dear Lord!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":9,
+                "text":"The doe-eyed citizens of El Paso gather together around a warm fire andpray for the safety of those poor souls in Oklahoma. It almost works."
+            },
+            "budget":5
+        },
+        {
+            "name":"J. Robert Lucky, Man of Substance",
+            "img":"36.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man with Rope",
+                    "line":"Look out below!",
+                    "level":1
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Svetlana",
+                    "line":"Says who?",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Accidental Victim",
+                    "line":"Ow! My spine!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":13,
+                "text":"Horace and Mathilde discover that the mysterious orange powder fillingDoctor Lucky's air vents is neither Agent Orange nor weaponized Tang, buta rare form of cheese mold."
+            },
+            "budget":4
+        },
+        {
+            "name":"Thirteen the Hard Way",
+            "img":"37.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Very Wet Man",
+                    "line":"Sheesh!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Dejected Housewife",
+                    "line":"Its time had come.",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man with Box",
+                    "line":"Progress!",
+                    "level":5
+                }
+            ],
+            "scene":{
+                "number":17,
+                "text":"After operating for only six minutes, the Pony Express disbands and givesway to the international Telegraph and Railroad systems. Little boys cry."
+            },
+            "budget":5
+        },
+        {
+            "name":"How They Get Milk",
+            "img":"38.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Marksman",
+                    "line":"Pull!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Postal Worker",
+                    "line":"It's about time!",
+                    "level":5
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"A Horse",
+                    "line":"Yes Sir!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":8,
+                "text":"Josie is thoroughly off milk at this point. The Milkman shows her one moreway that she might not have heard of before."
+            },
+            "budget":4
+        },
+        {
+            "name":"Breakin' in Trick Ponies",
+            "img":"39.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":53,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Fraternity Pledge",
+                    "line":"Beer me!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":115,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Man with Sword",
+                    "line":"None shall pass!",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":19,
+                "text":"Uncle Stewart reveals what to do when all else fails."
+            },
+            "budget":3
+        },
+        {
+            "name":"Custer's Other Stands",
+            "img":"40.png",
+            "parts":[
+                {
+                    "area":{
+                        "x":20,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Farmer",
+                    "line":"Git off a that!",
+                    "level":2
+                },
+                {
+                    "area":{
+                        "x":83,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Exploding Horse",
+                    "line":"Boom!",
+                    "level":4
+                },
+                {
+                    "area":{
+                        "x":145,
+                        "h":40,
+                        "w":40,
+                        "y":47
+                    },
+                    "name":"Jack",
+                    "line":"Here we go again!\"",
+                    "level":6
+                }
+            ],
+            "scene":{
+                "number":40,
+                "text":"General George Armstrong Custer clinches another victory at the battle ofLittle Sands. His trusty steed Cairo is not so lucky."
+            },
+            "budget":5
+        }
+    ]
+}
