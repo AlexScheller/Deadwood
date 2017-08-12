@@ -13,6 +13,7 @@ public class DeadwoodGame {
 		this.day = 0;
 		this.board = board;
 		this.players = players;
+		System.out.println("successful!");
 	}
 
 	// For debugging purposes

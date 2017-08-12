@@ -34,7 +34,7 @@ public class JSONDataParser implements DataParser {
 	}
 
 	public List<SceneCardInfo> parseSceneCardInfos() {
-		System.out.print("loading cards...");
+		System.out.print("\t\tparsing cards...");
 		List<SceneCardInfo> ret = new ArrayList<>();
 		try {
 			JSONTokener jt = new JSONTokener (new FileInputStream(new File(cardPath)));
@@ -69,7 +69,7 @@ public class JSONDataParser implements DataParser {
 	}
 
 	public List<RoomInfo> parseRoomInfos() {
-		System.out.print("loading board...");
+		System.out.print("\t\tparsing board...");
 		List<RoomInfo> ret = new ArrayList<>();
 		try {
 			JSONTokener jt = new JSONTokener (new FileInputStream(new File(boardPath)));
@@ -78,6 +78,7 @@ public class JSONDataParser implements DataParser {
 			while (sets.hasNext()) {
 				RoomInfo setInfo = new RoomInfo();
 				JSONObject set = (JSONObject) sets.next();
+				setInfo.roomType = "set";
 				setInfo.name = set.getString("name");
 				setInfo.numTakes = set.getJSONArray("takes").length();
 				setInfo.roleInfos = parseRoleInfos(set.getJSONArray("parts"));
@@ -86,11 +87,13 @@ public class JSONDataParser implements DataParser {
 			}
 			JSONObject trailer = rooms.getJSONObject("trailer");
 			RoomInfo trailerInfo = new RoomInfo();
+			trailerInfo.roomType = "trailer";
 			trailerInfo.name = "trailer";
 			trailerInfo.neighbors = parseNeighbors(trailer.getJSONArray("neighbors"));
 			ret.add(trailerInfo);
 			JSONObject office = rooms.getJSONObject("office");
 			RoomInfo officeInfo = new RoomInfo();
+			officeInfo.roomType = "office";
 			officeInfo.name = "office";
 			officeInfo.neighbors = parseNeighbors(office.getJSONArray("neighbors"));
 			ret.add(officeInfo);

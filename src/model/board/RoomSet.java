@@ -15,6 +15,7 @@ public class RoomSet {
 			rooms.put(ri.name, rf.getRoom(ri));
 		}
 		assignNeighbors(ris);
+		System.out.println(" successful!");
 	}
 
 	public String toString() {

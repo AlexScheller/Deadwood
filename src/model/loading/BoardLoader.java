@@ -13,6 +13,7 @@ public class BoardLoader {
 	private BoardLoader() {}
 
 	private RoomSet loadRooms(List<RoomInfo> ris) {
+		System.out.print("\t\tloading rooms...");
 		// RoomFactory rf = RoomFactory.getInstance();
 		// RoomSet ret = new RoomSet();
 		// for (RoomInfo ri : ris) {
@@ -22,6 +23,7 @@ public class BoardLoader {
 	}
 
 	private SceneCardSet loadCards(List<SceneCardInfo> scis) {
+		System.out.print("\t\tloading cards...");
 		Stack<SceneCard> ret = new Stack<SceneCard>();
 		for (SceneCardInfo sci : scis) {
 			ret.push(new SceneCard(sci));
@@ -30,6 +32,7 @@ public class BoardLoader {
 	}
 
 	public Board getBoard(DataParser p) {
+		System.out.println("\tloading board...");
 		RoomSet rs = loadRooms(p.parseRoomInfos());
 		SceneCardSet scs = loadCards(p.parseSceneCardInfos());
 		return new Board(rs, scs);
