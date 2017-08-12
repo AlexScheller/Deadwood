@@ -16,7 +16,7 @@ public class SceneCardSet {
 	public String toString() {
 		String ret = "";
 		for (SceneCard sc : cards) {
-			ret += sc.toString();
+			ret += sc.toString() + "\n\n";
 		}
 		return ret;
 	}

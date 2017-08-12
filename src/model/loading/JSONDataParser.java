@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
 import model.board.*;
+// import java.util.IllegalArgumentException;
 
 public class JSONDataParser implements DataParser {
 
@@ -20,7 +21,7 @@ public class JSONDataParser implements DataParser {
 
 	private JSONDataParser() {}
 
-	private List<RoleInfo> parseRoleInfos(JSONArray roleInfos) {
+	private List<RoleInfo> parseRoleInfos(JSONArray roleInfos, String source) {
 		List<RoleInfo> ret = new ArrayList<>();
 		Iterator parts = roleInfos.iterator();
 		while (parts.hasNext()) {
@@ -29,6 +30,15 @@ public class JSONDataParser implements DataParser {
 			ri.line = part.getString("line");
 			ri.name = part.getString("name");
 			ri.rankRequired = part.getInt("level");
+			if (source.equals("cards")) {
+				ri.roleType = RoleInfo.Type.STARRING;
+			} else if (source.equals("board")) {
+				ri.roleType = RoleInfo.Type.EXTRA;
+			} else {
+				throw new IllegalArgumentException("Illegal role info source: " + source);
+			}
+			ret.add(ri);
+			// System.out.println("new roll: " + ri.name);
 		}
 		return ret;
 	}
@@ -49,7 +59,7 @@ public class JSONDataParser implements DataParser {
 				JSONObject scene = (JSONObject) card.getJSONObject("scene");
 				nsci.description = scene.getString("text");
 				nsci.number = scene.getInt("number");
-				nsci.roleInfos = parseRoleInfos(card.getJSONArray("parts")); 
+				nsci.roleInfos = parseRoleInfos(card.getJSONArray("parts"), "cards"); 
 				ret.add(nsci);
 			}
 		} catch (Exception e) {
@@ -78,22 +88,22 @@ public class JSONDataParser implements DataParser {
 			while (sets.hasNext()) {
 				RoomInfo setInfo = new RoomInfo();
 				JSONObject set = (JSONObject) sets.next();
-				setInfo.roomType = "set";
+				setInfo.roomType = RoomInfo.Type.MOVIE_SET;
 				setInfo.name = set.getString("name");
 				setInfo.numTakes = set.getJSONArray("takes").length();
-				setInfo.roleInfos = parseRoleInfos(set.getJSONArray("parts"));
+				setInfo.roleInfos = parseRoleInfos(set.getJSONArray("parts"), "board");
 				setInfo.neighbors = parseNeighbors(set.getJSONArray("neighbors"));
 				ret.add(setInfo);
 			}
 			JSONObject trailer = rooms.getJSONObject("trailer");
 			RoomInfo trailerInfo = new RoomInfo();
-			trailerInfo.roomType = "trailer";
+			trailerInfo.roomType = RoomInfo.Type.TRAILER;
 			trailerInfo.name = "trailer";
 			trailerInfo.neighbors = parseNeighbors(trailer.getJSONArray("neighbors"));
 			ret.add(trailerInfo);
 			JSONObject office = rooms.getJSONObject("office");
 			RoomInfo officeInfo = new RoomInfo();
-			officeInfo.roomType = "office";
+			officeInfo.roomType = RoomInfo.Type.OFFICE;
 			officeInfo.name = "office";
 			officeInfo.neighbors = parseNeighbors(office.getJSONArray("neighbors"));
 			ret.add(officeInfo);

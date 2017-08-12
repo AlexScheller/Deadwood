@@ -7,11 +7,11 @@ public class RoomFactory {
 	private RoomFactory () {}
 
 	public Room getRoom(RoomInfo ri) {
-		if (ri.roomType.equals("set")) {
+		if (ri.roomType == RoomInfo.Type.MOVIE_SET) {
 			return new MovieSet(ri);
-		} else if (ri.roomType.equals("office")) {
+		} else if (ri.roomType == RoomInfo.Type.OFFICE) {
 			return new CastingOffice(ri);
-		} else if (ri.roomType.equals("trailer")) {
+		} else if (ri.roomType == RoomInfo.Type.TRAILER) {
 			return new Trailers(ri);
 		} else {
 			throw new IllegalArgumentException("room type \"" + ri.roomType + "\" not recognized");

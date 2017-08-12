@@ -8,7 +8,7 @@ public class Deadwood {
 		// int numPlayers = Integer.parseInt(args[0]);
 		GameLoader gl = GameLoader.getInstance();
 		DeadwoodGame dg = gl.loadGame(1);
-		// System.out.println(dg.toString());
+		System.out.println(dg.toString());
 		// DeadwoodView view = new DeadwoodView(dg);
 		// DeadwoodController controller = new DeadwoodController(view, dg);
 		// dg.play();

@@ -8,7 +8,7 @@ public class Trailers extends Room {
 
 	@Override
 	public String toString() {
-		return "trailers";
+		return "trailers\n\n" + getTabbedNeighborStrings();
 	}
 
 }

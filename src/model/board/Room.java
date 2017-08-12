@@ -23,21 +23,15 @@ public abstract class Room {
 		return this.name;
 	}
 
-	// // For terminal use
-	// public listNeighbors() {
-	// 	// System.out.println("Neighbors:")
-	// 	// for (Room r : neighbors) {
-	// 	// 	System.out.println("\t" + r.toString());
-	// 	// }
-	// }
-
-	@Override
-	public String toString() {
-		String ret = name + "neighbors:";
+	protected String getTabbedNeighborStrings() {
+		String ret = "neighbors:\n";
 		for (String key : neighbors.keySet()) {
-			ret += "\n\t" + neighbors.get(key).getName();
+			ret += "\t" + neighbors.get(key).getName() + "\n";
 		}
 		return ret;
 	}
+
+	@Override
+	public abstract String toString();
 
 }

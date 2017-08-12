@@ -4,8 +4,14 @@ import java.util.List;
 
 public class RoomInfo {
 
+	public enum Type {
+		MOVIE_SET,
+		TRAILER,
+		OFFICE
+	}
+
 	// public int id;
-	public String roomType;
+	public Type roomType;
 	public String name;
 	public String[] neighbors;
 	public int numTakes;

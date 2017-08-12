@@ -8,7 +8,7 @@ public class CastingOffice extends Room {
 
 	@Override
 	public String toString() {
-		return "casting office";
+		return "casting office\n\n" + getTabbedNeighborStrings();
 	}
 
 }

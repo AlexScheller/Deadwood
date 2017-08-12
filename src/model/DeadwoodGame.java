@@ -21,7 +21,7 @@ public class DeadwoodGame {
 	public String toString() {
 		String playerStrings = "";
 		for (Player p : players) {
-			playerStrings += p.toString();
+			playerStrings += p.toString() + "\n";
 		}
 		return playerStrings + board.toString();
 	}
