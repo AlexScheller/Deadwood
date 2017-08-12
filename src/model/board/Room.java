@@ -5,13 +5,13 @@ import java.util.Map;
 
 public abstract class Room {
 
-	protected int id;
+	// protected int id;
 	protected String name;
 	protected Map<String, Room> neighbors;
 	// protected Set<Player> playersInside;
 
 	public Room (RoomInfo ri) {
-		this.id = ri.id;
+		// this.id = ri.id;
 		this.name = ri.name;
 	}
 

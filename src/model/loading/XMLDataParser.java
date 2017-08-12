@@ -8,16 +8,21 @@ import java.util.List;
 
 import model.board.*;
 
-public class XMLParser {
+public class XMLDataParser implements DataParser {
 
-	private static final XMLParser instance = new XMLParser();
+	private static final XMLDataParser instance = new XMLDataParser();
 
 	// only one level up because of classpath
 	private final String boardPath = "../resources/xmldata/finalboard.xml";
 	private final String cardPath = "../resources/xmldata/finalcards.xml";
 	private final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
-	private XMLParser() {}
+	private XMLDataParser() {}
+
+	private Element getElementByTagName(Element e, String name) {
+		NodeList nl = e.getElementsByTagName(name);
+		return e.item(0);
+	}
 
 	public List<SceneCardInfo> parseSceneCardInfos() {
 		
@@ -32,15 +37,37 @@ public class XMLParser {
 			for (int i = 0; i < cards.getLength(); i++) {
 				Node n = cards.item(i);
 				if (n.getNodeType() == Node.ELEMENT_NODE) {
-					Element e = (Element) n;
-					SceneCardInfo curr = new SceneCardInfo();
-					Element currScene = (Element) e.getElementsByTagName("scene").item(0);
-					curr.id = id++;
-					curr.number = Integer.parseInt(currScene.getAttribute("number"));
-					curr.budget = Integer.parseInt(e.getAttribute("budget"));
-					curr.title = e.getAttribute("name");
-					curr.description = currScene.getTextContent();
-					ret.add(curr);
+					Element currCard = (Element) n;
+					SceneCardInfo currCardInfo = new SceneCardInfo();
+					// name
+					Element nameElement = getElementByTagName(currCard, "name");
+					currCardInfo.title = nameElement.getTextContent();
+					// Roles
+					NodeList parts = currCard.getElementsByTagName("part");
+					List<RoleInfo> newRoleInfos = new ArrayList<>();
+					for (int j = 0; j < parts.getLength(); j++) {
+						Node currNode = parts.item(i);
+						if (currNode.getNodeType() == Node.ELEMENT_NODE) {
+							RoleInfo currRoleInfo = new RoleInfo();
+							Element currRole = (Element) currNode;
+							Element roleName = getElementByTagName(currRole, "name")
+							currRoleInfo.title = roleName.getTextContent();
+							Element roleLine = getElementByTagName(currRole, "line");
+							currRoleInfo.line = roleLine.getTextContent();
+							Element roleLevel = getElementByTagName(currRole, "level");
+							currRoleInfo.rankRequired = Integer.parseInt(roleLevel);
+							newRoleInfos.add(currRoleInfo);
+						}
+					}
+					currRoleInfo.roleInfos = newRoleInfos;
+					// scene description
+					Element sceneElement = getElementByTagName(currCard, "scene");
+					currCardInfo.number = Integer.parseInt(getElementByTagName(sceneElement, "number"));
+					currCardInfo.description = getElementByTagName(sceneElement, "text");
+					// budget
+					Element budgetElement = getElementByTagName(currCard, "budget");
+					currCardInfo.budget = Integer.parseInt(budgetElement.getTextContent());
+					ret.add(currCardInfo);
 				}
 			}
 		} catch (Exception e) {
@@ -78,18 +105,18 @@ public class XMLParser {
 					ret.add(curr);
 				}
 			}
-			Element officeElem = (Element) doc.getElementsByTagName("office").item(0);
-			RoomInfo office = new RoomInfo();
-			office.name = "office";
-			office.roomType = "office";
-			office.id = id++;
-			NodeList officeNeighborNodes = officeElem.getFirstChild().getChildNodes();
-			String officeNeighbors = new String[officeNeighborNodes.getLength()];
-			for (int j = 0; i < oficeNeighborNodes.getLength(); i++) {
-				System.out.println(officeNeighborNodes.item(i).getTextContent());
-				officeNeighbors[i] = officeNeighborNodes.item(i).getTextContent();
-			}
-			office.neighbors = officeNeighbors;
+			// Element officeElem = (Element) doc.getElementsByTagName("office").item(0);
+			// RoomInfo office = new RoomInfo();
+			// office.name = "office";
+			// office.roomType = "office";
+			// office.id = id++;
+			// NodeList officeNeighborNodes = officeElem.getFirstChild().getChildNodes();
+			// String officeNeighbors = new String[officeNeighborNodes.getLength()];
+			// for (int j = 0; i < oficeNeighborNodes.getLength(); i++) {
+			// 	System.out.println(officeNeighborNodes.item(i).getTextContent());
+			// 	officeNeighbors[i] = officeNeighborNodes.item(i).getTextContent();
+			// }
+			// office.neighbors = officeNeighbors;
 			// ret.add(office);
 
 			// NodeList neighborNodes = e.getFirstChild().getChildNodes();
@@ -122,7 +149,7 @@ public class XMLParser {
 
 	} 
 
-	public static XMLParser getInstance() { return instance; }
+	public static XMLDataParser getInstance() { return instance; }
 
 
 

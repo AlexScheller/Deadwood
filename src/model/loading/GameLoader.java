@@ -13,13 +13,13 @@ public class GameLoader {
 	public DeadwoodGame loadGame(int numPlayers) {
 		PlayerFactory pf = PlayerFactory.getInstance();
 		BoardLoader bl = BoardLoader.getInstance();
-		XMLParser xp = XMLParser.getInstance();
+		JSONDataParser jp = JSONDataParser.getInstance();
 		Player[] players = new Player[numPlayers];
 		for (int i = 0; i < numPlayers; i++) {
 			players[i] = pf.getPlayer(numPlayers);
 			System.out.println(players[i].toString());
 		}
-		Board board = bl.getBoard(xp);
+		Board board = bl.getBoard(jp);
 		return new DeadwoodGame(players, board);
 	}
 

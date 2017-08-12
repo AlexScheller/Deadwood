@@ -1,14 +1,16 @@
 package model.board;
 
-import java.util.Set;
+import java.util.List;
 
 public class MovieSet extends Room {
 
 	private SceneCard scene;
-	private Set<Role> extras;
+	private List<Role> extras;
+	private int numTakes;
 
 	public MovieSet (RoomInfo ri) {
 		super(ri);
+		this.numTakes = ri.numTakes;
 		//this.extras = ri.roles;
 	}
 
@@ -23,7 +25,7 @@ public class MovieSet extends Room {
 
 	@Override
 	public String toString() {
-		return "Set: " + this.name + " id: " + Integer.toString(this.id);
+		return "Set: " + this.name;
 	}
 
 }

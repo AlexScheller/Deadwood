@@ -1,5 +1,7 @@
 package model.board;
 
+import java.util.List;
+
 public class SceneCardInfo {
 
 	public int card;
@@ -8,6 +10,6 @@ public class SceneCardInfo {
 	public int number; // necessary?
 	public String title;
 	public String description;
-	// public Set<Role> roles;
+	public List<RoleInfo> roleInfos;
 
 }

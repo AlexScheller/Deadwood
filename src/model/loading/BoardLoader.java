@@ -29,9 +29,9 @@ public class BoardLoader {
 		return new SceneCardSet(ret);
 	}
 
-	public Board getBoard(XMLParser xp) {
-		RoomSet rs = loadRooms(xp.parseRoomInfos());
-		SceneCardSet scs = loadCards(xp.parseSceneCardInfos());
+	public Board getBoard(DataParser p) {
+		RoomSet rs = loadRooms(p.parseRoomInfos());
+		SceneCardSet scs = loadCards(p.parseSceneCardInfos());
 		return new Board(rs, scs);
 	}
 

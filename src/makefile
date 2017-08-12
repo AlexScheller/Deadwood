@@ -1,5 +1,5 @@
 all:
-	javac -cp . Deadwood.java
+	javac -classpath .:../lib/json-20170516.jar Deadwood.java
 
 clean:
 	rm Deadwood.class
