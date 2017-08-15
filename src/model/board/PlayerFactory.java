@@ -10,16 +10,15 @@ public class PlayerFactory {
 	private PlayerFactory () {}
 
 	public Player getPlayer(int numPlayers) {
+		Room initialRoom = RoomSet.getInstance().getRoom("trailer");
 		if (numPlayers == 5) {
-			return new Player(playerID++, 2);
+			return new Player(playerID++, initialRoom, 2);
 		} else if (numPlayers == 6) {
-			return new Player(playerID++, 4);
+			return new Player(playerID++, initialRoom, 4);
 		} else if (numPlayers == 7) {
-			Player ret = new Player(playerID++);
-			ret.rankUp();
-			return ret;
+			return new Player(playerID++, initialRoom, 0, 2);
 		} else {
-			return new Player(playerID++);
+			return new Player(playerID++, initialRoom);
 		}
 	}
 

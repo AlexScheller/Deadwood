@@ -24,8 +24,8 @@ public class Board {
 		dealRooms();
 	}
 
-	// public boolean oneSceneLeft() {
-	// 	return rs.oneSceneLeft();
-	// }
+	public boolean oneSceneLeft() {
+		return rs.oneSceneLeft();
+	}
 
 }

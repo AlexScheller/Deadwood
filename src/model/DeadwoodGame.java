@@ -9,11 +9,17 @@ public class DeadwoodGame {
 	private int day;
 	private Board board;
 
+	private ModelListener listener;
+
 	public DeadwoodGame(Player[] players, Board board) {
 		this.day = 0;
 		this.board = board;
 		this.players = players;
 		System.out.println("successful!");
+	}
+
+	public void setListener(ModelListener ml) {
+		this.listener = ml;
 	}
 
 	// For debugging purposes
@@ -26,35 +32,35 @@ public class DeadwoodGame {
 		return playerStrings + board.toString();
 	}
 
-	// private void play() {
-	// 	board.newDay();
-	// 	do {
-	// 		day++;
-	// 		int currentPlayerId = 0;
-	// 		while (!board.oneSceneLeft()) {
-	// 			players[(currentPlayerId++) % players.length].playTurn();
-	// 		}
-	// 		board.newDay();
-	// 	} while (day <= 4);
-	// 	endGame();
-	// }
+	private void play() {
+		board.newDay();
+		do {
+			day++;
+			int currentPlayerId = 0;
+			while (!board.oneSceneLeft()) {
+				players[(currentPlayerId++) % players.length].playTurn();
+			}
+			board.newDay();
+		} while (day <= 4);
+		endGame();
+	}
 
 	// TODO implement ties
-	// private void endGame() {
-	// 	String currHighScorerName;
-	// 	int currHighScore = -1;
-	// 	for (Player p : players) {
-	// 		if (!(currHighScore == -1)) {
-	// 			if (currHighScore < p.calculateScore()) {
-	// 				currHighScore = p.calculateScore();
-	// 				currHighScorerName = p.getName();
-	// 			}
-	// 		} else {
-	// 			currHighScore = p.calculateScore();
-	// 			currHighScorer = p.getName();
-	// 		}
-	// 	}
-	// 	System.out.println(currHighScorerName + " has won!");
-	// }
+	private void endGame() {
+		String currHighScorerName;
+		int currHighScore = -1;
+		for (Player p : players) {
+			if (!(currHighScore == -1)) {
+				if (currHighScore < p.calculateScore()) {
+					currHighScore = p.calculateScore();
+					currHighScorerName = p.getName();
+				}
+			} else {
+				currHighScore = p.calculateScore();
+				currHighScorer = p.getName();
+			}
+		}
+		System.out.println(currHighScorerName + " has won!");
+	}
 
 }

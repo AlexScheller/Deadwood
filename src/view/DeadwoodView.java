@@ -1,7 +1,7 @@
-public class DeadwoodView {
+public interface DeadwoodView {
 
-	public DeadwoodView(DeadwoodGame dg) {
+	private void update();
 
-	}
+	private void setListener();
 
 }

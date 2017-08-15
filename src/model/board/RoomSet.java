@@ -55,21 +55,22 @@ public class RoomSet {
 	}
 
 	// Note that this is technically less efficient that
-	// haveing some counter variable that gets updated
+	// having some counter variable that gets updated
 	// when scenes wrap, however the number of scenes
 	// is small enough that it doesn't matter, also the code
 	// is a lot cleaner this way.
-	// public boolean oneSceneLeft() {
-	// 	int scenesLeft = 0;
-	// 	for (Keyr k : rooms.keySet()) {
-	// 		Room curr = rooms.get(k);
-	// 		if (curr instanceof MovieSet) {
-	// 			if (!curr.wrapped()) {
-	// 				scenesLeft++;
-	// 			}
-	// 		}
-	// 	}
-	// 	return (scenesLeft == 1);
-	// }
+	public boolean oneSceneLeft() {
+		int scenesLeft = 0;
+		for (Keyr k : rooms.keySet()) {
+			Room curr = rooms.get(k);
+			if (curr instanceof MovieSet) {
+				curr = (MovieSet) curr;
+				if (!curr.wrapped()) {
+					scenesLeft++;
+				}
+			}
+		}
+		return (scenesLeft == 1);
+	}
 
 }

@@ -12,29 +12,60 @@ public class Player {
 	private int credits = 0;
 	private int rehersalChips = 0;
 
-	// temporary
-	private Scanner sc;
+	private Role currentRole;
+	private Room currentRoom;
+	private SceneCard currentScene;
 
-	// private Room currentRoom;
+	private Random dice;
 
-	public Player(int id) {
+	public Player(int id, Room initialRoom) {
 		this.playerID = id;
-		// this.currentRoom = Rooms.getRoom("trailers");
-		this.sc = new Scanner(System.in);
+		this.currentRoom = initialRoom;
+		this.dice = new Random();
 	}
 
-	public Player(int id, int credits) {
-		this(id);
+	public Player(int id, initialRoom, int credits) {
+		this(id, initialRoom);
 		this.credits = credits;
 	}
 
-	public void playTurn() {
-		// to be removed once the view is implemented.
-		System.out.println("choose your move:");
-		
+	public Player(int id, Room initialRoom, int credits, int rank) {
+		this(id, initialRoom, credits);
+		this.rank = rank;
 	}
 
-	public void rankUp() { this.rank++; }
+	private int roll() {
+		return 1 + dice.nextInt(6);
+	}
+
+	public void act() {
+		int roll = rehersalChips + roll();
+		if (roll >= currentScene.getBudget()) {
+			currentScene.removeShot();
+			currentRole.payOnSucess();
+		}
+	}
+
+	public void rehearse() {
+		if (rehersalChips == currentScene.getBudget()) {
+			rehersalChips == 0;
+			currentRoom.wrap();
+		} else {
+			rehersalChips++;
+		}
+	}
+
+	public void takeRole(String which) {
+		this.currentRole(currentRoom.getRole(which));
+	}
+
+	public void move(String where) {
+		this.currentRoom = currentRoom.getNeighbor(where);
+	}
+
+	public void upgrade(int level) {
+		this.currentRoom.upgrade(this, level);
+	}
 
 	public int calculateScore() {
 		return (money + credits + (5 * rank)); 

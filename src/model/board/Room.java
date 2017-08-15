@@ -23,6 +23,10 @@ public abstract class Room {
 		return this.name;
 	}
 
+	public Room getNeighbor(String which) {
+		return neighbors.get(which);
+	}
+
 	protected String getTabbedNeighborStrings() {
 		String ret = "neighbors:\n";
 		for (String key : neighbors.keySet()) {
