@@ -2,10 +2,12 @@ package model;
 
 import model.loading.*;
 import model.board.*;
+import model.players.*;
 
 public class DeadwoodGame {
 
 	private Player[] players;
+	private int currentPlayerIndex = 0;
 	private int day;
 	private Board board;
 
@@ -32,22 +34,41 @@ public class DeadwoodGame {
 		return playerStrings + board.toString();
 	}
 
-	private void play() {
+	public String currentStateToString() {
+		String ret = "";
+		for (Player p : players) {
+			ret += p.toString() + "\n";
+		}
+		return ret;
+	}
+
+	// private void nextTurn() {
+	// 	players
+	// }
+
+	public void play() {
 		board.newDay();
-		do {
-			day++;
-			int currentPlayerId = 0;
-			while (!board.oneSceneLeft()) {
-				players[(currentPlayerId++) % players.length].playTurn();
-			}
-			board.newDay();
-		} while (day <= 4);
-		endGame();
+		listener.update();
+		// board.newDay();
+		// do {
+		// 	day++;
+		// 	int currentPlayerId = 0;
+		// 	while (!board.oneSceneLeft()) {
+		// 		players[(currentPlayerId++) % players.length].playTurn();
+		// 	}
+		// 	board.newDay();
+		// } while (day <= 4);
+		// endGame();
+	}
+
+	public void nextTurn() {
+		players[currentPlayerIndex].resetMove();
+		currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
 	}
 
 	// TODO implement ties
 	private void endGame() {
-		String currHighScorerName;
+		String currHighScorerName = "";
 		int currHighScore = -1;
 		for (Player p : players) {
 			if (!(currHighScore == -1)) {
@@ -57,10 +78,14 @@ public class DeadwoodGame {
 				}
 			} else {
 				currHighScore = p.calculateScore();
-				currHighScorer = p.getName();
+				currHighScorerName = p.getName();
 			}
 		}
 		System.out.println(currHighScorerName + " has won!");
+	}
+
+	public Player getCurrentPlayer() {
+		return players[currentPlayerIndex];
 	}
 
 }

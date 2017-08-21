@@ -2,6 +2,7 @@ package model.loading;
 
 import model.*;
 import model.board.*;
+import model.players.*;
 
 public class GameLoader {
 
@@ -15,11 +16,11 @@ public class GameLoader {
 		PlayerFactory pf = PlayerFactory.getInstance();
 		BoardLoader bl = BoardLoader.getInstance();
 		JSONDataParser jp = JSONDataParser.getInstance();
+		Board board = bl.getBoard(jp);
 		Player[] players = new Player[numPlayers];
 		for (int i = 0; i < numPlayers; i++) {
-			players[i] = pf.getPlayer(numPlayers);
+			players[i] = pf.getPlayer(numPlayers, board.getInitialRoom());
 		}
-		Board board = bl.getBoard(jp);
 		return new DeadwoodGame(players, board);
 	}
 

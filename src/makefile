@@ -6,9 +6,11 @@ clean:
 	rm model/*.class
 	rm model/loading/*.class
 	rm model/board/*.class
+	rm model/players/*.class
 
 clena:
 	rm Deadwood.class
 	rm model/*.class
 	rm model/loading/*.class
 	rm model/board/*.class
+	rm model/players/*.class

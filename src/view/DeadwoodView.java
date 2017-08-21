@@ -1,7 +1,9 @@
+package view;
+
 public interface DeadwoodView {
 
-	private void update();
+	public void update();
 
-	private void setListener();
+	public void setListener(ViewListener vl);
 
 }

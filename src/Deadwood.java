@@ -1,17 +1,19 @@
 import model.loading.*;
 import model.board.*;
 import model.DeadwoodGame;
+import view.*;
+import controller.*;
 
 public class Deadwood {
 
 	public static void main(String[] args) {
 		// int numPlayers = Integer.parseInt(args[0]);
 		GameLoader gl = GameLoader.getInstance();
-		DeadwoodGame dg = gl.loadGame(1);
+		DeadwoodGame dg = gl.loadGame(2);
 		System.out.println(dg.toString());
-		// DeadwoodView view = new DeadwoodView(dg);
-		// DeadwoodController controller = new DeadwoodController(view, dg);
-		// dg.play();
+		DeadwoodView view = new ConsoleView(dg);
+		DeadwoodController controller = new DeadwoodController(view, dg);
+		dg.play();
 	}
 
 }

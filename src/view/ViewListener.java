@@ -1,3 +1,5 @@
+package view;
+
 public interface ViewListener {
 
 	public void playerActs();

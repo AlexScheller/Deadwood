@@ -1,20 +1,27 @@
+package controller;
+
+import view.*;
+import model.*;
+
 public class DeadwoodController implements ViewListener {
 
-	private DeadwoodView view;
+	// private DeadwoodView view;
 	private DeadwoodGame model;
 
 	public DeadwoodController(DeadwoodView view, DeadwoodGame model) {
-		this.view = view;
+		// this.view = view;
 		this.model = model;
-		this.view.setListener(this);
+		view.setListener(this);
 	}
 
 	public void playerActs() {
-		model.getCurrentPlayer().act();
+		System.out.println("Player: " + model.getCurrentPlayer().getName() + " acts");
+		// model.getCurrentPlayer().act();
 	}
 
 	public void playerRehearses() {
-		model.getCurrentPlayer().rehearse();
+		System.out.println("Player: " + model.getCurrentPlayer().getName() + " rehearses");
+		// model.getCurrentPlayer().rehearse();
 	}
 
 	public void playerMovesTo(String where) {
@@ -26,11 +33,17 @@ public class DeadwoodController implements ViewListener {
 	}
 
 	public void playerTakesRole(String which) {
-		model.getCurrentPlayer().takeRole(which);
+		System.out.println("Player: " + model.getCurrentPlayer().getName() + " takes roll: " + which);
+		// model.getCurrentPlayer().takeRole(which);
 	}
 
 	public void playerUpgrades(int level) {
-		model.getCurrentPlayer().upgrade(level);
+		System.out.println("Player: " + model.getCurrentPlayer().getName() + " upgrades");
+		// try {
+		// 	model.getCurrentPlayer().upgrade(level);
+		// } catch (IllegalStateException e) {
+		// 	System.out.println(e.getMessage());
+		// }
 	}
 
 }

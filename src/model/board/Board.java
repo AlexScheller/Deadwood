@@ -24,6 +24,10 @@ public class Board {
 		dealRooms();
 	}
 
+	public Room getInitialRoom() {
+		return rs.getRoom("trailer");
+	}
+
 	public boolean oneSceneLeft() {
 		return rs.oneSceneLeft();
 	}

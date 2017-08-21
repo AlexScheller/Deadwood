@@ -35,6 +35,16 @@ public abstract class Room {
 		return ret;
 	}
 
+	public String[] getNeighborStrings() {
+		String[] ret = new String[neighbors.size()];
+		int i = 0;
+		for (String key : neighbors.keySet()) {
+			ret[i] = neighbors.get(key).getName();
+			i++;
+		}
+		return ret;
+	}
+
 	@Override
 	public abstract String toString();
 

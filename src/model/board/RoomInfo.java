@@ -14,7 +14,7 @@ public class RoomInfo {
 	public Type roomType;
 	public String name;
 	public String[] neighbors;
-	public int numTakes;
+	public int takesLeft;
 	public List<RoleInfo> roleInfos;
 
 }

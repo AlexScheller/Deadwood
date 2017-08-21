@@ -61,11 +61,11 @@ public class RoomSet {
 	// is a lot cleaner this way.
 	public boolean oneSceneLeft() {
 		int scenesLeft = 0;
-		for (Keyr k : rooms.keySet()) {
-			Room curr = rooms.get(k);
+		for (String key : rooms.keySet()) {
+			Room curr = rooms.get(key);
 			if (curr instanceof MovieSet) {
-				curr = (MovieSet) curr;
-				if (!curr.wrapped()) {
+				MovieSet asMovieSet = (MovieSet) curr;
+				if (!asMovieSet.isWrapped()) {
 					scenesLeft++;
 				}
 			}

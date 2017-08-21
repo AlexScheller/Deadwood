@@ -90,7 +90,7 @@ public class JSONDataParser implements DataParser {
 				JSONObject set = (JSONObject) sets.next();
 				setInfo.roomType = RoomInfo.Type.MOVIE_SET;
 				setInfo.name = set.getString("name");
-				setInfo.numTakes = set.getJSONArray("takes").length();
+				setInfo.takesLeft = set.getJSONArray("takes").length();
 				setInfo.roleInfos = parseRoleInfos(set.getJSONArray("parts"), "board");
 				setInfo.neighbors = parseNeighbors(set.getJSONArray("neighbors"));
 				ret.add(setInfo);
