@@ -1,1 +1,3 @@
 *.class
+linecount.sh
+check_status.sh

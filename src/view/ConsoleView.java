@@ -35,11 +35,11 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 				if (1 <= choiceIndex && choiceIndex <= loopOver.length) {
 					choosing = false;
 					if (which.equals("move")) {
-						listener.playerMovesTo(loopOver[choiceIndex - 1]);
+						listener.playerMoveRequest(loopOver[choiceIndex - 1]);
 					} else if (which.equals("work")) {
-						listener.playerTakesRole(loopOver[choiceIndex - 1]);
+						listener.playerTakeRoleRequest(loopOver[choiceIndex - 1]);
 					} else if (which.equals("upgrade")) {
-						listener.playerUpgrades(Integer.parseInt(loopOver[choiceIndex - 1]));
+						listener.playerUpgradeRequest(Integer.parseInt(loopOver[choiceIndex - 1]));
 					}
 					update();
 				} else {
@@ -53,23 +53,26 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 
 	private void displayChoices() {
 		Player curr = model.getCurrentPlayer();
-		System.out.println("Player " + curr.getID() + "'s turn...");
+		System.out.println("Player " + (curr.getID() + 1) + "'s turn...");
 		// System.out.println(curr.currentStateToString());
 		System.out.println(curr.toString());
 		System.out.println("choices:");
 		boolean choosing = true;
-		if (model.getCurrentPlayer().isActing()) {
+		if (curr.isActing()) {
 			while(choosing) {
 				System.out.println("1. act\n2. rehearse");
 				System.out.print("choice: ");
 				String choice = sc.next();
-				if (choice.equals("1")){
+				if (choice.equals("quit")) {
+					System.out.println("exiting...");
+					System.exit(0);
+				} else if (choice.equals("1")){
 					choosing = false;
-					listener.playerActs();
+					listener.playerActRequest();
 					update();
 				} else if (choice.equals("2")) {
 					choosing = false;
-					listener.playerRehearses();
+					listener.playerRehearseRequest();
 					update();
 				} else {
 					System.out.println("please enter only 1 or 2.");
@@ -113,7 +116,7 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 							loopOverChoices("work", curr.getRolesAvailable());
 						} else if (couldUpgrade) {
 							choosing = false;
-							//loopOverChoices("upgrade", curr.getPossibleUpgrades());
+							// loopOverChoices("upgrade", curr.getPossibleUpgrades());
 						} else {
 							System.out.println("please enter only one of the choices presented.");
 						}

@@ -16,6 +16,10 @@ public class Board {
 		return rs.toString() + "\n" + cards.toString();
 	}
 
+	public String currentStateToString() {
+		return "";
+	}
+
 	private void dealRooms() {
 		rs.dealSceneCards(cards);
 	}

@@ -4,6 +4,8 @@ import model.board.SceneCardInfo;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 public class SceneCard {
 
@@ -47,13 +49,23 @@ public class SceneCard {
 		return roles.get(which);
 	}
 
-	public String[] getRolesAvailable() {
-		String[] ret = new String[roles.size()];
-		int i = 0;
+	public List<String> getRolesAvailableAsList() {
+		List<String> retList = new ArrayList<>();
 		for (String key : roles.keySet()) {
-			ret[i] = roles.get(key).getName();
+			if (!roles.get(key).isOccupied()) {
+				retList.add(roles.get(key).getName());
+			}
 		}
-		return ret;
+		return retList;
+	}
+
+	public String[] getRolesAvailableAsArray() {
+		List<String> ret = getRolesAvailableAsList();
+		return ret.toArray(new String[ret.size()]);
+	}
+
+	public String getTitle() {
+		return this.title;
 	}
 
 	@Override

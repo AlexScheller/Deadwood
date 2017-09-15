@@ -24,6 +24,14 @@ public abstract class Role {
 		return this.name;
 	}
 
+	public void takeActor(Player p) {
+		this.residentActor = p;
+	}
+
+	public boolean isOccupied() {
+		return residentActor != null;
+	}
+
 	public abstract void success();
 
 	public abstract void failure();

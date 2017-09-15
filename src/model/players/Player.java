@@ -42,18 +42,23 @@ public class Player {
 		return 1 + dice.nextInt(6);
 	}
 
-	public void act() {
-		int roll = rehersalChips + roll();
-		if (roll >= currentScene.getBudget()) {
-			MovieSet roomAsSet = (MovieSet) currentRoom;
-			roomAsSet.removeShot();
-			currentRole.success();
+	public void act() throws IllegalStateException {
+		if (isActing()) {
+			int roll = rehersalChips + roll();
+			if (roll >= currentScene.getBudget()) {
+				MovieSet roomAsSet = (MovieSet) currentRoom;
+				roomAsSet.removeShot();
+				currentRole.success();
+			} else {
+				currentRole.failure();
+			}
 		} else {
-			currentRole.failure();
+			throw new IllegalStateException("player not in a role");
 		}
 	}
 
 	public void rehearse() {
+		System.out.println("rehearsing");
 		if (rehersalChips == currentScene.getBudget()) {
 			rehersalChips = 0;
 			MovieSet roomAsSet = (MovieSet) currentRoom;
@@ -61,6 +66,7 @@ public class Player {
 		} else {
 			rehersalChips++;
 		}
+		System.out.println("rehearsed");
 	}
 
 	public void earnDollars(int dollars) {
@@ -75,15 +81,16 @@ public class Player {
 		this.currentRole = null;
 	}
 
-	public void takeRole(String which) {
-		MovieSet roomAsSet = (MovieSet) currentRoom;
-		try {
+	public void takeRole(String which) throws IllegalStateException, IllegalArgumentException {
+		if (currentRoom instanceof MovieSet) {
+			MovieSet roomAsSet = (MovieSet) currentRoom;
+			// TODO: Figure out a way to move all of the logic either
+			// onto the player, or onto the role alone.
 			this.currentRole = roomAsSet.getRole(which);
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
+			currentRole.takeActor(this);
+		} else {
+			throw new IllegalStateException("current room is not a set");
 		}
-
 	}
 
 	// TODO: fix this jank
@@ -91,7 +98,7 @@ public class Player {
 		this.hasMoved = false;
 	}
 
-	public void move(String where) {
+	public void move(String where) throws IllegalArgumentException {
 		this.currentRoom = currentRoom.getNeighbor(where);
 		this.hasMoved = true;
 	}
@@ -117,9 +124,14 @@ public class Player {
 		return (currentRoom instanceof CastingOffice);
 	}
 
-	// TODO: implement
+	// TODO: make sure there are actually roles available,
+	// not just that this is a set
 	public boolean hasRolesAvailable() {
-		return true;
+		if (currentRoom instanceof MovieSet) {
+			return getRolesAvailable().length > 0;
+		} else {
+			return false;
+		}
 	}
 
 	public int calculateScore() {
@@ -136,7 +148,11 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "Player " + Integer.toString(playerID) + " in room: " + currentRoom.getName();
+		String ret = "Player " + Integer.toString(playerID + 1) + " in room: " + currentRoom.getName();
+		if (currentRoom instanceof MovieSet) {
+			
+		}
+		return ret;	
 	}
 
 	public String[] getNeighborStrings() {
@@ -144,8 +160,12 @@ public class Player {
 	}
 
 	public String[] getRolesAvailable() {
-		MovieSet asSet = (MovieSet) currentRoom;
-		return asSet.getRolesAvailable();
+		if (currentRoom instanceof MovieSet) {
+			MovieSet asSet = (MovieSet) currentRoom;
+			return asSet.getRolesAvailableAsArray();
+		} else {
+			throw new IllegalStateException("current room is not a set");
+		}
 	}
 
 }

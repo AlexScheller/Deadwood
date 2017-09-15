@@ -2,16 +2,16 @@ package view;
 
 public interface ViewListener {
 
-	public void playerActs();
+	public void playerActRequest();
 
-	public void playerRehearses();
+	public void playerRehearseRequest();
 
-	public void playerMovesTo(String where);
+	public void playerMoveRequest(String where);
 
 	public void playerDoesNothing();
 
-	public void playerTakesRole(String which);
+	public void playerTakeRoleRequest(String which);
 
-	public void playerUpgrades(int level);
+	public void playerUpgradeRequest(int level);
 
 }

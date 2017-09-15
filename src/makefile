@@ -7,10 +7,7 @@ clean:
 	rm model/loading/*.class
 	rm model/board/*.class
 	rm model/players/*.class
+	rm view/*.class
+	rm controller/*.class
 
-clena:
-	rm Deadwood.class
-	rm model/*.class
-	rm model/loading/*.class
-	rm model/board/*.class
-	rm model/players/*.class
+clena: clean

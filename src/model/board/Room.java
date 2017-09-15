@@ -23,8 +23,12 @@ public abstract class Room {
 		return this.name;
 	}
 
-	public Room getNeighbor(String which) {
-		return neighbors.get(which);
+	public Room getNeighbor(String which) throws IllegalArgumentException {
+		if (neighbors.containsKey(which)) {
+			return neighbors.get(which);			
+		} else {
+			throw new IllegalArgumentException("room: " + which + "not in neighbors");
+		}
 	}
 
 	protected String getTabbedNeighborStrings() {

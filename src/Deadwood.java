@@ -10,9 +10,10 @@ public class Deadwood {
 		// int numPlayers = Integer.parseInt(args[0]);
 		GameLoader gl = GameLoader.getInstance();
 		DeadwoodGame dg = gl.loadGame(2);
-		System.out.println(dg.toString());
+		// System.out.println(dg.toString());
 		DeadwoodView view = new ConsoleView(dg);
-		DeadwoodController controller = new DeadwoodController(view, dg);
+		// the true boolean in the instantiation tells the controller to log
+		DeadwoodController controller = new DeadwoodController(view, dg);//, true);
 		dg.play();
 	}
 

@@ -2,6 +2,8 @@ package model.board;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 public class MovieSet extends Room {
 
@@ -30,20 +32,24 @@ public class MovieSet extends Room {
 	public void wrap() {
 		System.out.print("wrapping");
 	}
-
-	// TODO IMPLEMENT
+	
 	public boolean isWrapped() {
 		return (takesLeft == 0);
 	}
 
-	public Role getRole(String which) {
+	public Role getRole(String which) throws IllegalArgumentException, IllegalStateException {
+		Role ret;
 		if (roles.containsKey(which)) {
-			return roles.get(which);
+			ret = roles.get(which);
 		} else if (scene.hasRole(which)) {
-			return scene.getRole(which);
+			ret = scene.getRole(which);
 		} else {
 			throw new IllegalArgumentException("no such role: " + which + " exists in this set or on the card in this set.");
 		}
+		if (ret.isOccupied()) {
+			throw new IllegalStateException("role: " + which + " is already occupied.");
+		}
+		return ret;
 	}
 
 	private String getTabbedRoles() {
@@ -59,18 +65,16 @@ public class MovieSet extends Room {
 		return "Set: " + this.name + "\n" + getTabbedNeighborStrings() + "\n" + getTabbedRoles();
 	}
 
-	public String[] getRolesAvailable() {
-		String[] sceneRoles = scene.getRolesAvailable();
-		String[] ret = new String[sceneRoles.length + roles.size()];
-		int i;
-		for (i = 0; i < sceneRoles.length; i++) {
-			ret[i] = sceneRoles[i];
-		}
+	public String[] getRolesAvailableAsArray() {
+		// System.out.println("Getting roles from Set: " + getName());
+		// System.out.println(scene.toString());
+		List<String> ret = scene.getRolesAvailableAsList();
 		for (String key : roles.keySet()) {
-			ret[i] = roles.get(key).getName();
-			i++;
+			if (!roles.get(key).isOccupied()) {
+				ret.add(roles.get(key).getName());
+			}
 		}
-		return ret;
+		return ret.toArray(new String[ret.size()]);
 	}
 
 }
