@@ -3,6 +3,7 @@ package model;
 import model.loading.*;
 import model.board.*;
 import model.players.*;
+import java.util.Random;
 
 public class DeadwoodGame {
 
@@ -48,23 +49,26 @@ public class DeadwoodGame {
 
 	public void play() {
 		board.newDay();
-		listener.update();
-		// board.newDay();
-		// do {
-		// 	day++;
-		// 	int currentPlayerId = 0;
-		// 	while (!board.oneSceneLeft()) {
-		// 		players[(currentPlayerId++) % players.length].playTurn();
-		// 	}
-		// 	board.newDay();
-		// } while (day <= 4);
-		// endGame();
+		int firstPlayerId = (new Random()).nextInt(players.length); 
+		do {
+			day++;
+			currentPlayerIndex = firstPlayerId;
+			while (!board.oneSceneLeft()) {
+				// players[(currentPlayerId++) % players.length].playTurn();
+				listener.newTurn();
+				players[currentPlayerIndex].resetMove();
+				currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+			}
+			board.newDay();
+			listener.newDay();
+		} while (day <= 4);
+		endGame();
 	}
 
-	public void nextTurn() {
-		players[currentPlayerIndex].resetMove();
-		currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-	}
+	// public void nextTurn() {
+	// 	players[currentPlayerIndex].resetMove();
+	// 	currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+	// }
 
 	// TODO implement ties
 	private void endGame() {

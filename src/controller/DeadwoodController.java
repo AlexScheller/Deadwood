@@ -62,15 +62,15 @@ public class DeadwoodController implements ViewListener {
 		}
 	}
 
-	public void playerDoesNothing() {
-		model.nextTurn();
-	}
+	// public void playerDoesNothing() {
+	// 	// model.nextTurn();
+	// }
 
 	public void playerTakeRoleRequest(String which) {
 		System.out.println("Player: " + model.getCurrentPlayer().getName() + " takes roll: " + which);
 		try {
 			model.getCurrentPlayer().takeRole(which);
-			model.nextTurn();
+			// model.nextTurn();
 		} catch (Exception e) {
 			exitOnException(e);
 		}

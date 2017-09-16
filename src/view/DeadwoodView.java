@@ -9,7 +9,10 @@ package view;
 
 public interface DeadwoodView {
 
-	public void update();
+	// public void update();
+
+	// public void newTurn();
+	// public void newDay();
 
 	public void setListener(ViewListener vl);
 

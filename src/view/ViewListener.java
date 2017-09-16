@@ -8,7 +8,7 @@ public interface ViewListener {
 
 	public void playerMoveRequest(String where);
 
-	public void playerDoesNothing();
+	// public void playerDoesNothing();
 
 	public void playerTakeRoleRequest(String which);
 
