@@ -37,6 +37,9 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 					choosing = false;
 					if (which.equals("move")) {
 						listener.playerMoveRequest(loopOver[choiceIndex - 1]);
+						// The only instance in which a player may take another
+						// action is after moving.
+						displayChoices();
 					} else if (which.equals("work")) {
 						listener.playerTakeRoleRequest(loopOver[choiceIndex - 1]);
 					} else if (which.equals("upgrade")) {

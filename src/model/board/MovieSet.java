@@ -27,6 +27,9 @@ public class MovieSet extends Room {
 
 	public void removeShot() {
 		this.takesLeft--;
+		if (takesLeft == 0) {
+			wrap();
+		}
 	}
 
 	public void wrap() {
@@ -35,6 +38,10 @@ public class MovieSet extends Room {
 	
 	public boolean isWrapped() {
 		return (takesLeft == 0);
+	}
+
+	public int getBudget() {
+		return scene.getBudget();
 	}
 
 	public Role getRole(String which) throws IllegalArgumentException, IllegalStateException {
