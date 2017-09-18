@@ -2,10 +2,11 @@ package model.board;
 
 import model.board.SceneCardInfo;
 
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
+// import java.util.Map;
+// import java.util.HashMap;
+// import java.util.List;
+// import java.util.ArrayList;
+import java.util.*;
 
 public class SceneCard {
 
@@ -14,7 +15,7 @@ public class SceneCard {
 	private int number; // necessary?
 	private String title;
 	private String description;
-	private Map<String, Role> roles;
+	private Map<String, StarringRole> roles;
 
 	public SceneCard(SceneCardInfo ci) {
 		this.budget = ci.budget;
@@ -25,7 +26,7 @@ public class SceneCard {
 		RoleFactory rf = RoleFactory.getInstance();
 		this.roles = new HashMap<>();
 		for (RoleInfo r : ci.roleInfos) {
-			this.roles.put(r.name, rf.getRole(r));
+			this.roles.put(r.name, (StarringRole)rf.getRole(r));
 		}
 	}
 
@@ -62,6 +63,64 @@ public class SceneCard {
 	public String[] getRolesAvailableAsArray() {
 		List<String> ret = getRolesAvailableAsList();
 		return ret.toArray(new String[ret.size()]);
+	}
+
+	// TODO: see if this can be simplified
+	public void payBonuses() {
+
+		// establish dice roles
+		int[] diceRoles = new int[this.budget];
+		Random r = new Random();
+		for (int i = 0; i < this.budget; i++) {
+			diceRoles[i] = r.nextInt(6) + 1;
+		}
+		Arrays.sort(diceRoles);
+		// reverse it 
+		for (int i = 0; i < (diceRoles.length / 2); i++) {
+			int temp = diceRoles[i];
+			diceRoles[i] = diceRoles[diceRoles.length - (i + 1)];
+			diceRoles[diceRoles.length - (i + 1)] = temp;
+		}
+		// ArrayUtils.reverse(diceRoles);
+
+		// convert roles into array in descending order
+		// by rank required.
+		StarringRole[] rolesAsArray = new StarringRole[roles.size()];
+		int j = 0;
+		for (String key : roles.keySet()) {
+			rolesAsArray[j] = roles.get(key);
+			j++;
+		}
+		// TODO: TEST THIS!
+		Arrays.sort(rolesAsArray, new Comparator<Role>() {
+			public int compare(Role r1, Role r2) {
+				return r1.getRankRequired() - r2.getRankRequired();
+			}
+		});
+
+		// distribute dice rolls
+		for (int i = 0; i < diceRoles.length; i++) {
+			if (rolesAsArray[i % rolesAsArray.length].isOccupied()) {
+				rolesAsArray[i % rolesAsArray.length].payBonus(diceRoles[i]);
+			}
+		}
+	}
+
+	public void evictPlayers() {
+		for (String key : roles.keySet()) {
+			if (roles.get(key).isOccupied()) {
+				roles.get(key).evictActor();
+			}
+		}
+	}
+
+	public boolean isOccupied() {
+		for (String key : roles.keySet()) {
+			if (roles.get(key).isOccupied()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String getTitle() {

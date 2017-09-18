@@ -22,28 +22,28 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 		System.out.println("========\n" + model.currentStateToString());
 	}
 
-	private void loopOverChoices(String which, String[] loopOver) {
+	private void loopOverChoices(String which, String[] choices) {
 		boolean choosing = true;
 		System.out.println("========");
 		while (choosing) {
-			for (int i = 1; i <= loopOver.length; i++) {
-				System.out.println(i + ": " + loopOver[i-1]);
+			for (int i = 1; i <= choices.length; i++) {
+				System.out.println(i + ": " + choices[i-1]);
 			}
 			System.out.print("========\nchoice: ");
 			String choice = sc.next();
 			try {
 				int choiceIndex = Integer.parseInt(choice);
-				if (1 <= choiceIndex && choiceIndex <= loopOver.length) {
+				if (1 <= choiceIndex && choiceIndex <= choices.length) {
 					choosing = false;
 					if (which.equals("move")) {
-						listener.playerMoveRequest(loopOver[choiceIndex - 1]);
+						listener.playerMoveRequest(choices[choiceIndex - 1]);
 						// The only instance in which a player may take another
 						// action is after moving.
 						displayChoices();
 					} else if (which.equals("work")) {
-						listener.playerTakeRoleRequest(loopOver[choiceIndex - 1]);
+						listener.playerTakeRoleRequest(choices[choiceIndex - 1]);
 					} else if (which.equals("upgrade")) {
-						listener.playerUpgradeRequest(Integer.parseInt(loopOver[choiceIndex - 1]));
+						listener.playerUpgradeRequest(Integer.parseInt(choices[choiceIndex - 1]));
 					}
 					// update();
 				} else {
@@ -151,6 +151,7 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 	// 	displayChoices();
 	// }
 
+	/* logic triggers */
 	public void newTurn() {
 		int currentPlayer = model.getCurrentPlayer().getID();
 		System.out.println("{}==== new turn: Player " + (currentPlayer + 1) + " ===={}");
@@ -159,6 +160,19 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 
 	public void newDay() {
 		System.out.println("pass");
+	}
+
+	/* response triggers */
+
+	// for the console view, the code for both act response
+	// and rehearse response are the same, but that may not
+	// be so for different views.
+	public void playerActResponse(String msg) {
+		System.out.println("========\n" + msg);
+	}
+
+	public void playerRehearseResponse(String msg) {
+		System.out.println("========\n" + msg);
 	}
 
 	public void setListener(ViewListener vl) {

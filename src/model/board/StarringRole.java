@@ -7,11 +7,13 @@ public class StarringRole extends Role {
 	}
 
 	public void success() {
-		if (this.residentActor != null) {
-			this.residentActor.earnCredits(2);
-		}
+		this.residentActor.earnCredits(2);
 	}
 
 	public void failure() {}
+
+	public void payBonus(int howMuch) {
+		this.residentActor.earnDollars(howMuch);
+	}
 
 }

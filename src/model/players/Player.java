@@ -42,33 +42,38 @@ public class Player {
 		return 1 + dice.nextInt(6);
 	}
 
-	public void act() throws IllegalStateException {
+	public String act() throws IllegalStateException {
 		if (isActing()) {
 			int roll = rehersalChips + roll();
 			MovieSet roomAsSet = (MovieSet) currentRoom;
+			String ret = "Player " + playerID + " rolled a " + roll +  " ... ";
 			if (roll >= roomAsSet.getBudget()) {
 				// roomAsSet.removeShot();
-				// TODO: find a way to make the order of these
-				// two calls irrelevant.
+				// TODO: find a way to make the order of success and 
+				// removeShot irrelevant.
 				currentRole.success();
-				roomAsSet.removeShot();
+				ret += "Player succeeds!\n" + "dollars: " + dollars + "\ncredits: " + credits + "\n";
+				ret += roomAsSet.removeShot();
 			} else {
 				currentRole.failure();
+				ret += "Player fails...\n" + "dollars: " + dollars + "\ncredits: " + credits + "\n";
 			}
+			return ret;
 		} else {
 			throw new IllegalStateException("player not in a role");
 		}
 	}
 
-	public void rehearse() {
+	public String rehearse() {
 		// System.out.println("rehearsing");
 		if (isActing()) {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
 			if (rehersalChips == roomAsSet.getBudget()) {
 				rehersalChips = 0;
-				roomAsSet.wrap();
+				return roomAsSet.wrap();
 			} else {
 				rehersalChips++;
+				return "Player " + (playerID + 1) + " now has " + rehersalChips + " rehearsal chips";
 			}
 		} else {
 			throw new IllegalStateException("player not in a role");
@@ -84,7 +89,7 @@ public class Player {
 		this.credits += credits;
 	}
 
-	public void finishRoll() {
+	public void finishRole() {
 		this.currentRole = null;
 	}
 

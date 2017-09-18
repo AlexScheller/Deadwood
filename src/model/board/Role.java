@@ -24,12 +24,21 @@ public abstract class Role {
 		return this.name;
 	}
 
+	public int getRankRequired() {
+		return this.rankRequired;
+	}
+
 	public void takeActor(Player p) {
 		this.residentActor = p;
 	}
 
 	public boolean isOccupied() {
 		return residentActor != null;
+	}
+
+	public void evictActor() {
+		this.residentActor.finishRole();
+		this.residentActor = null;
 	}
 
 	public abstract void success();

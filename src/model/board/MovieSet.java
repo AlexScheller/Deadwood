@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class MovieSet extends Room {
 
 	private SceneCard scene;
-	private Map<String, Role> roles;
+	private Map<String, ExtraRole> roles;
 	private int takesLeft;
 
 	public MovieSet (RoomInfo ri) {
@@ -17,7 +17,7 @@ public class MovieSet extends Room {
 		this.roles = new HashMap<>();
 		RoleFactory rf = RoleFactory.getInstance();
 		for (RoleInfo r : ri.roleInfos) {
-			this.roles.put(r.name, rf.getRole(r));
+			this.roles.put(r.name, (ExtraRole)rf.getRole(r));
 		}
 	}
 
@@ -25,15 +25,41 @@ public class MovieSet extends Room {
 		this.scene = sc;
 	}
 
-	public void removeShot() {
+	public String removeShot() {
 		this.takesLeft--;
 		if (takesLeft == 0) {
-			wrap();
+			return "takes finished, " + wrap();
+		}
+		return "takes left: " + takesLeft;
+	}
+
+	public String payBonuses() {
+		scene.payBonuses();
+		for (String key : roles.keySet()) {
+			if (roles.get(key).isOccupied()) {
+				roles.get(key).payBonus();
+				// ret += roles.get(key).getRankRequired();
+			}
+		}
+		return "paying bonuses";
+	}
+
+	public void evictPlayers() {
+		for (String key : roles.keySet()) {
+			if (roles.get(key).isOccupied()) {
+				roles.get(key).evictActor();
+			}
 		}
 	}
 
-	public void wrap() {
-		System.out.print("wrapping");
+	public String wrap() {
+		String ret = "wrapping scene: " + scene.getTitle();
+		if (scene.isOccupied()) {
+			ret += " " + payBonuses();
+			scene.evictPlayers();
+		}
+		evictPlayers();
+		return ret;
 	}
 	
 	public boolean isWrapped() {

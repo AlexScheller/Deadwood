@@ -88,6 +88,24 @@ public class DeadwoodGame {
 		System.out.println(currHighScorerName + " has won!");
 	}
 
+	public void playerActs() throws IllegalStateException {
+		String res = players[currentPlayerIndex].act();
+		listener.playerActResponse(res);
+	}
+
+	public void playerRehearses() throws IllegalStateException {
+		String res = players[currentPlayerIndex].rehearse();
+		listener.playerRehearseResponse(res);
+	}
+
+	public void playerMoves(String where) throws IllegalArgumentException {
+		players[currentPlayerIndex].move(where);
+	}
+
+	public void playerTakesRole(String which) throws IllegalArgumentException, IllegalStateException {
+		players[currentPlayerIndex].takeRole(which);
+	}
+
 	public Player getCurrentPlayer() {
 		return players[currentPlayerIndex];
 	}
