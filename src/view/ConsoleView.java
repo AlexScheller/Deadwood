@@ -59,7 +59,7 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 		Player curr = model.getCurrentPlayer();
 		// System.out.println("=======\nPlayer " + (curr.getID() + 1) + "'s turn...");
 		// System.out.println(curr.currentStateToString());
-		System.out.println(curr.toString());
+		System.out.println("========\n" + curr.toString());
 		System.out.println("========\nchoices:");
 		boolean choosing = true;
 		if (curr.isActing()) {

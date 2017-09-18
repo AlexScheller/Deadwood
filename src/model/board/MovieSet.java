@@ -59,6 +59,7 @@ public class MovieSet extends Room {
 			scene.evictPlayers();
 		}
 		evictPlayers();
+		this.takesLeft = 0;
 		return ret;
 	}
 	

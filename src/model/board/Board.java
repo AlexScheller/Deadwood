@@ -8,7 +8,7 @@ public class Board {
 	public Board(RoomSet rs, SceneCardSet scs) {
 		this.rs = rs;
 		this.cards = scs;
-		System.out.println("\tsuccessful!");
+		// System.out.println("\tsuccessful!");
 	}
 
 	@Override

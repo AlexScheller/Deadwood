@@ -10,7 +10,7 @@ public class SceneCardSet {
 	public SceneCardSet(Stack<SceneCard> cards) {
 		this.cards = cards;
 		shuffle();
-		System.out.println(" successful!");
+		// System.out.println(" successful!");
 	}
 
 	@Override

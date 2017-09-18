@@ -18,7 +18,7 @@ public class DeadwoodGame {
 		this.day = 0;
 		this.board = board;
 		this.players = players;
-		System.out.println("successful!");
+		// System.out.println("successful!");
 	}
 
 	public void setListener(ModelListener ml) {

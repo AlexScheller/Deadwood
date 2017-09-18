@@ -140,7 +140,8 @@ public class Player {
 	// not just that this is a set
 	public boolean hasRolesAvailable() {
 		if (currentRoom instanceof MovieSet) {
-			return getRolesAvailable().length > 0;
+			MovieSet asSet = (MovieSet) currentRoom;
+			return !asSet.isWrapped() && getRolesAvailable().length > 0;
 		} else {
 			return false;
 		}
@@ -160,9 +161,13 @@ public class Player {
 
 	@Override
 	public String toString() {
-		String ret = "Player " + Integer.toString(playerID + 1) + " in room: " + currentRoom.getName();
-		if (currentRoom instanceof MovieSet) {
-			
+		String ret = "Player: " + Integer.toString(playerID + 1);
+		ret += "\nRoom: " + currentRoom.getName();
+		ret += "\nDollars: " + this.dollars;
+		ret += "\nCredits: " + this.credits;
+		if (isActing()) {
+			ret += "\nCurrent Role: " + currentRole.getName();
+			ret += "\nRehearsal chips: " + this.rehersalChips;
 		}
 		return ret;	
 	}

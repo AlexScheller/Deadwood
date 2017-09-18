@@ -44,7 +44,7 @@ public class JSONDataParser implements DataParser {
 	}
 
 	public List<SceneCardInfo> parseSceneCardInfos() {
-		System.out.print("\t\tparsing cards...");
+		// System.out.print("\t\tparsing cards...");
 		List<SceneCardInfo> ret = new ArrayList<>();
 		try {
 			JSONTokener jt = new JSONTokener (new FileInputStream(new File(cardPath)));
@@ -66,7 +66,7 @@ public class JSONDataParser implements DataParser {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		System.out.println(" successful!");
+		// System.out.println(" successful!");
 		return ret;
 	}
 
@@ -79,7 +79,7 @@ public class JSONDataParser implements DataParser {
 	}
 
 	public List<RoomInfo> parseRoomInfos() {
-		System.out.print("\t\tparsing board...");
+		// System.out.print("\t\tparsing board...");
 		List<RoomInfo> ret = new ArrayList<>();
 		try {
 			JSONTokener jt = new JSONTokener (new FileInputStream(new File(boardPath)));
@@ -111,7 +111,7 @@ public class JSONDataParser implements DataParser {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		System.out.println(" successful!");
+		// System.out.println(" successful!");
 		return ret;
 	} 
 

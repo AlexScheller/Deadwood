@@ -12,7 +12,7 @@ public class GameLoader {
 
 	// TODO: include player names
 	public DeadwoodGame loadGame(int numPlayers) {
-		System.out.println("loading game...");
+		// System.out.println("loading game...");
 		PlayerFactory pf = PlayerFactory.getInstance();
 		BoardLoader bl = BoardLoader.getInstance();
 		JSONDataParser jp = JSONDataParser.getInstance();
