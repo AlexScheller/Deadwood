@@ -81,12 +81,11 @@ public class DeadwoodController implements ViewListener {
 	}
 	
 	public void playerUpgradeRequest(int level) {
-		// try {
-		// 	model.getCurrentPlayer().upgrade(level);
-		// 	model.nextTurn();
-		// } catch (IllegalStateException e) {
-		// 	System.out.println(e.getMessage());
-		// }
+		try {
+			model.playerUpgrades(level);
+		} catch (IllegalStateException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

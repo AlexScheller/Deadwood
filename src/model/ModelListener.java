@@ -11,5 +11,6 @@ public interface ModelListener {
 	/* info responses */
 	public void playerActResponse(String msg);
 	public void playerRehearseResponse(String msg);
+	public void displayWinners(String[] winners);
 
 }

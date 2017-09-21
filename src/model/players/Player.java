@@ -22,6 +22,8 @@ public class Player {
 
 	private Random dice;
 
+	/* Constructors */
+
 	public Player(int id, Room initialRoom) {
 		this.playerID = id;
 		this.currentRoom = initialRoom;
@@ -38,6 +40,8 @@ public class Player {
 		this.rank = rank;
 	}
 
+	/* Functional Methods */
+
 	private int roll() {
 		return 1 + dice.nextInt(6);
 	}
@@ -50,7 +54,8 @@ public class Player {
 			if (roll >= roomAsSet.getBudget()) {
 				// roomAsSet.removeShot();
 				// TODO: find a way to make the order of success and 
-				// removeShot irrelevant.
+				// removeShot irrelevant. perhaps the player shouldn't
+				// know this much about the room's logic.
 				currentRole.success();
 				ret += "Player succeeds!\n" + "dollars: " + dollars + "\ncredits: " + credits + "\n";
 				ret += roomAsSet.removeShot();
@@ -96,10 +101,9 @@ public class Player {
 	public void takeRole(String which) throws IllegalStateException, IllegalArgumentException {
 		if (currentRoom instanceof MovieSet) {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
-			// TODO: Figure out a way to move all of the logic either
-			// onto the player, or onto the role alone.
 			this.currentRole = roomAsSet.getRole(which);
 			currentRole.takeActor(this);
+			// roomAsSet.assignPlayerToRole(this, which);
 		} else {
 			throw new IllegalStateException("current room is not a set");
 		}
@@ -115,49 +119,16 @@ public class Player {
 		this.hasMoved = true;
 	}
 
-	public boolean canMove() {
-		return (!hasMoved && !isActing());
-	}
-
-	public boolean isActing() {
-		return (currentRole != null);
-	}
-
-	// public void upgrade(int level) {
-	// 	if (this.currentRoom instanceof Office) {
-	// 		Map<Integer, Integer> 			
-	// 	} else {
-	// 		throw new IllegalStateException("Player not in office");
-	// 	}
-	// }
-
-	// TODO: check money
-	public boolean canUpgrade() {
-		return (currentRoom instanceof CastingOffice);
-	}
-
-	// TODO: make sure there are actually roles available,
-	// not just that this is a set
-	public boolean hasRolesAvailable() {
-		if (currentRoom instanceof MovieSet) {
-			MovieSet asSet = (MovieSet) currentRoom;
-			return !asSet.isWrapped() && getRolesAvailable().length > 0;
+	public void upgrade(int level) throws IllegalStateException, IllegalArgumentException {
+		if (currentRoom instanceof CastingOffice) {
+			CastingOffice asOffice = (CastingOffice) currentRoom;
+			asOffice.upgradePlayer(this, level, credits, dollars);
 		} else {
-			return false;
+			throw new IllegalStateException("Player not in office");
 		}
 	}
 
-	public int calculateScore() {
-		return (dollars + credits + (5 * rank)); 
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public int getID() {
-		return playerID;
-	}
+	/* Informational Methods */
 
 	@Override
 	public String toString() {
@@ -172,14 +143,74 @@ public class Player {
 		return ret;	
 	}
 
+	public int getDollars() {
+		return dollars;
+	}
+
+	public int getCredits() {
+		return credits;
+	}
+
+	public boolean canMove() {
+		return (!hasMoved && !isActing());
+	}
+
+	public boolean isActing() {
+		return (currentRole != null);
+	}
+
+	public int getUpgradesAvailable() throws IllegalStateException {
+		if (currentRoom instanceof CastingOffice) {
+			CastingOffice asOffice = (CastingOffice) currentRoom;
+			// TODO: see TODO in getRolesAvailable()
+			return asOffice.getUpgradesAvailable(this);
+		} else {
+			throw new IllegalStateException("Current room is not the CastingOffice");
+		}
+	}
+
+	// TODO: check money
+	public boolean canUpgrade() {
+		if ((currentRoom instanceof CastingOffice) && rank < 6) {
+			// hasUpgradesAvailable()
+			return (getUpgradesAvailable() > 0);
+		}
+		return false;
+	}
+
+	public boolean hasRolesAvailable() {
+		if (currentRoom instanceof MovieSet) {
+			MovieSet asSet = (MovieSet) currentRoom;
+			return !asSet.isWrapped() && getRolesAvailable("both").length > 0;
+		} else {
+			return false;
+		}
+	}
+
+	public int calculateScore() {
+		return (dollars + credits + (5 * rank)); 
+	}
+
+	public int getRank() {
+		return this.rank;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getID() {
+		return playerID;
+	}
+
 	public String[] getNeighborStrings() {
 		return currentRoom.getNeighborStrings();
 	}
 
-	public String[] getRolesAvailable() {
+	public String[] getRolesAvailable(String type) throws IllegalStateException, IllegalArgumentException{
 		if (currentRoom instanceof MovieSet) {
 			MovieSet asSet = (MovieSet) currentRoom;
-			return asSet.getRolesAvailableAsArray();
+			return asSet.getRolesAvailableAsArray(this, type);
 		} else {
 			throw new IllegalStateException("current room is not a set");
 		}

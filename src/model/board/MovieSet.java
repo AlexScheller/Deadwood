@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import model.players.Player;
 
 public class MovieSet extends Room {
 
@@ -43,6 +44,13 @@ public class MovieSet extends Room {
 		}
 		return "paying bonuses";
 	}
+
+	/* Functional Methods */
+
+	// public void assignPlayerToRole(Player p, String which) {
+	// 	Role assigned = getRole(which);
+	// 	p.
+	// }
 
 	public void evictPlayers() {
 		for (String key : roles.keySet()) {
@@ -86,6 +94,11 @@ public class MovieSet extends Room {
 		return ret;
 	}
 
+	@Override
+	public String toString() {
+		return "Set: " + this.name + "\n" + getTabbedNeighborStrings() + "\n" + getTabbedRoles();
+	}
+
 	private String getTabbedRoles() {
 		String ret = "roles:\n";
 		for (String key : roles.keySet()) {
@@ -94,19 +107,30 @@ public class MovieSet extends Room {
 		return ret;
 	}
 
-	@Override
-	public String toString() {
-		return "Set: " + this.name + "\n" + getTabbedNeighborStrings() + "\n" + getTabbedRoles();
+	public List<String> getRolesAvailableAsList(Player p) {
+		List<String> ret = new ArrayList<>();
+		for (String key : roles.keySet()) {
+			Role curr = roles.get(key);
+			if (!curr.isOccupied() && p.getRank() >= curr.getRankRequired()) {
+				ret.add(curr.getName());
+			}
+		}
+		return ret;
 	}
 
-	public String[] getRolesAvailableAsArray() {
+	public String[] getRolesAvailableAsArray(Player p, String type) throws IllegalArgumentException {
 		// System.out.println("Getting roles from Set: " + getName());
 		// System.out.println(scene.toString());
-		List<String> ret = scene.getRolesAvailableAsList();
-		for (String key : roles.keySet()) {
-			if (!roles.get(key).isOccupied()) {
-				ret.add(roles.get(key).getName());
-			}
+		List<String> ret = new ArrayList<>();
+		if (type.equals("starring")) {
+			ret = scene.getRolesAvailableAsList(p);
+		} else if (type.equals("extra")) {
+			ret = getRolesAvailableAsList(p);
+		} else if (type.equals("both")) {
+			ret = scene.getRolesAvailableAsList(p);
+			ret.addAll(getRolesAvailableAsList(p));
+		} else {
+			throw new IllegalArgumentException("role type specified: " + type + " does not exist");
 		}
 		return ret.toArray(new String[ret.size()]);
 	}

@@ -9,11 +9,26 @@ public abstract class Role {
 	protected String line;
 	protected Player residentActor;
 
+	/* Constructors */
+
 	public Role(RoleInfo ri) {
 		this.rankRequired = ri.rankRequired;
 		this.name = ri.name;
 		this.line = ri.line;
 	}
+
+	/* Functional Methods */
+
+	public void takeActor(Player p) {
+		this.residentActor = p;
+	}
+
+	public void evictActor() {
+		this.residentActor.finishRole();
+		this.residentActor = null;
+	}
+
+	/* Information Methods */
 
 	@Override
 	public String toString() {
@@ -28,17 +43,8 @@ public abstract class Role {
 		return this.rankRequired;
 	}
 
-	public void takeActor(Player p) {
-		this.residentActor = p;
-	}
-
 	public boolean isOccupied() {
 		return residentActor != null;
-	}
-
-	public void evictActor() {
-		this.residentActor.finishRole();
-		this.residentActor = null;
 	}
 
 	public abstract void success();

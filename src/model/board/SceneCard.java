@@ -1,6 +1,7 @@
 package model.board;
 
 import model.board.SceneCardInfo;
+import model.players.Player;
 
 // import java.util.Map;
 // import java.util.HashMap;
@@ -30,14 +31,6 @@ public class SceneCard {
 		}
 	}
 
-	private String getTabbedRoles() {
-		String ret = "roles:\n";
-		for (String key : roles.keySet()) {
-			ret += "\t" + roles.get(key).toString() + "\n";
-		}
-		return ret;
-	}
-
 	public int getBudget() {
 		return this.budget;
 	}
@@ -50,18 +43,19 @@ public class SceneCard {
 		return roles.get(which);
 	}
 
-	public List<String> getRolesAvailableAsList() {
+	public List<String> getRolesAvailableAsList(Player p) {
 		List<String> retList = new ArrayList<>();
 		for (String key : roles.keySet()) {
-			if (!roles.get(key).isOccupied()) {
-				retList.add(roles.get(key).getName());
+			Role curr = roles.get(key);
+			if (!curr.isOccupied() && p.getRank() >= curr.getRankRequired()) {
+				retList.add(curr.getName());
 			}
 		}
 		return retList;
 	}
 
-	public String[] getRolesAvailableAsArray() {
-		List<String> ret = getRolesAvailableAsList();
+	public String[] getRolesAvailableAsArray(Player p) {
+		List<String> ret = getRolesAvailableAsList(p);
 		return ret.toArray(new String[ret.size()]);
 	}
 
@@ -130,6 +124,14 @@ public class SceneCard {
 	@Override
 	public String toString() {
 		return "number: " + number + "\ntitle: " + title + "\nDescription: " + description + "\nBudget: " + Integer.toString(budget) + "\n" + getTabbedRoles();
+	}
+
+	private String getTabbedRoles() {
+		String ret = "roles:\n";
+		for (String key : roles.keySet()) {
+			ret += "\t" + roles.get(key).toString() + "\n";
+		}
+		return ret;
 	}
 
 }

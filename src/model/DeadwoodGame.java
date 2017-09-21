@@ -4,6 +4,8 @@ import model.loading.*;
 import model.board.*;
 import model.players.*;
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
 
 public class DeadwoodGame {
 
@@ -62,7 +64,7 @@ public class DeadwoodGame {
 			board.newDay();
 			listener.newDay();
 		} while (day <= 4);
-		endGame();
+		listener.displayWinners(determineWinners());
 	}
 
 	// public void nextTurn() {
@@ -70,22 +72,25 @@ public class DeadwoodGame {
 	// 	currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
 	// }
 
-	// TODO implement ties
-	private void endGame() {
-		String currHighScorerName = "";
+	private String[] determineWinners() {
+		// String currHighScorerName = "";
+		List<String> highScorers = new ArrayList<>();
 		int currHighScore = -1;
 		for (Player p : players) {
 			if (!(currHighScore == -1)) {
 				if (currHighScore < p.calculateScore()) {
 					currHighScore = p.calculateScore();
-					currHighScorerName = p.getName();
+					highScorers.clear();
+					highScorers.add(p.getName());
+				} else if (currHighScore == p.calculateScore()) {
+					highScorers.add(p.getName());
 				}
 			} else {
 				currHighScore = p.calculateScore();
-				currHighScorerName = p.getName();
+				highScorers.add(p.getName());
 			}
 		}
-		System.out.println(currHighScorerName + " has won!");
+		return highScorers.toArray(new String[0]);
 	}
 
 	public void playerActs() throws IllegalStateException {
@@ -104,6 +109,10 @@ public class DeadwoodGame {
 
 	public void playerTakesRole(String which) throws IllegalArgumentException, IllegalStateException {
 		players[currentPlayerIndex].takeRole(which);
+	}
+
+	public void playerUpgrades(int level) {
+		players[currentPlayerIndex].upgrade(level);
 	}
 
 	public Player getCurrentPlayer() {

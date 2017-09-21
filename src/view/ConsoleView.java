@@ -22,6 +22,11 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 		System.out.println("========\n" + model.currentStateToString());
 	}
 
+	// TODO: Currently there is a weird mishmash of code reuse and
+	// specialization concerning the choices available to the player.
+	// Perhaps find a way to find a more uniform solution.
+
+	// TODO: find a way to signify whether a role is starring or extra
 	private void loopOverChoices(String which, String[] choices) {
 		boolean choosing = true;
 		System.out.println("========");
@@ -40,12 +45,56 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 						// The only instance in which a player may take another
 						// action is after moving.
 						displayChoices();
-					} else if (which.equals("work")) {
-						listener.playerTakeRoleRequest(choices[choiceIndex - 1]);
 					} else if (which.equals("upgrade")) {
 						listener.playerUpgradeRequest(Integer.parseInt(choices[choiceIndex - 1]));
 					}
-					// update();
+				} else {
+					System.out.println("========\nplease choose one of the available choices.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("========\nplease enter a number");
+			}
+		}
+	}
+
+	private void loopOverRoleChoices(String[] starring, String[] extras) {
+		boolean choosing = true;
+		System.out.println("========");
+		while (choosing) {
+			int i = 1;
+			if (starring.length > 0) {
+				System.out.println("Starring:");
+				while ((i-1) < starring.length) {
+					System.out.println(i + ": " + starring[i-1]);
+					i++;
+				}
+			}
+			if (extras.length > 0) {
+				System.out.println("Extra:");
+				while ((i-1) < (extras.length + starring.length)) {
+					System.out.println(i + ": " + extras[(i - starring.length)-1]);
+					i++;
+				}
+			}
+			System.out.print("========\nchoice: ");
+			String choice = sc.next();
+			try {
+				int choiceIndex = Integer.parseInt(choice);
+				if (1 <= choiceIndex && choiceIndex <= (starring.length + extras.length)) {
+					choosing = false;
+					if (starring.length > 0) {
+						// TODO: The next few lines might contain a bug?
+						if (choiceIndex <= starring.length) {
+							listener.playerTakeRoleRequest(starring[choiceIndex - 1]);
+						} else {
+							listener.playerTakeRoleRequest(extras[(choiceIndex - starring.length) - 1]);
+						}
+					} else {
+						// we know that since there was a role available,
+						// and there were no starring roles, there must be
+						// an extra.
+						listener.playerTakeRoleRequest(extras[choiceIndex - 1]);
+					}
 				} else {
 					System.out.println("========\nplease choose one of the available choices.");
 				}
@@ -117,7 +166,7 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 					} else {
 						if (couldWork) {
 							choosing = false;
-							loopOverChoices("work", curr.getRolesAvailable());
+							loopOverRoleChoices(curr.getRolesAvailable("starring"), curr.getRolesAvailable("extra"));
 						} else if (couldUpgrade) {
 							choosing = false;
 							// loopOverChoices("upgrade", curr.getPossibleUpgrades());
@@ -131,10 +180,10 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 					} else {
 						if (couldWork) {
 							choosing = false;
-							loopOverChoices("work", curr.getRolesAvailable());
+							loopOverRoleChoices(curr.getRolesAvailable("starring"), curr.getRolesAvailable("extra"));
 						} else if (couldUpgrade) {
 							choosing = false;
-							//loopOverChoices("upgrade", curr.getPossibleUpgrades());
+							// loopOverChoices("upgrade", curr.getPossibleUpgrades());
 						} else {
 							System.out.println("========\nplease enter only one of the choices presented.");
 						}
@@ -173,6 +222,19 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 
 	public void playerRehearseResponse(String msg) {
 		System.out.println("========\n" + msg);
+	}
+
+	// TODO: display points as well
+	public void displayWinners(String[] winners) {
+		if (winners.length == 1) {
+			System.out.println(winners[0] + " has won!");
+		} else {
+			System.out.print(winners[0]);
+			for (int i = 1; i < winners.length; i++) {
+				System.out.print(", " + winners[i]);
+			}
+			System.out.println(" have tied!");
+		}
 	}
 
 	public void setListener(ViewListener vl) {
