@@ -40,6 +40,11 @@ public class Player {
 		this.rank = rank;
 	}
 
+	public Player(int id, Room initialRoom, int credits, int dollars, int rank) {
+		this(id, initialRoom, credits, rank);
+		this.dollars = dollars;
+	}
+
 	/* Functional Methods */
 
 	private int roll() {
@@ -114,6 +119,13 @@ public class Player {
 		this.hasMoved = false;
 	}
 
+	/* below is for debugging and is therefore use at your own risk */
+	public void teleport(Room where) {
+		this.currentRoom = where;
+		this.hasMoved = true;
+	}
+	/* above is for debugging */
+
 	public void move(String where) throws IllegalArgumentException {
 		this.currentRoom = currentRoom.getNeighbor(where);
 		this.hasMoved = true;
@@ -134,6 +146,7 @@ public class Player {
 	public String toString() {
 		String ret = "Player: " + Integer.toString(playerID + 1);
 		ret += "\nRoom: " + currentRoom.getName();
+		ret += "\nRank: " + rank;
 		ret += "\nDollars: " + this.dollars;
 		ret += "\nCredits: " + this.credits;
 		if (isActing()) {
@@ -159,11 +172,21 @@ public class Player {
 		return (currentRole != null);
 	}
 
-	public int getUpgradesAvailable() throws IllegalStateException {
+	private int getMaxUpgradeAvailable() throws IllegalStateException {
 		if (currentRoom instanceof CastingOffice) {
 			CastingOffice asOffice = (CastingOffice) currentRoom;
 			// TODO: see TODO in getRolesAvailable()
-			return asOffice.getUpgradesAvailable(this);
+			return asOffice.getMaxUpgradeAvailable(this);
+		} else {
+			throw new IllegalStateException("Current room is not the CastingOffice");
+		}
+	}
+
+	public int[][] getUpgradePricesAvailable() {
+		if (currentRoom instanceof CastingOffice) {
+			CastingOffice asOffice = (CastingOffice) currentRoom;
+			// TODO: see TODO in getRolesAvailable()
+			return asOffice.getUpgradePricesAvailable(this);
 		} else {
 			throw new IllegalStateException("Current room is not the CastingOffice");
 		}
@@ -173,7 +196,7 @@ public class Player {
 	public boolean canUpgrade() {
 		if ((currentRoom instanceof CastingOffice) && rank < 6) {
 			// hasUpgradesAvailable()
-			return (getUpgradesAvailable() > 0);
+			return (getMaxUpgradeAvailable() > this.rank);
 		}
 		return false;
 	}

@@ -107,6 +107,12 @@ public class DeadwoodGame {
 		players[currentPlayerIndex].move(where);
 	}
 
+	/* for debugging */
+	public Room getRoomForTeleport(String which) {
+		return board.getRoomForTeleport(which);
+	}
+	/* for debugging */
+
 	public void playerTakesRole(String which) throws IllegalArgumentException, IllegalStateException {
 		players[currentPlayerIndex].takeRole(which);
 	}

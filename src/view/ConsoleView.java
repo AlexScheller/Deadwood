@@ -57,6 +57,37 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 		}
 	}
 
+	private void loopOverUpgradeChoices(int minUpgrade, int[][] upgradePrices) {
+		boolean choosing = true;
+		System.out.println("========\nRank | credits | dollars");
+		System.out.println("------------------------");
+		while (choosing) {
+			for (int i = 0; i < upgradePrices.length; i++) {
+				// first is credits, second is dollars
+				System.out.print("  " + (i + minUpgrade) + "  |");
+				System.out.print("   " + upgradePrices[i][0] + "    ");
+				if (upgradePrices[i][0] < 10) {
+					System.out.print(" ");
+				}
+				System.out.print("|");
+				System.out.println("   " + upgradePrices[i][1]);
+			}
+			System.out.print("========\nchoice: ");
+			String choice = sc.next();
+			try {
+				int choiceIndex = Integer.parseInt(choice);
+				if (minUpgrade <= choiceIndex && choiceIndex <= ((upgradePrices.length - 1) + minUpgrade)) {
+					choosing = false;
+					System.out.println("Hello!");
+				} else {
+					System.out.println("========\nplease choose one of the available choices.");
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("========\nplease enter a number");
+			}
+		}
+	}
+
 	private void loopOverRoleChoices(String[] starring, String[] extras) {
 		boolean choosing = true;
 		System.out.println("========");
@@ -155,6 +186,18 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 				if (choice.equals("quit")) {
 					System.out.println("========\nexiting...");
 					System.exit(0);
+				// below for debugging only
+				} else if (choice.equals("cheat")) {
+					System.out.println("Cheater!");
+					curr.earnDollars(5);
+					curr.earnCredits(5);
+					System.out.println("========\n" + curr.toString());
+				} else if (choice.equals("tele")) {
+					String whereTo = sc.next();
+					System.out.println("Teleporting to: " + whereTo);
+					curr.teleport(model.getRoomForTeleport(whereTo));
+					System.out.println("========\n" + curr.toString());
+				// above for debugging only
 				} else if (choice.equals("1")) {
 					choosing = false;
 					// listener.playerDoesNothing();
@@ -169,7 +212,9 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 							loopOverRoleChoices(curr.getRolesAvailable("starring"), curr.getRolesAvailable("extra"));
 						} else if (couldUpgrade) {
 							choosing = false;
-							// loopOverChoices("upgrade", curr.getPossibleUpgrades());
+							// the first parameter is more or less exposing player/game logic in its
+							// current form
+							loopOverUpgradeChoices(curr.getRank() + 1, curr.getUpgradePricesAvailable());
 						} else {
 							System.out.println("=======\nplease enter only one of the choices presented.");
 						}
@@ -183,7 +228,9 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 							loopOverRoleChoices(curr.getRolesAvailable("starring"), curr.getRolesAvailable("extra"));
 						} else if (couldUpgrade) {
 							choosing = false;
-							// loopOverChoices("upgrade", curr.getPossibleUpgrades());
+							// the first parameter is more or less exposing player/game logic in its
+							// current form
+							loopOverUpgradeChoices(curr.getRank() + 1, curr.getUpgradePricesAvailable());
 						} else {
 							System.out.println("========\nplease enter only one of the choices presented.");
 						}

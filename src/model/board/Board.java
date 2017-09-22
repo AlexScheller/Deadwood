@@ -36,4 +36,10 @@ public class Board {
 		return rs.oneSceneLeft();
 	}
 
+	/* for debugging only */
+	public Room getRoomForTeleport(String which) {
+		return rs.getRoom(which);
+	}
+	/* above is for debugging only */
+
 }

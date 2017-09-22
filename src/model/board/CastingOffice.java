@@ -1,5 +1,6 @@
 package model.board;
 
+import java.util.Arrays;
 import model.players.Player;
 
 public class CastingOffice extends Room {
@@ -20,7 +21,7 @@ public class CastingOffice extends Room {
 
 	// if credits == 0 assume dollars
 	public void upgradePlayer(Player p, int level, int credits, int dollars) throws IllegalArgumentException {
-		if (!((level - 1) > getUpgradesAvailable(p))) {
+		if (!(level >= getMaxUpgradeAvailable(p))) {
 			System.out.println("hello there!");
 		} else {
 			throw new IllegalArgumentException("Specified level: " + level + " cannot be afforded by player: " + p.toString());
@@ -34,7 +35,23 @@ public class CastingOffice extends Room {
 		return "casting office\n\n" + getTabbedNeighborStrings();
 	}
 
-	public int getUpgradesAvailable(Player p) {
+	// TODO: this is kind of clunky
+	public int[][] getUpgradePricesAvailable(Player p) throws IllegalStateException {
+		int maxUpgrade = getMaxUpgradeAvailable(p);
+		int minUpgrade = p.getRank() + 1;
+		int[][] ret;
+		if (maxUpgrade >= minUpgrade) {
+			ret = new int[(maxUpgrade - minUpgrade) + 1][2];
+			for (int i = 0; i <= (maxUpgrade - minUpgrade); i++) {
+				ret[i] = Arrays.copyOf(upgradeTable[((minUpgrade - 1) + i) - 1], 2);
+			}
+		} else {
+			throw new IllegalStateException("no upgrades available");
+		}
+		return ret;
+	}
+
+	public int getMaxUpgradeAvailable(Player p) {
 		int maxRankAvailable = 1;
 		for (int i = 0; i < upgradeTable.length; i++) {
 			if (p.getDollars() >= upgradeTable[i][0] ||

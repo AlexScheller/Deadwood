@@ -27,7 +27,7 @@ public abstract class Room {
 		if (neighbors.containsKey(which)) {
 			return neighbors.get(which);			
 		} else {
-			throw new IllegalArgumentException("room: " + which + "not in neighbors");
+			throw new IllegalArgumentException("room: " + which + " not in neighbors");
 		}
 	}
 
