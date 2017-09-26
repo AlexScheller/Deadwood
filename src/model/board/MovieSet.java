@@ -94,9 +94,15 @@ public class MovieSet extends Room {
 		return ret;
 	}
 
+	/* Informational Methods */
+
 	@Override
 	public String toString() {
 		return "Set: " + this.name + "\n" + getTabbedNeighborStrings() + "\n" + getTabbedRoles();
+	}
+
+	public int getTakesLeft() {
+		return takesLeft;
 	}
 
 	private String getTabbedRoles() {

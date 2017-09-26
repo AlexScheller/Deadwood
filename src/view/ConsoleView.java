@@ -10,6 +10,10 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 
 	private DeadwoodGame model;
 
+	// private final String ANSIRed = "\u001b[31m";
+	// private final String ANSIGreen = "\u001b[32m";
+	// private final String ANSIEsc = "\u001b[0m";
+
 	private Scanner sc;
 
 	public ConsoleView(DeadwoodGame model) {
@@ -59,9 +63,9 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 
 	private void loopOverUpgradeChoices(int minUpgrade, int[][] upgradePrices) {
 		boolean choosing = true;
-		System.out.println("========\nRank | credits | dollars");
-		System.out.println("------------------------");
 		while (choosing) {
+			System.out.println("========\nRank | credits | dollars");
+			System.out.println("------------------------");
 			for (int i = 0; i < upgradePrices.length; i++) {
 				// first is credits, second is dollars
 				System.out.print("  " + (i + minUpgrade) + "  |");
@@ -144,7 +148,11 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 		boolean choosing = true;
 		if (curr.isActing()) {
 			while(choosing) {
-				System.out.println("1. act\n2. rehearse");
+				System.out.println("1. act");
+				boolean couldRehearse = curr.canRehearse();
+				if (couldRehearse) {
+					System.out.println("2. rehearse");
+				}
 				System.out.print("========\nchoice: ");
 				String choice = sc.next();
 				if (choice.equals("quit")) {
@@ -153,13 +161,16 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 				} else if (choice.equals("1")){
 					choosing = false;
 					listener.playerActRequest();
-					// update();
-				} else if (choice.equals("2")) {
+				} else if (couldRehearse && choice.equals("2")) {
 					choosing = false;
 					listener.playerRehearseRequest();
-					// update();
 				} else {
-					System.out.println("========\nplease enter only 1 or 2.");
+					System.out.print("========\nplease enter only 1");
+					if (couldRehearse) {
+						System.out.println(" or 2.");
+					} else {
+						System.out.println();
+					}
 				}
 			}
 		} else {
@@ -241,11 +252,6 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 			}
 		}
 	}
-
-	// public void update() {
-	// 	displayGameState();
-	// 	displayChoices();
-	// }
 
 	/* logic triggers */
 	public void newTurn() {

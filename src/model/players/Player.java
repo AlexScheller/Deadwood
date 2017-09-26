@@ -152,6 +152,8 @@ public class Player {
 		if (isActing()) {
 			ret += "\nCurrent Role: " + currentRole.getName();
 			ret += "\nRehearsal chips: " + this.rehersalChips;
+			MovieSet asSet = (MovieSet) currentRoom;
+			ret += "\nTakes left: " + asSet.getTakesLeft();
 		}
 		return ret;	
 	}
@@ -197,6 +199,14 @@ public class Player {
 		if ((currentRoom instanceof CastingOffice) && rank < 6) {
 			// hasUpgradesAvailable()
 			return (getMaxUpgradeAvailable() > this.rank);
+		}
+		return false;
+	}
+
+	public boolean canRehearse() {
+		if (isActing()) {
+			MovieSet roomAsSet = (MovieSet) currentRoom;
+			return rehersalChips < roomAsSet.getBudget();
 		}
 		return false;
 	}
