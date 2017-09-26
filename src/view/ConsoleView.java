@@ -61,26 +61,35 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 		}
 	}
 
-	private void loopOverUpgradeChoices(int minUpgrade, int[][] upgradePrices) {
+	private void loopOverUpgradeChoices(int minUpgrade, int[] dollarCosts, int[] creditCosts) {
 		boolean choosing = true;
 		while (choosing) {
 			System.out.println("========\nRank | credits | dollars");
 			System.out.println("------------------------");
-			for (int i = 0; i < upgradePrices.length; i++) {
-				// first is credits, second is dollars
+			int maxLength = Math.max(dollarCosts.length, creditCosts.length);
+			for (int i = 0; i < maxLength; i++) {
 				System.out.print("  " + (i + minUpgrade) + "  |");
-				System.out.print("   " + upgradePrices[i][0] + "    ");
-				if (upgradePrices[i][0] < 10) {
-					System.out.print(" ");
+				if (i < dollarCosts.length) {
+					System.out.print("   " + dollarCosts[i] + "    ");
+					if (dollarCosts[i] < 10) {
+						System.out.print(" ");
+					}
+				} else {
+					System.out.print("         ");
 				}
 				System.out.print("|");
-				System.out.println("   " + upgradePrices[i][1]);
+				if (i < creditCosts.length) {
+					System.out.println("   " + creditCosts[i]);
+				} else {
+					System.out.println();
+				}
 			}
+			// currently the below isn't fully implemented
 			System.out.print("========\nchoice: ");
 			String choice = sc.next();
 			try {
 				int choiceIndex = Integer.parseInt(choice);
-				if (minUpgrade <= choiceIndex && choiceIndex <= ((upgradePrices.length - 1) + minUpgrade)) {
+				if (minUpgrade <= choiceIndex && choiceIndex <= ((maxLength - 1) + minUpgrade)) {
 					choosing = false;
 					System.out.println("Hello!");
 				} else {
@@ -225,7 +234,9 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 							choosing = false;
 							// the first parameter is more or less exposing player/game logic in its
 							// current form
-							loopOverUpgradeChoices(curr.getRank() + 1, curr.getUpgradePricesAvailable());
+							loopOverUpgradeChoices(curr.getRank() + 1,
+												   curr.getUpgradePricesAvailableWith("dollars"),
+												   curr.getUpgradePricesAvailableWith("credits"));
 						} else {
 							System.out.println("=======\nplease enter only one of the choices presented.");
 						}
@@ -241,7 +252,9 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 							choosing = false;
 							// the first parameter is more or less exposing player/game logic in its
 							// current form
-							loopOverUpgradeChoices(curr.getRank() + 1, curr.getUpgradePricesAvailable());
+							loopOverUpgradeChoices(curr.getRank() + 1,
+												   curr.getUpgradePricesAvailableWith("dollars"),
+												   curr.getUpgradePricesAvailableWith("credits"));
 						} else {
 							System.out.println("========\nplease enter only one of the choices presented.");
 						}
