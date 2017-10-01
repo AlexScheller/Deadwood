@@ -131,10 +131,10 @@ public class Player {
 		this.hasMoved = true;
 	}
 
-	public void upgrade(int level, String currency) throws IllegalStateException, IllegalArgumentException {
+	public void upgrade(int rank, String currency) throws IllegalStateException, IllegalArgumentException {
 		if (currentRoom instanceof CastingOffice) {
 			CastingOffice asOffice = (CastingOffice) currentRoom;
-			asOffice.upgradePlayer(this, level, currency);
+			asOffice.upgradePlayer(this, rank, currency);
 		} else {
 			throw new IllegalStateException("Player not in office");
 		}
