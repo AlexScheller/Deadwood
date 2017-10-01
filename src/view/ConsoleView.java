@@ -30,7 +30,8 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 	// specialization concerning the choices available to the player.
 	// Perhaps find a way to find a more uniform solution.
 
-	// TODO: find a way to signify whether a role is starring or extra
+	// TODO: rewrite this as loopOverMoveChoices, since that's the
+	// only choice left in this function
 	private void loopOverChoices(String which, String[] choices) {
 		boolean choosing = true;
 		System.out.println("========");
@@ -49,8 +50,6 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 						// The only instance in which a player may take another
 						// action is after moving.
 						displayChoices();
-					} else if (which.equals("upgrade")) {
-						listener.playerUpgradeRequest(Integer.parseInt(choices[choiceIndex - 1]));
 					}
 				} else {
 					System.out.println("========\nplease choose one of the available choices.");
@@ -91,7 +90,37 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 				int choiceIndex = Integer.parseInt(choice);
 				if (minUpgrade <= choiceIndex && choiceIndex <= ((maxLength - 1) + minUpgrade)) {
 					choosing = false;
-					System.out.println("Hello!");
+					// System.out.println("Hello!");
+					int dollarChoiceMax = (dollarCosts.length - 1) + minUpgrade;
+					int creditChoiceMax = (creditCosts.length - 1) + minUpgrade;
+					if (choiceIndex <= dollarChoiceMax && choiceIndex <= creditChoiceMax) {
+						boolean choosingAgain = true;
+						while (choosingAgain) {
+							System.out.println("Pay with dollars or credits?\n1. dollars\n2.credits");
+							System.out.println("========\nchoice: ");
+							String currencyChoice = sc.next();
+							try {
+								int newChoiceIndex = Integer.parseInt(currencyChoice);
+								if (newChoiceIndex == 1) {
+									choosingAgain = false;
+									listener.playerUpgradeRequest(choiceIndex, "dollars");
+								} else if (newChoiceIndex == 2) {
+									choosingAgain = false;
+									listener.playerUpgradeRequest(choiceIndex, "credits");
+								} else {
+									System.out.println("========\nplease choose one of the available choices.");
+								}
+							} catch (NumberFormatException e) {
+								System.out.println("========\nplease enter a number");
+							}
+						}
+					} else if (choiceIndex > dollarChoiceMax) {
+						System.out.println("hiya");
+						System.out.println(choiceIndex);
+						listener.playerUpgradeRequest(choiceIndex, "credits");
+					} else {
+						listener.playerUpgradeRequest(choiceIndex, "dollars");
+					}
 				} else {
 					System.out.println("========\nplease choose one of the available choices.");
 				}

@@ -117,8 +117,8 @@ public class DeadwoodGame {
 		players[currentPlayerIndex].takeRole(which);
 	}
 
-	public void playerUpgrades(int level) {
-		players[currentPlayerIndex].upgrade(level);
+	public void playerUpgrades(int rank, String currency) {
+		players[currentPlayerIndex].upgrade(rank, currency);
 	}
 
 	public Player getCurrentPlayer() {

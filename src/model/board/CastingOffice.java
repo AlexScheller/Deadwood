@@ -20,11 +20,18 @@ public class CastingOffice extends Room {
 	/* Functional Methods */
 
 	// if credits == 0 assume dollars
-	public void upgradePlayer(Player p, int level, int credits, int dollars) throws IllegalArgumentException {
-		if (!(level >= getMaxUpgradeAvailable(p))) {
-			System.out.println("hello there!");
+	public void upgradePlayer(Player p, int rank, String currency) throws IllegalArgumentException, IllegalArgumentException {
+		if (!(rank > getMaxUpgradeAvailable(p))) {
+			if (currency.equals("dollars")) {
+				p.payDollars(upgradeTable[rank-2][0]);
+			} else if (currency.equals("credits")) {
+				p.payCredits(upgradeTable[rank-2][1]);
+			} else {
+				throw new IllegalArgumentException("Specified currency: " + currency + " not valid.");
+			}
+			p.rankUp(rank);
 		} else {
-			throw new IllegalArgumentException("Specified level: " + level + " cannot be afforded by player: " + p.toString());
+			throw new IllegalStateException("Specified rank: " + rank + " cannot be afforded by player: " + p.toString());
 		}
 	}
 

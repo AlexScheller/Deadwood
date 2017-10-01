@@ -80,9 +80,9 @@ public class DeadwoodController implements ViewListener {
 		}
 	}
 	
-	public void playerUpgradeRequest(int level) {
+	public void playerUpgradeRequest(int rank, String currency) {
 		try {
-			model.playerUpgrades(level);
+			model.playerUpgrades(rank, currency);
 		} catch (IllegalStateException e) {
 			System.out.println(e.getMessage());
 		}

@@ -131,10 +131,10 @@ public class Player {
 		this.hasMoved = true;
 	}
 
-	public void upgrade(int level) throws IllegalStateException, IllegalArgumentException {
+	public void upgrade(int level, String currency) throws IllegalStateException, IllegalArgumentException {
 		if (currentRoom instanceof CastingOffice) {
 			CastingOffice asOffice = (CastingOffice) currentRoom;
-			asOffice.upgradePlayer(this, level, credits, dollars);
+			asOffice.upgradePlayer(this, level, currency);
 		} else {
 			throw new IllegalStateException("Player not in office");
 		}
@@ -164,6 +164,19 @@ public class Player {
 
 	public int getCredits() {
 		return credits;
+	}
+
+	public void payDollars(int howMany) {
+		this.dollars -= howMany;
+	}
+
+	public void payCredits(int howMany) {
+		this.credits -= howMany;
+	}
+
+	// might be better named as "set level"
+	public void rankUp(int rank) {
+		this.rank = rank;
 	}
 
 	public boolean canMove() {
