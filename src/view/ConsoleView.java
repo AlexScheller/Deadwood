@@ -96,7 +96,7 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 					if (choiceIndex <= dollarChoiceMax && choiceIndex <= creditChoiceMax) {
 						boolean choosingAgain = true;
 						while (choosingAgain) {
-							System.out.println("Pay with dollars or credits?\n1. dollars\n2.credits");
+							System.out.println("Pay with dollars or credits?\n1. dollars\n2. credits");
 							System.out.println("========\nchoice: ");
 							String currencyChoice = sc.next();
 							try {

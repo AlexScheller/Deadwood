@@ -17,7 +17,7 @@ public class DeadwoodGame {
 	private ModelListener listener;
 
 	public DeadwoodGame(Player[] players, Board board) {
-		this.day = 0;
+		this.day = 1;
 		this.board = board;
 		this.players = players;
 		// System.out.println("successful!");
@@ -52,8 +52,7 @@ public class DeadwoodGame {
 	public void play() {
 		board.newDay();
 		int firstPlayerId = (new Random()).nextInt(players.length); 
-		do {
-			day++;
+		while (day <= 4) {
 			currentPlayerIndex = firstPlayerId;
 			while (!board.oneSceneLeft()) {
 				// players[(currentPlayerId++) % players.length].playTurn();
@@ -67,7 +66,8 @@ public class DeadwoodGame {
 				players[i].teleport(board.getRoomForTeleport("trailer"));
 			}
 			listener.newDay();
-		} while (day <= 4);
+			day++;
+		}
 		listener.displayWinners(determineWinners());
 	}
 
