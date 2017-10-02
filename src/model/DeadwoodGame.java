@@ -62,6 +62,10 @@ public class DeadwoodGame {
 				currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
 			}
 			board.newDay();
+			for (int i = 0; i < players.length; i++) {
+				// maybe find a better way to do this
+				players[i].teleport(board.getRoomForTeleport("trailer"));
+			}
 			listener.newDay();
 		} while (day <= 4);
 		listener.displayWinners(determineWinners());

@@ -10,10 +10,12 @@ public class MovieSet extends Room {
 
 	private SceneCard scene;
 	private Map<String, ExtraRole> roles;
+	private int numTakes;
 	private int takesLeft;
 
 	public MovieSet (RoomInfo ri) {
 		super(ri);
+		this.numTakes = ri.takesLeft;
 		this.takesLeft = ri.takesLeft;
 		this.roles = new HashMap<>();
 		RoleFactory rf = RoleFactory.getInstance();
@@ -23,6 +25,7 @@ public class MovieSet extends Room {
 	}
 
 	public void setSceneCard(SceneCard sc) {
+		this.takesLeft = numTakes;
 		this.scene = sc;
 	}
 

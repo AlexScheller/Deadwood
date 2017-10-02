@@ -101,6 +101,7 @@ public class Player {
 
 	public void finishRole() {
 		this.currentRole = null;
+		this.rehersalChips = 0;
 	}
 
 	public void takeRole(String which) throws IllegalStateException, IllegalArgumentException {
@@ -122,7 +123,7 @@ public class Player {
 	/* below is for debugging and is therefore use at your own risk */
 	public void teleport(Room where) {
 		this.currentRoom = where;
-		this.hasMoved = true;
+		// this.hasMoved = true;
 	}
 	/* above is for debugging */
 

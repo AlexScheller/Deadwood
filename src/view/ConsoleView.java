@@ -303,7 +303,7 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 	}
 
 	public void newDay() {
-		System.out.println("pass");
+		System.out.println("new day, players returning to trailers");
 	}
 
 	/* response triggers */
