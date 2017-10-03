@@ -1,10 +1,18 @@
-package model.board;
+package model.board.room;
 
 import java.util.Map;
-import java.util.HashMap;
 import java.util.List;
+import java.util.HashMap;
 import java.util.ArrayList;
-import model.players.Player;
+
+import model.player.Player;
+
+import model.board.role.Role;
+import model.board.role.RoleInfo;
+import model.board.role.ExtraRole;
+import model.board.role.RoleFactory;
+
+import model.board.scene.SceneCard;
 
 public class MovieSet extends Room {
 

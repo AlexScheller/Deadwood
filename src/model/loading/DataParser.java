@@ -1,7 +1,9 @@
 package model.loading;
 
 import java.util.List;
-import model.board.*;
+
+import model.board.room.RoomInfo;
+import model.board.scene.SceneCardInfo;
 
 public interface DataParser {
 

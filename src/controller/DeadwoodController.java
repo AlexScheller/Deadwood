@@ -1,9 +1,11 @@
 package controller;
 
-import view.*;
-import model.*;
-
 // import java.io.File;
+
+import model.DeadwoodGame;
+
+import view.DeadwoodView;
+import view.ViewListener;
 
 /*
  * Design Notes:

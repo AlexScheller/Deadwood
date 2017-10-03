@@ -1,6 +1,8 @@
-package model.board;
+package model.board.scene;
 
 import java.util.List;
+
+import model.board.role.RoleInfo;
 
 public class SceneCardInfo {
 

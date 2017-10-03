@@ -1,13 +1,20 @@
-package model.board;
+package model.board.scene;
 
-import model.board.SceneCardInfo;
-import model.players.Player;
+import java.util.List;
+import java.util.Map;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Comparator;
 
-// import java.util.Map;
-// import java.util.HashMap;
-// import java.util.List;
-// import java.util.ArrayList;
-import java.util.*;
+import model.player.Player;
+
+import model.board.role.Role;
+import model.board.role.RoleInfo;
+import model.board.role.RoleFactory;
+import model.board.role.StarringRole;
+import model.board.scene.SceneCardInfo;
 
 public class SceneCard {
 
@@ -85,7 +92,6 @@ public class SceneCard {
 			rolesAsArray[j] = roles.get(key);
 			j++;
 		}
-		// TODO: TEST THIS!
 		Arrays.sort(rolesAsArray, new Comparator<Role>() {
 			public int compare(Role r1, Role r2) {
 				return r1.getRankRequired() - r2.getRankRequired();

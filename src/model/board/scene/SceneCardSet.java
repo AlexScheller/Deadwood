@@ -1,4 +1,4 @@
-package model.board;
+package model.board.scene;
 
 import java.util.Stack;
 import java.util.Collections;

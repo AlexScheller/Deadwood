@@ -1,15 +1,19 @@
 package model.loading;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Iterator;
 
 import org.json.JSONTokener;
 import org.json.JSONObject;
 import org.json.JSONArray;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
-import model.board.*;
-// import java.util.IllegalArgumentException;
+
+import model.board.role.RoleInfo;
+import model.board.room.RoomInfo;
+import model.board.scene.SceneCardInfo;
 
 public class JSONDataParser implements DataParser {
 

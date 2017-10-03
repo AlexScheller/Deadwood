@@ -1,4 +1,4 @@
-package loading;
+package view.assets;
 
 public class ImageResourceLoader {
 	

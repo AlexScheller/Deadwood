@@ -1,8 +1,11 @@
-package model.players;
+package model.player;
 
 import java.util.Random;
 
-import model.board.*;
+import model.board.room.Room;
+import model.board.room.MovieSet;
+import model.board.room.CastingOffice;
+import model.board.role.Role;
 
 public class Player {
 
@@ -254,7 +257,7 @@ public class Player {
 
 	public String getName() {
 		// return name;
-		return playerID;
+		return Integer.toString(playerID);
 	}
 
 	public int getID() {

@@ -1,8 +1,11 @@
 package view;
 
-import model.*;
-import model.players.*;
 import java.util.Scanner;
+
+import model.player.Player;
+
+import model.DeadwoodGame;
+import model.ModelListener;
 
 public class ConsoleView implements DeadwoodView, ModelListener {
 	

@@ -1,11 +1,13 @@
 package model;
 
-import model.loading.*;
-import model.board.*;
-import model.players.*;
-import java.util.Random;
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
+
+import model.player.Player;
+
+import model.board.Board;
+import model.board.room.Room;
 
 public class DeadwoodGame {
 

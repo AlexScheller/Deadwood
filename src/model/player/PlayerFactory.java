@@ -1,6 +1,6 @@
-package model.players;
+package model.player;
 
-import model.board.*;
+import model.board.room.Room;
 
 public class PlayerFactory {
 

@@ -1,7 +1,8 @@
-package model.board;
+package model.board.room;
 
 import java.util.Arrays;
-import model.players.Player;
+
+import model.player.Player;
 
 public class CastingOffice extends Room {
 

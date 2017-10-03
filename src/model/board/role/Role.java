@@ -1,6 +1,6 @@
-package model.board;
+package model.board.role;
 
-import model.players.*;
+import model.player.Player;
 
 public abstract class Role {
 

@@ -1,8 +1,11 @@
-import model.loading.*;
-import model.board.*;
+import view.ConsoleView;
+import view.DeadwoodView;
+
 import model.DeadwoodGame;
-import view.*;
-import controller.*;
+import model.loading.GameLoader;
+
+import controller.DeadwoodController;
+
 
 public class Deadwood {
 

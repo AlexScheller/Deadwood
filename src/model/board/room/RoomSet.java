@@ -1,8 +1,10 @@
-package model.board;
+package model.board.room;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+
+import model.board.scene.SceneCardSet;
 
 public class RoomSet {
 

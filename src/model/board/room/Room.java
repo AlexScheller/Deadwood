@@ -1,4 +1,4 @@
-package model.board;
+package model.board.room;
 
 import java.util.Set;
 import java.util.Map;

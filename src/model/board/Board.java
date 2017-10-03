@@ -1,5 +1,9 @@
 package model.board;
 
+import model.board.room.Room;
+import model.board.room.RoomSet;
+import model.board.scene.SceneCardSet;
+
 public class Board {
 
 	private RoomSet rs;

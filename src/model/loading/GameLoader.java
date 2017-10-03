@@ -1,8 +1,10 @@
 package model.loading;
 
-import model.*;
-import model.board.*;
-import model.players.*;
+import model.player.Player;
+import model.player.PlayerFactory;
+
+import model.DeadwoodGame;
+import model.board.Board;
 
 public class GameLoader {
 

@@ -3,8 +3,12 @@ package model.loading;
 import java.util.List;
 import java.util.Stack;
 
-import model.board.*;
-import model.loading.*;
+import model.board.Board;
+import model.board.room.RoomSet;
+import model.board.room.RoomInfo;
+import model.board.scene.SceneCard;
+import model.board.scene.SceneCardSet;
+import model.board.scene.SceneCardInfo;
 
 public class BoardLoader {
 

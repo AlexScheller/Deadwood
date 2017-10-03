@@ -1,4 +1,4 @@
-package model.board;
+package model.board.room;
 
 public class Trailers extends Room {
 

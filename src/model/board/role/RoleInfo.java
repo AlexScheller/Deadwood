@@ -1,4 +1,4 @@
-package model.board;
+package model.board.role;
 
 public class RoleInfo {
 

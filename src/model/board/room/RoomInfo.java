@@ -1,6 +1,8 @@
-package model.board;
+package model.board.room;
 
 import java.util.List;
+
+import model.board.role.RoleInfo;
 
 public class RoomInfo {
 
