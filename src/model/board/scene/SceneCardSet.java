@@ -23,7 +23,6 @@ public class SceneCardSet {
 	}
 
 	public void shuffle() {
-		// this.cards.shuffle();
 		Collections.shuffle(cards);
 	}
 

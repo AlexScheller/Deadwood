@@ -1,7 +1,5 @@
 package controller;
 
-// import java.io.File;
-
 import model.DeadwoodGame;
 
 import view.DeadwoodView;
@@ -19,16 +17,14 @@ import view.ViewListener;
 
 public class DeadwoodController implements ViewListener {
 
-	// private DeadwoodView view;
 	private DeadwoodGame model;
-	// private boolean logging;
-	// private File logFile;
 
 	public DeadwoodController(DeadwoodView view, DeadwoodGame model) {//, boolean logging) {
 		// this.view = view;
 		this.model = model;
 		view.setListener(this);
 	}
+	
 	// TODO: When GUI is implemented log these to a file,
 	// rather than printing them to stdout
 	private void exitOnException(Exception e) {
