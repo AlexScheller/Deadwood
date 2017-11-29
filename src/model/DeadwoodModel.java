@@ -9,7 +9,7 @@ import model.player.Player;
 import model.board.Board;
 import model.board.room.Room;
 
-public class DeadwoodGame {
+public class DeadwoodModel {
 
 	private Player[] players;
 	private int currentPlayerIndex = 0;
@@ -18,7 +18,7 @@ public class DeadwoodGame {
 
 	private ModelListener listener;
 
-	public DeadwoodGame(Player[] players, Board board) {
+	public DeadwoodModel(Player[] players, Board board) {
 		this.day = 1;
 		this.board = board;
 		this.players = players;

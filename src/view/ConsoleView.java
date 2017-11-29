@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 import model.player.Player;
 
-import model.DeadwoodGame;
+import model.DeadwoodModel;
 import model.ModelListener;
 
 public class ConsoleView implements DeadwoodView, ModelListener {
 	
 	private ViewListener listener;
 
-	private DeadwoodGame model;
+	private DeadwoodModel model;
 
 	// private final String ANSIRed = "\u001b[31m";
 	// private final String ANSIGreen = "\u001b[32m";
@@ -19,7 +19,7 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 
 	private Scanner sc;
 
-	public ConsoleView(DeadwoodGame model) {
+	public ConsoleView(DeadwoodModel model) {
 		this.model = model;
 		model.setListener(this);
 		this.sc = new Scanner(System.in);

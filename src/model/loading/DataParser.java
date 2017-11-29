@@ -1,3 +1,6 @@
+// TODO: remove this class and references to it. Time has
+// shown that this abstraction is unnecessary.
+
 package model.loading;
 
 import java.util.List;

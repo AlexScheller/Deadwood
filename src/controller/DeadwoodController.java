@@ -1,6 +1,6 @@
 package controller;
 
-import model.DeadwoodGame;
+import model.DeadwoodModel;
 
 import view.DeadwoodView;
 import view.ViewListener;
@@ -17,9 +17,9 @@ import view.ViewListener;
 
 public class DeadwoodController implements ViewListener {
 
-	private DeadwoodGame model;
+	private DeadwoodModel model;
 
-	public DeadwoodController(DeadwoodView view, DeadwoodGame model) {//, boolean logging) {
+	public DeadwoodController(DeadwoodView view, DeadwoodModel model) {//, boolean logging) {
 		// this.view = view;
 		this.model = model;
 		view.setListener(this);
