@@ -1,24 +1,74 @@
 package view.graphics;
 
+import java.util.Map;
+import java.util.List;
+import java.util.HashMap;
+
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
+import view.loading.RoomPanelInfo;
+
 public class BoardPanel extends JPanel {
 
 	private Image board;
+	private Map<String, RoomPanel> rooms;
 
-	public BoardPanel() {
+	public BoardPanel(List<RoomPanelInfo> rpis) {
 		setLayout(null); // absolute positioning is used
 		this.board = new ImageIcon("../resources/board.png").getImage();
 		
+		this.rooms = new HashMap<>();
 		// the below is hard-coded for testing
-		CardPanel cardPanel = new CardPanel(new ImageIcon("../resources/cards/01.png").getImage(), 21, 69);
-		cardPanel.setBounds();
-		add(cardPanel);
+		Image placeHolderCardImage = new ImageIcon("../resources/cards/01.png").getImage();
+		
+		for (RoomPanelInfo rpi : rpis) {
+			CardPanel ncp = new CardPanel(placeHolderCardImage,
+										  rpi.cardPanelXOrigin,
+										  rpi.cardPanelYOrigin);
+			ncp.setBounds();
+			SetPanel sp = new SetPanel();
+			sp.setBounds();
+			sp.setCardPanel(ncp);
+			rooms.put(rpi.name, sp);
+			add(sp);
+		}
+		//CardPanel cardPanel = new CardPanel(placeHolderCard, 21, 69);
+		
+		// cardPanel.setBounds();
+		// add(cardPanel);
+		
+		// SetPanel sp = new SetPanel();
+		// sp.setCardPanel(cardPanel);
+		// sp.setBounds();
+		// add(sp);
+		
+
+		// NOTE: It might be bad practice/a bug to not have "bounds"
+		// in the SetPanel object, rather only it's children have
+		// bounds.
 	}
+
+	// public BoardPanel() {
+	// 	setLayout(null); // absolute positioning is used
+	// 	this.board = new ImageIcon("../resources/board.png").getImage();
+		
+	// 	// the below is hard-coded for testing
+	// 	CardPanel cardPanel = new CardPanel(new ImageIcon("../resources/cards/01.png").getImage(), 21, 69);
+	// 	// cardPanel.setBounds();
+	// 	// add(cardPanel);
+		
+	// 	SetPanel sp = new SetPanel();
+	// 	sp.setCardPanel(cardPanel);
+	// 	sp.setBounds();
+	// 	add(sp);
+	// 	// NOTE: It might be bad practice/a bug to not have "bounds"
+	// 	// in the SetPanel object, rather only it's children have
+	// 	// bounds.
+	// }
 
 	@Override
 	public void paintComponent(Graphics g) {

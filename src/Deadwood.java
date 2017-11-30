@@ -1,6 +1,7 @@
 import view.ConsoleView;
 import view.DeadwoodView;
 import view.GraphicalView;
+import view.loading.GraphicsLoader;
 
 import model.DeadwoodModel;
 import model.loading.GameLoader;
@@ -21,7 +22,9 @@ public class Deadwood {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
-				GraphicalView gv = new GraphicalView();
+				// GraphicalView gv = new GraphicalView();
+				GraphicsLoader gl = GraphicsLoader.getInstance();
+				GraphicalView gv = gl.loadGraphicalView();
 				gv.setVisible(true);
 			}
 		});

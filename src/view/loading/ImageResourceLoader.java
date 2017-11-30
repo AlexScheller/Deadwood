@@ -10,6 +10,6 @@ public class ImageResourceLoader {
 		return new SceneCardImageSet(sciis);
 	}
 
-	public ImageResourceLoader getInstance() { return this.instance; }
+	public static ImageResourceLoader getInstance() { return instance; }
 
 }

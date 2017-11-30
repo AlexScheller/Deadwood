@@ -11,6 +11,8 @@ clean:
 	-rm model/board/scene/*.class
 	-rm model/player/*.class
 	-rm view/*.class
+	-rm view/graphics/*.class
+	-rm view/graphics/loading/*.class
 	-rm controller/*.class
 
 clena: clean
