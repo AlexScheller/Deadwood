@@ -11,11 +11,18 @@ public class BoardPanel extends JPanel {
 	private Image board;
 
 	public BoardPanel() {
+		setLayout(null); // absolute positioning is used
 		this.board = new ImageIcon("../resources/board.png").getImage();
+		
+		// the below is hard-coded for testing
+		CardPanel cardPanel = new CardPanel(new ImageIcon("../resources/cards/01.png").getImage(), 21, 69);
+		cardPanel.setBounds();
+		add(cardPanel);
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
+		// System.out.println("Board painted");
 		super.paintComponent(g);
 		g.drawImage(board, 0, 0, null);
 	}
