@@ -25,6 +25,10 @@ public class GraphicalView extends JFrame {
 		// CardPanel.setBounds();
 
 		setSize(1200, 900);
+		// oddly the image was still partially cropped
+		// when tested on windows, until these values were
+		// used:
+		// setSize(1216, 939);
 		setTitle("Board");
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

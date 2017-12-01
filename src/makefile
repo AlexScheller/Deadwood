@@ -1,6 +1,9 @@
 all:
 	javac -classpath .:../lib/json-20170516.jar Deadwood.java
 
+windows:
+	javac -classpath "..\\lib\\json-20170516.jar;." Deadwood.java
+
 clean:
 	-rm *.class
 	-rm model/*.class
