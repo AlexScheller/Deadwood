@@ -29,7 +29,8 @@ public class GraphicalView extends JFrame {
 		// when tested on windows, until these values were
 		// used:
 		// setSize(1216, 939);
-		setTitle("Board");
+		setTitle("Deadwood!");
+		// centers the window on startup
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

@@ -15,7 +15,7 @@ clean:
 	-rm model/player/*.class
 	-rm view/*.class
 	-rm view/graphics/*.class
-	-rm view/graphics/loading/*.class
+	-rm view/loading/*.class
 	-rm controller/*.class
 
 clena: clean

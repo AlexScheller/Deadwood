@@ -1,3 +1,13 @@
+/*
+ * json processing library can be found here:
+ *
+ * https://github.com/stleary/JSON-java
+ *
+ * documentation can be found here:
+ *
+ * http://stleary.github.io/JSON-java/index.html
+ */
+
 package model.loading;
 
 import java.io.File;

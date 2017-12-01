@@ -1,5 +1,7 @@
 package view.loading;
 
+import java.awt.Point;
+
 public class RoomPanelInfo {
 
 	public enum Type {
@@ -10,7 +12,9 @@ public class RoomPanelInfo {
 
 	public Type roomType;
 	public String name;
-	public int cardPanelXOrigin;
-	public int cardPanelYOrigin;
+	// public int cardPanelXOrigin;
+	// public int cardPanelYOrigin;
+	public Point cardPanelOrigin;
+	public Point[] takeOrigins;
 
 }

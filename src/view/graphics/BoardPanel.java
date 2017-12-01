@@ -24,13 +24,13 @@ public class BoardPanel extends JPanel {
 		this.rooms = new HashMap<>();
 		// the below is hard-coded for testing
 		Image placeHolderCardImage = new ImageIcon("../resources/cards/01.png").getImage();
-		
+		Image clapper  = new ImageIcon("../resources/clapper.png").getImage();
 		for (RoomPanelInfo rpi : rpis) {
-			CardPanel ncp = new CardPanel(placeHolderCardImage,
-										  rpi.cardPanelXOrigin,
-										  rpi.cardPanelYOrigin);
-			ncp.setBounds();
-			SetPanel sp = new SetPanel();
+			// CardPanel ncp = new CardPanel(placeHolderCardImage,
+			// 							  rpi.cardPanelOrigin);
+			// ncp.setBounds();
+			CardPanel ncp = new CardPanel(placeHolderCardImage);
+			SetPanel sp = new SetPanel(rpi, clapper);
 			sp.setBounds();
 			sp.setCardPanel(ncp);
 			rooms.put(rpi.name, sp);

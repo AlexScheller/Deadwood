@@ -1,7 +1,18 @@
+/*
+ * json processing library can be found here:
+ *
+ * https://github.com/stleary/JSON-java
+ *
+ * documentation can be found here:
+ *
+ * http://stleary.github.io/JSON-java/index.html
+ */
 package view.loading;
 
 import java.io.File;
 import java.io.FileInputStream;
+
+import java.awt.Point;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,8 +77,20 @@ public class JSONDataParser {
 				JSONObject set = (JSONObject) sets.next();
 				rpi.roomType = RoomPanelInfo.Type.MOVIE_SET;
 				rpi.name = set.getString("name");
-				rpi.cardPanelXOrigin = set.getJSONObject("area").getInt("x");
-				rpi.cardPanelYOrigin = set.getJSONObject("area").getInt("y");
+				int x = set.getJSONObject("area").getInt("x");
+				int y = set.getJSONObject("area").getInt("y");
+				rpi.cardPanelOrigin = new Point(x, y);
+				JSONArray takes = set.getJSONArray("takes");
+				Point[] takeOrigins = new Point[takes.length()];
+				Iterator takesItr = takes.iterator();
+				while (takesItr.hasNext()) {
+					JSONObject take = (JSONObject) takesItr.next();
+					x = take.getJSONObject("area").getInt("x");
+					y = take.getJSONObject("area").getInt("y");
+					int number = take.getInt("number");
+					takeOrigins[number - 1] = new Point(x, y);
+				}
+				rpi.takeOrigins = takeOrigins;
 				ret.add(rpi);
 			}
 		} catch (Exception e) {
