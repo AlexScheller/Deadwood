@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
+import view.loading.AssetBank;
 import view.loading.RoomPanelInfo;
 
 public class BoardPanel extends JPanel {
@@ -23,9 +24,10 @@ public class BoardPanel extends JPanel {
 		
 		this.rooms = new HashMap<>();
 		// the below is hard-coded for testing
-		Image placeHolderCardImage = new ImageIcon("../resources/cards/01.png").getImage();
+		AssetBank ab = AssetBank.getInstance();
+		Image placeHolderCardImage = ab.getAsset("04");
 		Image clapper  = new ImageIcon("../resources/clapper.png").getImage();
-		Image die = new ImageIcon("../resources/dice/g6.png").getImage();
+		Image die = ab.getAsset("g6");
 		for (RoomPanelInfo rpi : rpis) {
 			// CardPanel ncp = new CardPanel(placeHolderCardImage,
 			// 							  rpi.cardPanelOrigin);

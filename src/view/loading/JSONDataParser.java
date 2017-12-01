@@ -34,36 +34,6 @@ public class JSONDataParser {
 
 	private JSONDataParser() {}
 
-	// public List<SceneCardImageInfo> parseSceneCardImagesInfos() {
-	// 	// System.out.print("\t\tparsing cards...");
-	// 	List<SceneCardImageInfo> ret = new ArrayList<>();
-	// 	try {
-	// 		JSONTokener jt = new JSONTokener (new FileInputStream(new File(cardPath)));
-	// 		JSONObject cardJSON = new JSONObject(jt);
-	// 		// begin parsing
-	// 		Iterator cards = cardJSON.getJSONArray("cards").iterator();
-	// 		while (cards.hasNext()) {
-	// 			SceneCardImageInfo nscii = new SceneCardInfo();
-	// 			JSONObject card = (JSONObject) cards.next();
-	// 			nscii.title = card.getString("name");
-	// 			nscii.fileName = card.getString("img");
-	// 			Iterator parts = card.getJSONArray("parts").iterator();
-	// 			Map<String, Integer> roleOffsets = new HashMap<>();
-	// 			while (parts.hasNext()) {
-	// 				JSONObject part = (JSONObject) parts.next();
-	// 				JSONObject area = (JSONObject) part.getJSONObject("area");
-	// 				roleLocations.put(part.getString("name"), area.getInt(x));
-	// 			}
-	// 			ret.add(nscii);
-	// 		}
-	// 	} catch (Exception e) {
-	// 		e.printStackTrace();
-	// 		System.exit(1);
-	// 	}
-	// 	// System.out.println(" successful!");
-	// 	return ret;
-	// }
-
 	public List<RoomPanelInfo> parseRoomPanelInfo() {
 		List<RoomPanelInfo> ret = new ArrayList<>();
 		try {
