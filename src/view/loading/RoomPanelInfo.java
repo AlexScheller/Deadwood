@@ -1,5 +1,7 @@
 package view.loading;
 
+import java.util.Map;
+
 import java.awt.Point;
 
 public class RoomPanelInfo {
@@ -16,5 +18,6 @@ public class RoomPanelInfo {
 	// public int cardPanelYOrigin;
 	public Point cardPanelOrigin;
 	public Point[] takeOrigins;
+	public Map<String, Point> extraOrigins;
 
 }

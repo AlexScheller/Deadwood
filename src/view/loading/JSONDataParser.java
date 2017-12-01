@@ -14,17 +14,15 @@ import java.io.FileInputStream;
 
 import java.awt.Point;
 
-import java.util.ArrayList;
+import java.util.Map;
 import java.util.List;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ArrayList;
 
-import org.json.JSONTokener;
-import org.json.JSONObject;
 import org.json.JSONArray;
-
-// import model.board.role.RoleInfo;
-// import model.board.room.RoomInfo;
-// import model.board.scene.SceneCardInfo;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 public class JSONDataParser {
 
@@ -73,6 +71,7 @@ public class JSONDataParser {
 			JSONObject rooms = (new JSONObject(jt)).getJSONObject("rooms");
 			Iterator sets = rooms.getJSONArray("sets").iterator();
 			while (sets.hasNext()) {
+
 				RoomPanelInfo rpi = new RoomPanelInfo();
 				JSONObject set = (JSONObject) sets.next();
 				rpi.roomType = RoomPanelInfo.Type.MOVIE_SET;
@@ -80,6 +79,8 @@ public class JSONDataParser {
 				int x = set.getJSONObject("area").getInt("x");
 				int y = set.getJSONObject("area").getInt("y");
 				rpi.cardPanelOrigin = new Point(x, y);
+
+				// takes
 				JSONArray takes = set.getJSONArray("takes");
 				Point[] takeOrigins = new Point[takes.length()];
 				Iterator takesItr = takes.iterator();
@@ -91,6 +92,18 @@ public class JSONDataParser {
 					takeOrigins[number - 1] = new Point(x, y);
 				}
 				rpi.takeOrigins = takeOrigins;
+
+				// off card roles
+				Map<String, Point> extraOrigins = new HashMap<>();
+				Iterator parts = set.getJSONArray("parts").iterator();
+				while (parts.hasNext()) {
+					JSONObject part = (JSONObject) parts.next();
+					x = part.getJSONObject("area").getInt("x");
+					y = part.getJSONObject("area").getInt("y");
+					extraOrigins.put(part.getString("name"), new Point(x, y));
+				}
+				rpi.extraOrigins = extraOrigins;
+
 				ret.add(rpi);
 			}
 		} catch (Exception e) {
@@ -99,43 +112,6 @@ public class JSONDataParser {
 		}
 		return ret;
 	}
-
-	// public List<RoomInfo> parseRoomInfos() {
-	// 	// System.out.print("\t\tparsing board...");
-	// 	List<RoomInfo> ret = new ArrayList<>();
-	// 	try {
-	// 		JSONTokener jt = new JSONTokener (new FileInputStream(new File(boardPath)));
-	// 		JSONObject rooms = (new JSONObject(jt)).getJSONObject("rooms");
-	// 		Iterator sets = rooms.getJSONArray("sets").iterator();
-	// 		while (sets.hasNext()) {
-	// 			RoomInfo setInfo = new RoomInfo();
-	// 			JSONObject set = (JSONObject) sets.next();
-	// 			setInfo.roomType = RoomInfo.Type.MOVIE_SET;
-	// 			setInfo.name = set.getString("name");
-	// 			setInfo.takesLeft = set.getJSONArray("takes").length();
-	// 			setInfo.roleInfos = parseRoleInfos(set.getJSONArray("parts"), "board");
-	// 			setInfo.neighbors = parseNeighbors(set.getJSONArray("neighbors"));
-	// 			ret.add(setInfo);
-	// 		}
-	// 		JSONObject trailer = rooms.getJSONObject("trailer");
-	// 		RoomInfo trailerInfo = new RoomInfo();
-	// 		trailerInfo.roomType = RoomInfo.Type.TRAILER;
-	// 		trailerInfo.name = "trailer";
-	// 		trailerInfo.neighbors = parseNeighbors(trailer.getJSONArray("neighbors"));
-	// 		ret.add(trailerInfo);
-	// 		JSONObject office = rooms.getJSONObject("office");
-	// 		RoomInfo officeInfo = new RoomInfo();
-	// 		officeInfo.roomType = RoomInfo.Type.OFFICE;
-	// 		officeInfo.name = "office";
-	// 		officeInfo.neighbors = parseNeighbors(office.getJSONArray("neighbors"));
-	// 		ret.add(officeInfo);
-	// 	} catch (Exception e) {
-	// 		e.printStackTrace();
-	// 		System.exit(1);
-	// 	}
-	// 	// System.out.println(" successful!");
-	// 	return ret;
-	// } 
 
 	public static JSONDataParser getInstance() { return instance; }
 

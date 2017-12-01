@@ -14,6 +14,9 @@ public class CardPanel extends JPanel {
 	private final int width = 205;
 	private final int height = 115;
 
+	private Image diceImage;
+	// private Map<String, Point> starringOrigins;
+
 	// currently unused
 	// public CardPanel(Image cardImage, int xOrigin, int yOrigin) {
 	// 	setLayout(null); // absolute positioning is used
@@ -22,10 +25,12 @@ public class CardPanel extends JPanel {
 	// 	this.yOrigin = yOrigin;
 	// }
 
-	public CardPanel(Image cardImage) {//, Point origin) {
+	public CardPanel(Image cardImage) {// CardPanelInfo cpi, Image diceImage) {//, Point origin) {
 		setLayout(null);
 		this.cardImage = cardImage;
+		this.diceImage = diceImage;
 		// this.origin = origin;
+		// this.starringOrigins = cpi.starringOrigins;
 	}
 
 	@Override
@@ -33,6 +38,10 @@ public class CardPanel extends JPanel {
 		// System.out.println("card painted");
 		super.paintComponent(g);
 		g.drawImage(cardImage, 0, 0, null);
+		// placeholder
+		// for (Point p : starringOrigins.values()) {
+		// 	g.drawImage(diceImage, p.x + 3, p.y + 3, null);
+		// }
 	}
 
 	public void setBounds(Point origin) {

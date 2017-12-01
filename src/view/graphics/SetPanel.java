@@ -1,5 +1,7 @@
 package view.graphics;
 
+import java.util.Map;
+
 import java.awt.Point;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -12,17 +14,20 @@ public class SetPanel extends RoomPanel {
 	private CardPanel cardPanel;
 	private Point cardPanelOrigin;
 	private Image takeImage;
+	private Image diceImage;
 	private Point[] takeOrigins;
 	private int takesFinished;
-	// private Map<String, Image>
+	private Map<String, Point> extraOrigins;
 
 	// TODO: maybe hard code the image
-	public SetPanel(RoomPanelInfo rpi, Image takeImage) {
+	public SetPanel(RoomPanelInfo rpi, Image takeImage, Image diceImage) {
 		setLayout(null);
 		this.takeImage = takeImage;
+		this.diceImage = diceImage;
 		this.cardPanelOrigin = rpi.cardPanelOrigin;
 		this.takeOrigins = rpi.takeOrigins;
 		this.takesFinished = takeOrigins.length; // placeholder
+		this.extraOrigins = rpi.extraOrigins;
 		// this class serves only as a container, therefore
 		// it should remain invisible.
 		setOpaque(false);
@@ -45,6 +50,10 @@ public class SetPanel extends RoomPanel {
 			int x = takeOrigins[i].x + 2;
 			int y = takeOrigins[i].y + 2;
 			g.drawImage(takeImage, x, y, null);
+		}
+		// placeholder
+		for (Point p : extraOrigins.values()) {
+			g.drawImage(diceImage, p.x + 3, p.y + 3, null);
 		}
 	}
 
