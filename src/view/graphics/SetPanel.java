@@ -1,12 +1,14 @@
 package view.graphics;
 
 import java.util.Map;
+import java.util.HashMap; // delete later
 
 import java.awt.Point;
 import java.awt.Image;
 import java.awt.Graphics;
 // import javax.swing.JPanel;
 
+import view.loading.CardInfo; // temporary
 import view.loading.RoomPanelInfo;
 
 public class SetPanel extends RoomPanel {
@@ -38,6 +40,18 @@ public class SetPanel extends RoomPanel {
 		this.cardPanel = cp;
 		cardPanel.setBounds(cardPanelOrigin);
 		add(cardPanel);
+
+		// the below hard coded for testing purposes
+		CardInfo ci = new CardInfo();
+		
+		ci.imgNumber = "03";
+		Map<String, Point> starringOrigins = new HashMap<>();
+		starringOrigins.put("Auctioneer", new Point(53, 47));
+		starringOrigins.put("General Custer", new Point(115, 47));
+		ci.starringOrigins = starringOrigins;
+		
+		cardPanel.setNewCard(ci);
+		cardPanel.flip();
 	}
 
 	@Override

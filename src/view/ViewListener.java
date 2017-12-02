@@ -2,6 +2,8 @@ package view;
 
 public interface ViewListener {
 
+	// public void newGameRequest(int numPlayers);
+
 	public void playerActRequest();
 
 	public void playerRehearseRequest();

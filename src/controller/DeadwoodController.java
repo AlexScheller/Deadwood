@@ -19,9 +19,9 @@ public class DeadwoodController implements ViewListener {
 
 	private DeadwoodModel model;
 
-	public DeadwoodController(DeadwoodView view, DeadwoodModel model) {//, boolean logging) {
+	public DeadwoodController(DeadwoodView view) {//, DeadwoodModel model) {//, boolean logging) {
 		// this.view = view;
-		this.model = model;
+		this.model = null;
 		view.setListener(this);
 	}
 	
@@ -33,6 +33,16 @@ public class DeadwoodController implements ViewListener {
 		System.out.println("Exiting...");
 		System.exit(1);
 	}
+
+	// public void newGameRequest(int numPlayers) {
+	// 	if (model == null) {
+	// 		try {
+	// 			model = GameLoader.getInstance().loadGame(numPlayers);
+	// 		} catch (Exception e) {
+	// 			exitOnException(e);
+	// 		}
+	// 	}
+	// }
 
 	public void playerActRequest() {
 		System.out.println("Player " + (model.getCurrentPlayer().getID() + 1) + " acts");

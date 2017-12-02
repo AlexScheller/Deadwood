@@ -32,7 +32,8 @@ public class BoardPanel extends JPanel {
 			// CardPanel ncp = new CardPanel(placeHolderCardImage,
 			// 							  rpi.cardPanelOrigin);
 			// ncp.setBounds();
-			CardPanel ncp = new CardPanel(placeHolderCardImage);
+			// CardPanel ncp = new CardPanel(placeHolderCardImage);
+			CardPanel ncp = new CardPanel();
 			SetPanel sp = new SetPanel(rpi, clapper, die);
 			sp.setBounds();
 			sp.setCardPanel(ncp);
