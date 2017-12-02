@@ -68,8 +68,10 @@ public class JSONDataParser {
 				Iterator parts = set.getJSONArray("parts").iterator();
 				while (parts.hasNext()) {
 					JSONObject part = (JSONObject) parts.next();
-					x = part.getJSONObject("area").getInt("x");
-					y = part.getJSONObject("area").getInt("y");
+					// note these values should really be changed in
+					// the data set
+					x = part.getJSONObject("area").getInt("x") + 3;
+					y = part.getJSONObject("area").getInt("y") + 3;
 					extraOrigins.put(part.getString("name"), new Point(x, y));
 				}
 				rpi.extraOrigins = extraOrigins;

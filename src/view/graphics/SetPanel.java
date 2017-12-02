@@ -19,7 +19,8 @@ public class SetPanel extends RoomPanel {
 	private Image diceImage;
 	private Point[] takeOrigins;
 	private int takesFinished;
-	private Map<String, Point> extraOrigins;
+	// private Map<String, Point> extraOrigins; // remove later
+	private Map<String, DiceSlot> extras;
 
 	// TODO: maybe hard code the image
 	public SetPanel(RoomPanelInfo rpi, Image takeImage, Image diceImage) {
@@ -29,7 +30,16 @@ public class SetPanel extends RoomPanel {
 		this.cardPanelOrigin = rpi.cardPanelOrigin;
 		this.takeOrigins = rpi.takeOrigins;
 		this.takesFinished = takeOrigins.length; // placeholder
-		this.extraOrigins = rpi.extraOrigins;
+		// this.extraOrigins = rpi.extraOrigins;
+		// set up extra roles
+		this.extras = new HashMap<>();
+		for (String key : rpi.extraOrigins.keySet()) {
+			DiceSlot ds = new DiceSlot();
+			ds.setBounds(rpi.extraOrigins.get(key));
+			ds.setDieImage(diceImage); // temporarily hard coded
+			extras.put(key, ds);
+			add(ds);
+		}
 		// this class serves only as a container, therefore
 		// it should remain invisible.
 		setOpaque(false);
@@ -66,9 +76,9 @@ public class SetPanel extends RoomPanel {
 			g.drawImage(takeImage, x, y, null);
 		}
 		// placeholder
-		for (Point p : extraOrigins.values()) {
-			g.drawImage(diceImage, p.x + 3, p.y + 3, null);
-		}
+		// for (Point p : extraOrigins.values()) {
+		// 	g.drawImage(diceImage, p.x + 3, p.y + 3, null);
+		// }
 	}
 
 	public void setBounds() {
