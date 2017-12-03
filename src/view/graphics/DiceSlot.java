@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 public class DiceSlot extends JComponent {
 
 	private Image die;
+	private Point origin;
 	private final int height = 40;
 	private final int width = 40;
 
@@ -27,12 +28,17 @@ public class DiceSlot extends JComponent {
 	}
 
 	public void setBounds(Point origin) {
+		// System.out.println("setting bounds");
+		this.origin = origin;
+		// this doesn't seem to work when the dice slots
+		// are removed from the hierarchy.
 		setBounds(origin.x, origin.y, height, width);
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		g.drawImage(die, 0, 0, null);
+		// System.out.println("drawing dice");
+		g.drawImage(die, origin.x, origin.y, null);
 	}
 
 }

@@ -61,6 +61,7 @@ public class CardPanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("Card Clicked");
+				flip();
 			}
 		});
 	}
@@ -69,6 +70,7 @@ public class CardPanel extends JPanel {
 		this.cardFront = AssetBank.getInstance().getAsset(ci.imgNumber);
 		// this.starringOrigins = ci.starringOrigins;
 		this.occupied = true;
+		this.flipped = false;
 		this.stars = new HashMap<>();
 		for (String key : ci.starringOrigins.keySet()) {
 			DiceSlot ds = new DiceSlot();
@@ -82,6 +84,7 @@ public class CardPanel extends JPanel {
 	public void flip() throws IllegalStateException {
 		if (occupied) {
 			flipped = !flipped;
+			repaint();
 		} else {
 			throw new IllegalStateException("Cannot flip, Card Panel unoccupied.");
 		}
@@ -98,13 +101,15 @@ public class CardPanel extends JPanel {
 		if (occupied) {
 			// super.paintComponent(g);
 			if (flipped) {
-				super.paintComponent(g); // draw roles
+				// System.out.println("flipped");
+				// super.paintComponent(g); // draw roles
 				g.drawImage(cardFront, 0, 0, null);
 				// draw roles
-				// for (Point p : starringOrigins.values()) {
-				// 	g.drawImage(diceImage, p.x + 1, p.y + 1, null);
-				// }
+				for (String key : stars.keySet()) {
+					stars.get(key).paintComponent(g);
+				}
 			} else {
+				// System.out.println("unflipped");
 				g.drawImage(cardBack, 0, 0, null);
 			}
 		}

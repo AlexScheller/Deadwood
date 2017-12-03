@@ -6,7 +6,6 @@ import java.util.HashMap; // delete later
 import java.awt.Point;
 import java.awt.Image;
 import java.awt.Graphics;
-// import javax.swing.JPanel;
 
 import view.loading.CardInfo; // temporary
 import view.loading.RoomPanelInfo;
@@ -19,7 +18,6 @@ public class SetPanel extends RoomPanel {
 	private Image diceImage;
 	private Point[] takeOrigins;
 	private int takesFinished;
-	// private Map<String, Point> extraOrigins; // remove later
 	private Map<String, DiceSlot> extras;
 
 	// TODO: maybe hard code the image
@@ -30,7 +28,6 @@ public class SetPanel extends RoomPanel {
 		this.cardPanelOrigin = rpi.cardPanelOrigin;
 		this.takeOrigins = rpi.takeOrigins;
 		this.takesFinished = takeOrigins.length; // placeholder
-		// this.extraOrigins = rpi.extraOrigins;
 		// set up extra roles
 		this.extras = new HashMap<>();
 		for (String key : rpi.extraOrigins.keySet()) {
@@ -61,13 +58,16 @@ public class SetPanel extends RoomPanel {
 		ci.starringOrigins = starringOrigins;
 		
 		cardPanel.setNewCard(ci);
-		cardPanel.flip();
+		// cardPanel.flip();
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		// System.out.println("Set paintComponent called");
-		super.paintComponent(g);
+		// super.paintComponent(g);
+		// paintOccupants();
+		for (String key : extras.keySet()) {
+			extras.get(key).paintComponent(g);
+		}
 		for (int i = 0; i < takesFinished; i++) {
 			// TODO: these values should really be adjusted in the 
 			// dataset, not here.
@@ -75,10 +75,6 @@ public class SetPanel extends RoomPanel {
 			int y = takeOrigins[i].y + 2;
 			g.drawImage(takeImage, x, y, null);
 		}
-		// placeholder
-		// for (Point p : extraOrigins.values()) {
-		// 	g.drawImage(diceImage, p.x + 3, p.y + 3, null);
-		// }
 	}
 
 	public void setBounds() {
