@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Graphics;
 
 import view.loading.CardInfo; // temporary
+import view.loading.AssetBank;
 import view.loading.RoomPanelInfo;
 
 public class SetPanel extends RoomPanel {
@@ -26,6 +27,8 @@ public class SetPanel extends RoomPanel {
 		this.takeImage = takeImage;
 		this.diceImage = diceImage;
 		this.cardPanelOrigin = rpi.cardPanelOrigin;
+		this.occupantsOrigin = new Point(cardPanelOrigin);
+		occupantsOrigin.y += 115;
 		this.takeOrigins = rpi.takeOrigins;
 		this.takesFinished = takeOrigins.length; // placeholder
 		// set up extra roles
@@ -62,9 +65,20 @@ public class SetPanel extends RoomPanel {
 	}
 
 	@Override
+	public void paintOccupants(Graphics g) {
+		// temporarily hard coded for testing purposes
+		Image yellowDie = AssetBank.getInstance().getAsset("y3");
+		int x = occupantsOrigin.x;
+		int y = occupantsOrigin.y;
+		for (int i = 0; i < 4; i++) {
+			g.drawImage(yellowDie, x + (i * 40) + 2, y, null);
+		}
+	}
+
+	@Override
 	public void paintComponent(Graphics g) {
 		// super.paintComponent(g);
-		// paintOccupants();
+		paintOccupants(g);
 		for (String key : extras.keySet()) {
 			extras.get(key).paintComponent(g);
 		}

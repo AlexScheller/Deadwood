@@ -17,40 +17,15 @@ public class CardPanel extends JPanel {
 
 	private Image cardFront;
 	private Image cardBack;
+
 	private boolean occupied;
 	private boolean flipped;
-	// private int xOrigin;
-	// private int yOrigin;
-	// private Point origin;
+
 	private final int width = 205;
 	private final int height = 115;
 
 	private Image diceImage; // temporary
-	// private Map<String, Point> starringOrigins; // temporary
 	private Map<String, DiceSlot> stars;
-
-	// currently unused
-	// public CardPanel(Image cardImage, int xOrigin, int yOrigin) {
-	// 	setLayout(null); // absolute positioning is used
-	// 	this.cardImage = cardImage;
-	// 	this.xOrigin = xOrigin;
-	// 	this.yOrigin = yOrigin;
-	// }
-
-	// public CardPanel(CardPanelInfo cpi) {
-	// 	setLayout(null);
-	// 	this.cardBack = cpi.cardBack;
-	// 	this.cardFront = cpi.cardFront;
-	// 	this.starringOrigins = cpi.starringOrigins;
-	// }
-
-	// public CardPanel(Image cardImage) {// CardPanelInfo cpi, Image diceImage) {//, Point origin) {
-	// 	setLayout(null);
-	// 	this.cardImage = cardImage;
-	// 	this.diceImage = diceImage;
-	// 	// this.origin = origin;
-	// 	// this.starringOrigins = cpi.starringOrigins;
-	// }
 
 	public CardPanel() {
 		setLayout(null);
@@ -68,7 +43,6 @@ public class CardPanel extends JPanel {
 
 	public void setNewCard(CardInfo ci) {
 		this.cardFront = AssetBank.getInstance().getAsset(ci.imgNumber);
-		// this.starringOrigins = ci.starringOrigins;
 		this.occupied = true;
 		this.flipped = false;
 		this.stars = new HashMap<>();
@@ -81,8 +55,18 @@ public class CardPanel extends JPanel {
 		}
 	}
 
+	// TODO: look into speeding this up
 	public void flip() throws IllegalStateException {
 		if (occupied) {
+			if (!flipped) {
+				for (String key : stars.keySet()) {
+					add(stars.get(key));
+				}
+			} else {
+				for (String key : stars.keySet()) {
+					remove(stars.get(key));
+				}
+			}
 			flipped = !flipped;
 			repaint();
 		} else {
@@ -99,17 +83,12 @@ public class CardPanel extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		if (occupied) {
-			// super.paintComponent(g);
 			if (flipped) {
-				// System.out.println("flipped");
-				// super.paintComponent(g); // draw roles
 				g.drawImage(cardFront, 0, 0, null);
-				// draw roles
 				for (String key : stars.keySet()) {
 					stars.get(key).paintComponent(g);
 				}
 			} else {
-				// System.out.println("unflipped");
 				g.drawImage(cardBack, 0, 0, null);
 			}
 		}
