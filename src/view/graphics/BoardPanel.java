@@ -40,6 +40,14 @@ public class BoardPanel extends JPanel {
 			rooms.put(rpi.name, sp);
 			add(sp);
 		}
+		RoomPanel office = new OfficePanel();
+		RoomPanel trailers = new TrailerPanel();
+		office.setBounds();
+		trailers.setBounds();
+		rooms.put("office", office);
+		rooms.put("trailers", trailers);
+		add(office);
+		add(trailers);
 		//CardPanel cardPanel = new CardPanel(placeHolderCard, 21, 69);
 		
 		// cardPanel.setBounds();

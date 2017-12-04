@@ -6,6 +6,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import view.GraphicalView;
+import view.graphics.MenuPanel;
 import view.graphics.BoardPanel;
 
 public class GraphicsLoader {
@@ -18,7 +19,8 @@ public class GraphicsLoader {
 		loadAssets(AssetBank.getInstance());
 		JSONDataParser jp = JSONDataParser.getInstance();
 		BoardPanel bp = loadBoard(jp);
-		return new GraphicalView(bp);
+		MenuPanel mp = new MenuPanel();
+		return new GraphicalView(bp, mp);
 	}
 
 	private BoardPanel loadBoard(JSONDataParser jp) {

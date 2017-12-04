@@ -65,17 +65,6 @@ public class SetPanel extends RoomPanel {
 	}
 
 	@Override
-	public void paintOccupants(Graphics g) {
-		// temporarily hard coded for testing purposes
-		Image yellowDie = AssetBank.getInstance().getAsset("y3");
-		int x = occupantsOrigin.x;
-		int y = occupantsOrigin.y;
-		for (int i = 0; i < 4; i++) {
-			g.drawImage(yellowDie, x + (i * 40) + 2, y, null);
-		}
-	}
-
-	@Override
 	public void paintComponent(Graphics g) {
 		// super.paintComponent(g);
 		paintOccupants(g);
@@ -91,9 +80,9 @@ public class SetPanel extends RoomPanel {
 		}
 	}
 
-	public void setBounds() {
-		// these bounds may need adjusting
-		setBounds(0, 0, 1200, 900);
-	}
+	// public void setBounds() {
+	// 	// these bounds may need adjusting
+	// 	setBounds(0, 0, 1200, 900);
+	// }
 
 }
