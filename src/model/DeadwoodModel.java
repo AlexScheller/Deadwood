@@ -26,6 +26,8 @@ public class DeadwoodModel {
 
 	public void setListener(ModelListener ml) {
 		this.listener = ml;
+		board.setListener(ml);
+		// set listener in players
 	}
 
 	// For debugging purposes
@@ -49,23 +51,24 @@ public class DeadwoodModel {
 	public void play() {
 		board.newDay();
 		int firstPlayerId = (new Random()).nextInt(players.length); 
-		while (day <= 4) {
-			currentPlayerIndex = firstPlayerId;
-			while (!board.oneSceneLeft()) {
-				// players[(currentPlayerId++) % players.length].playTurn();
-				listener.newTurn();
-				players[currentPlayerIndex].resetMove();
-				currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-			}
-			board.newDay();
-			for (int i = 0; i < players.length; i++) {
-				// maybe find a better way to do this
-				players[i].teleport(board.getRoomForTeleport("trailer"));
-			}
-			listener.newDay();
-			day++;
-		}
-		listener.displayWinners(determineWinners());
+		// while (day <= 4) {
+		// 	currentPlayerIndex = firstPlayerId;
+		// 	while (!board.oneSceneLeft()) {
+		// 		// players[(currentPlayerId++) % players.length].playTurn();
+		// 		listener.newTurn();
+		// 		players[currentPlayerIndex].resetMove();
+		// 		currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+				
+		// 	}
+		// 	board.newDay();
+		// 	for (int i = 0; i < players.length; i++) {
+		// 		// maybe find a better way to do this
+		// 		players[i].teleport(board.getRoomForTeleport("trailer"));
+		// 	}
+		// 	listener.newDay();
+		// 	day++;
+		// }
+		// listener.displayWinners(determineWinners());
 	}
 
 	// public void nextTurn() {
@@ -95,8 +98,9 @@ public class DeadwoodModel {
 	}
 
 	public void playerActs() throws IllegalStateException {
-		String res = players[currentPlayerIndex].act();
-		listener.playerActResponse(res);
+		players[currentPlayerIndex].act();
+		// String res = players[currentPlayerIndex].act();
+		// listener.playerActResponse(res);
 	}
 
 	public void playerRehearses() throws IllegalStateException {

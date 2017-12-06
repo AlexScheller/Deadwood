@@ -15,6 +15,11 @@ public class Board {
 		// System.out.println("\tsuccessful!");
 	}
 
+	public void setListener(ModelListener ml) {
+		this.listener = ml;
+		rs.setListener(ml);
+	}
+
 	@Override
 	public String toString() {
 		return rs.toString() + "\n" + cards.toString();

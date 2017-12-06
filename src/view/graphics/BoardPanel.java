@@ -26,7 +26,7 @@ public class BoardPanel extends JPanel {
 		this.rooms = new HashMap<>();
 		// the below is hard-coded for testing
 		AssetBank ab = AssetBank.getInstance();
-		Image placeHolderCardImage = ab.getAsset("04");
+		// Image placeHolderCardImage = ab.getAsset("04");
 		Image clapper  = new ImageIcon("../resources/clapper.png").getImage();
 		Image die = ab.getAsset("g6");
 		// TODO put office and trailers into this loop

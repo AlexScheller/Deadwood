@@ -10,9 +10,15 @@ public abstract class Room {
 	protected Map<String, Room> neighbors;
 	// protected Set<Player> playersInside;
 
+	protected ModelListener listener;
+
 	public Room (RoomInfo ri) {
 		// this.id = ri.id;
 		this.name = ri.name;
+	}
+
+	public void setListener(ModelListener ml) {
+		this.listener = ml;
 	}
 
 	public void setNeighbors(Map<String, Room> neighbors) {

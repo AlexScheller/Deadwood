@@ -9,12 +9,18 @@ public abstract class Role {
 	protected String line;
 	protected Player residentActor;
 
+	protected ModelListener listener;
+
 	/* Constructors */
 
 	public Role(RoleInfo ri) {
 		this.rankRequired = ri.rankRequired;
 		this.name = ri.name;
 		this.line = ri.line;
+	}
+
+	public void setListener(ModelListener ml) {
+		this.listener = ml;
 	}
 
 	/* Functional Methods */

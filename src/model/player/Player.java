@@ -54,24 +54,13 @@ public class Player {
 		return 1 + dice.nextInt(6);
 	}
 
-	public String act() throws IllegalStateException {
+	public void act() throws IllegalStateException {
 		if (isActing()) {
 			int roll = rehersalChips + roll();
 			MovieSet roomAsSet = (MovieSet) currentRoom;
-			String ret = "Player " + playerID + " rolled a " + roll +  " ... ";
-			if (roll >= roomAsSet.getBudget()) {
-				// roomAsSet.removeShot();
-				// TODO: find a way to make the order of success and 
-				// removeShot irrelevant. perhaps the player shouldn't
-				// know this much about the room's logic.
-				currentRole.success();
-				ret += "Player succeeds!\n" + "dollars: " + dollars + "\ncredits: " + credits + "\n";
-				ret += roomAsSet.removeShot();
-			} else {
-				currentRole.failure();
-				ret += "Player fails...\n" + "dollars: " + dollars + "\ncredits: " + credits + "\n";
-			}
-			return ret;
+			// having to provide the current role still seems
+			// a little wrong
+			roomAsSet.playerActs(roll, currentRole);
 		} else {
 			throw new IllegalStateException("player not in a role");
 		}

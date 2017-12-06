@@ -35,33 +35,36 @@ public class MovieSet extends Room {
 	public void setSceneCard(SceneCard sc) {
 		this.takesLeft = numTakes;
 		this.scene = sc;
+		listener.newSceneInSet(name, sc.getTitle());
 	}
 
-	public String removeShot() {
-		this.takesLeft--;
-		if (takesLeft == 0) {
-			return "takes finished, " + wrap();
+	public void PlayerActs(int roll, Role playersRole) {
+		if (roll >= budget) {
+			playersRole.success();
+			finishTake();
+		} else {
+			playersRole.failure();
 		}
-		return "takes left: " + takesLeft;
 	}
 
-	public String payBonuses() {
+	public void finishTake() {
+		this.takesLeft--;
+		listener.takeFinished(name);
+		if (takesLeft == 0) {
+			wrap();
+		}
+	}
+
+	public void payBonuses() {
 		scene.payBonuses();
 		for (String key : roles.keySet()) {
 			if (roles.get(key).isOccupied()) {
 				roles.get(key).payBonus();
-				// ret += roles.get(key).getRankRequired();
 			}
 		}
-		return "paying bonuses";
 	}
 
 	/* Functional Methods */
-
-	// public void assignPlayerToRole(Player p, String which) {
-	// 	Role assigned = getRole(which);
-	// 	p.
-	// }
 
 	public void evictPlayers() {
 		for (String key : roles.keySet()) {
@@ -72,6 +75,7 @@ public class MovieSet extends Room {
 	}
 
 	public String wrap() {
+		// listener.sceneWraps(name);
 		String ret = "wrapping scene: " + scene.getTitle();
 		if (scene.isOccupied()) {
 			ret += " " + payBonuses();

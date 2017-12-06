@@ -20,6 +20,12 @@ public class RoomSet {
 		// System.out.println(" successful!");
 	}
 
+	public void setListener(ModelListener ml) {
+		for (Room r : rooms.values()) {
+			r.setListener(ml);
+		}
+	}
+
 	public String toString() {
 		String ret = "";
 		for (String key : rooms.keySet()) {

@@ -35,6 +35,9 @@ public class GraphicalView
 
 	public void newGameEvent() {
 		System.out.println("new game event intercepted");
+		// number of players is currently hard-coded for
+		// testing purposes
+		listener.newGameRequest(2);
 	}
 
 	public void roleClickEvent(String which) {

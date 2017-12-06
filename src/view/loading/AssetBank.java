@@ -26,10 +26,10 @@ public class AssetBank {
 		assets.put(name, asset);
 	}
 
-	public Image getAsset(String which) throws IllegalArgumentException {
+	public Image getAsset(String assetName) throws IllegalArgumentException {
 		Image ret = null;
-		if (assets.containsKey(which)) {
-			ret = assets.get(which);
+		if (assets.containsKey(assetName)) {
+			ret = assets.get(assetName);
 		} else {
 			throw new IllegalArgumentException("No such image: " + which);
 		}

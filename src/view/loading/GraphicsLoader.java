@@ -16,8 +16,8 @@ public class GraphicsLoader {
 	private GraphicsLoader() {}
 
 	public GraphicalView loadGraphicalView() {
-		loadAssets(AssetBank.getInstance());
 		JSONDataParser jp = JSONDataParser.getInstance();
+		loadAssets(AssetBank.getInstance(), jp);
 		GraphicalView gv = new GraphicalView();
 		BoardPanel bp = loadBoard(jp, gv);
 		MenuPanel mp = new MenuPanel(gv);
@@ -28,6 +28,8 @@ public class GraphicsLoader {
 	private BoardPanel loadBoard(JSONDataParser jp, GraphicalView gv) {
 		return new BoardPanel(jp.parseRoomPanelInfo(), gv);
 	}
+
+	// TODO refactor this whole bottom section
 
 	// TODO: implement as a helper class  in loadAssets instead?
 	// TODO: make this function way more robust in terms of avoiding
@@ -50,11 +52,25 @@ public class GraphicsLoader {
 		}
 	}
 
-	private void loadAssets(AssetBank ab) {
+	private void loadCardImages(AssetBank ab, Map<String, String> associations) {
+		String cardLoc = "../resources/cards/";
+		File[] images = (new File(cardLoc)).listFiles();
+		for (File f : images) {
+			if (f.isFile()) {
+				String fileName = f.getName()
+				String title = associations.get(fileName);
+				Image img = new ImageIcon(cardLoc + name).getImage();
+				ab.putAsset(title, img);
+			}
+		}
+	}
+
+	private void loadAssets(AssetBank ab, JSONDataParser jp) {
 		File diceFolder = new File("../resources/dice");
-		File cardFolder = new File("../resources/cards");
+		// File cardFolder = new File("../resources/cards");
 		loadImagesFromDirectory(diceFolder, ab);
-		loadImagesFromDirectory(cardFolder, ab);
+		// loadImagesFromDirectory(cardFolder, ab);
+		loadCardImages(ab, jp.getCardImageAssociations());
 	}
 
 	public static GraphicsLoader getInstance() { return instance; }

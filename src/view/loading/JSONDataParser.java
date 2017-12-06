@@ -34,6 +34,24 @@ public class JSONDataParser {
 
 	private JSONDataParser() {}
 
+	public Map<String, String> getCardImageAssociations() {
+		Map<String, String> ret = new HashMap<>();
+		try {
+			JSONTokener jt = new JSONTokener(new FileInputStream(new File(cardPath)));
+			Iterator cards = (new JSONObject(jt)).getJSONArray("parts").iterator();
+			while (cards.hasNext()) {
+				JSONObject card = (JSONObject) cards.next();
+				String fileName = card.getString("img");
+				String title = card.getString("name");
+				ret.put(fileName, title);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return ret;
+	}
+
 	public List<RoomPanelInfo> parseRoomPanelInfo() {
 		List<RoomPanelInfo> ret = new ArrayList<>();
 		try {

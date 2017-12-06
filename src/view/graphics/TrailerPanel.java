@@ -14,7 +14,6 @@ public class TrailerPanel extends RoomPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
-		// super.paintComponent(g);
 		paintOccupants(g);
 	}
 

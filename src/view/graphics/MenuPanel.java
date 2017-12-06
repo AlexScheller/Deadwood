@@ -17,8 +17,6 @@ public class MenuPanel extends JPanel {
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// ((GraphicalView) getParent().getParent()).gameRequestButtonPressed();
-				// System.out.println("new game requested");
 				iel.newGameEvent();
 			}
 		});

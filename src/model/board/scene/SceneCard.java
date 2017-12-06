@@ -18,17 +18,17 @@ import model.board.scene.SceneCardInfo;
 
 public class SceneCard {
 
-	private int id;
+	// private int id;
 	private int budget;
-	private int number; // necessary?
+	// private int number; // necessary?
 	private String title;
 	private String description;
 	private Map<String, StarringRole> roles;
 
 	public SceneCard(SceneCardInfo ci) {
 		this.budget = ci.budget;
-		this.id = ci.id;
-		this.number = ci.number; // necessary?
+		// this.id = ci.id;
+		// this.number = ci.number; // necessary?
 		this.title = ci.title;
 		this.description = ci.description;
 		RoleFactory rf = RoleFactory.getInstance();
@@ -127,10 +127,10 @@ public class SceneCard {
 		return this.title;
 	}
 
-	@Override
-	public String toString() {
-		return "number: " + number + "\ntitle: " + title + "\nDescription: " + description + "\nBudget: " + Integer.toString(budget) + "\n" + getTabbedRoles();
-	}
+	// @Override
+	// public String toString() {
+	// 	return "id: " + id + "\ntitle: " + title + "\nDescription: " + description + "\nBudget: " + Integer.toString(budget) + "\n" + getTabbedRoles();
+	// }
 
 	private String getTabbedRoles() {
 		String ret = "roles:\n";

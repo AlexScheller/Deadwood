@@ -1,0 +1,13 @@
+In its current state the model was written with the console view in mind. Too
+much so. The model is currently littered with methods that return strings
+containing results of various actions, intended for display in the console view.
+A more proper way of handling the exchange of information is to pass the model
+listener deeper into the model, in order to react to model updates directly,
+rather than wait for some (possibly mis-constructed) textual response. Currently
+the model is undergoing a major overhaul to correct this. This will also mean
+that the console view will need to be updated to re-conform to the updated
+ModelListener interface.
+
+Additional refactoring is being done in cases where Classes were exposing their
+behavior unnecessarily, and in some cases behavior is being pushed into
+classes where it was previously extracted further up the class hierarchy.
