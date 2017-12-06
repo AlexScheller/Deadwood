@@ -16,6 +16,7 @@ clean:
 	-rm view/*.class
 	-rm view/graphics/*.class
 	-rm view/loading/*.class
+	-rm view/events/*.class
 	-rm controller/*.class
 
 clena: clean

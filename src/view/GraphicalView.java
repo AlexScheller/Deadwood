@@ -7,37 +7,76 @@ import javax.swing.ImageIcon;
 import view.graphics.CardPanel;
 import view.graphics.MenuPanel;
 import view.graphics.BoardPanel;
+import view.events.InputEventListener;
+import static view.graphics.Dimensions.*;
 
-public class GraphicalView extends JFrame {
+import model.ModelListener;
 
-	public GraphicalView(BoardPanel bp, MenuPanel mp) {
-		initUI(bp, mp);
+public class GraphicalView
+	extends JFrame
+	implements DeadwoodView, ModelListener, InputEventListener {
+	// TODO: apply this formatting across code base?
+
+	private ViewListener listener;
+
+	public GraphicalView() {};
+
+	public void initUI(BoardPanel bp, MenuPanel mp) {
+		setLayout(null); // absolute positioning is used
+		add(bp);
+		add(mp);
+		setSize(BOARD_LENGTH + MENU_LENGTH, BOARD_HEIGHT);
+		setTitle("Deadwood!");
+		setLocationRelativeTo(null); // center window
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	private void initUI(BoardPanel bp, MenuPanel mp) {
-		setLayout(null); // absolute positioning is used
+	// InputEventListener methods
 
-		// BoardPanel bp = new BoardPanel();
-		add(bp);
-		bp.setBounds();
-		// setBounds is called in MenuPanel's constructor
-		add(mp);
+	public void newGameEvent() {
+		System.out.println("new game event intercepted");
+	}
 
-		// Image cardImage = new ImageIcon("../resources/cards/01.png").getImage();
-		// CardPanel CardPanel = new CardPanel(cardImage, 50, 50);
-		// add(CardPanel);
-		// CardPanel.setBounds();
+	public void roleClickEvent(String which) {
+		System.out.println("role click event intercepted: " + which);
+	}
 
-		// board size + menu size
-		setSize(1200 + 200, 900);
-		// oddly the image was still partially cropped
-		// when tested on windows, until these values were
-		// used:
-		// setSize(1216, 939);
-		setTitle("Deadwood!");
-		// centers the window on startup
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public void cardClickEvent(String which) {
+		System.out.println("card click event intercepted: " + which);
+	}
+
+	// DeadwoodView methods
+
+	@Override
+	public void setListener(ViewListener vl) {
+		this.listener = vl;
+	}
+
+	// ModelListener methods
+
+	@Override
+	public void newDay() {
+		System.out.println("newDay temp");
+	}
+
+	@Override
+	public void newTurn() {
+		System.out.println("newTurn temp");
+	}
+
+	@Override
+	public void playerActResponse(String response) {
+		System.out.println("playerActResponse temp");
+	}
+
+	@Override
+	public void playerRehearseResponse(String response) {
+		System.out.println("playerRehearseResponse temp");
+	}
+
+	@Override
+	public void displayWinners(String[] winners) {
+		System.out.println("displayWinners temp");
 	}
 
 }

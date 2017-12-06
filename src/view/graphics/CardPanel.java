@@ -12,8 +12,11 @@ import javax.swing.JPanel;
 
 import view.loading.CardInfo;
 import view.loading.AssetBank;
+import view.events.InputEventListener;
 
 public class CardPanel extends JPanel {
+
+	private InputEventListener iel;
 
 	private Image cardFront;
 	private Image cardBack;
@@ -21,13 +24,16 @@ public class CardPanel extends JPanel {
 	private boolean occupied;
 	private boolean flipped;
 
+	private String title;
+
 	private final int width = 205;
 	private final int height = 115;
 
 	private Image diceImage; // temporary
-	private Map<String, DiceSlot> stars;
+	private Map<String, RoleComponent> stars;
 
-	public CardPanel() {
+	public CardPanel(InputEventListener iel) {
+		this.iel = iel;
 		setLayout(null);
 		this.cardBack = AssetBank.getInstance().getAsset("cardback");
 		this.diceImage = AssetBank.getInstance().getAsset("b1");
@@ -35,23 +41,24 @@ public class CardPanel extends JPanel {
 		this.flipped = false;
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Card Clicked");
+				// System.out.println("Card Clicked");
+				iel.cardClickEvent(title);
 				flip();
 			}
 		});
 	}
 
 	public void setNewCard(CardInfo ci) {
+		this.title = ci.title;
 		this.cardFront = AssetBank.getInstance().getAsset(ci.imgNumber);
 		this.occupied = true;
 		this.flipped = false;
 		this.stars = new HashMap<>();
-		for (String key : ci.starringOrigins.keySet()) {
-			DiceSlot ds = new DiceSlot();
-			ds.setBounds(ci.starringOrigins.get(key));
-			ds.setDieImage(diceImage); // temporarily hard coded
-			stars.put(key, ds);
-			add(ds);
+		for (String name : ci.starringOrigins.keySet()) {
+			RoleComponent rc = new RoleComponent(name, iel);
+			rc.setBounds(ci.starringOrigins.get(name));
+			rc.setDieImage(diceImage); // temporarily hard coded
+			stars.put(name, rc);
 		}
 	}
 

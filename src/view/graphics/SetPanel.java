@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import view.loading.CardInfo; // temporary
 import view.loading.AssetBank;
 import view.loading.RoomPanelInfo;
+import view.events.InputEventListener;
 
 public class SetPanel extends RoomPanel {
 
@@ -19,10 +20,10 @@ public class SetPanel extends RoomPanel {
 	private Image diceImage;
 	private Point[] takeOrigins;
 	private int takesFinished;
-	private Map<String, DiceSlot> extras;
+	private Map<String, RoleComponent> extras;
 
 	// TODO: maybe hard code the image
-	public SetPanel(RoomPanelInfo rpi, Image takeImage, Image diceImage) {
+	public SetPanel(RoomPanelInfo rpi, Image takeImage, Image diceImage, InputEventListener iel) {
 		setLayout(null);
 		this.takeImage = takeImage;
 		this.diceImage = diceImage;
@@ -33,12 +34,12 @@ public class SetPanel extends RoomPanel {
 		this.takesFinished = takeOrigins.length; // placeholder
 		// set up extra roles
 		this.extras = new HashMap<>();
-		for (String key : rpi.extraOrigins.keySet()) {
-			DiceSlot ds = new DiceSlot();
-			ds.setBounds(rpi.extraOrigins.get(key));
-			ds.setDieImage(diceImage); // temporarily hard coded
-			extras.put(key, ds);
-			add(ds);
+		for (String name : rpi.extraOrigins.keySet()) {
+			RoleComponent rc = new RoleComponent(name, iel);
+			rc.setBounds(rpi.extraOrigins.get(name));
+			rc.setDieImage(diceImage); // temporarily hard coded
+			extras.put(name, rc);
+			add(rc);
 		}
 		// this class serves only as a container, therefore
 		// it should remain invisible.
@@ -55,6 +56,7 @@ public class SetPanel extends RoomPanel {
 		CardInfo ci = new CardInfo();
 		
 		ci.imgNumber = "03";
+		ci.title = "The Life and Times of John Skywater";
 		Map<String, Point> starringOrigins = new HashMap<>();
 		starringOrigins.put("Auctioneer", new Point(53, 47));
 		starringOrigins.put("General Custer", new Point(115, 47));

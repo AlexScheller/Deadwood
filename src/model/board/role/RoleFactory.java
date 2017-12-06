@@ -4,7 +4,6 @@ public class RoleFactory {
 
 	private static final RoleFactory instance = new RoleFactory();
 
-
 	public RoleFactory() {}
 
 	public Role getRole(RoleInfo ri) {

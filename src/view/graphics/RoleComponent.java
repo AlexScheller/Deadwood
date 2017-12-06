@@ -7,18 +7,25 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JComponent;
 
-public class DiceSlot extends JComponent {
+import view.events.InputEventListener;
 
+public class RoleComponent extends JComponent {
+
+	private String name;
 	private Image die;
 	private Point origin;
 	private final int height = 40;
 	private final int width = 40;
 
-	public DiceSlot() {
+	// TODO: instantiate this with a role info object
+	// and move setBounds to private, to be called in
+	// the constructor.
+	public RoleComponent(String name, InputEventListener iel) {
+		this.name = name;
 		setLayout(null);
 		addMouseListener(new MouseAdapter () {
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("dice slot clicked");
+				iel.roleClickEvent(name);
 			}
 		});
 	}
@@ -28,16 +35,12 @@ public class DiceSlot extends JComponent {
 	}
 
 	public void setBounds(Point origin) {
-		// System.out.println("setting bounds");
 		this.origin = origin;
-		// this doesn't seem to work when the dice slots
-		// are removed from the hierarchy.
 		setBounds(origin.x, origin.y, height, width);
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		// System.out.println("drawing dice");
 		g.drawImage(die, origin.x, origin.y, null);
 	}
 

@@ -1,6 +1,8 @@
 package controller;
 
 import model.DeadwoodModel;
+import model.ModelListener;
+import model.loading.GameLoader;
 
 import view.DeadwoodView;
 import view.ViewListener;
@@ -18,15 +20,14 @@ import view.ViewListener;
 public class DeadwoodController implements ViewListener {
 
 	private DeadwoodModel model;
+	private DeadwoodView view;
 
 	public DeadwoodController(DeadwoodView view) {//, DeadwoodModel model) {//, boolean logging) {
-		// this.view = view;
 		this.model = null;
+		this.view = view;
 		view.setListener(this);
 	}
-	
-	// TODO: When GUI is implemented log these to a file,
-	// rather than printing them to stdout
+
 	private void exitOnException(Exception e) {
 		System.out.println("Error: " + e.getMessage());
 		e.printStackTrace();
@@ -34,15 +35,17 @@ public class DeadwoodController implements ViewListener {
 		System.exit(1);
 	}
 
-	// public void newGameRequest(int numPlayers) {
-	// 	if (model == null) {
-	// 		try {
-	// 			model = GameLoader.getInstance().loadGame(numPlayers);
-	// 		} catch (Exception e) {
-	// 			exitOnException(e);
-	// 		}
-	// 	}
-	// }
+	public void newGameRequest(int numPlayers) {
+		if (model == null) {
+			try {
+				model = GameLoader.getInstance().loadGame(numPlayers);
+				model.setListener((ModelListener) view);
+				model.play();
+			} catch (Exception e) {
+				exitOnException(e);
+			}
+		}
+	}
 
 	public void playerActRequest() {
 		System.out.println("Player " + (model.getCurrentPlayer().getID() + 1) + " acts");

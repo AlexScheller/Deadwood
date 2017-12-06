@@ -14,8 +14,6 @@ public class RoomPanelInfo {
 
 	public Type roomType;
 	public String name;
-	// public int cardPanelXOrigin;
-	// public int cardPanelYOrigin;
 	public Point cardPanelOrigin;
 	public Point[] takeOrigins;
 	public Map<String, Point> extraOrigins;

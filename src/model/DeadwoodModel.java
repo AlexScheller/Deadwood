@@ -22,7 +22,6 @@ public class DeadwoodModel {
 		this.day = 1;
 		this.board = board;
 		this.players = players;
-		// System.out.println("successful!");
 	}
 
 	public void setListener(ModelListener ml) {
@@ -46,11 +45,7 @@ public class DeadwoodModel {
 		}
 		return ret;
 	}
-
-	// private void nextTurn() {
-	// 	players
-	// }
-
+	
 	public void play() {
 		board.newDay();
 		int firstPlayerId = (new Random()).nextInt(players.length); 

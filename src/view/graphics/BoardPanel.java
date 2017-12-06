@@ -12,29 +12,31 @@ import javax.swing.ImageIcon;
 
 import view.loading.AssetBank;
 import view.loading.RoomPanelInfo;
+import view.events.InputEventListener;
 
 public class BoardPanel extends JPanel {
 
 	private Image board;
 	private Map<String, RoomPanel> rooms;
 
-	public BoardPanel(List<RoomPanelInfo> rpis) {
+	public BoardPanel(List<RoomPanelInfo> rpis, InputEventListener iel) {
 		setLayout(null); // absolute positioning is used
 		this.board = new ImageIcon("../resources/board.png").getImage();
-		
+		setBounds(0, 0, board.getWidth(null), board.getHeight(null));
 		this.rooms = new HashMap<>();
 		// the below is hard-coded for testing
 		AssetBank ab = AssetBank.getInstance();
 		Image placeHolderCardImage = ab.getAsset("04");
 		Image clapper  = new ImageIcon("../resources/clapper.png").getImage();
 		Image die = ab.getAsset("g6");
+		// TODO put office and trailers into this loop
 		for (RoomPanelInfo rpi : rpis) {
 			// CardPanel ncp = new CardPanel(placeHolderCardImage,
 			// 							  rpi.cardPanelOrigin);
 			// ncp.setBounds();
 			// CardPanel ncp = new CardPanel(placeHolderCardImage);
-			CardPanel ncp = new CardPanel();
-			SetPanel sp = new SetPanel(rpi, clapper, die);
+			CardPanel ncp = new CardPanel(iel);
+			SetPanel sp = new SetPanel(rpi, clapper, die, iel);
 			sp.setBounds();
 			sp.setCardPanel(ncp);
 			rooms.put(rpi.name, sp);
@@ -48,53 +50,12 @@ public class BoardPanel extends JPanel {
 		rooms.put("trailers", trailers);
 		add(office);
 		add(trailers);
-		//CardPanel cardPanel = new CardPanel(placeHolderCard, 21, 69);
-		
-		// cardPanel.setBounds();
-		// add(cardPanel);
-		
-		// SetPanel sp = new SetPanel();
-		// sp.setCardPanel(cardPanel);
-		// sp.setBounds();
-		// add(sp);
-		
-
-		// NOTE: It might be bad practice/a bug to not have "bounds"
-		// in the SetPanel object, rather only it's children have
-		// bounds.
 	}
-
-	// public BoardPanel() {
-	// 	setLayout(null); // absolute positioning is used
-	// 	this.board = new ImageIcon("../resources/board.png").getImage();
-		
-	// 	// the below is hard-coded for testing
-	// 	CardPanel cardPanel = new CardPanel(new ImageIcon("../resources/cards/01.png").getImage(), 21, 69);
-	// 	// cardPanel.setBounds();
-	// 	// add(cardPanel);
-		
-	// 	SetPanel sp = new SetPanel();
-	// 	sp.setCardPanel(cardPanel);
-	// 	sp.setBounds();
-	// 	add(sp);
-	// 	// NOTE: It might be bad practice/a bug to not have "bounds"
-	// 	// in the SetPanel object, rather only it's children have
-	// 	// bounds.
-	// }
 
 	@Override
 	public void paintComponent(Graphics g) {
-		// System.out.println("Board painted");
 		super.paintComponent(g);
 		g.drawImage(board, 0, 0, null);
-	}
-
-	// TODO: decide whether to wrap setbounds here, and have the class
-	// itself determine where it should go, or have the GraphicalView
-	// decide. I lean towards the former, since the layout of the game
-	// is being determined absolutely anyway.
-	public void setBounds() {
-		setBounds(0, 0, board.getWidth(null), board.getHeight(null));
 	}
 
 }

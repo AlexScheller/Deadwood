@@ -299,12 +299,14 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 	}
 
 	/* logic triggers */
+	@Override
 	public void newTurn() {
 		int currentPlayer = model.getCurrentPlayer().getID();
 		System.out.println("{}==== new turn: Player " + (currentPlayer + 1) + " ===={}");
 		displayChoices();
 	}
 
+	@Override
 	public void newDay() {
 		System.out.println("new day, players returning to trailers");
 	}
@@ -314,15 +316,18 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 	// for the console view, the code for both act response
 	// and rehearse response are the same, but that may not
 	// be so for different views.
+	@Override
 	public void playerActResponse(String msg) {
 		System.out.println("========\n" + msg);
 	}
 
+	@Override
 	public void playerRehearseResponse(String msg) {
 		System.out.println("========\n" + msg);
 	}
 
 	// TODO: display points as well
+	@Override
 	public void displayWinners(String[] winners) {
 		if (winners.length == 1) {
 			System.out.println(winners[0] + " has won!");
@@ -335,6 +340,7 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 		}
 	}
 
+	@Override
 	public void setListener(ViewListener vl) {
 		this.listener = vl;
 	}

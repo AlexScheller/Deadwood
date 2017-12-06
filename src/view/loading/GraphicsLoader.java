@@ -18,13 +18,15 @@ public class GraphicsLoader {
 	public GraphicalView loadGraphicalView() {
 		loadAssets(AssetBank.getInstance());
 		JSONDataParser jp = JSONDataParser.getInstance();
-		BoardPanel bp = loadBoard(jp);
-		MenuPanel mp = new MenuPanel();
-		return new GraphicalView(bp, mp);
+		GraphicalView gv = new GraphicalView();
+		BoardPanel bp = loadBoard(jp, gv);
+		MenuPanel mp = new MenuPanel(gv);
+		gv.initUI(bp, mp);
+		return gv;
 	}
 
-	private BoardPanel loadBoard(JSONDataParser jp) {
-		return new BoardPanel(jp.parseRoomPanelInfo());
+	private BoardPanel loadBoard(JSONDataParser jp, GraphicalView gv) {
+		return new BoardPanel(jp.parseRoomPanelInfo(), gv);
 	}
 
 	// TODO: implement as a helper class  in loadAssets instead?

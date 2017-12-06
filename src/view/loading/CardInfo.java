@@ -10,6 +10,7 @@ public class CardInfo {
 	// that it's an int throughout, rather than a String,
 	// cause this is gross.
 	public String imgNumber;
+	public String title;
 	public Map<String, Point> starringOrigins;
 
 }
