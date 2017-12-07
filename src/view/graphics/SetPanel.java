@@ -55,7 +55,7 @@ public class SetPanel extends RoomPanel {
 		// the below hard coded for testing purposes
 		CardInfo ci = new CardInfo();
 		
-		ci.imgNumber = "03";
+		ci.imgId = 22;
 		ci.title = "The Life and Times of John Skywater";
 		Map<String, Point> starringOrigins = new HashMap<>();
 		starringOrigins.put("Auctioneer", new Point(53, 47));

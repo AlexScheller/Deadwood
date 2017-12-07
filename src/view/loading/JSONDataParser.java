@@ -34,16 +34,17 @@ public class JSONDataParser {
 
 	private JSONDataParser() {}
 
-	public Map<String, String> getCardImageAssociations() {
-		Map<String, String> ret = new HashMap<>();
+	public Map<String, Integer> getCardFilenamesToIds() {
+		Map<String, Integer> ret = new HashMap<>();
 		try {
 			JSONTokener jt = new JSONTokener(new FileInputStream(new File(cardPath)));
 			Iterator cards = (new JSONObject(jt)).getJSONArray("cards").iterator();
 			while (cards.hasNext()) {
 				JSONObject card = (JSONObject) cards.next();
 				String fileName = card.getString("img");
-				String title = card.getString("name");
-				ret.put(fileName, title);
+				int sceneId  = card.getJSONObject("scene").getInt("number");
+				// System.out.println("putting (" + fileName + "," + sceneId + ")");
+				ret.put(fileName, sceneId);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

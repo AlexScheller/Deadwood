@@ -73,7 +73,7 @@ public class JSONDataParser implements DataParser {
 				JSONObject scene = (JSONObject) card.getJSONObject("scene");
 				nsci.description = scene.getString("text");
 				// nsci.number = scene.getInt("number");
-				// nsci.id = scene.getInt("number");
+				nsci.id = scene.getInt("number");
 				nsci.roleInfos = parseRoleInfos(card.getJSONArray("parts"), "cards"); 
 				ret.add(nsci);
 			}

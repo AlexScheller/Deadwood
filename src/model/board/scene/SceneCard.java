@@ -18,7 +18,7 @@ import model.board.scene.SceneCardInfo;
 
 public class SceneCard {
 
-	// private int id;
+	private int id;
 	private int budget;
 	// private int number; // necessary?
 	private String title;
@@ -27,7 +27,7 @@ public class SceneCard {
 
 	public SceneCard(SceneCardInfo ci) {
 		this.budget = ci.budget;
-		// this.id = ci.id;
+		this.id = ci.id;
 		// this.number = ci.number; // necessary?
 		this.title = ci.title;
 		this.description = ci.description;
@@ -125,6 +125,10 @@ public class SceneCard {
 
 	public String getTitle() {
 		return this.title;
+	}
+
+	public int getId() {
+		return this.id;
 	}
 
 	// @Override

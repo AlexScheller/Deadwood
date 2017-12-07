@@ -26,11 +26,6 @@ public class RoleComponent extends JComponent {
 		addMouseListener(new MouseAdapter () {
 			public void mouseClicked(MouseEvent e) {
 				iel.roleClickEvent(name);
-				try {
-					Thread.sleep(2000);
-				} catch (InterruptedException ex) {
-					Thread.currentThread().interrupt();
-				}
 			}
 		});
 	}

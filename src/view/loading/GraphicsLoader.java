@@ -31,7 +31,7 @@ public class GraphicsLoader {
 		return new BoardPanel(jp.parseRoomPanelInfo(), gv);
 	}
 
-	// TODO: refactor this whole bottom section
+	// TODO: refactor/rewrite this whole bottom section
 
 	// TODO: implement as a helper class  in loadAssets instead?
 	// TODO: make this function way more robust in terms of avoiding
@@ -54,15 +54,18 @@ public class GraphicsLoader {
 		}
 	}
 
-	private void loadCardImages(AssetBank ab, Map<String, String> associations) {
+	private void loadCardImages(AssetBank ab, Map<String, Integer> filenamesToIds) {
 		String cardLoc = "../resources/cards/";
 		File[] images = (new File(cardLoc)).listFiles();
 		for (File f : images) {
 			if (f.isFile()) {
 				String fileName = f.getName();
-				String title = associations.get(fileName);
-				Image img = new ImageIcon(cardLoc + fileName).getImage();
-				ab.putAsset(title, img);
+				if (!fileName.equals("cardback.png")) {
+					// System.out.println("getting on file name: " + fileName);
+					int cardId = filenamesToIds.get(fileName);
+					Image img = new ImageIcon(cardLoc + fileName).getImage();
+					ab.putAsset(cardId, img);
+				}
 			}
 		}
 		Image cardback = new ImageIcon(cardLoc + "cardback.png").getImage();
@@ -74,7 +77,7 @@ public class GraphicsLoader {
 		// File cardFolder = new File("../resources/cards");
 		loadImagesFromDirectory(diceFolder, ab);
 		// loadImagesFromDirectory(cardFolder, ab);
-		loadCardImages(ab, jp.getCardImageAssociations());
+		loadCardImages(ab, jp.getCardFilenamesToIds());
 	}
 
 	public static GraphicsLoader getInstance() { return instance; }

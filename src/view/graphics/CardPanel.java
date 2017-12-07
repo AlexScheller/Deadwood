@@ -50,7 +50,7 @@ public class CardPanel extends JPanel {
 
 	public void setNewCard(CardInfo ci) {
 		this.title = ci.title;
-		this.cardFront = AssetBank.getInstance().getAsset(ci.title);
+		this.cardFront = AssetBank.getInstance().getAsset(ci.imgId);
 		this.occupied = true;
 		this.flipped = false;
 		this.stars = new HashMap<>();

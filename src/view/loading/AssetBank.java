@@ -16,22 +16,38 @@ public class AssetBank {
 
 	private static final AssetBank instance = new AssetBank();
 
-	private Map<String, Image> assets;
+	private Map<String, Image> nameToImage;
+	private Map<Integer, Image> idToImage;
 
 	private AssetBank() {
-		this.assets = new HashMap<>();
+		this.nameToImage = new HashMap<>();
+		this.idToImage = new HashMap<>();
 	}
 
 	public void putAsset(String name, Image asset){
-		assets.put(name, asset);
+		nameToImage.put(name, asset);
+	}
+
+	public void putAsset(int id, Image asset) {
+		idToImage.put(id, asset);
 	}
 
 	public Image getAsset(String assetName) throws IllegalArgumentException {
 		Image ret = null;
-		if (assets.containsKey(assetName)) {
-			ret = assets.get(assetName);
+		if (nameToImage.containsKey(assetName)) {
+			ret = nameToImage.get(assetName);
 		} else {
-			throw new IllegalArgumentException("No such image: " + assetName);
+			throw new IllegalArgumentException("No such image from name: " + assetName);
+		}
+		return ret;
+	}
+
+	public Image getAsset(int assetId) throws IllegalArgumentException {
+		Image ret = null;
+		if (idToImage.containsKey(assetId)) {
+			ret = idToImage.get(assetId);
+		} else {
+			throw new IllegalArgumentException("No such image from id: " + assetId);
 		}
 		return ret;
 	}

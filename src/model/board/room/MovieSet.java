@@ -35,7 +35,7 @@ public class MovieSet extends Room {
 	public void setSceneCard(SceneCard sc) {
 		this.takesLeft = numTakes;
 		this.scene = sc;
-		listener.newSceneInSet(name, sc.getTitle());
+		listener.newSceneInSet(name, sc.getId());
 	}
 
 	public void playerActs(int roll, Role playersRole) {
