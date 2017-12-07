@@ -38,7 +38,7 @@ public class JSONDataParser {
 		Map<String, String> ret = new HashMap<>();
 		try {
 			JSONTokener jt = new JSONTokener(new FileInputStream(new File(cardPath)));
-			Iterator cards = (new JSONObject(jt)).getJSONArray("parts").iterator();
+			Iterator cards = (new JSONObject(jt)).getJSONArray("cards").iterator();
 			while (cards.hasNext()) {
 				JSONObject card = (JSONObject) cards.next();
 				String fileName = card.getString("img");

@@ -2,6 +2,8 @@ package view.loading;
 
 import java.io.File;
 
+import java.util.Map;
+
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
@@ -29,7 +31,7 @@ public class GraphicsLoader {
 		return new BoardPanel(jp.parseRoomPanelInfo(), gv);
 	}
 
-	// TODO refactor this whole bottom section
+	// TODO: refactor this whole bottom section
 
 	// TODO: implement as a helper class  in loadAssets instead?
 	// TODO: make this function way more robust in terms of avoiding
@@ -57,12 +59,14 @@ public class GraphicsLoader {
 		File[] images = (new File(cardLoc)).listFiles();
 		for (File f : images) {
 			if (f.isFile()) {
-				String fileName = f.getName()
+				String fileName = f.getName();
 				String title = associations.get(fileName);
-				Image img = new ImageIcon(cardLoc + name).getImage();
+				Image img = new ImageIcon(cardLoc + fileName).getImage();
 				ab.putAsset(title, img);
 			}
 		}
+		Image cardback = new ImageIcon(cardLoc + "cardback.png").getImage();
+		ab.putAsset("cardback", cardback);
 	}
 
 	private void loadAssets(AssetBank ab, JSONDataParser jp) {

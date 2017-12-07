@@ -1,5 +1,6 @@
 package model.board;
 
+import model.ModelListener;
 import model.board.room.Room;
 import model.board.room.RoomSet;
 import model.board.scene.SceneCardSet;
@@ -8,6 +9,8 @@ public class Board {
 
 	private RoomSet rs;
 	private SceneCardSet cards;
+
+	private ModelListener listener;
 
 	public Board(RoomSet rs, SceneCardSet scs) {
 		this.rs = rs;
@@ -29,12 +32,13 @@ public class Board {
 		return "";
 	}
 
-	private void dealRooms() {
-		rs.dealSceneCards(cards);
-	}
+	// private void dealRooms() {
+	// 	rs.dealSceneCards(cards);
+	// }
 
 	public void newDay() {
-		dealRooms();
+		// dealRooms();
+		rs.dealSceneCards(cards);
 	}
 
 	public Room getInitialRoom() {

@@ -7,10 +7,45 @@ import model.player.Player;
 import model.DeadwoodModel;
 import model.ModelListener;
 
+// NOTE: this is currently just a dummy class, as major
+// changes to the design of the model and ModelListener
+// took place during the development of the GraphicalView
+
+// TODO: make this class compliant with updated design
 public class ConsoleView implements DeadwoodView, ModelListener {
 	
 	private ViewListener listener;
 
+	@Override
+	public void setListener(ViewListener vl) {
+		this.listener = vl;
+	}
+
+	@Override
+	public void sceneWraps(String where) {
+		// TEMP
+		System.out.println("scene wrapping in: " + where);
+	}
+
+	@Override
+	public void takeFinishes(String where) {
+		// TEMP
+		System.out.println("take finished in: " + where);
+	}
+
+	@Override
+	public void newSceneInSet(String where, String title) {
+		// TEMP
+		System.out.println("new scene: " + title + " in: " + where);
+	}
+
+	@Override
+	public void playerRehearses() {
+		// TEMP
+		System.out.println("player rehearses");
+	}
+
+	/*
 	private DeadwoodModel model;
 
 	// private final String ANSIRed = "\u001b[31m";
@@ -298,7 +333,8 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 		}
 	}
 
-	/* logic triggers */
+	// logic triggers
+
 	@Override
 	public void newTurn() {
 		int currentPlayer = model.getCurrentPlayer().getID();
@@ -311,7 +347,7 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 		System.out.println("new day, players returning to trailers");
 	}
 
-	/* response triggers */
+	// response triggers 
 
 	// for the console view, the code for both act response
 	// and rehearse response are the same, but that may not
@@ -339,10 +375,6 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 			System.out.println(" have tied!");
 		}
 	}
-
-	@Override
-	public void setListener(ViewListener vl) {
-		this.listener = vl;
-	}
+	*/
 
 }

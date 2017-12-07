@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
+import model.ModelListener;
 import model.board.scene.SceneCardSet;
 
 public class RoomSet {

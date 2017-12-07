@@ -104,8 +104,9 @@ public class DeadwoodModel {
 	}
 
 	public void playerRehearses() throws IllegalStateException {
-		String res = players[currentPlayerIndex].rehearse();
-		listener.playerRehearseResponse(res);
+		players[currentPlayerIndex].rehearse();
+		// String res = players[currentPlayerIndex].rehearse();
+		// listener.playerRehearseResponse(res);
 	}
 
 	public void playerMoves(String where) throws IllegalArgumentException {

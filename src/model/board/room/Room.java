@@ -3,6 +3,8 @@ package model.board.room;
 import java.util.Set;
 import java.util.Map;
 
+import model.ModelListener;
+
 public abstract class Room {
 
 	// protected int id;

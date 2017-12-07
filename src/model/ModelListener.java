@@ -15,7 +15,10 @@ public interface ModelListener {
 
 	// Movie Set methods
 	public void sceneWraps(String where);
-	public void takeFinished(String where);
-	public void newSceneInSet(String where, string title);
+	public void takeFinishes(String where);
+	public void newSceneInSet(String where, String title);
+
+	// Player methods
+	public void playerRehearses();
 
 }

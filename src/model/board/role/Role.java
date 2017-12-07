@@ -1,5 +1,6 @@
 package model.board.role;
 
+import model.ModelListener;
 import model.player.Player;
 
 public abstract class Role {

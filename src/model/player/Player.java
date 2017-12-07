@@ -2,6 +2,7 @@ package model.player;
 
 import java.util.Random;
 
+import model.ModelListener;
 import model.board.room.Room;
 import model.board.room.MovieSet;
 import model.board.room.CastingOffice;
@@ -24,6 +25,8 @@ public class Player {
 	// private SceneCard currentScene;
 
 	private Random dice;
+
+	private ModelListener listener;
 
 	/* Constructors */
 
@@ -48,6 +51,10 @@ public class Player {
 		this.dollars = dollars;
 	}
 
+	public void setListener(ModelListener ml) {
+		this.listener = ml;
+	}
+
 	/* Functional Methods */
 
 	private int roll() {
@@ -66,21 +73,18 @@ public class Player {
 		}
 	}
 
-	public String rehearse() {
-		// System.out.println("rehearsing");
+	public void rehearse() {
 		if (isActing()) {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
-			if (rehersalChips == roomAsSet.getBudget()) {
-				rehersalChips = 0;
-				return roomAsSet.wrap();
-			} else {
+			if (rehersalChips < (roomAsSet.getBudget() - 1)) {
 				rehersalChips++;
-				return "Player " + (playerID + 1) + " now has " + rehersalChips + " rehearsal chips";
+				listener.playerRehearses();
+			} else {
+				throw new IllegalStateException("player already has max rehearsal chips");
 			}
 		} else {
 			throw new IllegalStateException("player not in a role");
 		}
-		// System.out.println("rehearsed");
 	}
 
 	public void earnDollars(int dollars) {

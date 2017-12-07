@@ -58,28 +58,52 @@ public class GraphicalView
 	// ModelListener methods
 
 	@Override
-	public void newDay() {
-		System.out.println("newDay temp");
+	public void sceneWraps(String where) {
+		// TEMP
+		System.out.println("scene wrapping in: " + where);
 	}
 
 	@Override
-	public void newTurn() {
-		System.out.println("newTurn temp");
+	public void takeFinishes(String where) {
+		// TEMP
+		System.out.println("take finished in: " + where);
 	}
 
 	@Override
-	public void playerActResponse(String response) {
-		System.out.println("playerActResponse temp");
+	public void newSceneInSet(String where, String title) {
+		// TEMP
+		System.out.println("new scene: " + title + " in: " + where);
 	}
 
 	@Override
-	public void playerRehearseResponse(String response) {
-		System.out.println("playerRehearseResponse temp");
+	public void playerRehearses() {
+		// TEMP
+		System.out.println("player rehearses");
 	}
 
-	@Override
-	public void displayWinners(String[] winners) {
-		System.out.println("displayWinners temp");
-	}
+	// @Override
+	// public void newDay() {
+	// 	System.out.println("newDay temp");
+	// }
+
+	// @Override
+	// public void newTurn() {
+	// 	System.out.println("newTurn temp");
+	// }
+
+	// @Override
+	// public void playerActResponse(String response) {
+	// 	System.out.println("playerActResponse temp");
+	// }
+
+	// @Override
+	// public void playerRehearseResponse(String response) {
+	// 	System.out.println("playerRehearseResponse temp");
+	// }
+
+	// @Override
+	// public void displayWinners(String[] winners) {
+	// 	System.out.println("displayWinners temp");
+	// }
 
 }

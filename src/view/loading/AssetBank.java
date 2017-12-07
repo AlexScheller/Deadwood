@@ -31,7 +31,7 @@ public class AssetBank {
 		if (assets.containsKey(assetName)) {
 			ret = assets.get(assetName);
 		} else {
-			throw new IllegalArgumentException("No such image: " + which);
+			throw new IllegalArgumentException("No such image: " + assetName);
 		}
 		return ret;
 	}

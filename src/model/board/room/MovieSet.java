@@ -38,8 +38,8 @@ public class MovieSet extends Room {
 		listener.newSceneInSet(name, sc.getTitle());
 	}
 
-	public void PlayerActs(int roll, Role playersRole) {
-		if (roll >= budget) {
+	public void playerActs(int roll, Role playersRole) {
+		if (roll >= getBudget()) {
 			playersRole.success();
 			finishTake();
 		} else {
@@ -49,7 +49,7 @@ public class MovieSet extends Room {
 
 	public void finishTake() {
 		this.takesLeft--;
-		listener.takeFinished(name);
+		listener.takeFinishes(name);
 		if (takesLeft == 0) {
 			wrap();
 		}
@@ -74,16 +74,17 @@ public class MovieSet extends Room {
 		}
 	}
 
-	public String wrap() {
-		// listener.sceneWraps(name);
-		String ret = "wrapping scene: " + scene.getTitle();
+	public void wrap() {
+		listener.sceneWraps(name);
+		// String ret = "wrapping scene: " + scene.getTitle();
 		if (scene.isOccupied()) {
-			ret += " " + payBonuses();
+			payBonuses();
+			// ret += " " + payBonuses();
 			scene.evictPlayers();
 		}
 		evictPlayers();
 		this.takesLeft = 0;
-		return ret;
+		//return ret;
 	}
 	
 	public boolean isWrapped() {
