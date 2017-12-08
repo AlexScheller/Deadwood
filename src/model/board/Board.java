@@ -4,18 +4,26 @@ import model.ModelListener;
 import model.board.room.Room;
 import model.board.room.RoomSet;
 import model.board.scene.SceneCardSet;
+import model.events.BoardEventListener;
 
 public class Board {
 
 	private RoomSet rs;
 	private SceneCardSet cards;
 
+	// private int scenesLeft;
+
 	private ModelListener listener;
 
 	public Board(RoomSet rs, SceneCardSet scs) {
 		this.rs = rs;
 		this.cards = scs;
+		// this.scenesLeft = rs.numSets();
 		// System.out.println("\tsuccessful!");
+	}
+
+	public void setBoardEventListener(BoardEventListener bel) {
+		rs.setBoardEventListener(bel);
 	}
 
 	public void setListener(ModelListener ml) {

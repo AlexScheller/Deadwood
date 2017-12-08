@@ -68,7 +68,7 @@ public class CardPanel extends JPanel {
 			rc.setDieImage(diceImage); // temporarily hard coded
 			stars.put(name, rc);
 		}
-		setBounds(origin);
+		// setBounds(origin);
 	}
 
 	// public void setNewCard(CardInfo ci) {

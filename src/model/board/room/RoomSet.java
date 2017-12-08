@@ -7,6 +7,8 @@ import java.util.List;
 import model.ModelListener;
 import model.board.scene.SceneCardSet;
 
+import model.events.BoardEventListener;
+
 public class RoomSet {
 
 	private Map<String, Room> rooms;
@@ -19,6 +21,12 @@ public class RoomSet {
 		}
 		assignNeighbors(ris);
 		// System.out.println(" successful!");
+	}
+
+	public void setBoardEventListener(BoardEventListener bel) {
+		for (Room r : rooms.values()) {
+			r.setBoardEventListener(bel);
+		}
 	}
 
 	public void setListener(ModelListener ml) {
@@ -46,8 +54,7 @@ public class RoomSet {
 	}
 
 	public void dealSceneCards(SceneCardSet scs) {
-		for (String key : rooms.keySet()) {
-			Room r = rooms.get(key);
+		for (Room r : rooms.values()) {
 			if (r instanceof MovieSet) {
 				MovieSet ms = (MovieSet) r;
 				ms.setSceneCard(scs.deal());
@@ -70,10 +77,9 @@ public class RoomSet {
 	// is a lot cleaner this way.
 	public boolean oneSceneLeft() {
 		int scenesLeft = 0;
-		for (String key : rooms.keySet()) {
-			Room curr = rooms.get(key);
-			if (curr instanceof MovieSet) {
-				MovieSet asMovieSet = (MovieSet) curr;
+		for (Room r : rooms.values()) {
+			if (r instanceof MovieSet) {
+				MovieSet asMovieSet = (MovieSet) r;
 				if (!asMovieSet.isWrapped()) {
 					scenesLeft++;
 				}

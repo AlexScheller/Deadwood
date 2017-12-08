@@ -9,19 +9,25 @@ import model.player.Player;
 import model.board.Board;
 import model.board.room.Room;
 
-public class DeadwoodModel {
+import model.events.BoardEventListener;
+
+public class DeadwoodModel implements BoardEventListener {
 
 	private Player[] players;
 	private int currentPlayerIndex = 0;
-	private int day;
+	// private int day;
+	private int daysLeft;
+	private int unwrappedScenes;
 	private Board board;
 
 	private ModelListener listener;
 
 	public DeadwoodModel(Player[] players, Board board) {
-		this.day = 1;
+		this.daysLeft = 4;
+		this.unwrappedScenes = 10;
 		this.board = board;
 		this.players = players;
+		board.setBoardEventListener(this);
 	}
 
 	public void setListener(ModelListener ml) {
@@ -71,6 +77,14 @@ public class DeadwoodModel {
 		// listener.displayWinners(determineWinners());
 	}
 
+	public void newDay() {
+		daysLeft--;
+		unwrappedScenes = 10;
+		if (daysLeft == 0) {
+			System.out.println("game over bud");
+		}
+	}
+
 	// public void nextTurn() {
 	// 	players[currentPlayerIndex].resetMove();
 	// 	currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
@@ -97,6 +111,7 @@ public class DeadwoodModel {
 		return highScorers.toArray(new String[0]);
 	}
 
+
 	public void playerActs() throws IllegalStateException {
 		players[currentPlayerIndex].act();
 		// String res = players[currentPlayerIndex].act();
@@ -111,6 +126,15 @@ public class DeadwoodModel {
 
 	public void playerMoves(String where) throws IllegalArgumentException {
 		players[currentPlayerIndex].move(where);
+	}
+
+	// BoardEventListener methods
+
+	public void sceneWrapEvent() {
+		unwrappedScenes--;
+		if (unwrappedScenes == 1) {
+			newDay();
+		}
 	}
 
 	/* for debugging */

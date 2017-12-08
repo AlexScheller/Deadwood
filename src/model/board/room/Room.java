@@ -5,6 +5,8 @@ import java.util.Map;
 
 import model.ModelListener;
 
+import model.events.BoardEventListener;
+
 public abstract class Room {
 
 	// protected int id;
@@ -12,11 +14,17 @@ public abstract class Room {
 	protected Map<String, Room> neighbors;
 	// protected Set<Player> playersInside;
 
+	protected BoardEventListener bel;
+
 	protected ModelListener listener;
 
 	public Room (RoomInfo ri) {
 		// this.id = ri.id;
 		this.name = ri.name;
+	}
+
+	public void setBoardEventListener(BoardEventListener bel) {
+		this.bel = bel;
 	}
 
 	public void setListener(ModelListener ml) {

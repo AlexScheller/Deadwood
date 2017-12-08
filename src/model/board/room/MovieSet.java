@@ -14,6 +14,8 @@ import model.board.role.RoleFactory;
 
 import model.board.scene.SceneCard;
 
+import model.events.BoardEventListener;
+
 public class MovieSet extends Room {
 
 	private SceneCard scene;
@@ -84,6 +86,7 @@ public class MovieSet extends Room {
 		}
 		evictPlayers();
 		this.takesLeft = 0;
+		bel.sceneWrapEvent();
 		//return ret;
 	}
 	
