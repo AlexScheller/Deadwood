@@ -53,6 +53,65 @@ public class JSONDataParser {
 		return ret;
 	}
 
+	public Map<Integer, Map<String, Point>> parseCardIdToRoleOrigins() {
+		Map<Integer, Map<String, Point>> ret = new HashMap<>();
+		try {
+			JSONTokener jt = new JSONTokener(new FileInputStream(new File(cardPath)));
+			Iterator cards = (new JSONObject(jt)).getJSONArray("cards").iterator();
+			while (cards.hasNext()) {
+				JSONObject card = (JSONObject) cards.next();
+				// CardInfo ci = new CardInfo();
+				// ci.title = card.getString("name");
+				int imageId = card.getJSONObject("scene").getInt("number");
+				Map<String, Point> starringOrigins = new HashMap<>(); 
+				Iterator stars = card.getJSONArray("parts").iterator();
+				while (stars.hasNext()) {
+					JSONObject star = (JSONObject) stars.next();
+					String name = star.getString("name");
+					JSONObject area = star.getJSONObject("area");
+					int x = area.getInt("x");
+					int y = area.getInt("y");
+					starringOrigins.put(name, new Point(x, y));
+				}
+				ret.put(imageId, starringOrigins);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return ret;
+	}
+
+	// public List<CardInfo> parseCardInfo() {
+	// 	List<CardPanelInfo> ret = new ArrayList<>();
+	// 	try {
+	// 		JSONTokener jt = new JSONTokener(new FileInputStream(new File(cardPath)));
+	// 		Iterator cards = (new JSONObject(jt)).getJSONArray("cards").iterator();
+	// 		while (cards.hasNext()) {
+	// 			JSONObject card = (JSONObject) cards.next();
+	// 			CardInfo ci = new CardInfo();
+	// 			ci.title = card.getString("name");
+	// 			ci.imageId = card.getJSONObject("scene").getInt("number");
+	// 			Map<String, Point> starringOrigins = new HashMap<>(); 
+	// 			Iterator stars = card.getJSONArray("parts").iterator();
+	// 			while (stars.hasNext()) {
+	// 				JSONObject star = (JSONObject) stars.next();
+	// 				String name = star.getString("name");
+	// 				JSONObject area = start.getJSONObject("area");
+	// 				int x = area.getInt("x");
+	// 				int y = area.getInt("y");
+	// 				starringOrigins.put(name, new Point(x, y));
+	// 			}
+	// 			ci.starringOrigins = starringOrigins;
+	// 			ret.add(ci);
+	// 		}
+	// 	} catch (Exception e) {
+	// 		e.printStackTrace();
+	// 		System.exit(1);
+	// 	}
+	// 	return ret;
+	// }
+
 	public List<RoomPanelInfo> parseRoomPanelInfo() {
 		List<RoomPanelInfo> ret = new ArrayList<>();
 		try {

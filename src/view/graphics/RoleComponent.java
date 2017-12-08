@@ -20,9 +20,12 @@ public class RoleComponent extends JComponent {
 	// TODO: instantiate this with a role info object
 	// and move setBounds to private, to be called in
 	// the constructor.
-	public RoleComponent(String name, InputEventListener iel) {
+	public RoleComponent(String name, Point origin,
+						 InputEventListener iel) {
 		this.name = name;
 		setLayout(null);
+		this.origin = origin;
+		setBounds(origin.x, origin.y, height, width);
 		addMouseListener(new MouseAdapter () {
 			public void mouseClicked(MouseEvent e) {
 				iel.roleClickEvent(name);
@@ -34,10 +37,10 @@ public class RoleComponent extends JComponent {
 		this.die = die;
 	}
 
-	public void setBounds(Point origin) {
-		this.origin = origin;
-		setBounds(origin.x, origin.y, height, width);
-	}
+	// public void setBounds(Point origin) {
+	// 	this.origin = origin;
+	// 	setBounds(origin.x, origin.y, height, width);
+	// }
 
 	@Override
 	public void paintComponent(Graphics g) {

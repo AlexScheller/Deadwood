@@ -19,7 +19,7 @@ public class GraphicsLoader {
 
 	public GraphicalView loadGraphicalView() {
 		JSONDataParser jp = JSONDataParser.getInstance();
-		loadAssets(AssetBank.getInstance(), jp);
+		loadAssetBank(AssetBank.getInstance(), jp);
 		GraphicalView gv = new GraphicalView();
 		BoardPanel bp = loadBoard(jp, gv);
 		MenuPanel mp = new MenuPanel(gv);
@@ -72,12 +72,13 @@ public class GraphicsLoader {
 		ab.putAsset("cardback", cardback);
 	}
 
-	private void loadAssets(AssetBank ab, JSONDataParser jp) {
+	private void loadAssetBank(AssetBank ab, JSONDataParser jp) {
 		File diceFolder = new File("../resources/dice");
 		// File cardFolder = new File("../resources/cards");
 		loadImagesFromDirectory(diceFolder, ab);
 		// loadImagesFromDirectory(cardFolder, ab);
 		loadCardImages(ab, jp.getCardFilenamesToIds());
+		ab.setIdToRoleOrigins(jp.parseCardIdToRoleOrigins());
 	}
 
 	public static GraphicsLoader getInstance() { return instance; }

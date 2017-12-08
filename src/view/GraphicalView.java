@@ -17,12 +17,15 @@ public class GraphicalView
 	implements DeadwoodView, ModelListener, InputEventListener {
 	// TODO: apply this formatting across code base?
 
+	private BoardPanel bp;
+
 	private ViewListener listener;
 
 	public GraphicalView() {};
 
 	public void initUI(BoardPanel bp, MenuPanel mp) {
 		setLayout(null); // absolute positioning is used
+		this.bp = bp;
 		add(bp);
 		add(mp);
 		setSize(BOARD_LENGTH + MENU_LENGTH, BOARD_HEIGHT);
@@ -38,6 +41,8 @@ public class GraphicalView
 		// number of players is currently hard-coded for
 		// testing purposes
 		listener.newGameRequest(2);
+		// paint();
+		repaint();
 	}
 
 	public void roleClickEvent(String which) {
@@ -70,9 +75,10 @@ public class GraphicalView
 	}
 
 	@Override
-	public void newSceneInSet(String where, int id) {
+	public void newSceneInSet(String where, String which, int id) {
 		// TEMP
-		System.out.println("new scene: " + id + " in: " + where);
+		System.out.println("new scene: " + which + " in: " + where);
+		bp.newSceneInSet(where, which, id);
 	}
 
 	@Override

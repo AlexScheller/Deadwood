@@ -35,35 +35,43 @@ public class SetPanel extends RoomPanel {
 		// set up extra roles
 		this.extras = new HashMap<>();
 		for (String name : rpi.extraOrigins.keySet()) {
-			RoleComponent rc = new RoleComponent(name, iel);
-			rc.setBounds(rpi.extraOrigins.get(name));
+			RoleComponent rc = new RoleComponent(name,
+												 rpi.extraOrigins.get(name),
+												 iel);
 			rc.setDieImage(diceImage); // temporarily hard coded
 			extras.put(name, rc);
 			add(rc);
 		}
+		this.cardPanel = new CardPanel(cardPanelOrigin, iel);
+		add(cardPanel);
+		// cardPanel.setBounds(cardPanelOrigin);
 		// this class serves only as a container, therefore
 		// it should remain invisible.
 		setOpaque(false);
 	}
 
-	public void setCardPanel(CardPanel cp) {
-		// System.out.println("Card Panel set");
-		this.cardPanel = cp;
-		cardPanel.setBounds(cardPanelOrigin);
-		add(cardPanel);
+	// public void setCardPanel(CardPanel cp) {
+	// 	// System.out.println("Card Panel set");
+	// 	this.cardPanel = cp;
+	// 	// cardPanel.setBounds(cardPanelOrigin);
+	// 	add(cardPanel);
 
-		// the below hard coded for testing purposes
-		CardInfo ci = new CardInfo();
+	// 	// the below hard coded for testing purposes
+	// 	// CardInfo ci = new CardInfo();
 		
-		ci.imgId = 22;
-		ci.title = "The Life and Times of John Skywater";
-		Map<String, Point> starringOrigins = new HashMap<>();
-		starringOrigins.put("Auctioneer", new Point(53, 47));
-		starringOrigins.put("General Custer", new Point(115, 47));
-		ci.starringOrigins = starringOrigins;
+	// 	// ci.imgId = 22;
+	// 	// ci.title = "The Life and Times of John Skywater";
+	// 	// Map<String, Point> starringOrigins = new HashMap<>();
+	// 	// starringOrigins.put("Auctioneer", new Point(53, 47));
+	// 	// starringOrigins.put("General Custer", new Point(115, 47));
+	// 	// ci.starringOrigins = starringOrigins;
 		
-		cardPanel.setNewCard(ci);
-		// cardPanel.flip();
+	// 	// cardPanel.setNewCard(ci);
+	// 	// cardPanel.flip();
+	// }
+
+	public void newScene(String which, int cardId) {
+		cardPanel.setNewCard(which, cardId);
 	}
 
 	@Override
@@ -80,11 +88,12 @@ public class SetPanel extends RoomPanel {
 			int y = takeOrigins[i].y + 2;
 			g.drawImage(takeImage, x, y, null);
 		}
+		// cardPanel.paintComponent(g);
 	}
 
-	// public void setBounds() {
-	// 	// these bounds may need adjusting
-	// 	setBounds(0, 0, 1200, 900);
-	// }
+	public void setBounds() {
+		// these bounds may need adjusting
+		setBounds(0, 0, 1200, 900);
+	}
 
 }

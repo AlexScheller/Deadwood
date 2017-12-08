@@ -18,6 +18,7 @@ public class BoardPanel extends JPanel {
 
 	private Image board;
 	private Map<String, RoomPanel> rooms;
+	// private Map<Integer, Map<>> cardIdToRole
 
 	public BoardPanel(List<RoomPanelInfo> rpis, InputEventListener iel) {
 		setLayout(null); // absolute positioning is used
@@ -35,10 +36,10 @@ public class BoardPanel extends JPanel {
 			// 							  rpi.cardPanelOrigin);
 			// ncp.setBounds();
 			// CardPanel ncp = new CardPanel(placeHolderCardImage);
-			CardPanel ncp = new CardPanel(iel);
+			// CardPanel ncp = new CardPanel(iel);
 			SetPanel sp = new SetPanel(rpi, clapper, die, iel);
 			sp.setBounds();
-			sp.setCardPanel(ncp);
+			// sp.setCardPanel(ncp);
 			rooms.put(rpi.name, sp);
 			add(sp);
 		}
@@ -50,6 +51,12 @@ public class BoardPanel extends JPanel {
 		rooms.put("trailers", trailers);
 		add(office);
 		add(trailers);
+	}
+
+	public void newSceneInSet(String where, String which, 
+							  int cardId) {
+		SetPanel roomAsSet = (SetPanel) rooms.get(where);
+		roomAsSet.newScene(which, cardId);
 	}
 
 	@Override

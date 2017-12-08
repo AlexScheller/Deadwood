@@ -34,9 +34,9 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 	}
 
 	@Override
-	public void newSceneInSet(String where, int id) {
+	public void newSceneInSet(String where, String which, int id) {
 		// TEMP
-		System.out.println("new scene: " + id + " in: " + where);
+		System.out.println("new scene: " + which + " in: " + where);
 	}
 
 	@Override
