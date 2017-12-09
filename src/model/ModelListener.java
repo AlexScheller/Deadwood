@@ -13,7 +13,12 @@ public interface ModelListener {
 	// public void playerRehearseResponse(String msg);
 	// public void displayWinners(String[] winners);
 
-	// Movie Set methods
+	/* Main game event methods*/
+
+	public void newDayEvent();
+
+	/* Movie Set methods */
+	
 	public void sceneWrapEvent(String setName, String sceneTitle);
 	public void takeFinishEvent(String setName);
 	public void newSceneInSetEvent(String setName,

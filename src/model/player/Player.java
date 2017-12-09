@@ -22,6 +22,7 @@ public class Player {
 
 	private Role currentRole;
 	private Room currentRoom;
+	private Room initialRoom; // this seems like real bad oop
 	// private SceneCard currentScene;
 
 	private Random dice;
@@ -33,6 +34,7 @@ public class Player {
 	public Player(int id, Room initialRoom) {
 		this.playerID = id;
 		this.currentRoom = initialRoom;
+		this.initialRoom = initialRoom;
 		this.dice = new Random();
 	}
 
@@ -116,7 +118,7 @@ public class Player {
 		this.hasMoved = false;
 	}
 
-	/* below is for debugging and is therefore use at your own risk */
+	/* below is for debugging, use at your own risk */
 	public void teleport(Room where) {
 		this.currentRoom = where;
 		// this.hasMoved = true;
@@ -126,6 +128,14 @@ public class Player {
 	public void move(String where) throws IllegalArgumentException {
 		this.currentRoom = currentRoom.getNeighbor(where);
 		this.hasMoved = true;
+	}
+
+	public void newDay() {
+		if (isActing()) {
+			this.currentRole.evictActor();
+		}
+		this.currentRoom = initialRoom;
+		this.hasMoved = false;
 	}
 
 	public void upgrade(int rank, String currency) throws IllegalStateException, IllegalArgumentException {

@@ -10,4 +10,7 @@ public final class Dimensions {
 	public static final int MENU_HEIGHT = BOARD_HEIGHT;
 	public static final int MENU_LENGTH = 200;
 
+	public static final int DICE_HEIGHT = 40;
+	public static final int DICE_WIDTH = 40;
+
 }

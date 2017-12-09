@@ -20,6 +20,7 @@ public class DeadwoodModel
 	// private int day;
 	private int daysLeft;
 	private int unwrappedScenes;
+	private boolean playing;
 	private Board board;
 
 	private ModelListener listener;
@@ -27,6 +28,7 @@ public class DeadwoodModel
 	public DeadwoodModel(Player[] players, Board board) {
 		this.daysLeft = 4;
 		this.unwrappedScenes = 10;
+		this.playing = false;
 		this.board = board;
 		this.players = players;
 		board.setListener(this);
@@ -34,8 +36,6 @@ public class DeadwoodModel
 
 	public void setListener(ModelListener ml) {
 		this.listener = ml;
-		// board.setListener(ml);
-		// set listener in players
 	}
 
 	// For debugging purposes
@@ -78,8 +78,12 @@ public class DeadwoodModel
 	/* ControllerListener Methods*/
 	
 	public void play() {
-		board.newDay();
-		int firstPlayerId = (new Random()).nextInt(players.length); 
+		if (!playing) {
+			playing = true;
+			// board.newDay();
+			currentPlayerIndex = (new Random()).nextInt(players.length);
+			newDay();
+		}
 		// while (day <= 4) {
 		// 	currentPlayerIndex = firstPlayerId;
 		// 	while (!board.oneSceneLeft()) {
@@ -105,6 +109,10 @@ public class DeadwoodModel
 		unwrappedScenes = 10;
 		if (daysLeft == 0) {
 			System.out.println("game over bud");
+		}
+		board.newDay();
+		for (Player p : players) {
+			p.newDay();
 		}
 	}
 

@@ -63,6 +63,12 @@ public class GraphicalView
 	/* ModelListener methods */
 
 	@Override
+	public void newDayEvent() {
+		// TEMP
+		System.out.println("new day event intercepted");
+	}
+	
+	@Override
 	public void sceneWrapEvent(String setName, String sceneName) {
 		// TEMP
 		System.out.println("scene: " + sceneName + " wrapping in: " + setName);
