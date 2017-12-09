@@ -1,6 +1,6 @@
 package view.events;
 
-public interface InputEventListener {
+public interface ChildEventListener {
 
 	public void newGameEvent();
 

@@ -10,7 +10,9 @@ public abstract class Role {
 	protected String line;
 	protected Player residentActor;
 
-	protected ModelListener listener;
+	// protected ModelListener listener;
+
+	// protected ChildEventListener listener;
 
 	/* Constructors */
 
@@ -20,9 +22,9 @@ public abstract class Role {
 		this.line = ri.line;
 	}
 
-	public void setListener(ModelListener ml) {
-		this.listener = ml;
-	}
+	// public void setListener(ChildEventListener cel) {
+	// 	this.listener = cel;
+	// }
 
 	/* Functional Methods */
 

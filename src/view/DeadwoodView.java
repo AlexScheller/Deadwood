@@ -1,5 +1,7 @@
 package view;
 
+import model.ModelListener;
+
 /*
  * Design Notes:
  *
@@ -7,7 +9,7 @@ package view;
  * options/allows possible inputs to be presented to the controller.
  */
 
-public interface DeadwoodView {
+public interface DeadwoodView extends ModelListener {
 
 	// public void update();
 

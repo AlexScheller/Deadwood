@@ -4,7 +4,7 @@ import model.ModelListener;
 import model.board.room.Room;
 import model.board.room.RoomSet;
 import model.board.scene.SceneCardSet;
-import model.events.BoardEventListener;
+import model.events.ChildEventListener;
 
 public class Board {
 
@@ -13,7 +13,9 @@ public class Board {
 
 	// private int scenesLeft;
 
-	private ModelListener listener;
+	// private ModelListener listener;
+
+	private ChildEventListener listener;
 
 	public Board(RoomSet rs, SceneCardSet scs) {
 		this.rs = rs;
@@ -22,14 +24,19 @@ public class Board {
 		// System.out.println("\tsuccessful!");
 	}
 
-	public void setBoardEventListener(BoardEventListener bel) {
-		rs.setBoardEventListener(bel);
+	// public void setBoardEventListener(BoardEventListener bel) {
+	// 	rs.setBoardEventListener(bel);
+	// }
+
+	public void setListener(ChildEventListener cel) {
+		this.listener = cel;
+		rs.setListener(cel);
 	}
 
-	public void setListener(ModelListener ml) {
-		this.listener = ml;
-		rs.setListener(ml);
-	}
+	// public void setListener(ModelListener ml) {
+	// 	this.listener = ml;
+	// 	rs.setListener(ml);
+	// }
 
 	@Override
 	public String toString() {

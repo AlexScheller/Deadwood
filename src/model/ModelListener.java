@@ -14,9 +14,11 @@ public interface ModelListener {
 	// public void displayWinners(String[] winners);
 
 	// Movie Set methods
-	public void sceneWraps(String where);
-	public void takeFinishes(String where);
-	public void newSceneInSet(String where, String which, int id);
+	public void sceneWrapEvent(String setName, String sceneTitle);
+	public void takeFinishEvent(String setName);
+	public void newSceneInSetEvent(String setName,
+								   String sceneTitle,
+								   int sceneId);
 
 	// Player methods
 	public void playerRehearses();

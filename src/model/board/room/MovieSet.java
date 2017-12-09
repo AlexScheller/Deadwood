@@ -14,7 +14,7 @@ import model.board.role.RoleFactory;
 
 import model.board.scene.SceneCard;
 
-import model.events.BoardEventListener;
+import model.events.ChildEventListener;
 
 public class MovieSet extends Room {
 
@@ -37,7 +37,7 @@ public class MovieSet extends Room {
 	public void setSceneCard(SceneCard sc) {
 		this.takesLeft = numTakes;
 		this.scene = sc;
-		listener.newSceneInSet(name, sc.getTitle(), sc.getId());
+		listener.newSceneInSetEvent(name, scene.getTitle(), scene.getId());
 	}
 
 	public void playerActs(int roll, Role playersRole) {
@@ -51,7 +51,7 @@ public class MovieSet extends Room {
 
 	public void finishTake() {
 		this.takesLeft--;
-		listener.takeFinishes(name);
+		listener.takeFinishEvent(name);
 		if (takesLeft == 0) {
 			wrap();
 		}
@@ -77,7 +77,7 @@ public class MovieSet extends Room {
 	}
 
 	public void wrap() {
-		listener.sceneWraps(name);
+		listener.sceneWrapEvent(name, scene.getTitle());
 		// String ret = "wrapping scene: " + scene.getTitle();
 		if (scene.isOccupied()) {
 			payBonuses();
@@ -86,7 +86,7 @@ public class MovieSet extends Room {
 		}
 		evictPlayers();
 		this.takesLeft = 0;
-		bel.sceneWrapEvent();
+		// bel.sceneWrapEvent();
 		//return ret;
 	}
 	

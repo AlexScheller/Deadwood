@@ -7,14 +7,14 @@ import javax.swing.ImageIcon;
 import view.graphics.CardPanel;
 import view.graphics.MenuPanel;
 import view.graphics.BoardPanel;
-import view.events.InputEventListener;
+import view.events.ChildEventListener;
 import static view.graphics.Dimensions.*;
 
 import model.ModelListener;
 
 public class GraphicalView
 	extends JFrame
-	implements DeadwoodView, ModelListener, InputEventListener {
+	implements DeadwoodView, ChildEventListener {
 	// TODO: apply this formatting across code base?
 
 	private BoardPanel bp;
@@ -34,7 +34,7 @@ public class GraphicalView
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	// InputEventListener methods
+	/* ChildEventListener methods */
 
 	public void newGameEvent() {
 		System.out.println("new game event intercepted");
@@ -60,25 +60,27 @@ public class GraphicalView
 		this.listener = vl;
 	}
 
-	// ModelListener methods
+	/* ModelListener methods */
 
 	@Override
-	public void sceneWraps(String where) {
+	public void sceneWrapEvent(String setName, String sceneName) {
 		// TEMP
-		System.out.println("scene wrapping in: " + where);
+		System.out.println("scene: " + sceneName + " wrapping in: " + setName);
 	}
 
 	@Override
-	public void takeFinishes(String where) {
+	public void takeFinishEvent(String setName) {
 		// TEMP
-		System.out.println("take finished in: " + where);
+		System.out.println("take finished in: " + setName);
 	}
 
 	@Override
-	public void newSceneInSet(String where, String which, int id) {
+	public void newSceneInSetEvent(String setName,
+								   String sceneName,
+								   int sceneId) {
 		// TEMP
-		System.out.println("new scene: " + which + " in: " + where);
-		bp.newSceneInSet(where, which, id);
+		System.out.println("new scene: " + sceneName + " in: " + setName);
+		bp.newSceneInSet(setName, sceneName, sceneId);
 	}
 
 	@Override

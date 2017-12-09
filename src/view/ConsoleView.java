@@ -12,7 +12,8 @@ import model.ModelListener;
 // took place during the development of the GraphicalView
 
 // TODO: make this class compliant with updated design
-public class ConsoleView implements DeadwoodView, ModelListener {
+public class ConsoleView
+	implements DeadwoodView, ModelListener {
 	
 	private ViewListener listener;
 
@@ -22,21 +23,23 @@ public class ConsoleView implements DeadwoodView, ModelListener {
 	}
 
 	@Override
-	public void sceneWraps(String where) {
+	public void sceneWrapEvent(String setName, String sceneName) {
 		// TEMP
-		System.out.println("scene wrapping in: " + where);
+		System.out.println("scene: " + sceneName + " wrapping in: " + setName);
 	}
 
 	@Override
-	public void takeFinishes(String where) {
+	public void takeFinishEvent(String setName) {
 		// TEMP
-		System.out.println("take finished in: " + where);
+		System.out.println("take finished in: " + setName);
 	}
 
 	@Override
-	public void newSceneInSet(String where, String which, int id) {
+	public void newSceneInSetEvent(String setName,
+								   String sceneName, 
+								   int sceneId) {
 		// TEMP
-		System.out.println("new scene: " + which + " in: " + where);
+		System.out.println("new scene: " + sceneName + " in: " + setName);
 	}
 
 	@Override

@@ -34,24 +34,24 @@ public class JSONDataParser {
 
 	private JSONDataParser() {}
 
-	public Map<String, Integer> getCardFilenamesToIds() {
-		Map<String, Integer> ret = new HashMap<>();
-		try {
-			JSONTokener jt = new JSONTokener(new FileInputStream(new File(cardPath)));
-			Iterator cards = (new JSONObject(jt)).getJSONArray("cards").iterator();
-			while (cards.hasNext()) {
-				JSONObject card = (JSONObject) cards.next();
-				String fileName = card.getString("img");
-				int sceneId  = card.getJSONObject("scene").getInt("number");
-				// System.out.println("putting (" + fileName + "," + sceneId + ")");
-				ret.put(fileName, sceneId);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(1);
-		}
-		return ret;
-	}
+	// public Map<String, Integer> getCardFilenamesToIds() {
+	// 	Map<String, Integer> ret = new HashMap<>();
+	// 	try {
+	// 		JSONTokener jt = new JSONTokener(new FileInputStream(new File(cardPath)));
+	// 		Iterator cards = (new JSONObject(jt)).getJSONArray("cards").iterator();
+	// 		while (cards.hasNext()) {
+	// 			JSONObject card = (JSONObject) cards.next();
+	// 			String fileName = card.getString("img");
+	// 			int sceneId  = card.getJSONObject("scene").getInt("number");
+	// 			// System.out.println("putting (" + fileName + "," + sceneId + ")");
+	// 			ret.put(fileName, sceneId);
+	// 		}
+	// 	} catch (Exception e) {
+	// 		e.printStackTrace();
+	// 		System.exit(1);
+	// 	}
+	// 	return ret;
+	// }
 
 	public Map<Integer, Map<String, Point>> parseCardIdToRoleOrigins() {
 		Map<Integer, Map<String, Point>> ret = new HashMap<>();
@@ -62,7 +62,7 @@ public class JSONDataParser {
 				JSONObject card = (JSONObject) cards.next();
 				// CardInfo ci = new CardInfo();
 				// ci.title = card.getString("name");
-				int imageId = card.getJSONObject("scene").getInt("number");
+				int imageId = card.getInt("id");
 				Map<String, Point> starringOrigins = new HashMap<>(); 
 				Iterator stars = card.getJSONArray("parts").iterator();
 				while (stars.hasNext()) {
@@ -91,7 +91,7 @@ public class JSONDataParser {
 	// 			JSONObject card = (JSONObject) cards.next();
 	// 			CardInfo ci = new CardInfo();
 	// 			ci.title = card.getString("name");
-	// 			ci.imageId = card.getJSONObject("scene").getInt("number");
+	// 			ci.imageId = card.getInt("id");
 	// 			Map<String, Point> starringOrigins = new HashMap<>(); 
 	// 			Iterator stars = card.getJSONArray("parts").iterator();
 	// 			while (stars.hasNext()) {

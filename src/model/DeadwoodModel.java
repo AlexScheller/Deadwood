@@ -9,9 +9,11 @@ import model.player.Player;
 import model.board.Board;
 import model.board.room.Room;
 
-import model.events.BoardEventListener;
+import model.events.ChildEventListener;
+import controller.ControllerListener;
 
-public class DeadwoodModel implements BoardEventListener {
+public class DeadwoodModel
+	implements ControllerListener, ChildEventListener {
 
 	private Player[] players;
 	private int currentPlayerIndex = 0;
@@ -27,12 +29,12 @@ public class DeadwoodModel implements BoardEventListener {
 		this.unwrappedScenes = 10;
 		this.board = board;
 		this.players = players;
-		board.setBoardEventListener(this);
+		board.setListener(this);
 	}
 
 	public void setListener(ModelListener ml) {
 		this.listener = ml;
-		board.setListener(ml);
+		// board.setListener(ml);
 		// set listener in players
 	}
 
@@ -53,6 +55,27 @@ public class DeadwoodModel implements BoardEventListener {
 		}
 		return ret;
 	}
+
+	/* ChildEventListenerMethods */
+
+	public void newSceneInSetEvent(String setName, String sceneTitle,
+								   int setId) {
+		listener.newSceneInSetEvent(setName, sceneTitle, setId);
+	}
+
+	public void takeFinishEvent(String setName) {
+		listener.takeFinishEvent(setName);
+	}
+
+	public void sceneWrapEvent(String setName, String sceneTitle) {
+		listener.sceneWrapEvent(setName, sceneTitle);
+		unwrappedScenes--;
+		if (unwrappedScenes == 1) {
+			newDay();
+		}
+	}
+
+	/* ControllerListener Methods*/
 	
 	public void play() {
 		board.newDay();
@@ -126,15 +149,6 @@ public class DeadwoodModel implements BoardEventListener {
 
 	public void playerMoves(String where) throws IllegalArgumentException {
 		players[currentPlayerIndex].move(where);
-	}
-
-	// BoardEventListener methods
-
-	public void sceneWrapEvent() {
-		unwrappedScenes--;
-		if (unwrappedScenes == 1) {
-			newDay();
-		}
 	}
 
 	/* for debugging */

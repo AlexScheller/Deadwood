@@ -8,6 +8,7 @@ clean:
 	-rm *.class
 	-rm model/*.class
 	-rm model/loading/*.class
+	-rm model/events/*.class
 	-rm model/board/*.class
 	-rm model/board/role/*.class
 	-rm model/board/room/*.class

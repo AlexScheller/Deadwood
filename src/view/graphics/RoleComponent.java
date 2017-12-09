@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JComponent;
 
-import view.events.InputEventListener;
+import view.events.ChildEventListener;
 
 public class RoleComponent extends JComponent {
 
@@ -21,14 +21,14 @@ public class RoleComponent extends JComponent {
 	// and move setBounds to private, to be called in
 	// the constructor.
 	public RoleComponent(String name, Point origin,
-						 InputEventListener iel) {
+						 ChildEventListener cel) {
 		this.name = name;
 		setLayout(null);
 		this.origin = origin;
 		setBounds(origin.x, origin.y, height, width);
 		addMouseListener(new MouseAdapter () {
 			public void mouseClicked(MouseEvent e) {
-				iel.roleClickEvent(name);
+				cel.roleClickEvent(name);
 			}
 		});
 	}

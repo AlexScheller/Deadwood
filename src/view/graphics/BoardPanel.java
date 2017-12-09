@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 
 import view.loading.AssetBank;
 import view.loading.RoomPanelInfo;
-import view.events.InputEventListener;
+import view.events.ChildEventListener;
 
 public class BoardPanel extends JPanel {
 
@@ -20,7 +20,8 @@ public class BoardPanel extends JPanel {
 	private Map<String, RoomPanel> rooms;
 	// private Map<Integer, Map<>> cardIdToRole
 
-	public BoardPanel(List<RoomPanelInfo> rpis, InputEventListener iel) {
+	public BoardPanel(List<RoomPanelInfo> rpis,
+					  ChildEventListener cel) {
 		setLayout(null); // absolute positioning is used
 		this.board = new ImageIcon("../resources/board.png").getImage();
 		setBounds(0, 0, board.getWidth(null), board.getHeight(null));
@@ -37,7 +38,7 @@ public class BoardPanel extends JPanel {
 			// ncp.setBounds();
 			// CardPanel ncp = new CardPanel(placeHolderCardImage);
 			// CardPanel ncp = new CardPanel(iel);
-			SetPanel sp = new SetPanel(rpi, clapper, die, iel);
+			SetPanel sp = new SetPanel(rpi, clapper, die, cel);
 			sp.setBounds();
 			// sp.setCardPanel(ncp);
 			rooms.put(rpi.name, sp);

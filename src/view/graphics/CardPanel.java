@@ -12,11 +12,11 @@ import javax.swing.JPanel;
 
 import view.loading.CardInfo;
 import view.loading.AssetBank;
-import view.events.InputEventListener;
+import view.events.ChildEventListener;
 
 public class CardPanel extends JPanel {
 
-	private InputEventListener iel;
+	private ChildEventListener listener;
 
 	private Image cardFront;
 	private Image cardBack;
@@ -33,9 +33,9 @@ public class CardPanel extends JPanel {
 	private Image diceImage; // temporary
 	private Map<String, RoleComponent> stars;
 
-	public CardPanel(Point origin, InputEventListener iel) {
+	public CardPanel(Point origin, ChildEventListener cel) {
 	// public CardPanel(InputEventListener iel) {
-		this.iel = iel;
+		this.listener = cel;
 		this.title = "no scene";
 		setLayout(null);
 		setBounds(origin);
@@ -47,7 +47,7 @@ public class CardPanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// System.out.println("Card Clicked");
-				iel.cardClickEvent(title);
+				listener.cardClickEvent(title);
 				flip();
 			}
 		});
@@ -64,7 +64,8 @@ public class CardPanel extends JPanel {
 		Map<String, Point> roleOrigins = ab.getRoleOrigins(cardId);
 		for (String name : roleOrigins.keySet()) {
 			RoleComponent rc = new RoleComponent(name, 
-												 roleOrigins.get(name), iel);
+												 roleOrigins.get(name),
+												 listener);
 			rc.setDieImage(diceImage); // temporarily hard coded
 			stars.put(name, rc);
 		}

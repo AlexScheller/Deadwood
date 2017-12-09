@@ -10,7 +10,7 @@ import java.awt.Graphics;
 import view.loading.CardInfo; // temporary
 import view.loading.AssetBank;
 import view.loading.RoomPanelInfo;
-import view.events.InputEventListener;
+import view.events.ChildEventListener;
 
 public class SetPanel extends RoomPanel {
 
@@ -23,7 +23,8 @@ public class SetPanel extends RoomPanel {
 	private Map<String, RoleComponent> extras;
 
 	// TODO: maybe hard code the image
-	public SetPanel(RoomPanelInfo rpi, Image takeImage, Image diceImage, InputEventListener iel) {
+	public SetPanel(RoomPanelInfo rpi, Image takeImage,
+					Image diceImage, ChildEventListener cel) {
 		setLayout(null);
 		this.takeImage = takeImage;
 		this.diceImage = diceImage;
@@ -37,12 +38,12 @@ public class SetPanel extends RoomPanel {
 		for (String name : rpi.extraOrigins.keySet()) {
 			RoleComponent rc = new RoleComponent(name,
 												 rpi.extraOrigins.get(name),
-												 iel);
+												 cel);
 			rc.setDieImage(diceImage); // temporarily hard coded
 			extras.put(name, rc);
 			add(rc);
 		}
-		this.cardPanel = new CardPanel(cardPanelOrigin, iel);
+		this.cardPanel = new CardPanel(cardPanelOrigin, cel);
 		add(cardPanel);
 		// cardPanel.setBounds(cardPanelOrigin);
 		// this class serves only as a container, therefore

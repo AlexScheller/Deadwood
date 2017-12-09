@@ -7,7 +7,7 @@ import java.util.List;
 import model.ModelListener;
 import model.board.scene.SceneCardSet;
 
-import model.events.BoardEventListener;
+import model.events.ChildEventListener;
 
 public class RoomSet {
 
@@ -23,15 +23,15 @@ public class RoomSet {
 		// System.out.println(" successful!");
 	}
 
-	public void setBoardEventListener(BoardEventListener bel) {
-		for (Room r : rooms.values()) {
-			r.setBoardEventListener(bel);
-		}
-	}
+	// public void setBoardEventListener(BoardEventListener bel) {
+	// 	for (Room r : rooms.values()) {
+	// 		r.setBoardEventListener(bel);
+	// 	}
+	// }
 
-	public void setListener(ModelListener ml) {
+	public void setListener(ChildEventListener cel) {
 		for (Room r : rooms.values()) {
-			r.setListener(ml);
+			r.setListener(cel);
 		}
 	}
 
