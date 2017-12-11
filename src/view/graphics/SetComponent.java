@@ -9,13 +9,13 @@ import java.awt.Graphics;
 
 import view.loading.CardInfo; // temporary
 import view.loading.AssetBank;
-import view.loading.RoomPanelInfo;
+import view.loading.RoomInfo;
 import view.events.ChildEventListener;
 
-public class SetPanel extends RoomPanel {
+public class SetComponent extends RoomComponent {
 
-	private CardPanel cardPanel;
-	private Point cardPanelOrigin;
+	private CardComponent card;
+	private Point cardOrigin;
 	private Image takeImage;
 	private Image diceImage;
 	private Point[] takeOrigins;
@@ -23,32 +23,37 @@ public class SetPanel extends RoomPanel {
 	private Map<String, RoleComponent> extras;
 
 	// TODO: maybe hard code the image
-	public SetPanel(RoomPanelInfo rpi, Image takeImage,
+	public SetComponent(RoomInfo ri, Image takeImage,
 					Image diceImage, ChildEventListener cel) {
 		setLayout(null);
 		this.takeImage = takeImage;
 		this.diceImage = diceImage;
-		this.cardPanelOrigin = rpi.cardPanelOrigin;
-		this.occupantsOrigin = new Point(cardPanelOrigin);
+		this.cardOrigin = ri.cardOrigin;
+		this.occupantsOrigin = new Point(cardOrigin);
 		occupantsOrigin.y += 115;
-		this.takeOrigins = rpi.takeOrigins;
+		this.takeOrigins = ri.takeOrigins;
 		this.takesFinished = takeOrigins.length; // placeholder
 		// set up extra roles
 		this.extras = new HashMap<>();
-		for (String name : rpi.extraOrigins.keySet()) {
+		for (String name : ri.extraOrigins.keySet()) {
 			RoleComponent rc = new RoleComponent(name,
-												 rpi.extraOrigins.get(name),
+												 ri.extraOrigins.get(name),
 												 cel);
 			rc.setDieImage(diceImage); // temporarily hard coded
 			extras.put(name, rc);
 			add(rc);
 		}
-		this.cardPanel = new CardPanel(cardPanelOrigin, cel);
-		add(cardPanel);
+		this.card = new CardComponent(cardOrigin, cel);
+		add(card);
 		// cardPanel.setBounds(cardPanelOrigin);
 		// this class serves only as a container, therefore
 		// it should remain invisible.
-		setOpaque(false);
+		// setOpaque(false);
+		// TODO: investigate this
+		// PlayerComponent pc = new PlayerComponent(3, 'y', cel);
+		// // pc.setBounds(0, 0, 40, 40);
+		// pc.move(new Point(cardPanelOrigin.x - 40, cardPanelOrigin.y - 40));
+		// add(pc);
 	}
 
 	// public void setCardPanel(CardPanel cp) {
@@ -72,15 +77,15 @@ public class SetPanel extends RoomPanel {
 	// }
 
 	public void newScene(String which, int cardId) {
-		cardPanel.setNewCard(which, cardId);
+		card.setNewCard(which, cardId);
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		// super.paintComponent(g);
+		super.paintComponent(g);
 		paintOccupants(g);
-		for (String key : extras.keySet()) {
-			extras.get(key).paintComponent(g);
+		for (RoleComponent rc : extras.values()) {
+			// rc.paintComponent(g);
 		}
 		for (int i = 0; i < takesFinished; i++) {
 			// TODO: these values should really be adjusted in the 

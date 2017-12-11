@@ -4,7 +4,7 @@ import java.util.Map;
 
 import java.awt.Point;
 
-public class RoomPanelInfo {
+public class RoomInfo {
 
 	public enum Type {
 		MOVIE_SET,
@@ -14,7 +14,7 @@ public class RoomPanelInfo {
 
 	public Type roomType;
 	public String name;
-	public Point cardPanelOrigin;
+	public Point cardOrigin;
 	public Point[] takeOrigins;
 	public Map<String, Point> extraOrigins;
 

@@ -8,13 +8,13 @@ import java.awt.Point;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 
 import view.loading.CardInfo;
 import view.loading.AssetBank;
 import view.events.ChildEventListener;
 
-public class CardPanel extends JPanel {
+public class CardComponent extends JComponent {
 
 	private ChildEventListener listener;
 
@@ -33,7 +33,7 @@ public class CardPanel extends JPanel {
 	private Image diceImage; // temporary
 	private Map<String, RoleComponent> stars;
 
-	public CardPanel(Point origin, ChildEventListener cel) {
+	public CardComponent(Point origin, ChildEventListener cel) {
 	// public CardPanel(InputEventListener iel) {
 		this.listener = cel;
 		this.title = "no scene";
@@ -48,7 +48,12 @@ public class CardPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				// System.out.println("Card Clicked");
 				listener.cardClickEvent(title);
-				flip();
+				try {
+					flip();
+				} catch (IllegalStateException ex) {
+					ex.printStackTrace();
+					System.exit(1);
+				}
 			}
 		});
 	}
@@ -69,6 +74,9 @@ public class CardPanel extends JPanel {
 			rc.setDieImage(diceImage); // temporarily hard coded
 			stars.put(name, rc);
 		}
+		// PlayerComponent pc = new PlayerComponent(3, 'y', listener);
+		// pc.move(new Point(0, 0));
+		// add(pc);
 		// setBounds(origin);
 	}
 
@@ -118,8 +126,9 @@ public class CardPanel extends JPanel {
 		if (occupied) {
 			if (flipped) {
 				g.drawImage(cardFront, 0, 0, null);
-				for (String key : stars.keySet()) {
-					stars.get(key).paintComponent(g);
+				for (RoleComponent rc : stars.values()) {
+					System.out.println("hello");
+					// rc.paintComponent(g);
 				}
 			} else {
 				// System.out.println("drawing card back");

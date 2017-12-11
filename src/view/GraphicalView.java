@@ -4,7 +4,7 @@ import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 
-import view.graphics.CardPanel;
+// import view.graphics.CardComponent;
 import view.graphics.MenuPanel;
 import view.graphics.BoardPanel;
 import view.events.ChildEventListener;
@@ -49,6 +49,10 @@ public class GraphicalView
 		System.out.println("role click event intercepted: " + which);
 	}
 
+	public void playerClickEvent(String which) {
+		System.out.println("player click event intercepted: " + which);
+	}
+
 	public void cardClickEvent(String which) {
 		System.out.println("card click event intercepted: " + which);
 	}
@@ -67,7 +71,7 @@ public class GraphicalView
 		// TEMP
 		System.out.println("new day event intercepted");
 	}
-	
+
 	@Override
 	public void sceneWrapEvent(String setName, String sceneName) {
 		// TEMP

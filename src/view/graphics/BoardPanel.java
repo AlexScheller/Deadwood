@@ -5,22 +5,23 @@ import java.util.List;
 import java.util.HashMap;
 
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Graphics;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
 import view.loading.AssetBank;
-import view.loading.RoomPanelInfo;
+import view.loading.RoomInfo;
 import view.events.ChildEventListener;
 
 public class BoardPanel extends JPanel {
 
 	private Image board;
-	private Map<String, RoomPanel> rooms;
+	private Map<String, RoomComponent> rooms;
 	// private Map<Integer, Map<>> cardIdToRole
 
-	public BoardPanel(List<RoomPanelInfo> rpis,
+	public BoardPanel(List<RoomInfo> ris,
 					  ChildEventListener cel) {
 		setLayout(null); // absolute positioning is used
 		this.board = new ImageIcon("../resources/board.png").getImage();
@@ -32,31 +33,34 @@ public class BoardPanel extends JPanel {
 		Image clapper  = new ImageIcon("../resources/clapper.png").getImage();
 		Image die = ab.getAsset("g6");
 		// TODO put office and trailers into this loop
-		for (RoomPanelInfo rpi : rpis) {
+		for (RoomInfo ri : ris) {
 			// CardPanel ncp = new CardPanel(placeHolderCardImage,
 			// 							  rpi.cardPanelOrigin);
 			// ncp.setBounds();
 			// CardPanel ncp = new CardPanel(placeHolderCardImage);
 			// CardPanel ncp = new CardPanel(iel);
-			SetPanel sp = new SetPanel(rpi, clapper, die, cel);
-			sp.setBounds();
+			SetComponent sc = new SetComponent(ri, clapper, die, cel);
+			sc.setBounds();
 			// sp.setCardPanel(ncp);
-			rooms.put(rpi.name, sp);
-			add(sp);
+			rooms.put(ri.name, sc);
+			add(sc);
 		}
-		RoomPanel office = new OfficePanel();
-		RoomPanel trailers = new TrailerPanel();
+		RoomComponent office = new OfficeComponent();
+		RoomComponent trailers = new TrailerComponent();
 		office.setBounds();
 		trailers.setBounds();
 		rooms.put("office", office);
 		rooms.put("trailers", trailers);
 		add(office);
 		add(trailers);
+		// PlayerComponent pc = new PlayerComponent(3, 'y', cel);
+		// pc.move(new Point(0, 0));
+		// add(pc);
 	}
 
 	public void newSceneInSet(String where, String which, 
 							  int cardId) {
-		SetPanel roomAsSet = (SetPanel) rooms.get(where);
+		SetComponent roomAsSet = (SetComponent) rooms.get(where);
 		roomAsSet.newScene(which, cardId);
 	}
 

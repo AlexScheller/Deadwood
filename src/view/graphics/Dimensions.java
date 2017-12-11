@@ -13,4 +13,7 @@ public final class Dimensions {
 	public static final int DICE_HEIGHT = 40;
 	public static final int DICE_WIDTH = 40;
 
+	public static final int CARD_HEIGHT = 115;
+	public static final int CARD_WIDTH = 205;
+
 }

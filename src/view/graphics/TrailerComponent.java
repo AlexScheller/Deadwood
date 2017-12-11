@@ -3,13 +3,13 @@ package view.graphics;
 import java.awt.Point;
 import java.awt.Graphics;
 
-public class TrailerPanel extends RoomPanel {
+public class TrailerComponent extends RoomComponent {
 
-	public TrailerPanel() {
+	public TrailerComponent() {
 		setLayout(null);
 		// temporarily hard coded for testing purposes
 		this.occupantsOrigin = new Point(991, 248);
-		setOpaque(false);
+		// setOpaque(false);
 	}
 
 	@Override

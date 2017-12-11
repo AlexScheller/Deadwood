@@ -3,11 +3,11 @@ package view.graphics;
 import java.awt.Point;
 import java.awt.Image;
 import java.awt.Graphics;
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 
 import view.loading.AssetBank;
 
-public abstract class RoomPanel extends JPanel {
+public abstract class RoomComponent extends JComponent {
 
 	protected Point occupantsOrigin;
 	protected Image yellowDie = AssetBank.getInstance().getAsset("y3");

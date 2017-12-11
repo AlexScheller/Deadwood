@@ -6,6 +6,8 @@ public interface ChildEventListener {
 
 	public void roleClickEvent(String which);
 
+	public void playerClickEvent(String which);
+
 	public void cardClickEvent(String which);
 
 }

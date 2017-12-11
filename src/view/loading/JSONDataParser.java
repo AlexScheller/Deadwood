@@ -112,21 +112,21 @@ public class JSONDataParser {
 	// 	return ret;
 	// }
 
-	public List<RoomPanelInfo> parseRoomPanelInfo() {
-		List<RoomPanelInfo> ret = new ArrayList<>();
+	public List<RoomInfo> parseRoomPanelInfo() {
+		List<RoomInfo> ret = new ArrayList<>();
 		try {
 			JSONTokener jt = new JSONTokener(new FileInputStream(new File(boardPath)));
 			JSONObject rooms = (new JSONObject(jt)).getJSONObject("rooms");
 			Iterator sets = rooms.getJSONArray("sets").iterator();
 			while (sets.hasNext()) {
 
-				RoomPanelInfo rpi = new RoomPanelInfo();
+				RoomInfo ri = new RoomInfo();
 				JSONObject set = (JSONObject) sets.next();
-				rpi.roomType = RoomPanelInfo.Type.MOVIE_SET;
-				rpi.name = set.getString("name");
+				ri.roomType = RoomInfo.Type.MOVIE_SET;
+				ri.name = set.getString("name");
 				int x = set.getJSONObject("area").getInt("x");
 				int y = set.getJSONObject("area").getInt("y");
-				rpi.cardPanelOrigin = new Point(x, y);
+				ri.cardOrigin = new Point(x, y);
 
 				// takes
 				JSONArray takes = set.getJSONArray("takes");
@@ -139,7 +139,7 @@ public class JSONDataParser {
 					int number = take.getInt("number");
 					takeOrigins[number - 1] = new Point(x, y);
 				}
-				rpi.takeOrigins = takeOrigins;
+				ri.takeOrigins = takeOrigins;
 
 				// off card roles
 				Map<String, Point> extraOrigins = new HashMap<>();
@@ -152,9 +152,9 @@ public class JSONDataParser {
 					y = part.getJSONObject("area").getInt("y") + 3;
 					extraOrigins.put(part.getString("name"), new Point(x, y));
 				}
-				rpi.extraOrigins = extraOrigins;
+				ri.extraOrigins = extraOrigins;
 
-				ret.add(rpi);
+				ret.add(ri);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

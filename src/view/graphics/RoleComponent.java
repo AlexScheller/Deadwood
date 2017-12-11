@@ -6,11 +6,13 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JComponent;
+// import javax.swing.JPanel;
 
 import view.events.ChildEventListener;
 import static view.graphics.Dimensions.*;
 
 public class RoleComponent extends JComponent {
+// public class RoleComponent extends JPanel {
 
 	private String name;
 	private Image die;
@@ -25,30 +27,50 @@ public class RoleComponent extends JComponent {
 	// the constructor.
 	public RoleComponent(String name, Point origin,
 						 ChildEventListener cel) {
-		this.name = name;
 		setLayout(null);
+		this.name = name;
 		this.origin = origin;
+		// System.out.println("setting new role component");
+		// System.out.println("origin: {" + origin.x + ", " + origin.y + "}");
 		setBounds(origin.x, origin.y, DICE_HEIGHT, DICE_WIDTH);
+		
 		// hard coded for testing purposes
-		takePlayerComponent(new PlayerComponent(3, 'g'));
-		addMouseListener(new MouseAdapter () {
-			public void mouseClicked(MouseEvent e) {
-				cel.roleClickEvent(name);
-			}
-		});
+		
+		// PlayerComponent pc = new PlayerComponent(3, 'y', cel);
+		// pc.move(new Point(0, 0));
+		// add(pc);
+
+		takePlayerComponent(new PlayerComponent(3, 'g', cel));
+
+		// PlayerComponent npc = new PlayerComponent(4, 'r', cel);
+		// this.pc = npc;
+		// this.pc = new PlayerComponent(4, 'r', cel);
+		// pc.move(origin);
+		// add(pc);
+		// setOpaque(false);
+
+		// addMouseListener(new MouseAdapter () {
+		// 	public void mouseClicked(MouseEvent e) {
+		// 		cel.roleClickEvent(name);
+		// 	}
+		// });
 	}
 
 	public void setDieImage(Image die) {
 		this.die = die;
 	}
 
-	public void takePlayerComponent(PlayerComponent pc) {
-		this.pc = pc;
-		pc.move(origin);
+	public void takePlayerComponent(PlayerComponent npc) {
+		this.pc = npc;
+		pc.move(new Point(0, 0));
+		add(pc);
+		setOpaque(false);
 	}
 
 	public void evictPlayerComponent() {
+		remove(pc);
 		this.pc = null;
+		setOpaque(true);
 	}
 
 	// public void setBounds(Point origin) {
@@ -63,8 +85,9 @@ public class RoleComponent extends JComponent {
 	@Override
 	public void paintComponent(Graphics g) {
 		// g.drawImage(die, origin.x, origin.y, null);
+		super.paintComponent(g);
 		if (occupied()) {
-			pc.paintComponent(g);
+			// pc.paintComponent(g);
 		}
 	}
 
