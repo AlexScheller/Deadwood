@@ -40,7 +40,7 @@ public class RoleComponent extends JComponent {
 		// pc.move(new Point(0, 0));
 		// add(pc);
 
-		takePlayerComponent(new PlayerComponent(3, 'g', cel));
+		// takePlayerComponent(new PlayerComponent(3, 'g', cel));
 
 		// PlayerComponent npc = new PlayerComponent(4, 'r', cel);
 		// this.pc = npc;
@@ -49,11 +49,11 @@ public class RoleComponent extends JComponent {
 		// add(pc);
 		// setOpaque(false);
 
-		// addMouseListener(new MouseAdapter () {
-		// 	public void mouseClicked(MouseEvent e) {
-		// 		cel.roleClickEvent(name);
-		// 	}
-		// });
+		addMouseListener(new MouseAdapter () {
+			public void mouseClicked(MouseEvent e) {
+				cel.roleClickEvent(name);
+			}
+		});
 	}
 
 	public void setDieImage(Image die) {

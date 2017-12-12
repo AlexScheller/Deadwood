@@ -11,6 +11,7 @@ import view.loading.CardInfo; // temporary
 import view.loading.AssetBank;
 import view.loading.RoomInfo;
 import view.events.ChildEventListener;
+import static view.graphics.Dimensions.*;
 
 public class SetComponent extends RoomComponent {
 
@@ -29,8 +30,12 @@ public class SetComponent extends RoomComponent {
 		this.takeImage = takeImage;
 		this.diceImage = diceImage;
 		this.cardOrigin = ri.cardOrigin;
-		this.occupantsOrigin = new Point(cardOrigin);
-		occupantsOrigin.y += 115;
+		Point pbcOrigin = new Point(cardOrigin.x, cardOrigin.y + CARD_HEIGHT);
+		this.pbc = new PlayerBenchComponent(pbcOrigin);
+		pbc.takePlayerComponent(new PlayerComponent(1, 'o', cel));
+		add(pbc);
+		// this.occupantsOrigin = new Point(cardOrigin);
+		// occupantsOrigin.y += 115;
 		this.takeOrigins = ri.takeOrigins;
 		this.takesFinished = takeOrigins.length; // placeholder
 		// set up extra roles
@@ -41,40 +46,12 @@ public class SetComponent extends RoomComponent {
 												 cel);
 			rc.setDieImage(diceImage); // temporarily hard coded
 			extras.put(name, rc);
+			rc.takePlayerComponent(new PlayerComponent(3, 'g', cel));
 			add(rc);
 		}
 		this.card = new CardComponent(cardOrigin, cel);
 		add(card);
-		// cardPanel.setBounds(cardPanelOrigin);
-		// this class serves only as a container, therefore
-		// it should remain invisible.
-		// setOpaque(false);
-		// TODO: investigate this
-		// PlayerComponent pc = new PlayerComponent(3, 'y', cel);
-		// // pc.setBounds(0, 0, 40, 40);
-		// pc.move(new Point(cardPanelOrigin.x - 40, cardPanelOrigin.y - 40));
-		// add(pc);
 	}
-
-	// public void setCardPanel(CardPanel cp) {
-	// 	// System.out.println("Card Panel set");
-	// 	this.cardPanel = cp;
-	// 	// cardPanel.setBounds(cardPanelOrigin);
-	// 	add(cardPanel);
-
-	// 	// the below hard coded for testing purposes
-	// 	// CardInfo ci = new CardInfo();
-		
-	// 	// ci.imgId = 22;
-	// 	// ci.title = "The Life and Times of John Skywater";
-	// 	// Map<String, Point> starringOrigins = new HashMap<>();
-	// 	// starringOrigins.put("Auctioneer", new Point(53, 47));
-	// 	// starringOrigins.put("General Custer", new Point(115, 47));
-	// 	// ci.starringOrigins = starringOrigins;
-		
-	// 	// cardPanel.setNewCard(ci);
-	// 	// cardPanel.flip();
-	// }
 
 	public void newScene(String which, int cardId) {
 		card.setNewCard(which, cardId);
@@ -83,7 +60,7 @@ public class SetComponent extends RoomComponent {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		paintOccupants(g);
+		// paintOccupants(g);
 		for (RoleComponent rc : extras.values()) {
 			// rc.paintComponent(g);
 		}

@@ -14,11 +14,16 @@ import static view.graphics.Dimensions.*;
 
 public class PlayerComponent extends JComponent {
 
+	private int id;
 	private int level;
 	private char color;
 	private Point origin;
 
 	private ChildEventListener listener;
+
+	// public PlayerComponent(int id) {
+
+	// }
 
 	public PlayerComponent(int level, char color,
 						   ChildEventListener cel) {
@@ -29,6 +34,14 @@ public class PlayerComponent extends JComponent {
 			public void mouseClicked(MouseEvent e) {
 				// System.out.println("mouse clicked on player");
 				cel.playerClickEvent(color + Integer.toString(level));
+			}
+			// PROTOTYPE_CHAIN: 1
+			public void mouseEntered(MouseEvent e) {
+				cel.playerHoverEvent(color + Integer.toString(level));
+			}
+			// PROTOTYPE_CHAIN: 1
+			public void mouseExited(MouseEvent e) {
+				cel.playerUnHoverEvent();
 			}
 		});
 	}

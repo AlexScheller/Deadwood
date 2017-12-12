@@ -72,6 +72,7 @@ public class CardComponent extends JComponent {
 												 roleOrigins.get(name),
 												 listener);
 			rc.setDieImage(diceImage); // temporarily hard coded
+			rc.takePlayerComponent(new PlayerComponent(4, 'b', listener));
 			stars.put(name, rc);
 		}
 		// PlayerComponent pc = new PlayerComponent(3, 'y', listener);
@@ -127,8 +128,8 @@ public class CardComponent extends JComponent {
 			if (flipped) {
 				g.drawImage(cardFront, 0, 0, null);
 				for (RoleComponent rc : stars.values()) {
-					System.out.println("hello");
-					// rc.paintComponent(g);
+					// System.out.println("hello");
+					rc.paintComponent(g);
 				}
 			} else {
 				// System.out.println("drawing card back");

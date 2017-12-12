@@ -11,6 +11,7 @@ import view.events.ChildEventListener;
 import static view.graphics.Dimensions.*;
 
 import model.ModelListener;
+import view.loading.AssetBank;
 
 public class GraphicalView
 	extends JFrame
@@ -18,6 +19,7 @@ public class GraphicalView
 	// TODO: apply this formatting across code base?
 
 	private BoardPanel bp;
+	private MenuPanel mp;
 
 	private ViewListener listener;
 
@@ -26,6 +28,7 @@ public class GraphicalView
 	public void initUI(BoardPanel bp, MenuPanel mp) {
 		setLayout(null); // absolute positioning is used
 		this.bp = bp;
+		this.mp = mp;
 		add(bp);
 		add(mp);
 		setSize(BOARD_LENGTH + MENU_LENGTH, BOARD_HEIGHT);
@@ -51,6 +54,17 @@ public class GraphicalView
 
 	public void playerClickEvent(String which) {
 		System.out.println("player click event intercepted: " + which);
+	}
+
+	// PROTOTYPE_CHAIN: 1
+	public void playerHoverEvent(String which) {
+		Image playerImage = AssetBank.getInstance().getAsset(which);
+		mp.displayHoveredPlayer(playerImage);
+	}
+
+	// PROTOTYPE_CHAIN: 1
+	public void playerUnHoverEvent() {
+		mp.removeHoveredPlayer();
 	}
 
 	public void cardClickEvent(String which) {
