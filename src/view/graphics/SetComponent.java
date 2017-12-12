@@ -32,7 +32,7 @@ public class SetComponent extends RoomComponent {
 		this.cardOrigin = ri.cardOrigin;
 		Point pbcOrigin = new Point(cardOrigin.x, cardOrigin.y + CARD_HEIGHT);
 		this.pbc = new PlayerBenchComponent(pbcOrigin);
-		pbc.takePlayerComponent(new PlayerComponent(1, 'o', cel));
+		// pbc.takePlayerComponent(new PlayerComponent(1, 'o', cel));
 		add(pbc);
 		// this.occupantsOrigin = new Point(cardOrigin);
 		// occupantsOrigin.y += 115;
@@ -46,7 +46,7 @@ public class SetComponent extends RoomComponent {
 												 cel);
 			rc.setDieImage(diceImage); // temporarily hard coded
 			extras.put(name, rc);
-			rc.takePlayerComponent(new PlayerComponent(3, 'g', cel));
+			// rc.takePlayerComponent(new PlayerComponent(3, 'g', cel));
 			add(rc);
 		}
 		this.card = new CardComponent(cardOrigin, cel);

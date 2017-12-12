@@ -64,6 +64,13 @@ public class BoardPanel extends JPanel {
 		roomAsSet.newScene(which, cardId);
 	}
 
+	public void movePlayer(PlayerComponent pc, String from, String to) {
+		if (from != null) {
+			rooms.get(from).evictPlayer(pc.getId());
+		}
+		rooms.get(to).acceptPlayer(pc);
+	}
+
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);

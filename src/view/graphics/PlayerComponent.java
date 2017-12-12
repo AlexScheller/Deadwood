@@ -16,19 +16,18 @@ public class PlayerComponent extends JComponent {
 
 	private int id;
 	private int level;
+	private int dollars;
+	private int credits;
 	private char color;
 	private Point origin;
 
 	private ChildEventListener listener;
 
-	// public PlayerComponent(int id) {
-
-	// }
-
-	public PlayerComponent(int level, char color,
-						   ChildEventListener cel) {
-		// setLayout(null);
-		this.level = level;
+	public PlayerComponent(PlayerInfo pi, char color, ChildEventListener cel) {
+		this.id = pi.id;
+		this.level = pi.level;
+		this.dollars = pi.dollars;
+		this.credits = pi.credits;
 		this.color = color;
 		addMouseListener(new MouseAdapter () {
 			public void mouseClicked(MouseEvent e) {
@@ -44,6 +43,10 @@ public class PlayerComponent extends JComponent {
 				cel.playerUnHoverEvent();
 			}
 		});
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public void paintComponent(Graphics g) {

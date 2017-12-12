@@ -9,6 +9,9 @@ import model.player.Player;
 import model.board.Board;
 import model.board.room.Room;
 
+// Not a fan of importing from the view
+import view.graphics.PlayerInfo;
+
 import model.events.ChildEventListener;
 import controller.ControllerListener;
 
@@ -75,6 +78,22 @@ public class DeadwoodModel
 		}
 	}
 
+	// this method collects necessary data from the
+	// players to be shipped to the view.
+	private PlayerInfo[] playersToPlayerInfos() {
+		PlayerInfo[] ret = new PlayerInfo[players.length];
+		for (int i = 0; i < players.length; i++) {
+			PlayerInfo pi = new PlayerInfo();
+			Player curr = players[i];
+			pi.id = curr.getId();
+			pi.level = curr.getRank();
+			pi.dollars = curr.getDollars();
+			pi.credits = curr.getCredits();
+			ret[i] = pi;
+		}
+		return ret;
+	}
+
 	/* ControllerListener Methods*/
 	
 	public void play() {
@@ -82,6 +101,10 @@ public class DeadwoodModel
 			playing = true;
 			// board.newDay();
 			currentPlayerIndex = (new Random()).nextInt(players.length);
+			listener.newPlayersEvent(playersToPlayerInfos());
+			for (int i = 0; i < players.length; i++) {
+				listener.playerMoves(players[i].getId(), null, "trailers");
+			}
 			newDay();
 		}
 		// while (day <= 4) {

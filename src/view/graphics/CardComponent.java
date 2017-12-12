@@ -72,7 +72,7 @@ public class CardComponent extends JComponent {
 												 roleOrigins.get(name),
 												 listener);
 			rc.setDieImage(diceImage); // temporarily hard coded
-			rc.takePlayerComponent(new PlayerComponent(4, 'b', listener));
+			// rc.takePlayerComponent(new PlayerComponent(4, 'b', listener));
 			stars.put(name, rc);
 		}
 		// PlayerComponent pc = new PlayerComponent(3, 'y', listener);
@@ -80,21 +80,7 @@ public class CardComponent extends JComponent {
 		// add(pc);
 		// setBounds(origin);
 	}
-
-	// public void setNewCard(CardInfo ci) {
-	// 	this.title = ci.title;
-	// 	this.cardFront = AssetBank.getInstance().getAsset(ci.imgId);
-	// 	this.occupied = true;
-	// 	// this.flipped = false;
-	// 	this.stars = new HashMap<>();
-	// 	for (String name : ci.starringOrigins.keySet()) {
-	// 		RoleComponent rc = new RoleComponent(name, ci.starringOrigins.get(name), iel);
-	// 		// rc.setBounds(ci.starringOrigins.get(name));
-	// 		rc.setDieImage(diceImage); // temporarily hard coded
-	// 		stars.put(name, rc);
-	// 	}
-	// }
-
+	
 	// TODO: look into speeding this up
 	public void flip() throws IllegalStateException {
 		if (occupied) {

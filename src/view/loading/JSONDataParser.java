@@ -34,25 +34,6 @@ public class JSONDataParser {
 
 	private JSONDataParser() {}
 
-	// public Map<String, Integer> getCardFilenamesToIds() {
-	// 	Map<String, Integer> ret = new HashMap<>();
-	// 	try {
-	// 		JSONTokener jt = new JSONTokener(new FileInputStream(new File(cardPath)));
-	// 		Iterator cards = (new JSONObject(jt)).getJSONArray("cards").iterator();
-	// 		while (cards.hasNext()) {
-	// 			JSONObject card = (JSONObject) cards.next();
-	// 			String fileName = card.getString("img");
-	// 			int sceneId  = card.getJSONObject("scene").getInt("number");
-	// 			// System.out.println("putting (" + fileName + "," + sceneId + ")");
-	// 			ret.put(fileName, sceneId);
-	// 		}
-	// 	} catch (Exception e) {
-	// 		e.printStackTrace();
-	// 		System.exit(1);
-	// 	}
-	// 	return ret;
-	// }
-
 	public Map<Integer, Map<String, Point>> parseCardIdToRoleOrigins() {
 		Map<Integer, Map<String, Point>> ret = new HashMap<>();
 		try {
@@ -81,36 +62,6 @@ public class JSONDataParser {
 		}
 		return ret;
 	}
-
-	// public List<CardInfo> parseCardInfo() {
-	// 	List<CardPanelInfo> ret = new ArrayList<>();
-	// 	try {
-	// 		JSONTokener jt = new JSONTokener(new FileInputStream(new File(cardPath)));
-	// 		Iterator cards = (new JSONObject(jt)).getJSONArray("cards").iterator();
-	// 		while (cards.hasNext()) {
-	// 			JSONObject card = (JSONObject) cards.next();
-	// 			CardInfo ci = new CardInfo();
-	// 			ci.title = card.getString("name");
-	// 			ci.imageId = card.getInt("id");
-	// 			Map<String, Point> starringOrigins = new HashMap<>(); 
-	// 			Iterator stars = card.getJSONArray("parts").iterator();
-	// 			while (stars.hasNext()) {
-	// 				JSONObject star = (JSONObject) stars.next();
-	// 				String name = star.getString("name");
-	// 				JSONObject area = start.getJSONObject("area");
-	// 				int x = area.getInt("x");
-	// 				int y = area.getInt("y");
-	// 				starringOrigins.put(name, new Point(x, y));
-	// 			}
-	// 			ci.starringOrigins = starringOrigins;
-	// 			ret.add(ci);
-	// 		}
-	// 	} catch (Exception e) {
-	// 		e.printStackTrace();
-	// 		System.exit(1);
-	// 	}
-	// 	return ret;
-	// }
 
 	public List<RoomInfo> parseRoomPanelInfo() {
 		List<RoomInfo> ret = new ArrayList<>();

@@ -1,5 +1,7 @@
 package model;
 
+import view.graphics.PlayerInfo;
+
 public interface ModelListener {
 
 	// // public void update();
@@ -27,5 +29,10 @@ public interface ModelListener {
 
 	// Player methods
 	public void playerRehearses();
+
+	public void playerMoves(int playerId, String from, String to);
+
+	public void newPlayersEvent(PlayerInfo[] infos);
+	// public void updatePlayerInfo(int playerId, )
 
 }

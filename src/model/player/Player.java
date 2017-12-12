@@ -10,7 +10,7 @@ import model.board.role.Role;
 
 public class Player {
 
-	private int playerID = -1;
+	private int id = -1;
 	private String name = "generic";
 
 	private int rank = 1;
@@ -32,7 +32,7 @@ public class Player {
 	/* Constructors */
 
 	public Player(int id, Room initialRoom) {
-		this.playerID = id;
+		this.id = id;
 		this.currentRoom = initialRoom;
 		this.initialRoom = initialRoom;
 		this.dice = new Random();
@@ -151,7 +151,7 @@ public class Player {
 
 	@Override
 	public String toString() {
-		String ret = "Player: " + Integer.toString(playerID + 1);
+		String ret = "Player: " + Integer.toString(id + 1);
 		ret += "\nRoom: " + currentRoom.getName();
 		ret += "\nRank: " + rank;
 		ret += "\nDollars: " + this.dollars;
@@ -260,11 +260,11 @@ public class Player {
 
 	public String getName() {
 		// return name;
-		return Integer.toString(playerID);
+		return Integer.toString(id);
 	}
 
-	public int getID() {
-		return playerID;
+	public int getId() {
+		return id;
 	}
 
 	public String[] getNeighborStrings() {

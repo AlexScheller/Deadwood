@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 // import view.graphics.CardComponent;
 import view.graphics.MenuPanel;
 import view.graphics.BoardPanel;
+import view.graphics.PlayerComponent;
+import view.graphics.PlayerInfo;
 import view.events.ChildEventListener;
 import static view.graphics.Dimensions.*;
 
@@ -21,12 +23,16 @@ public class GraphicalView
 	private BoardPanel bp;
 	private MenuPanel mp;
 
+	private PlayerComponent[] players;
+	private char[] colors;
+
 	private ViewListener listener;
 
 	public GraphicalView() {};
 
 	public void initUI(BoardPanel bp, MenuPanel mp) {
 		setLayout(null); // absolute positioning is used
+		this.colors = new char[] {'b', 'c', 'g', 'o', 'p', 'r', 'v', 'y'};
 		this.bp = bp;
 		this.mp = mp;
 		add(bp);
@@ -39,11 +45,12 @@ public class GraphicalView
 
 	/* ChildEventListener methods */
 
-	public void newGameEvent() {
+	public void newGameButtonClickEvent() {
 		System.out.println("new game event intercepted");
 		// number of players is currently hard-coded for
 		// testing purposes
 		listener.newGameRequest(2);
+		// this.players = new PlayerInfo[2];
 		// paint();
 		repaint();
 	}
@@ -80,6 +87,19 @@ public class GraphicalView
 
 	/* ModelListener methods */
 
+	// NOTE: So far this (PlayerInfo) is the only piece of 
+	// non-listener shared code between the model and the
+	// view. It's practical, but I wonder if it would be
+	// better not to share any code at all.
+	@Override
+	public void newPlayersEvent(PlayerInfo[] infos) {
+		this.players = new PlayerComponent[infos.length];
+		for (int i = 0; i < infos.length; i++) {
+			PlayerComponent pc = new PlayerComponent(infos[i], colors[i], this);
+			players[pc.getId()] = pc;
+		}
+	}
+
 	@Override
 	public void newDayEvent() {
 		// TEMP
@@ -108,34 +128,14 @@ public class GraphicalView
 	}
 
 	@Override
+	public void playerMoves(int playerId, String from, String to) {
+		bp.movePlayer(players[playerId], from, to);
+	}
+
+	@Override
 	public void playerRehearses() {
 		// TEMP
 		System.out.println("player rehearses");
 	}
-
-	// @Override
-	// public void newDay() {
-	// 	System.out.println("newDay temp");
-	// }
-
-	// @Override
-	// public void newTurn() {
-	// 	System.out.println("newTurn temp");
-	// }
-
-	// @Override
-	// public void playerActResponse(String response) {
-	// 	System.out.println("playerActResponse temp");
-	// }
-
-	// @Override
-	// public void playerRehearseResponse(String response) {
-	// 	System.out.println("playerRehearseResponse temp");
-	// }
-
-	// @Override
-	// public void displayWinners(String[] winners) {
-	// 	System.out.println("displayWinners temp");
-	// }
 
 }

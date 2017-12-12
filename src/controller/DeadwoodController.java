@@ -52,7 +52,7 @@ public class DeadwoodController implements ViewListener {
 	}
 
 	public void playerActRequest() {
-		System.out.println("Player " + (model.getCurrentPlayer().getID() + 1) + " acts");
+		System.out.println("Player " + (model.getCurrentPlayer().getId() + 1) + " acts");
 		try {
 			// model.getCurrentPlayer().act();
 			model.playerActs();
@@ -62,7 +62,7 @@ public class DeadwoodController implements ViewListener {
 	}
 
 	public void playerRehearseRequest() {
-		System.out.println("Player " + (model.getCurrentPlayer().getID() + 1) + " rehearses");
+		System.out.println("Player " + (model.getCurrentPlayer().getId() + 1) + " rehearses");
 		try {
 			// model.getCurrentPlayer().rehearse();
 			model.playerRehearses();
@@ -85,7 +85,7 @@ public class DeadwoodController implements ViewListener {
 	// }
 
 	public void playerTakeRoleRequest(String which) {
-		System.out.println("Player " + (model.getCurrentPlayer().getID() + 1) + " takes roll: " + which);
+		System.out.println("Player " + (model.getCurrentPlayer().getId() + 1) + " takes roll: " + which);
 		try {
 			// model.getCurrentPlayer().takeRole(which);
 			model.playerTakesRole(which);

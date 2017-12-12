@@ -1,5 +1,8 @@
 package view.graphics;
 
+import java.util.Map;
+import java.util.HashMap;
+
 import java.awt.Point;
 import javax.swing.JComponent;
 
@@ -21,8 +24,11 @@ public class PlayerBenchComponent extends JComponent {
 	private Point nextPlayerSlot;
 	private int numPlayers;
 
+	private Map<Integer, PlayerComponent> players;
+
 	public PlayerBenchComponent(Point origin) {
 		setLayout(null);
+		this.players = new HashMap<>();
 		this.numPlayers = 0;
 		this.origin = new Point(origin);
 		this.nextPlayerSlot = new Point(0, 0);
@@ -31,6 +37,7 @@ public class PlayerBenchComponent extends JComponent {
 	}
 
 	public void takePlayerComponent(PlayerComponent npc) {
+		players.put(npc.getId(), npc);
 		add(npc);
 		npc.move(nextPlayerSlot);
 		if (numPlayers == 4) {
@@ -38,6 +45,11 @@ public class PlayerBenchComponent extends JComponent {
 			nextPlayerSlot.x = -DICE_WIDTH;
 		}
 		nextPlayerSlot.x += DICE_WIDTH;
+	}
+
+	public void removePlayerComponent(int playerId) {
+		// TEMP
+		remove(players.get(playerId));
 	}
 
 }

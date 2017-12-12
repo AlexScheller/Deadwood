@@ -2,7 +2,7 @@ package view.events;
 
 public interface ChildEventListener {
 
-	public void newGameEvent();
+	public void newGameButtonClickEvent();
 
 	public void roleClickEvent(String which);
 

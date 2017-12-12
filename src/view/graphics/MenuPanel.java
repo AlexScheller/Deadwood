@@ -25,7 +25,7 @@ public class MenuPanel extends JPanel {
 		JButton newGameButton = new JButton("New Game");
 		newGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cel.newGameEvent();
+				cel.newGameButtonClickEvent();
 			}
 		});
 		newGameButton.setBounds(0, 0, 200, 50);

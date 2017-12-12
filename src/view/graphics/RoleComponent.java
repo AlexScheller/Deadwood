@@ -33,21 +33,6 @@ public class RoleComponent extends JComponent {
 		// System.out.println("setting new role component");
 		// System.out.println("origin: {" + origin.x + ", " + origin.y + "}");
 		setBounds(origin.x, origin.y, DICE_HEIGHT, DICE_WIDTH);
-		
-		// hard coded for testing purposes
-		
-		// PlayerComponent pc = new PlayerComponent(3, 'y', cel);
-		// pc.move(new Point(0, 0));
-		// add(pc);
-
-		// takePlayerComponent(new PlayerComponent(3, 'g', cel));
-
-		// PlayerComponent npc = new PlayerComponent(4, 'r', cel);
-		// this.pc = npc;
-		// this.pc = new PlayerComponent(4, 'r', cel);
-		// pc.move(origin);
-		// add(pc);
-		// setOpaque(false);
 
 		addMouseListener(new MouseAdapter () {
 			public void mouseClicked(MouseEvent e) {

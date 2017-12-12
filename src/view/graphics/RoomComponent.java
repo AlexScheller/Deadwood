@@ -22,6 +22,14 @@ public abstract class RoomComponent extends JComponent {
 	// 	}
 	// }
 
+	public void evictPlayer(int playerId) {
+		pbc.removePlayerComponent(playerId);
+	}
+
+	public void acceptPlayer(PlayerComponent npc) {
+		pbc.takePlayerComponent(npc);
+	}
+
 	public void setBounds() {
 		// these bounds may need adjusting
 		setBounds(0, 0, 1200, 900);

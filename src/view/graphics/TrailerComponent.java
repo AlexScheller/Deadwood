@@ -11,7 +11,7 @@ public class TrailerComponent extends RoomComponent {
 		setLayout(null);
 		// temporarily hard coded for testing purposes
 		this.pbc = new PlayerBenchComponent(new Point(991, 248));
-		pbc.takePlayerComponent(new PlayerComponent(1, 'o', cel));
+		// pbc.takePlayerComponent(new PlayerComponent(1, 'o', cel));
 		add(pbc);
 		// setOpaque(false);
 	}

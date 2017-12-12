@@ -7,6 +7,7 @@ import model.player.Player;
 import model.DeadwoodModel;
 import model.ModelListener;
 
+import view.graphics.PlayerInfo;
 // NOTE: this is currently just a dummy class, as major
 // changes to the design of the model and ModelListener
 // took place during the development of the GraphicalView
@@ -20,6 +21,11 @@ public class ConsoleView
 	@Override
 	public void setListener(ViewListener vl) {
 		this.listener = vl;
+	}
+
+	@Override
+	public void newPlayersEvent(PlayerInfo[] infos) {
+		System.out.println("new player info event");
 	}
 
 	@Override
@@ -52,6 +58,12 @@ public class ConsoleView
 	public void playerRehearses() {
 		// TEMP
 		System.out.println("player rehearses");
+	}
+
+	@Override
+	public void playerMoves(int playerId, String from, String to) {
+		// TEMP
+		System.out.println("Player " + playerId + " moves from " + from + " to " + to);
 	}
 
 	/*
