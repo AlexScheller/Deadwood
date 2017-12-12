@@ -49,9 +49,7 @@ public class GraphicalView
 		System.out.println("new game event intercepted");
 		// number of players is currently hard-coded for
 		// testing purposes
-		listener.newGameRequest(2);
-		// this.players = new PlayerInfo[2];
-		// paint();
+		listener.newGameRequest(7);
 		repaint();
 	}
 
@@ -59,14 +57,14 @@ public class GraphicalView
 		System.out.println("role click event intercepted: " + which);
 	}
 
-	public void playerClickEvent(String which) {
-		System.out.println("player click event intercepted: " + which);
+	public void playerClickEvent(int id) {
+		System.out.println("player click event intercepted: " + id);
 	}
 
 	// PROTOTYPE_CHAIN: 1
-	public void playerHoverEvent(String which) {
-		Image playerImage = AssetBank.getInstance().getAsset(which);
-		mp.displayHoveredPlayer(playerImage);
+	public void playerHoverEvent(int id) {
+		// Image playerImage = AssetBank.getInstance().getAsset(which);
+		mp.displayHoveredPlayer(players[id].toPlayerInfo());
 	}
 
 	// PROTOTYPE_CHAIN: 1

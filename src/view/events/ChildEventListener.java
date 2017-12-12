@@ -6,12 +6,12 @@ public interface ChildEventListener {
 
 	public void roleClickEvent(String which);
 
-	public void playerClickEvent(String which);
+	public void playerClickEvent(int id);
 
 	// PROTOTYPE_CHAIN: 1
-	public void playerHoverEvent(String which);
+	public void playerHoverEvent(int id);
 
-	// prototype_CHAIN: 1
+	// PROTOTYPE_CHAIN: 1
 	public void playerUnHoverEvent();
 
 	public void cardClickEvent(String which);

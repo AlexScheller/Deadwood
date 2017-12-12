@@ -5,7 +5,7 @@ public class PlayerInfo {
 
 	public int id;
 	public int level;
-	// public char color;
+	public char color;
 	public int dollars;
 	public int credits;
 

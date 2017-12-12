@@ -2,6 +2,7 @@ package view.graphics;
 
 import java.awt.Point;
 import java.awt.Image;
+import java.awt.Graphics;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;
@@ -15,9 +16,9 @@ import static view.graphics.Dimensions.*;
 public class MenuPanel extends JPanel {
 
 	// PROTOTYPE_CHAIN: 1
-	private Point HoverPlayerPoint;
+	private Point PlayerInfoOrigin;
 	// PROTOTYPE_CHAIN: 1
-	private Image nullImage;
+	// private Image nullImage;
 
 	public MenuPanel(ChildEventListener cel) {
 		setLayout(null);
@@ -31,19 +32,28 @@ public class MenuPanel extends JPanel {
 		newGameButton.setBounds(0, 0, 200, 50);
 		add(newGameButton);
 		// PROTOTYPE_CHAIN: 1
-		this.HoverPlayerPoint = new Point(0, 60);
+		this.PlayerInfoOrigin = new Point(0, 100);
 		// PROTOTYPE_CHAIN: 1
-		this.nullImage = AssetBank.getInstance().getAsset("g6");
+		// this.nullImage = AssetBank.getInstance().getAsset("g6");
 	}
 
 	// PROTOTYPE_CHAIN: 1
-	public void displayHoveredPlayer(Image playerImage) {
-		getGraphics().drawImage(playerImage, HoverPlayerPoint.x, HoverPlayerPoint.y, null);
+	public void displayHoveredPlayer(PlayerInfo pi) {
+		Graphics g = getGraphics();
+		Point pio = PlayerInfoOrigin;
+		String assetString = pi.color + Integer.toString(pi.level);
+		Image playerImage = AssetBank.getInstance().getAsset(assetString);
+		g.drawImage(playerImage, pio.x, pio.y, null);
+		g.drawString("Dollars: " + pi.dollars, pio.x, pio.y + 55);
+		g.drawString("Credits: " + pi.credits, pio.x, pio.y + 70);
+		// g.drawString("hello", HoverPlayerPoint.x, 100);
+		// getGraphics().drawImage(playerImage, HoverPlayerPoint.x, HoverPlayerPoint.y, null);
 	}
 
 	// PROTOTYPE_CHAIN: 1
 	public void removeHoveredPlayer() {
-		getGraphics().drawImage(nullImage, HoverPlayerPoint.x, HoverPlayerPoint.y, null);
+		repaint();
+		// getGraphics().drawImage(nullImage, HoverPlayerPoint.x, HoverPlayerPoint.y, null);
 	}
 
 }

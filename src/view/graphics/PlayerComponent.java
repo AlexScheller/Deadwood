@@ -32,17 +32,27 @@ public class PlayerComponent extends JComponent {
 		addMouseListener(new MouseAdapter () {
 			public void mouseClicked(MouseEvent e) {
 				// System.out.println("mouse clicked on player");
-				cel.playerClickEvent(color + Integer.toString(level));
+				cel.playerClickEvent(id);
 			}
 			// PROTOTYPE_CHAIN: 1
 			public void mouseEntered(MouseEvent e) {
-				cel.playerHoverEvent(color + Integer.toString(level));
+				cel.playerHoverEvent(id);
 			}
 			// PROTOTYPE_CHAIN: 1
 			public void mouseExited(MouseEvent e) {
 				cel.playerUnHoverEvent();
 			}
 		});
+	}
+
+	public PlayerInfo toPlayerInfo() {
+		PlayerInfo ret = new PlayerInfo();
+		ret.id = id;
+		ret.level = level;
+		ret.color = color;
+		ret.dollars = dollars;
+		ret.credits = credits;
+		return ret;
 	}
 
 	public int getId() {

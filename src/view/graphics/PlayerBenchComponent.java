@@ -14,6 +14,10 @@ import static view.graphics.Dimensions.*;
  * Point for the bench, and the bench will handle the
  * positioning/display of players internally.
  */
+
+// TODO: there's a bug where moving too fast from one
+// player component to another fails to trigger the
+// on hover event.
 public class PlayerBenchComponent extends JComponent {
 
 	// see model.player.PlayerFactory.java
@@ -33,18 +37,19 @@ public class PlayerBenchComponent extends JComponent {
 		this.origin = new Point(origin);
 		this.nextPlayerSlot = new Point(0, 0);
 		// setBounds(origin.x, origin.y, DICE_WIDTH * 4, DICE_HEIGHT * 2);
-		setBounds(origin.x, origin.y, DICE_WIDTH * 4, DICE_HEIGHT * 2);
+		setBounds(origin.x, origin.y, (DICE_WIDTH * 4) + 8, (DICE_HEIGHT * 2) + 2);
 	}
 
 	public void takePlayerComponent(PlayerComponent npc) {
+		numPlayers++;
 		players.put(npc.getId(), npc);
 		add(npc);
 		npc.move(nextPlayerSlot);
 		if (numPlayers == 4) {
-			nextPlayerSlot.y += DICE_HEIGHT;
+			nextPlayerSlot.y += DICE_HEIGHT + 2;
 			nextPlayerSlot.x = -DICE_WIDTH;
 		}
-		nextPlayerSlot.x += DICE_WIDTH;
+		nextPlayerSlot.x += DICE_WIDTH + 2;
 	}
 
 	public void removePlayerComponent(int playerId) {
