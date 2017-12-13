@@ -51,11 +51,16 @@ public class DeadwoodController implements ViewListener {
 		}
 	}
 
+	// PROTOTYPE_CHAIN: 2
+	public void endTurnRequest() {
+		listener.playerEndsTurn();
+	}
+
 	public void playerActRequest() {
 		System.out.println("Player " + (model.getCurrentPlayer().getId() + 1) + " acts");
 		try {
 			// model.getCurrentPlayer().act();
-			model.playerActs();
+			listener.playerActs();
 		} catch (Exception e) {
 			exitOnException(e);
 		}
@@ -65,7 +70,7 @@ public class DeadwoodController implements ViewListener {
 		System.out.println("Player " + (model.getCurrentPlayer().getId() + 1) + " rehearses");
 		try {
 			// model.getCurrentPlayer().rehearse();
-			model.playerRehearses();
+			listener.playerRehearses();
 		} catch (Exception e) {
 			exitOnException(e);
 		}
@@ -75,7 +80,7 @@ public class DeadwoodController implements ViewListener {
 		System.out.println("player move request intercepted");
 		try {
 			// model.getCurrentPlayer().move(where);
-			model.playerMoves(where);
+			listener.playerMoves(where);
 		} catch (Exception e) {
 			exitOnException(e);
 		}
@@ -89,7 +94,7 @@ public class DeadwoodController implements ViewListener {
 		System.out.println("Player " + (model.getCurrentPlayer().getId() + 1) + " takes roll: " + which);
 		try {
 			// model.getCurrentPlayer().takeRole(which);
-			model.playerTakesRole(which);
+			listener.playerTakesRole(which);
 			// model.nextTurn();
 		} catch (Exception e) {
 			exitOnException(e);
@@ -98,7 +103,7 @@ public class DeadwoodController implements ViewListener {
 	
 	public void playerUpgradeRequest(int rank, String currency) {
 		try {
-			model.playerUpgrades(rank, currency);
+			listener.playerUpgrades(rank, currency);
 		} catch (IllegalStateException e) {
 			System.out.println(e.getMessage());
 		}

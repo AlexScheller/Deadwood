@@ -72,6 +72,11 @@ public class GraphicalView
 		mp.removeHoveredPlayer();
 	}
 
+	// PROTOTYPE_CHAIN: 2
+	public void endTurnButtonClickEvent() {
+		listener.endTurnRequest();
+	}
+
 	public void cardClickEvent(String where, String which) {
 		System.out.println("card click event intercepted: " + which + " in " + where);
 		listener.playerMoveRequest(where);
@@ -103,6 +108,12 @@ public class GraphicalView
 	public void newDayEvent() {
 		// TEMP
 		System.out.println("new day event intercepted");
+	}
+
+	// PROTOTYPE_CHAIN: 3
+	@Override
+	public void newTurnEvent(int id) {
+		mp.displayCurrentPlayer(players[id].toPlayerInfo());
 	}
 
 	@Override

@@ -40,7 +40,10 @@ public class PlayerBenchComponent extends JComponent {
 		setBounds(origin.x, origin.y, (DICE_WIDTH * 4) + 8, (DICE_HEIGHT * 2) + 2);
 	}
 
-	public void takePlayerComponent(PlayerComponent npc) {
+	public void takePlayerComponent(PlayerComponent npc) throws IllegalStateException {
+		if (numPlayers == 8) {
+			throw new IllegalStateException("bench already contains 8 players");
+		}
 		numPlayers++;
 		players.put(npc.getId(), npc);
 		add(npc);
@@ -52,9 +55,26 @@ public class PlayerBenchComponent extends JComponent {
 		nextPlayerSlot.x += DICE_WIDTH + 2;
 	}
 
-	public void removePlayerComponent(int playerId) {
+	public void removePlayerComponent(int playerId) throws IllegalStateException {
 		// TEMP
-		remove(players.get(playerId));
+		if (numPlayers == 0) {
+			throw new IllegalStateException("bench is empty");
+		}
+		numPlayers--;
+		remove(players.remove(playerId));
+		// fill the gap
+		int index = 1;
+		Point curr = new Point(0, 0);
+		for (PlayerComponent pc : players.values()) {
+			pc.move(curr);
+			if (index == 4) {
+				curr.y += DICE_HEIGHT + 2;
+				curr.x = -DICE_WIDTH;
+			}
+			curr.x += DICE_WIDTH + 2;
+		}
+		nextPlayerSlot.move(curr.x, curr.y);
+		// repaint()
 	}
 
 }

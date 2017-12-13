@@ -19,6 +19,9 @@ public interface ModelListener {
 
 	public void newDayEvent();
 
+	// PROTOTYPE_CHAIN: 3
+	public void newTurnEvent(int playerId);
+
 	/* Movie Set methods */
 	
 	public void sceneWrapEvent(String setName, String sceneTitle);

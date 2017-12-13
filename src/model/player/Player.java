@@ -120,6 +120,11 @@ public class Player {
 		this.hasMoved = false;
 	}
 
+	// PROTOTYPE_CHAIN: 2
+	public void endTurn() {
+		this.hasMoved = false;
+	}
+
 	/* below is for debugging, use at your own risk */
 	public void teleport(Room where) {
 		this.currentRoom = where;

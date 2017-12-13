@@ -66,6 +66,12 @@ public class ConsoleView
 		System.out.println("Player " + playerId + " moves from " + from + " to " + to);
 	}
 
+	// PROTOTYPE_CHAIN: 3
+	@Override
+	public void newTurnEvent(int playerId) {
+		System.out.println("New turn for player: " + playerId);
+	}
+
 	/*
 	private DeadwoodModel model;
 

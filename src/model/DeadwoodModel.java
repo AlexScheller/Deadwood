@@ -152,6 +152,7 @@ public class DeadwoodModel
 		for (Player p : players) {
 			p.newDay();
 		}
+		listener.newTurnEvent(currentPlayerIndex);
 	}
 
 	// public void nextTurn() {
@@ -185,6 +186,14 @@ public class DeadwoodModel
 		players[currentPlayerIndex].act();
 		// String res = players[currentPlayerIndex].act();
 		// listener.playerActResponse(res);
+	}
+
+	// PROTOTYPE_CHAIN: 2
+	public void playerEndsTurn() {
+		players[currentPlayerIndex].endTurn();
+		currentPlayerIndex++;
+		currentPlayerIndex %= players.length;
+		listener.newTurnEvent(currentPlayerIndex);
 	}
 
 	public void playerRehearses() throws IllegalStateException {

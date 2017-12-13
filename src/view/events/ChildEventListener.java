@@ -14,6 +14,9 @@ public interface ChildEventListener {
 	// PROTOTYPE_CHAIN: 1
 	public void playerUnHoverEvent();
 
+	// PROTOTYPE_CHAIN: 2
+	public void endTurnButtonClickEvent();
+
 	public void cardClickEvent(String where, String which);
 
 }

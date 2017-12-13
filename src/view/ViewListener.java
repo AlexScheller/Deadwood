@@ -4,6 +4,9 @@ public interface ViewListener {
 
 	public void newGameRequest(int numPlayers); // , ModelListener ml);
 
+	// PROTOTYPE_CHAIN: 2
+	public void endTurnRequest();
+
 	public void playerActRequest();
 
 	public void playerRehearseRequest();

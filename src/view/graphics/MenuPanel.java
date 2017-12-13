@@ -16,9 +16,11 @@ import static view.graphics.Dimensions.*;
 public class MenuPanel extends JPanel {
 
 	// PROTOTYPE_CHAIN: 1
-	private Point PlayerInfoOrigin;
-	// PROTOTYPE_CHAIN: 1
-	// private Image nullImage;
+	private Point hoveredPlayerInfoOrigin;
+	// PROTOTYPE_CHAIN: 3
+	// private Point currentPlayerInfoOrigin;
+	// Image currentPlayerImage
+	private PlayerInfoComponent pic;	
 
 	public MenuPanel(ChildEventListener cel) {
 		setLayout(null);
@@ -31,24 +33,55 @@ public class MenuPanel extends JPanel {
 		});
 		newGameButton.setBounds(0, 0, 200, 50);
 		add(newGameButton);
+
+		// PROTOTYPE_CHAIN: 2
+		JButton endTurnButton = new JButton("End Turn");
+		endTurnButton.addActionListener(new ActionListener () {
+			public void actionPerformed(ActionEvent e) {
+				cel.endTurnButtonClickEvent();
+			}
+		});
+		endTurnButton.setBounds(0, 300, 200, 50);
+		add(endTurnButton);
+
 		// PROTOTYPE_CHAIN: 1
-		this.PlayerInfoOrigin = new Point(0, 100);
-		// PROTOTYPE_CHAIN: 1
-		// this.nullImage = AssetBank.getInstance().getAsset("g6");
+		this.hoveredPlayerInfoOrigin = new Point(0, 100);
+
+		// PROTOTYPE_CHAIN: 3
+		// this.currentPlayerInfoOrigin = new Point(0, 200);
+		this.pic = new PlayerInfoComponent(new Point(0, 200));
+		add(pic);
 	}
 
 	// PROTOTYPE_CHAIN: 1
 	public void displayHoveredPlayer(PlayerInfo pi) {
 		Graphics g = getGraphics();
-		Point pio = PlayerInfoOrigin;
+		Point hpio = hoveredPlayerInfoOrigin;
 		String assetString = pi.color + Integer.toString(pi.level);
 		Image playerImage = AssetBank.getInstance().getAsset(assetString);
-		g.drawImage(playerImage, pio.x, pio.y, null);
-		g.drawString("Dollars: " + pi.dollars, pio.x, pio.y + 55);
-		g.drawString("Credits: " + pi.credits, pio.x, pio.y + 70);
+		g.drawImage(playerImage, hpio.x, hpio.y, null);
+		g.drawString("Dollars: " + pi.dollars, hpio.x, hpio.y + 55);
+		g.drawString("Credits: " + pi.credits, hpio.x, hpio.y + 70);
 		// g.drawString("hello", HoverPlayerPoint.x, 100);
 		// getGraphics().drawImage(playerImage, HoverPlayerPoint.x, HoverPlayerPoint.y, null);
 	}
+
+	// PROTO_TYPE_CHAIN: 3
+	public void displayCurrentPlayer(PlayerInfo pi) {
+		pic.setInfo(pi);
+		repaint();
+	}
+	// public void displayCurrentPlayer(PlayerInfo pi) {
+	// 	System.out.println("displaying new player");
+	// 	repaint();
+	// 	Graphics g = getGraphics();
+	// 	Point cpio = currentPlayerInfoOrigin;
+	// 	String assetString = pi.color + Integer.toString(pi.level);
+	// 	Image playerImage = AssetBank.getInstance().getAsset(assetString);
+	// 	g.drawImage(playerImage, cpio.x, cpio.y, null);
+	// 	g.drawString("Dollars: " + pi.dollars, cpio.x, cpio.y + 55);
+	// 	g.drawString("Credits: " + pi.credits, cpio.x, cpio.y + 70);
+	// }
 
 	// PROTOTYPE_CHAIN: 1
 	public void removeHoveredPlayer() {
