@@ -54,11 +54,11 @@ public class ConsoleView
 		System.out.println("new scene: " + sceneName + " in: " + setName);
 	}
 
-	@Override
-	public void playerRehearses() {
-		// TEMP
-		System.out.println("player rehearses");
-	}
+	// @Override
+	// public void playerRehearses() {
+	// 	// TEMP
+	// 	System.out.println("player rehearses");
+	// }
 
 	@Override
 	public void playerMoves(int playerId, String from, String to) {

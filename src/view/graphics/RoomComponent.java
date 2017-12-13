@@ -11,7 +11,8 @@ public abstract class RoomComponent extends JComponent {
 
 	// protected Point occupantsOrigin;
 	protected PlayerBenchComponent pbc;
-
+	protected String name;
+	
 	public void evictPlayer(int playerId) {
 		pbc.removePlayerComponent(playerId);
 	}

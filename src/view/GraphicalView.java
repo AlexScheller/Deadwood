@@ -72,8 +72,9 @@ public class GraphicalView
 		mp.removeHoveredPlayer();
 	}
 
-	public void cardClickEvent(String which) {
-		System.out.println("card click event intercepted: " + which);
+	public void cardClickEvent(String where, String which) {
+		System.out.println("card click event intercepted: " + which + " in " + where);
+		listener.playerMoveRequest(where);
 	}
 
 	// DeadwoodView methods
@@ -127,13 +128,14 @@ public class GraphicalView
 
 	@Override
 	public void playerMoves(int playerId, String from, String to) {
+		System.out.println("moving player: " + players[playerId].getId());
 		bp.movePlayer(players[playerId], from, to);
 	}
 
-	@Override
-	public void playerRehearses() {
-		// TEMP
-		System.out.println("player rehearses");
-	}
+	// @Override
+	// public void playerRehearses() {
+	// 	// TEMP
+	// 	System.out.println("player rehearses");
+	// }
 
 }

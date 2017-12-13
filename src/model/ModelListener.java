@@ -28,7 +28,7 @@ public interface ModelListener {
 								   int sceneId);
 
 	// Player methods
-	public void playerRehearses();
+	// public void playerRehearses();
 
 	public void playerMoves(int playerId, String from, String to);
 

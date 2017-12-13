@@ -46,13 +46,13 @@ public class BoardPanel extends JPanel {
 			add(sc);
 		}
 		RoomComponent office = new OfficeComponent(cel);
-		RoomComponent trailers = new TrailerComponent(cel);
+		RoomComponent trailer = new TrailerComponent(cel);
 		office.setBounds();
-		trailers.setBounds();
+		trailer.setBounds();
 		rooms.put("office", office);
-		rooms.put("trailers", trailers);
+		rooms.put("trailer", trailer);
 		add(office);
-		add(trailers);
+		add(trailer);
 		// PlayerComponent pc = new PlayerComponent(3, 'y', cel);
 		// pc.move(new Point(0, 0));
 		// add(pc);
@@ -65,6 +65,7 @@ public class BoardPanel extends JPanel {
 	}
 
 	public void movePlayer(PlayerComponent pc, String from, String to) {
+		System.out.println(from + ":" + to);
 		if (from != null) {
 			rooms.get(from).evictPlayer(pc.getId());
 		}

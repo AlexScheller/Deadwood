@@ -35,6 +35,9 @@ public class DeadwoodModel
 		this.board = board;
 		this.players = players;
 		board.setListener(this);
+		for (Player p : players) {
+			p.setListener(this);
+		}
 	}
 
 	public void setListener(ModelListener ml) {
@@ -61,21 +64,33 @@ public class DeadwoodModel
 
 	/* ChildEventListenerMethods */
 
+	/* Scene methods */
+
+	@Override
 	public void newSceneInSetEvent(String setName, String sceneTitle,
 								   int setId) {
 		listener.newSceneInSetEvent(setName, sceneTitle, setId);
 	}
 
+	@Override
 	public void takeFinishEvent(String setName) {
 		listener.takeFinishEvent(setName);
 	}
 
+	@Override
 	public void sceneWrapEvent(String setName, String sceneTitle) {
 		listener.sceneWrapEvent(setName, sceneTitle);
 		unwrappedScenes--;
 		if (unwrappedScenes == 1) {
 			newDay();
 		}
+	}
+
+	/* Player methods */
+	@Override
+	public void playerMovesEvent(int id, String from, String to) {
+		System.out.println("finally telling view to update from move");
+		listener.playerMoves(id, from, to);
 	}
 
 	// this method collects necessary data from the
@@ -103,7 +118,7 @@ public class DeadwoodModel
 			currentPlayerIndex = (new Random()).nextInt(players.length);
 			listener.newPlayersEvent(playersToPlayerInfos());
 			for (int i = 0; i < players.length; i++) {
-				listener.playerMoves(players[i].getId(), null, "trailers");
+				listener.playerMoves(players[i].getId(), null, "trailer");
 			}
 			newDay();
 		}

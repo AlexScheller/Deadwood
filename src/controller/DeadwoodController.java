@@ -72,6 +72,7 @@ public class DeadwoodController implements ViewListener {
 	}
 
 	public void playerMoveRequest(String where) {
+		System.out.println("player move request intercepted");
 		try {
 			// model.getCurrentPlayer().move(where);
 			model.playerMoves(where);

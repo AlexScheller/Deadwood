@@ -21,12 +21,15 @@ public class SetComponent extends RoomComponent {
 	private Image diceImage;
 	private Point[] takeOrigins;
 	private int takesFinished;
+	private boolean filming;
 	private Map<String, RoleComponent> extras;
 
 	// TODO: maybe hard code the image
 	public SetComponent(RoomInfo ri, Image takeImage,
 					Image diceImage, ChildEventListener cel) {
 		setLayout(null);
+		this.name = ri.name;
+		this.filming = false;
 		this.takeImage = takeImage;
 		this.diceImage = diceImage;
 		this.cardOrigin = ri.cardOrigin;
@@ -40,21 +43,31 @@ public class SetComponent extends RoomComponent {
 		this.takesFinished = takeOrigins.length; // placeholder
 		// set up extra roles
 		this.extras = new HashMap<>();
-		for (String name : ri.extraOrigins.keySet()) {
-			RoleComponent rc = new RoleComponent(name,
-												 ri.extraOrigins.get(name),
+		for (String roleName : ri.extraOrigins.keySet()) {
+			RoleComponent rc = new RoleComponent(roleName,
+												 ri.extraOrigins.get(roleName),
 												 cel);
 			rc.setDieImage(diceImage); // temporarily hard coded
 			extras.put(name, rc);
 			// rc.takePlayerComponent(new PlayerComponent(3, 'g', cel));
 			add(rc);
 		}
-		this.card = new CardComponent(cardOrigin, cel);
+		this.card = new CardComponent(name, cardOrigin, cel);
 		add(card);
 	}
 
 	public void newScene(String which, int cardId) {
 		card.setNewCard(which, cardId);
+	}
+
+	@Override
+	public void acceptPlayer(PlayerComponent pc) {
+		super.acceptPlayer(pc);
+		if (!filming) {
+			filming = true;
+			card.flip();
+		}
+		repaint();
 	}
 
 	@Override

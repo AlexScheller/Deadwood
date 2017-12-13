@@ -2,7 +2,7 @@ package model.player;
 
 import java.util.Random;
 
-import model.ModelListener;
+import model.events.ChildEventListener;
 import model.board.room.Room;
 import model.board.room.MovieSet;
 import model.board.room.CastingOffice;
@@ -27,7 +27,9 @@ public class Player {
 
 	private Random dice;
 
-	private ModelListener listener;
+	// private ModelListener listener;
+
+	private ChildEventListener listener;
 
 	/* Constructors */
 
@@ -53,8 +55,8 @@ public class Player {
 		this.dollars = dollars;
 	}
 
-	public void setListener(ModelListener ml) {
-		this.listener = ml;
+	public void setListener(ChildEventListener cel) {
+		this.listener = cel;
 	}
 
 	/* Functional Methods */
@@ -80,7 +82,7 @@ public class Player {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
 			if (rehersalChips < (roomAsSet.getBudget() - 1)) {
 				rehersalChips++;
-				listener.playerRehearses();
+				// listener.playerRehearses();
 			} else {
 				throw new IllegalStateException("player already has max rehearsal chips");
 			}
@@ -126,8 +128,11 @@ public class Player {
 	/* above is for debugging */
 
 	public void move(String where) throws IllegalArgumentException {
+		String from = currentRoom.getName();
 		this.currentRoom = currentRoom.getNeighbor(where);
 		this.hasMoved = true;
+		System.out.println("moving");
+		listener.playerMovesEvent(id, from, where);
 	}
 
 	public void newDay() {

@@ -9,6 +9,7 @@ public class OfficeComponent extends RoomComponent {
 
 	public OfficeComponent(ChildEventListener cel) {
 		setLayout(null);
+		this.name = "office";
 		// temporarily hard coded for testing purposes
 		this.pbc = new PlayerBenchComponent(new Point(9, 459));
 		// pbc.takePlayerComponent(new PlayerComponent(1, 'o', cel));

@@ -25,6 +25,7 @@ public class CardComponent extends JComponent {
 	private boolean flipped;
 
 	private String title;
+	private String setName;
 
 	private Point origin;
 	private final int width = 205;
@@ -33,8 +34,9 @@ public class CardComponent extends JComponent {
 	private Image diceImage; // temporary
 	private Map<String, RoleComponent> stars;
 
-	public CardComponent(Point origin, ChildEventListener cel) {
+	public CardComponent(String setName, Point origin, ChildEventListener cel) {
 	// public CardPanel(InputEventListener iel) {
+		this.setName = setName;
 		this.listener = cel;
 		this.title = "no scene";
 		setLayout(null);
@@ -47,13 +49,13 @@ public class CardComponent extends JComponent {
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// System.out.println("Card Clicked");
-				listener.cardClickEvent(title);
-				try {
-					flip();
-				} catch (IllegalStateException ex) {
-					ex.printStackTrace();
-					System.exit(1);
-				}
+				listener.cardClickEvent(setName, title);
+				// try {
+				// 	flip();
+				// } catch (IllegalStateException ex) {
+				// 	ex.printStackTrace();
+				// 	System.exit(1);
+				// }
 			}
 		});
 	}
@@ -88,13 +90,16 @@ public class CardComponent extends JComponent {
 				for (String key : stars.keySet()) {
 					add(stars.get(key));
 				}
-			} else {
-				for (String key : stars.keySet()) {
-					remove(stars.get(key));
-				}
+				flipped = true;
+				repaint();
 			}
-			flipped = !flipped;
-			repaint();
+			// } else {
+			// 	for (String key : stars.keySet()) {
+			// 		remove(stars.get(key));
+			// 	}
+			// }
+			// flipped = !flipped
+			// repaint();
 		} else {
 			throw new IllegalStateException("Cannot flip, Card Panel unoccupied.");
 		}

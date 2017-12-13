@@ -9,6 +9,7 @@ public class TrailerComponent extends RoomComponent {
 
 	public TrailerComponent(ChildEventListener cel) {
 		setLayout(null);
+		this.name = "trailer";
 		// temporarily hard coded for testing purposes
 		this.pbc = new PlayerBenchComponent(new Point(991, 248));
 		// pbc.takePlayerComponent(new PlayerComponent(1, 'o', cel));
