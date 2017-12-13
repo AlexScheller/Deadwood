@@ -72,6 +72,7 @@ public class PlayerBenchComponent extends JComponent {
 				curr.x = -DICE_WIDTH;
 			}
 			curr.x += DICE_WIDTH + 2;
+			index++;
 		}
 		nextPlayerSlot.move(curr.x, curr.y);
 		// repaint()

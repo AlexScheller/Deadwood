@@ -16,11 +16,12 @@ import static view.graphics.Dimensions.*;
 public class MenuPanel extends JPanel {
 
 	// PROTOTYPE_CHAIN: 1
-	private Point hoveredPlayerInfoOrigin;
+	// private Point hoveredPlayerInfoOrigin;
+	private PlayerInfoComponent hpic;
 	// PROTOTYPE_CHAIN: 3
 	// private Point currentPlayerInfoOrigin;
 	// Image currentPlayerImage
-	private PlayerInfoComponent pic;	
+	private PlayerInfoComponent cpic;	
 
 	public MenuPanel(ChildEventListener cel) {
 		setLayout(null);
@@ -45,30 +46,35 @@ public class MenuPanel extends JPanel {
 		add(endTurnButton);
 
 		// PROTOTYPE_CHAIN: 1
-		this.hoveredPlayerInfoOrigin = new Point(0, 100);
+		// this.hoveredPlayerInfoOrigin = new Point(0, 100);
 
+		this.hpic = new PlayerInfoComponent(new Point(0, 100), "Hovered player:");
 		// PROTOTYPE_CHAIN: 3
 		// this.currentPlayerInfoOrigin = new Point(0, 200);
-		this.pic = new PlayerInfoComponent(new Point(0, 200));
-		add(pic);
+		this.cpic = new PlayerInfoComponent(new Point(0, 200), "Current player:");
+		add(cpic);
 	}
 
 	// PROTOTYPE_CHAIN: 1
 	public void displayHoveredPlayer(PlayerInfo pi) {
-		Graphics g = getGraphics();
-		Point hpio = hoveredPlayerInfoOrigin;
-		String assetString = pi.color + Integer.toString(pi.level);
-		Image playerImage = AssetBank.getInstance().getAsset(assetString);
-		g.drawImage(playerImage, hpio.x, hpio.y, null);
-		g.drawString("Dollars: " + pi.dollars, hpio.x, hpio.y + 55);
-		g.drawString("Credits: " + pi.credits, hpio.x, hpio.y + 70);
+		hpic.setInfo(pi);
+		add(hpic);
+		repaint();
+		// repaint();
+		// Graphics g = getGraphics();
+		// Point hpio = hoveredPlayerInfoOrigin;
+		// String assetString = pi.color + Integer.toString(pi.level);
+		// Image playerImage = AssetBank.getInstance().getAsset(assetString);
+		// g.drawImage(playerImage, hpio.x, hpio.y, null);
+		// g.drawString("Dollars: " + pi.dollars, hpio.x, hpio.y + 55);
+		// g.drawString("Credits: " + pi.credits, hpio.x, hpio.y + 70);
 		// g.drawString("hello", HoverPlayerPoint.x, 100);
 		// getGraphics().drawImage(playerImage, HoverPlayerPoint.x, HoverPlayerPoint.y, null);
 	}
 
 	// PROTO_TYPE_CHAIN: 3
 	public void displayCurrentPlayer(PlayerInfo pi) {
-		pic.setInfo(pi);
+		cpic.setInfo(pi);
 		repaint();
 	}
 	// public void displayCurrentPlayer(PlayerInfo pi) {
@@ -85,6 +91,7 @@ public class MenuPanel extends JPanel {
 
 	// PROTOTYPE_CHAIN: 1
 	public void removeHoveredPlayer() {
+		remove(hpic);
 		repaint();
 		// getGraphics().drawImage(nullImage, HoverPlayerPoint.x, HoverPlayerPoint.y, null);
 	}

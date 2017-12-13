@@ -9,13 +9,15 @@ import view.loading.AssetBank;
 
 public class PlayerInfoComponent extends JComponent {
 
+	private String title;
 	private Image playerImage;
 	private PlayerInfo pi;
 	private boolean playing;
 
-	public PlayerInfoComponent(Point origin) {
+	public PlayerInfoComponent(Point origin, String title) {
 		setLayout(null);
 		setBounds(origin.x, origin.y, 200, 200);
+		this.title = title;
 		this.playing = false;
 	}
 
@@ -29,9 +31,10 @@ public class PlayerInfoComponent extends JComponent {
 	@Override
 	public void paintComponent(Graphics g) {
 		if (playing) {
-			g.drawImage(playerImage, 0, 0, null);
-			g.drawString("Dollars: " + pi.dollars, 0, 55);
-			g.drawString("Credits: " + pi.credits, 0, 70);
+			g.drawString(title, 0, 10);
+			g.drawImage(playerImage, 0, 20, null);
+			g.drawString("Dollars: " + pi.dollars, 0, 75);
+			g.drawString("Credits: " + pi.credits, 0, 90);
 		}
 	}
 
