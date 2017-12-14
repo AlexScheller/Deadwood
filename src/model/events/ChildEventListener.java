@@ -17,4 +17,6 @@ public interface ChildEventListener {
 
 	public void playerMovesEvent(int id, String from, String to);
 
+	public void playerTakesRoleEvent(int id);
+
 }

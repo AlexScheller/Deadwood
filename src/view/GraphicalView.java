@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import view.graphics.MenuPanel;
 import view.graphics.BoardPanel;
 import view.graphics.PlayerComponent;
+import view.graphics.RoleComponent;
 import view.graphics.PlayerInfo;
 import view.events.ChildEventListener;
 import static view.graphics.Dimensions.*;
@@ -24,6 +25,7 @@ public class GraphicalView
 	private MenuPanel mp;
 
 	private PlayerComponent[] players;
+	private RoleComponent requestingRole;
 	private char[] colors;
 
 	private ViewListener listener;
@@ -33,6 +35,7 @@ public class GraphicalView
 	public void initUI(BoardPanel bp, MenuPanel mp) {
 		setLayout(null); // absolute positioning is used
 		this.colors = new char[] {'b', 'c', 'g', 'o', 'p', 'r', 'v', 'y'};
+		this.requestingRole = null;
 		this.bp = bp;
 		this.mp = mp;
 		add(bp);
@@ -54,8 +57,10 @@ public class GraphicalView
 	}
 
 	@Override
-	public void roleClickEvent(String which) {
-		System.out.println("role click event intercepted: " + which);
+	public void roleClickEvent(RoleComponent which) {// String which) {
+		// System.out.println("role click event intercepted: " + which);
+		requestingRole = which;
+		listener.playerTakeRoleRequest(which.getName());
 	}
 
 	@Override
@@ -151,6 +156,17 @@ public class GraphicalView
 	public void playerMoves(int playerId, String from, String to) {
 		System.out.println("moving player: " + players[playerId].getId());
 		bp.movePlayer(players[playerId], from, to);
+	}
+
+	@Override
+	public void playerTakesRoleEvent(int playerId) {
+		// this seems bad practice, but a player will
+		// never take a roll unless that action was
+		// requested from the view.
+		players[playerId].takeRole(requestingRole);
+		// requestingRole.takePlayerComponent(players[playerId]);
+		requestingRole = null;
+		// bo.assignRoleToPlayer(players[playerId], which);
 	}
 
 	// @Override

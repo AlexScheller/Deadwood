@@ -66,6 +66,11 @@ public class ConsoleView
 		System.out.println("Player " + playerId + " moves from " + from + " to " + to);
 	}
 
+	@Override
+	public void playerTakesRoleEvent(int playerId) {
+		System.out.println("Player " + playerId + " takes role");
+	}
+
 	// PROTOTYPE_CHAIN: 3
 	@Override
 	public void newTurnEvent(int playerId) {

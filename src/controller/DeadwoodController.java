@@ -7,16 +7,6 @@ import model.loading.GameLoader;
 import view.DeadwoodView;
 import view.ViewListener;
 
-/*
- * Design Notes:
- * 
- * The current design assumes all input from the view should be valid,
- * therefore, if any exception caused by bad input is caught by the
- * controller the program will terminate, as it is considered a bug on
- * the view's end. 
- *
- */
-
 public class DeadwoodController implements ViewListener {
 
 	private DeadwoodModel model;
@@ -82,7 +72,10 @@ public class DeadwoodController implements ViewListener {
 			// model.getCurrentPlayer().move(where);
 			listener.playerMoves(where);
 		} catch (Exception e) {
-			exitOnException(e);
+			// TODO: relay to the view that the move
+			// request failed. Perhaps this should be
+			// done in the model instead.
+			// exitOnException(e);
 		}
 	}
 

@@ -109,6 +109,7 @@ public class Player {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
 			this.currentRole = roomAsSet.getRole(which);
 			currentRole.takeActor(this);
+			listener.playerTakesRoleEvent(id);
 			// roomAsSet.assignPlayerToRole(this, which);
 		} else {
 			throw new IllegalStateException("current room is not a set");

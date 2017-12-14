@@ -1,10 +1,12 @@
 package view.events;
 
+import view.graphics.RoleComponent;
+
 public interface ChildEventListener {
 
 	public void newGameButtonClickEvent();
 
-	public void roleClickEvent(String which);
+	public void roleClickEvent(RoleComponent which);
 
 	public void playerClickEvent(int id);
 

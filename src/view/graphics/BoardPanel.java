@@ -65,11 +65,12 @@ public class BoardPanel extends JPanel {
 	}
 
 	public void movePlayer(PlayerComponent pc, String from, String to) {
-		System.out.println(from + ":" + to);
+		System.out.println(from + " : " + to);
 		if (from != null) {
 			rooms.get(from).evictPlayer(pc.getId());
 		}
-		rooms.get(to).acceptPlayer(pc);
+		pc.moveToRoom(rooms.get(to));
+		// rooms.get(to).acceptPlayer(pc);
 	}
 
 	@Override

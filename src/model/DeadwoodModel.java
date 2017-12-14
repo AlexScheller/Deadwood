@@ -92,6 +92,11 @@ public class DeadwoodModel
 		listener.playerMoves(id, from, to);
 	}
 
+	@Override
+	public void playerTakesRoleEvent(int id) {
+		listener.playerTakesRoleEvent(id);
+	}
+
 	// this method collects necessary data from the
 	// players to be shipped to the view.
 	private PlayerInfo[] playersToPlayerInfos() {

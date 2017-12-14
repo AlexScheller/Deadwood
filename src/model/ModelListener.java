@@ -36,6 +36,8 @@ public interface ModelListener {
 	public void playerMoves(int playerId, String from, String to);
 
 	public void newPlayersEvent(PlayerInfo[] infos);
+
+	public void playerTakesRoleEvent(int playerId);
 	// public void updatePlayerInfo(int playerId, )
 
 }

@@ -36,9 +36,15 @@ public class RoleComponent extends JComponent {
 
 		addMouseListener(new MouseAdapter () {
 			public void mouseClicked(MouseEvent e) {
-				cel.roleClickEvent(name);
+				if (!occupied()) {
+					cel.roleClickEvent(RoleComponent.this);
+				}
 			}
 		});
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public void setDieImage(Image die) {
@@ -50,12 +56,14 @@ public class RoleComponent extends JComponent {
 		pc.move(new Point(0, 0));
 		add(pc);
 		setOpaque(false);
+		repaint();
 	}
 
 	public void evictPlayerComponent() {
 		remove(pc);
 		this.pc = null;
-		setOpaque(true);
+		// setOpaque(true);
+		repaint();
 	}
 
 	// public void setBounds(Point origin) {

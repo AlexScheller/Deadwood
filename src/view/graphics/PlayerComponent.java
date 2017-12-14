@@ -21,6 +21,9 @@ public class PlayerComponent extends JComponent {
 	private char color;
 	private Point origin;
 
+	private RoleComponent currentRole;
+	private RoomComponent currentRoom;
+
 	private ChildEventListener listener;
 
 	public PlayerComponent(PlayerInfo pi, char color, ChildEventListener cel) {
@@ -57,6 +60,18 @@ public class PlayerComponent extends JComponent {
 
 	public int getId() {
 		return id;
+	}
+
+	// IN_PROGRESS
+	public void takeRole(RoleComponent rc) {
+		currentRoom.evictPlayer(this.id);
+		rc.takePlayerComponent(this);
+		this.currentRole = rc;
+	}
+
+	public void moveToRoom(RoomComponent rc) {
+		this.currentRoom = rc;
+		rc.acceptPlayer(this);
 	}
 
 	public void paintComponent(Graphics g) {
