@@ -44,7 +44,7 @@ public class GraphicalView
 	}
 
 	/* ChildEventListener methods */
-
+	@Override
 	public void newGameButtonClickEvent() {
 		System.out.println("new game event intercepted");
 		// number of players is currently hard-coded for
@@ -53,32 +53,42 @@ public class GraphicalView
 		repaint();
 	}
 
+	@Override
 	public void roleClickEvent(String which) {
 		System.out.println("role click event intercepted: " + which);
 	}
 
+	@Override
 	public void playerClickEvent(int id) {
 		System.out.println("player click event intercepted: " + id);
 	}
 
 	// PROTOTYPE_CHAIN: 1
+	@Override
 	public void playerHoverEvent(int id) {
 		// Image playerImage = AssetBank.getInstance().getAsset(which);
 		mp.displayHoveredPlayer(players[id].toPlayerInfo());
 	}
 
 	// PROTOTYPE_CHAIN: 1
+	@Override
 	public void playerUnHoverEvent() {
 		mp.removeHoveredPlayer();
 	}
 
 	// PROTOTYPE_CHAIN: 2
+	@Override
 	public void endTurnButtonClickEvent() {
 		listener.endTurnRequest();
 	}
 
-	public void cardClickEvent(String where, String which) {
-		System.out.println("card click event intercepted: " + which + " in " + where);
+	// public void cardClickEvent(String where, String which) {
+	// 	System.out.println("card click event intercepted: " + which + " in " + where);
+	// 	listener.playerMoveRequest(where);
+	// }
+
+	@Override
+	public void roomClickEvent(String where) {
 		listener.playerMoveRequest(where);
 	}
 

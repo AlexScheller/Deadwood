@@ -67,7 +67,7 @@ public class SetComponent extends RoomComponent {
 			filming = true;
 			card.flip();
 		}
-		repaint();
+		// repaint();
 	}
 
 	@Override

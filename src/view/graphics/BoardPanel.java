@@ -47,8 +47,8 @@ public class BoardPanel extends JPanel {
 		}
 		RoomComponent office = new OfficeComponent(cel);
 		RoomComponent trailer = new TrailerComponent(cel);
-		office.setBounds();
-		trailer.setBounds();
+		// office.setBounds();
+		// trailer.setBounds();
 		rooms.put("office", office);
 		rooms.put("trailer", trailer);
 		add(office);

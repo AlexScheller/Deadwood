@@ -53,6 +53,7 @@ public class PlayerBenchComponent extends JComponent {
 			nextPlayerSlot.x = -DICE_WIDTH;
 		}
 		nextPlayerSlot.x += DICE_WIDTH + 2;
+		repaint();
 	}
 
 	public void removePlayerComponent(int playerId) throws IllegalStateException {
@@ -75,7 +76,7 @@ public class PlayerBenchComponent extends JComponent {
 			index++;
 		}
 		nextPlayerSlot.move(curr.x, curr.y);
-		// repaint()
+		repaint();
 	}
 
 }

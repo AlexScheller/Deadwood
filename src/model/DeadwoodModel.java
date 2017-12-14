@@ -89,7 +89,6 @@ public class DeadwoodModel
 	/* Player methods */
 	@Override
 	public void playerMovesEvent(int id, String from, String to) {
-		System.out.println("finally telling view to update from move");
 		listener.playerMoves(id, from, to);
 	}
 

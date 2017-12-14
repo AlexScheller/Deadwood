@@ -21,9 +21,9 @@ public abstract class RoomComponent extends JComponent {
 		pbc.takePlayerComponent(npc);
 	}
 
-	public void setBounds() {
-		// these bounds may need adjusting
-		setBounds(0, 0, 1200, 900);
-	}
+	// public void setBounds() {
+	// 	// these bounds may need adjusting
+	// 	setBounds(0, 0, 1200, 900);
+	// }
 
 }

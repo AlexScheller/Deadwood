@@ -49,7 +49,8 @@ public class CardComponent extends JComponent {
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// System.out.println("Card Clicked");
-				listener.cardClickEvent(setName, title);
+				// listener.cardClickEvent(setName, title);
+				listener.roomClickEvent(setName);
 				// try {
 				// 	flip();
 				// } catch (IllegalStateException ex) {

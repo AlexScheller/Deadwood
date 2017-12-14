@@ -17,6 +17,8 @@ public interface ChildEventListener {
 	// PROTOTYPE_CHAIN: 2
 	public void endTurnButtonClickEvent();
 
-	public void cardClickEvent(String where, String which);
+	// public void cardClickEvent(String where, String which);
+
+	public void roomClickEvent(String where);
 
 }
