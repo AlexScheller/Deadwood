@@ -87,6 +87,16 @@ public class GraphicalView
 		listener.endTurnRequest();
 	}
 
+	@Override
+	public void actButtonClickEvent() {
+		listener.playerActRequest();
+	}
+
+	@Override
+	public void rehearseButtonClickEvent() {
+		listener.playerRehearseRequest();
+	}
+
 	// public void cardClickEvent(String where, String which) {
 	// 	System.out.println("card click event intercepted: " + which + " in " + where);
 	// 	listener.playerMoveRequest(where);

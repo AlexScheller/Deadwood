@@ -90,7 +90,10 @@ public class DeadwoodController implements ViewListener {
 			listener.playerTakesRole(which);
 			// model.nextTurn();
 		} catch (Exception e) {
-			exitOnException(e);
+			// TODO: relay to the view that the move
+			// request failed. Perhaps this should be
+			// done in the model instead.
+			// exitOnException(e);
 		}
 	}
 	

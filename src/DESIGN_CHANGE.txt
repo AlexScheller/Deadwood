@@ -1,0 +1,8 @@
+currently many methods throw exceptions when they are called at the wrong
+time. e.g. takeRole(String which) is called, even though the player shouldn't
+be able to take the given role. This leads to a lot of exceptions being caught
+and simply thrown away, because they aren't actually game breaking. This should
+be changed in one of two ways. Either these methods should c-style return
+a boolean indicating sucess or failure, or they should require an additional
+functoion call that checks to see if they can be validly called with given
+input. I lean towards the former.

@@ -107,10 +107,14 @@ public class Player {
 	public void takeRole(String which) throws IllegalStateException, IllegalArgumentException {
 		if (currentRoom instanceof MovieSet) {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
-			this.currentRole = roomAsSet.getRole(which);
-			currentRole.takeActor(this);
-			listener.playerTakesRoleEvent(id);
-			// roomAsSet.assignPlayerToRole(this, which);
+			Role newRole = roomAsSet.getRole(which);
+			if (rank >= newRole.getRankRequired()) {
+				this.currentRole = newRole;
+				currentRole.takeActor(this);
+				listener.playerTakesRoleEvent();
+			} else {
+				throw new IllegalStateException("role to high a level for current player");
+			}
 		} else {
 			throw new IllegalStateException("current room is not a set");
 		}
@@ -133,12 +137,16 @@ public class Player {
 	}
 	/* above is for debugging */
 
-	public void move(String where) throws IllegalArgumentException {
-		String from = currentRoom.getName();
-		this.currentRoom = currentRoom.getNeighbor(where);
-		this.hasMoved = true;
-		System.out.println("moving");
-		listener.playerMovesEvent(id, from, where);
+	public void move(String where) throws IllegalArgumentException, IllegalStateException {
+		if (canMove()) {
+			String from = currentRoom.getName();
+			this.currentRoom = currentRoom.getNeighbor(where);
+			this.hasMoved = true;
+			System.out.println("moving");
+			listener.playerMovesEvent(id, from, where);
+		} else {
+			throw new IllegalStateException("player cannot move");
+		}
 	}
 
 	public void newDay() {

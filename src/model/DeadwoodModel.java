@@ -19,6 +19,7 @@ public class DeadwoodModel
 	implements ControllerListener, ChildEventListener {
 
 	private Player[] players;
+	private Player currentPlayer;
 	private int currentPlayerIndex = 0;
 	// private int day;
 	private int daysLeft;
@@ -93,8 +94,8 @@ public class DeadwoodModel
 	}
 
 	@Override
-	public void playerTakesRoleEvent(int id) {
-		listener.playerTakesRoleEvent(id);
+	public void playerTakesRoleEvent() {
+		listener.playerTakesRoleEvent(currentPlayerIndex);
 	}
 
 	// this method collects necessary data from the
@@ -120,6 +121,7 @@ public class DeadwoodModel
 			playing = true;
 			// board.newDay();
 			currentPlayerIndex = (new Random()).nextInt(players.length);
+			currentPlayer = players[currentPlayerIndex];
 			listener.newPlayersEvent(playersToPlayerInfos());
 			for (int i = 0; i < players.length; i++) {
 				listener.playerMoves(players[i].getId(), null, "trailer");
@@ -194,9 +196,10 @@ public class DeadwoodModel
 
 	// PROTOTYPE_CHAIN: 2
 	public void playerEndsTurn() {
-		players[currentPlayerIndex].endTurn();
+		currentPlayer.endTurn();
 		currentPlayerIndex++;
 		currentPlayerIndex %= players.length;
+		currentPlayer = players[currentPlayerIndex];
 		listener.newTurnEvent(currentPlayerIndex);
 	}
 
@@ -207,7 +210,8 @@ public class DeadwoodModel
 	}
 
 	public void playerMoves(String where) throws IllegalArgumentException {
-		players[currentPlayerIndex].move(where);
+		currentPlayer.move(where);
+		// players[currentPlayerIndex].move(where);
 	}
 
 	/* for debugging */
@@ -217,7 +221,12 @@ public class DeadwoodModel
 	/* for debugging */
 
 	public void playerTakesRole(String which) throws IllegalArgumentException, IllegalStateException {
-		players[currentPlayerIndex].takeRole(which);
+		if (!currentPlayer.isActing()) {
+			currentPlayer.takeRole(which);
+			playerEndsTurn();	
+		} else {
+			throw new IllegalStateException("player already in a role");
+		}
 	}
 
 	public void playerUpgrades(int rank, String currency) {

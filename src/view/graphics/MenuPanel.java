@@ -21,7 +21,9 @@ public class MenuPanel extends JPanel {
 	// PROTOTYPE_CHAIN: 3
 	// private Point currentPlayerInfoOrigin;
 	// Image currentPlayerImage
-	private PlayerInfoComponent cpic;	
+	private PlayerInfoComponent cpic;
+
+	private PossibleActionsComponent pac;
 
 	public MenuPanel(ChildEventListener cel) {
 		setLayout(null);
@@ -35,15 +37,18 @@ public class MenuPanel extends JPanel {
 		newGameButton.setBounds(0, 0, 200, 50);
 		add(newGameButton);
 
+		this.pac = new PossibleActionsComponent(cel);
+		pac.setBounds(0, 300, 200, 300);
+		add(pac);
 		// PROTOTYPE_CHAIN: 2
-		JButton endTurnButton = new JButton("End Turn");
-		endTurnButton.addActionListener(new ActionListener () {
-			public void actionPerformed(ActionEvent e) {
-				cel.endTurnButtonClickEvent();
-			}
-		});
-		endTurnButton.setBounds(0, 300, 200, 50);
-		add(endTurnButton);
+		// JButton endTurnButton = new JButton("End Turn");
+		// endTurnButton.addActionListener(new ActionListener () {
+		// 	public void actionPerformed(ActionEvent e) {
+		// 		cel.endTurnButtonClickEvent();
+		// 	}
+		// });
+		// endTurnButton.setBounds(0, 300, 200, 50);
+		// add(endTurnButton);
 
 		// PROTOTYPE_CHAIN: 1
 		// this.hoveredPlayerInfoOrigin = new Point(0, 100);
