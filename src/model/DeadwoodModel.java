@@ -189,7 +189,7 @@ public class DeadwoodModel
 
 
 	public void playerActs() throws IllegalStateException {
-		players[currentPlayerIndex].act();
+		currentPlayer.act();
 		// String res = players[currentPlayerIndex].act();
 		// listener.playerActResponse(res);
 	}

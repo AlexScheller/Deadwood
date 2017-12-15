@@ -133,6 +133,7 @@ public class GraphicalView
 	public void newDayEvent() {
 		// TEMP
 		System.out.println("new day event intercepted");
+		mp.newMessage("new day event intercepted");
 	}
 
 	// PROTOTYPE_CHAIN: 3
@@ -177,6 +178,7 @@ public class GraphicalView
 		// requestingRole.takePlayerComponent(players[playerId]);
 		requestingRole = null;
 		// bo.assignRoleToPlayer(players[playerId], which);
+		mp.newMessage("player taking role");
 	}
 
 	// @Override
