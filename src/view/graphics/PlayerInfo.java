@@ -8,5 +8,6 @@ public class PlayerInfo {
 	public char color;
 	public int dollars;
 	public int credits;
+	public int rehearsalTokens;
 
 }

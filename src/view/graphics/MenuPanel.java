@@ -1,5 +1,6 @@
 package view.graphics;
 
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -48,22 +49,24 @@ public class MenuPanel extends JPanel {
 		add(pac);
 
 		this.jta = new JTextArea(10, 10);
+		jta.setFont(new Font("Helvetica", Font.BOLD, 12));
 		jta.setLineWrap(true);
+		jta.setWrapStyleWord(true);
 		JScrollPane jsp = new JScrollPane(jta);
 		jsp.setBounds(0, 450, 200, 200);
 		add(jsp);
 	}
 
 	// PROTOTYPE_CHAIN: 1
-	public void displayHoveredPlayer(PlayerInfo pi) {
-		hpic.setInfo(pi);
+	public void displayHoveredPlayer(PlayerInfo pi, char color) {
+		hpic.setInfo(pi, color);
 		add(hpic);
 		repaint();
 	}
 
 	// PROTO_TYPE_CHAIN: 3
-	public void displayCurrentPlayer(PlayerInfo pi) {
-		cpic.setInfo(pi);
+	public void displayCurrentPlayer(PlayerInfo pi, char color) {
+		cpic.setInfo(pi, color);
 		repaint();
 	}
 
@@ -75,7 +78,7 @@ public class MenuPanel extends JPanel {
 	}
 
 	public void newMessage(String msg) {
-		jta.append(msg + "\n");
+		jta.append("> " + msg + "\n");
 	}
 
 }

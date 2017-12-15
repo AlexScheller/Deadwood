@@ -8,6 +8,8 @@ import model.board.room.MovieSet;
 import model.board.room.CastingOffice;
 import model.board.role.Role;
 
+import view.graphics.PlayerInfo;
+
 public class Player {
 
 	private int id = -1;
@@ -297,6 +299,16 @@ public class Player {
 		} else {
 			throw new IllegalStateException("current room is not a set");
 		}
+	}
+
+	public PlayerInfo toPlayerInfo() {
+		PlayerInfo ret = new PlayerInfo();
+		ret.id = id;
+		ret.level = rank;
+		ret.dollars = dollars;
+		ret.credits = credits;
+		ret.rehearsalTokens = rehersalChips;
+		return ret;
 	}
 
 }

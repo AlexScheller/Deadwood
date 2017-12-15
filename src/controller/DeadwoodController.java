@@ -4,6 +4,7 @@ import model.DeadwoodModel;
 import model.ModelListener;
 import model.loading.GameLoader;
 
+import view.graphics.PlayerInfo;
 import view.DeadwoodView;
 import view.ViewListener;
 
@@ -47,7 +48,7 @@ public class DeadwoodController implements ViewListener {
 	}
 
 	public void playerActRequest() {
-		System.out.println("Player " + (model.getCurrentPlayer().getId() + 1) + " acts");
+		System.out.println("Player " + (model.getCurrentPlayerId() + 1) + " acts");
 		try {
 			// model.getCurrentPlayer().act();
 			listener.playerActs();
@@ -57,7 +58,7 @@ public class DeadwoodController implements ViewListener {
 	}
 
 	public void playerRehearseRequest() {
-		System.out.println("Player " + (model.getCurrentPlayer().getId() + 1) + " rehearses");
+		System.out.println("Player " + (model.getCurrentPlayerId() + 1) + " rehearses");
 		try {
 			// model.getCurrentPlayer().rehearse();
 			listener.playerRehearses();
@@ -84,7 +85,7 @@ public class DeadwoodController implements ViewListener {
 	// }
 
 	public void playerTakeRoleRequest(String which) {
-		System.out.println("Player " + (model.getCurrentPlayer().getId() + 1) + " takes roll: " + which);
+		System.out.println("Player " + (model.getCurrentPlayerId() + 1) + " takes roll: " + which);
 		try {
 			// model.getCurrentPlayer().takeRole(which);
 			listener.playerTakesRole(which);
@@ -103,6 +104,14 @@ public class DeadwoodController implements ViewListener {
 		} catch (IllegalStateException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	// public PlayerInfo currentPlayerInfoRequest() {
+	// 	return listener.getCurrentPlayerInfo();
+	// }
+
+	public PlayerInfo getPlayerInfo(int id) {
+		return listener.getPlayerInfo(id);
 	}
 
 }

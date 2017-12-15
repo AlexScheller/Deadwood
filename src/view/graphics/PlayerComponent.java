@@ -32,6 +32,7 @@ public class PlayerComponent extends JComponent {
 		this.dollars = pi.dollars;
 		this.credits = pi.credits;
 		this.color = color;
+		System.out.println("setting color: " + color);
 		addMouseListener(new MouseAdapter () {
 			public void mouseClicked(MouseEvent e) {
 				// System.out.println("mouse clicked on player");

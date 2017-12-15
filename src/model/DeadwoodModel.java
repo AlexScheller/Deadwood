@@ -98,21 +98,23 @@ public class DeadwoodModel
 		listener.playerTakesRoleEvent(currentPlayerIndex);
 	}
 
-	// this method collects necessary data from the
-	// players to be shipped to the view.
-	private PlayerInfo[] playersToPlayerInfos() {
-		PlayerInfo[] ret = new PlayerInfo[players.length];
-		for (int i = 0; i < players.length; i++) {
-			PlayerInfo pi = new PlayerInfo();
-			Player curr = players[i];
-			pi.id = curr.getId();
-			pi.level = curr.getRank();
-			pi.dollars = curr.getDollars();
-			pi.credits = curr.getCredits();
-			ret[i] = pi;
-		}
-		return ret;
-	}
+	// // this method collects necessary data from the
+	// // players to be shipped to the view.
+	// private PlayerInfo[] playersToPlayerInfos() {
+	// 	PlayerInfo[] ret = new PlayerInfo[players.length];
+	// 	for (int i = 0; i < players.length; i++) {
+	// 		// PlayerInfo pi = new PlayerInfo();
+	// 		// Player curr = players[i];
+	// 		// pi.id = curr.getId();
+	// 		// pi.level = curr.getRank();
+	// 		// pi.dollars = curr.getDollars();
+	// 		// pi.credits = curr.getCredits();
+	// 		// pi.rehearsalTokens = curr.getRehearsalTokens();
+	// 		// ret[i] = pi;
+
+	// 	}
+	// 	return ret;
+	// }
 
 	/* ControllerListener Methods*/
 	
@@ -122,7 +124,12 @@ public class DeadwoodModel
 			// board.newDay();
 			currentPlayerIndex = (new Random()).nextInt(players.length);
 			currentPlayer = players[currentPlayerIndex];
-			listener.newPlayersEvent(playersToPlayerInfos());
+			// listener.newPlayersEvent(playersToPlayerInfos());
+			PlayerInfo[] pinfos = new PlayerInfo[players.length];
+			for (int i = 0; i < players.length; i++) {
+				pinfos[i] = players[i].toPlayerInfo();
+			}
+			listener.newPlayersEvent(pinfos);
 			for (int i = 0; i < players.length; i++) {
 				listener.playerMoves(players[i].getId(), null, "trailer");
 			}
@@ -233,8 +240,20 @@ public class DeadwoodModel
 		players[currentPlayerIndex].upgrade(rank, currency);
 	}
 
-	public Player getCurrentPlayer() {
-		return players[currentPlayerIndex];
+	// public Player getCurrentPlayer() {
+	// 	return players[currentPlayerIndex];
+	// }
+
+	public int getCurrentPlayerId() {
+		return currentPlayer.getId();
+	}
+
+	// public PlayerInfo getCurrentPlayerInfo() {
+	// 	return currentPlayer.toPlayerInfo();
+	// }
+
+	public PlayerInfo getPlayerInfo(int id) {
+		return players[id].toPlayerInfo();
 	}
 
 }

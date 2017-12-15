@@ -26,7 +26,7 @@ public class GraphicalView
 
 	private PlayerComponent[] players;
 	private RoleComponent requestingRole;
-	private char[] colors;
+	private char[] playerColors;
 
 	private ViewListener listener;
 
@@ -34,7 +34,7 @@ public class GraphicalView
 
 	public void initUI(BoardPanel bp, MenuPanel mp) {
 		setLayout(null); // absolute positioning is used
-		this.colors = new char[] {'b', 'c', 'g', 'o', 'p', 'r', 'v', 'y'};
+		this.playerColors = new char[] {'b', 'c', 'g', 'o', 'p', 'r', 'v', 'y'};
 		this.requestingRole = null;
 		this.bp = bp;
 		this.mp = mp;
@@ -72,7 +72,8 @@ public class GraphicalView
 	@Override
 	public void playerHoverEvent(int id) {
 		// Image playerImage = AssetBank.getInstance().getAsset(which);
-		mp.displayHoveredPlayer(players[id].toPlayerInfo());
+		// mp.displayHoveredPlayer(players[id].toPlayerInfo());
+		mp.displayHoveredPlayer(listener.getPlayerInfo(id), playerColors[id]);
 	}
 
 	// PROTOTYPE_CHAIN: 1
@@ -124,7 +125,7 @@ public class GraphicalView
 	public void newPlayersEvent(PlayerInfo[] infos) {
 		this.players = new PlayerComponent[infos.length];
 		for (int i = 0; i < infos.length; i++) {
-			PlayerComponent pc = new PlayerComponent(infos[i], colors[i], this);
+			PlayerComponent pc = new PlayerComponent(infos[i], playerColors[infos[i].id], this);
 			players[pc.getId()] = pc;
 		}
 	}
@@ -139,7 +140,7 @@ public class GraphicalView
 	// PROTOTYPE_CHAIN: 3
 	@Override
 	public void newTurnEvent(int id) {
-		mp.displayCurrentPlayer(players[id].toPlayerInfo());
+		mp.displayCurrentPlayer(listener.getPlayerInfo(id), playerColors[id]);
 	}
 
 	@Override
@@ -176,9 +177,9 @@ public class GraphicalView
 		// requested from the view.
 		players[playerId].takeRole(requestingRole);
 		// requestingRole.takePlayerComponent(players[playerId]);
+		mp.newMessage("player taking role: " + requestingRole.getName());
 		requestingRole = null;
 		// bo.assignRoleToPlayer(players[playerId], which);
-		mp.newMessage("player taking role");
 	}
 
 	// @Override

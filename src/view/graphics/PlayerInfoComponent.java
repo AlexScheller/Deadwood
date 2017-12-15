@@ -1,5 +1,6 @@
 package view.graphics;
 
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Graphics;
@@ -13,16 +14,18 @@ public class PlayerInfoComponent extends JComponent {
 	private Image playerImage;
 	private PlayerInfo pi;
 	private boolean playing;
+	private Font font;
 
 	public PlayerInfoComponent(Point origin, String title) {
 		setLayout(null);
 		setBounds(origin.x, origin.y, 200, 200);
 		this.title = title;
 		this.playing = false;
+		this.font = new Font("Helvetica", Font.BOLD, 12);
 	}
 
-	public void setInfo(PlayerInfo pi) {
-		String assetString = pi.color + Integer.toString(pi.level);
+	public void setInfo(PlayerInfo pi, char color) {
+		String assetString = color + Integer.toString(pi.level);
 		this.playerImage = AssetBank.getInstance().getAsset(assetString);
 		this.pi = pi;
 		this.playing = true;
@@ -31,6 +34,7 @@ public class PlayerInfoComponent extends JComponent {
 	@Override
 	public void paintComponent(Graphics g) {
 		if (playing) {
+			g.setFont(font);
 			g.drawString(title, 0, 10);
 			g.drawImage(playerImage, 0, 20, null);
 			g.drawString("Dollars: " + pi.dollars, 0, 75);
