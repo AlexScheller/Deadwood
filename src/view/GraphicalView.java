@@ -14,6 +14,7 @@ import view.graphics.PlayerInfo;
 import view.events.ChildEventListener;
 import static view.graphics.Dimensions.*;
 
+import model.player.PlayerContext;
 import model.ModelListener;
 import view.loading.AssetBank;
 
@@ -84,28 +85,34 @@ public class GraphicalView
 	}
 
 	@Override
-	public void actionButtonClicked(ActionType at) {
+	public void actionButtonClicked(ActionType at) throws IllegalArgumentException {
 		if (at == ActionType.END_TURN) {
 			listener.endTurnRequest();
+		} else if (at == ActionType.REHEARSE) {
+			listener.playerRehearseRequest();
+		} else if (at == ActionType.ACT) {
+			listener.playerActRequest();
+		} else {
+			throw new IllegalArgumentException("No such action: " + at);
 		}
 	}
 
 	// PROTOTYPE_CHAIN: 2
-	@Override
-	public void endTurnButtonClickEvent() {
-		listener.endTurnRequest();
-	}
+	// @Override
+	// public void endTurnButtonClickEvent() {
+	// 	listener.endTurnRequest();
+	// }
 
-	@Override
-	public void actButtonClickEvent() {
-		listener.playerActRequest();
-	}
+	// @Override
+	// public void actButtonClickEvent() {
+	// 	listener.playerActRequest();
+	// }
 
-	@Override
-	public void rehearseButtonClickEvent() {
-		listener.playerRehearseRequest();
-		// mp.updateCurrentPlayerDisplay(listener.getPlayerInfo(id), playerColors[id]);
-	}
+	// @Override
+	// public void rehearseButtonClickEvent() {
+	// 	listener.playerRehearseRequest();
+	// 	// mp.updateCurrentPlayerDisplay(listener.getPlayerInfo(id), playerColors[id]);
+	// }
 
 	// public void cardClickEvent(String where, String which) {
 	// 	System.out.println("card click event intercepted: " + which + " in " + where);
@@ -150,7 +157,11 @@ public class GraphicalView
 	@Override
 	public void newTurnEvent(int id) {
 		mp.updateCurrentPlayerDisplay(listener.getPlayerInfo(id), playerColors[id]);
-		mp.updateActions();
+		// hard coded for testing
+		PlayerContext pc = new PlayerContext();
+		pc.acting = true;
+		pc.canRehearse = true;
+		mp.updateActions(pc);
 	}
 
 	@Override

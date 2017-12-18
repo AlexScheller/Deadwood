@@ -15,6 +15,8 @@ import view.GraphicalView;
 import view.events.ChildEventListener;
 import view.loading.AssetBank;
 import view.graphics.PlayerInfo;
+
+import model.player.PlayerContext;
 import static view.graphics.Dimensions.*;
 
 public class MenuPanel extends JPanel {
@@ -53,6 +55,7 @@ public class MenuPanel extends JPanel {
 		jta.setFont(new Font("Helvetica", Font.BOLD, 12));
 		jta.setLineWrap(true);
 		jta.setWrapStyleWord(true);
+		jta.setEditable(false);
 		JScrollPane jsp = new JScrollPane(jta);
 		jsp.setBounds(0, 450, 200, 200);
 		add(jsp);
@@ -82,8 +85,8 @@ public class MenuPanel extends JPanel {
 		jta.append("> " + msg + "\n");
 	}
 
-	public void updateActions() {
-		pac.update();
+	public void updateActions(PlayerContext pc) {
+		pac.update(pc);
 	}
 
 }

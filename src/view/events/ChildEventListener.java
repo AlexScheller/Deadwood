@@ -20,11 +20,11 @@ public interface ChildEventListener {
 	public void actionButtonClicked(ActionType at);
 
 	// PROTOTYPE_CHAIN: 2
-	public void endTurnButtonClickEvent();
+	// public void endTurnButtonClickEvent();
 
-	public void actButtonClickEvent();
+	// public void actButtonClickEvent();
 
-	public void rehearseButtonClickEvent();
+	// public void rehearseButtonClickEvent();
 
 	// public void cardClickEvent(String where, String which);
 

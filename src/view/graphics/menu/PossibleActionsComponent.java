@@ -10,7 +10,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import view.events.ChildEventListener;
-// import view.graphics.menu.ActionType;
+
+import model.player.PlayerContext;
+
+/*
+ * Design note: The program is currently setup so that
+ * the buttons for possible player actions are added
+ * and removed dynamically based on context. Additionally
+ * when clicked they emit an ActionType. This design is
+ * probably over-engineered, since there are only a few
+ * actions a player could take from the menu choices. With
+ * the current design however, adding new rules/choices will
+ * take less work/code than if all options required their
+ * own methods in the ChildEventListener. 
+ */
 
 public class PossibleActionsComponent extends JComponent {
 
@@ -34,15 +47,6 @@ public class PossibleActionsComponent extends JComponent {
 
 	private void initButtons() {
 
-		// this.actButton = new JButton("Act");
-		// actButton.addActionListener(new ActionListener() {
-		// 	public void actionPerformed(ActionEvent e) {
-		// 		listener.actButtonClickEvent();
-		// 	}
-		// });
-		// actButton.setBounds(0, 0, 200, buttonHeight);
-		// add(actButton);
-
 		JButton actButton = new JButton("Act");
 		actButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -51,23 +55,13 @@ public class PossibleActionsComponent extends JComponent {
 		});
 		actionButtons.put(ActionType.ACT, actButton);
 
-		// this.rehearseButton = new JButton("Rehearse");
-		// rehearseButton.addActionListener(new ActionListener() {
-		// 	public void actionPerformed(ActionEvent e) {
-		// 		listener.rehearseButtonClickEvent();
-		// 	}
-		// });
-		// rehearseButton.setBounds(0, buttonHeight, 200, buttonHeight);
-		// add(rehearseButton);
-		
-		// this.endTurnButton = new JButton("End Turn");
-		// endTurnButton.addActionListener(new ActionListener () {
-		// 	public void actionPerformed(ActionEvent e) {
-		// 		listener.endTurnButtonClickEvent();
-		// 	}
-		// });
-		// endTurnButton.setBounds(0, buttonHeight * 2, 200, buttonHeight);
-		// add(endTurnButton);
+		JButton rehearseButton = new JButton("Rehearse");
+		rehearseButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listener.actionButtonClicked(ActionType.REHEARSE);
+			}
+		});
+		actionButtons.put(ActionType.REHEARSE, rehearseButton);
 
 		JButton endTurnButton = new JButton("End Turn");
 		endTurnButton.addActionListener(new ActionListener() {
@@ -76,12 +70,28 @@ public class PossibleActionsComponent extends JComponent {
 			}
 		});
 		actionButtons.put(ActionType.END_TURN, endTurnButton);
+
 	}
 
-	public void update() {//PlayerContext pc) {
+	public void update(PlayerContext pc) {
+		int numDisplayed = 0;
 		JButton curr = actionButtons.get(ActionType.END_TURN);
-		curr.setBounds(0, 0, 200, buttonHeight);
+		curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
 		add(curr);
+		numDisplayed++;
+		if (pc.acting) {
+			curr = actionButtons.get(ActionType.ACT);
+			curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
+			add(curr);
+			numDisplayed++;
+			if (pc.canRehearse) {
+				curr = actionButtons.get(ActionType.REHEARSE);
+				curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
+				add(curr);
+				numDisplayed++;
+			}
+		}
+		// code for upgrading
 		repaint();
 	}
 

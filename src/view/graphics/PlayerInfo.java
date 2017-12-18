@@ -1,4 +1,5 @@
-// TODO: move this outside of the graphics package
+// TODO: Substitute all occurrences of this class with
+// the model.player.PlayerContext class.
 package view.graphics;
 
 public class PlayerInfo {
