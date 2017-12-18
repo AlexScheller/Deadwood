@@ -16,6 +16,8 @@ clean:
 	-rm model/player/*.class
 	-rm view/*.class
 	-rm view/graphics/*.class
+	-rm view/graphics/menu/*.class
+	-rm view/graphics/board/*.class
 	-rm view/loading/*.class
 	-rm view/events/*.class
 	-rm controller/*.class

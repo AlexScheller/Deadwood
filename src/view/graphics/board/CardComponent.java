@@ -1,4 +1,4 @@
-package view.graphics;
+package view.graphics.board;
 
 import java.util.Map;
 import java.util.HashMap;

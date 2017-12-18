@@ -1,6 +1,7 @@
 package view.events;
 
-import view.graphics.RoleComponent;
+import view.graphics.board.RoleComponent;
+import view.graphics.menu.ActionType;
 
 public interface ChildEventListener {
 
@@ -15,6 +16,8 @@ public interface ChildEventListener {
 
 	// PROTOTYPE_CHAIN: 1
 	public void playerUnHoverEvent();
+
+	public void actionButtonClicked(ActionType at);
 
 	// PROTOTYPE_CHAIN: 2
 	public void endTurnButtonClickEvent();

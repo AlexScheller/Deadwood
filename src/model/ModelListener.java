@@ -38,6 +38,8 @@ public interface ModelListener {
 	public void newPlayersEvent(PlayerInfo[] infos);
 
 	public void playerTakesRoleEvent(int playerId);
+
+	public void updateCurrentPlayerInfo(int playerId);
 	// public void updatePlayerInfo(int playerId, )
 
 }

@@ -1,4 +1,4 @@
-package view.graphics;
+package view.graphics.board;
 
 import java.awt.Image;
 import java.awt.Point;

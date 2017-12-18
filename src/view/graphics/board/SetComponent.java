@@ -1,4 +1,4 @@
-package view.graphics;
+package view.graphics.board;
 
 import java.util.Map;
 import java.util.HashMap; // delete later
@@ -40,7 +40,7 @@ public class SetComponent extends RoomComponent {
 		// this.occupantsOrigin = new Point(cardOrigin);
 		// occupantsOrigin.y += 115;
 		this.takeOrigins = ri.takeOrigins;
-		this.takesFinished = takeOrigins.length; // placeholder
+		this.takesFinished = 0;
 		// set up extra roles
 		this.extras = new HashMap<>();
 		for (String roleName : ri.extraOrigins.keySet()) {
@@ -68,6 +68,11 @@ public class SetComponent extends RoomComponent {
 			card.flip();
 		}
 		// repaint();
+	}
+
+	public void takeFinished() {
+		takesFinished++;
+		repaint();
 	}
 
 	@Override

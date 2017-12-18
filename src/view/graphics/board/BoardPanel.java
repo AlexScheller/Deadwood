@@ -1,4 +1,4 @@
-package view.graphics;
+package view.graphics.board;
 
 import java.util.Map;
 import java.util.List;
@@ -62,6 +62,11 @@ public class BoardPanel extends JPanel {
 							  int cardId) {
 		SetComponent roomAsSet = (SetComponent) rooms.get(where);
 		roomAsSet.newScene(which, cardId);
+	}
+
+	public void takeFinishEvent(String where) {
+		SetComponent roomAsSet = (SetComponent) rooms.get(where);
+		roomAsSet.takeFinished();
 	}
 
 	public void movePlayer(PlayerComponent pc, String from, String to) {

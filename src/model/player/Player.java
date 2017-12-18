@@ -84,7 +84,7 @@ public class Player {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
 			if (rehersalChips < (roomAsSet.getBudget() - 1)) {
 				rehersalChips++;
-				// listener.playerRehearses();
+				listener.playerRehearsesEvent();
 			} else {
 				throw new IllegalStateException("player already has max rehearsal chips");
 			}
@@ -131,13 +131,6 @@ public class Player {
 	public void endTurn() {
 		this.hasMoved = false;
 	}
-
-	/* below is for debugging, use at your own risk */
-	public void teleport(Room where) {
-		this.currentRoom = where;
-		// this.hasMoved = true;
-	}
-	/* above is for debugging */
 
 	public void move(String where) throws IllegalArgumentException, IllegalStateException {
 		if (canMove()) {

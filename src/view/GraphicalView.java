@@ -5,10 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 
 // import view.graphics.CardComponent;
-import view.graphics.MenuPanel;
-import view.graphics.BoardPanel;
-import view.graphics.PlayerComponent;
-import view.graphics.RoleComponent;
+import view.graphics.menu.MenuPanel;
+import view.graphics.menu.ActionType;
+import view.graphics.board.BoardPanel;
+import view.graphics.board.PlayerComponent;
+import view.graphics.board.RoleComponent;
 import view.graphics.PlayerInfo;
 import view.events.ChildEventListener;
 import static view.graphics.Dimensions.*;
@@ -82,6 +83,13 @@ public class GraphicalView
 		mp.removeHoveredPlayer();
 	}
 
+	@Override
+	public void actionButtonClicked(ActionType at) {
+		if (at == ActionType.END_TURN) {
+			listener.endTurnRequest();
+		}
+	}
+
 	// PROTOTYPE_CHAIN: 2
 	@Override
 	public void endTurnButtonClickEvent() {
@@ -96,6 +104,7 @@ public class GraphicalView
 	@Override
 	public void rehearseButtonClickEvent() {
 		listener.playerRehearseRequest();
+		// mp.updateCurrentPlayerDisplay(listener.getPlayerInfo(id), playerColors[id]);
 	}
 
 	// public void cardClickEvent(String where, String which) {
@@ -140,7 +149,13 @@ public class GraphicalView
 	// PROTOTYPE_CHAIN: 3
 	@Override
 	public void newTurnEvent(int id) {
-		mp.displayCurrentPlayer(listener.getPlayerInfo(id), playerColors[id]);
+		mp.updateCurrentPlayerDisplay(listener.getPlayerInfo(id), playerColors[id]);
+		mp.updateActions();
+	}
+
+	@Override
+	public void updateCurrentPlayerInfo(int id) {
+		mp.updateCurrentPlayerDisplay(listener.getPlayerInfo(id), playerColors[id]);
 	}
 
 	@Override
@@ -151,8 +166,8 @@ public class GraphicalView
 
 	@Override
 	public void takeFinishEvent(String setName) {
-		// TEMP
-		System.out.println("take finished in: " + setName);
+		bp.takeFinishEvent(setName);
+		mp.newMessage("take finished in " + setName);
 	}
 
 	@Override

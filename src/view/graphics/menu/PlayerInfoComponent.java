@@ -1,10 +1,12 @@
-package view.graphics;
+package view.graphics.menu;
 
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Graphics;
 import javax.swing.JComponent;
+
+import view.graphics.PlayerInfo;
 
 import view.loading.AssetBank;
 
@@ -39,6 +41,7 @@ public class PlayerInfoComponent extends JComponent {
 			g.drawImage(playerImage, 0, 20, null);
 			g.drawString("Dollars: " + pi.dollars, 0, 75);
 			g.drawString("Credits: " + pi.credits, 0, 90);
+			g.drawString("Rehearsal Chips: " + pi.rehearsalTokens, 0, 105);
 		}
 	}
 

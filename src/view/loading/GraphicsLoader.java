@@ -8,8 +8,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import view.GraphicalView;
-import view.graphics.MenuPanel;
-import view.graphics.BoardPanel;
+import view.graphics.menu.MenuPanel;
+import view.graphics.board.BoardPanel;
 
 public class GraphicsLoader {
 	

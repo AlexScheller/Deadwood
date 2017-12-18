@@ -77,4 +77,9 @@ public class ConsoleView
 		System.out.println("New turn for player: " + playerId);
 	}
 
+	@Override
+	public void updateCurrentPlayerInfo(int id) {
+		// mp.updateCurrentPlayerDisplay(pi);
+	}
+
 }

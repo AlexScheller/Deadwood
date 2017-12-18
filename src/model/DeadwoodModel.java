@@ -98,6 +98,12 @@ public class DeadwoodModel
 		listener.playerTakesRoleEvent(currentPlayerIndex);
 	}
 
+	@Override
+	public void playerRehearsesEvent() {
+		listener.updateCurrentPlayerInfo(currentPlayer.getId());
+		playerEndsTurn();
+	}
+
 	// // this method collects necessary data from the
 	// // players to be shipped to the view.
 	// private PlayerInfo[] playersToPlayerInfos() {
@@ -197,8 +203,8 @@ public class DeadwoodModel
 
 	public void playerActs() throws IllegalStateException {
 		currentPlayer.act();
-		// String res = players[currentPlayerIndex].act();
-		// listener.playerActResponse(res);
+		playerEndsTurn();
+		// NOTE: This may lead to weirdness when a scene wraps
 	}
 
 	// PROTOTYPE_CHAIN: 2

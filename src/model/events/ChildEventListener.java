@@ -19,4 +19,6 @@ public interface ChildEventListener {
 
 	public void playerTakesRoleEvent();
 
+	public void playerRehearsesEvent();
+
 }

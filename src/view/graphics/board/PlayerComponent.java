@@ -1,4 +1,4 @@
-package view.graphics;
+package view.graphics.board;
 
 import java.awt.Image;
 import java.awt.Point;
@@ -8,6 +8,8 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JComponent;
 
 import view.events.ChildEventListener;
+
+import view.graphics.PlayerInfo;
 
 import view.loading.AssetBank;
 import static view.graphics.Dimensions.*;

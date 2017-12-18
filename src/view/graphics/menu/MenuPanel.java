@@ -1,4 +1,4 @@
-package view.graphics;
+package view.graphics.menu;
 
 import java.awt.Font;
 import java.awt.Point;
@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import view.GraphicalView;
 import view.events.ChildEventListener;
 import view.loading.AssetBank;
+import view.graphics.PlayerInfo;
 import static view.graphics.Dimensions.*;
 
 public class MenuPanel extends JPanel {
@@ -41,11 +42,11 @@ public class MenuPanel extends JPanel {
 		this.hpic = new PlayerInfoComponent(new Point(0, 50), "Hovered player:");
 		// PROTOTYPE_CHAIN: 3
 		// this.currentPlayerInfoOrigin = new Point(0, 200);
-		this.cpic = new PlayerInfoComponent(new Point(0, 150), "Current player:");
+		this.cpic = new PlayerInfoComponent(new Point(0, 165), "Current player:");
 		add(cpic);
 
 		this.pac = new PossibleActionsComponent(cel);
-		pac.setBounds(0, 250, 200, 200);
+		pac.setBounds(0, 275, 200, 200);
 		add(pac);
 
 		this.jta = new JTextArea(10, 10);
@@ -65,7 +66,7 @@ public class MenuPanel extends JPanel {
 	}
 
 	// PROTO_TYPE_CHAIN: 3
-	public void displayCurrentPlayer(PlayerInfo pi, char color) {
+	public void updateCurrentPlayerDisplay(PlayerInfo pi, char color) {
 		cpic.setInfo(pi, color);
 		repaint();
 	}
@@ -79,6 +80,10 @@ public class MenuPanel extends JPanel {
 
 	public void newMessage(String msg) {
 		jta.append("> " + msg + "\n");
+	}
+
+	public void updateActions() {
+		pac.update();
 	}
 
 }
