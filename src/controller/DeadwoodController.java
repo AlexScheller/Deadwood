@@ -2,9 +2,9 @@ package controller;
 
 import model.DeadwoodModel;
 import model.ModelListener;
+import model.player.PlayerContext;
 import model.loading.GameLoader;
 
-import view.graphics.PlayerInfo;
 import view.DeadwoodView;
 import view.ViewListener;
 
@@ -106,12 +106,8 @@ public class DeadwoodController implements ViewListener {
 		}
 	}
 
-	// public PlayerInfo currentPlayerInfoRequest() {
-	// 	return listener.getCurrentPlayerInfo();
-	// }
-
-	public PlayerInfo getPlayerInfo(int id) {
-		return listener.getPlayerInfo(id);
+	public PlayerContext getPlayerContext(int id) {
+		return listener.getPlayerContext(id);
 	}
 
 }

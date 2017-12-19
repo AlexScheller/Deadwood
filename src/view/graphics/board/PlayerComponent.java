@@ -9,7 +9,9 @@ import javax.swing.JComponent;
 
 import view.events.ChildEventListener;
 
-import view.graphics.PlayerInfo;
+// import view.graphics.PlayerInfo;
+
+import model.player.PlayerContext;
 
 import view.loading.AssetBank;
 import static view.graphics.Dimensions.*;
@@ -17,7 +19,7 @@ import static view.graphics.Dimensions.*;
 public class PlayerComponent extends JComponent {
 
 	private int id;
-	private int level;
+	private int rank;
 	private int dollars;
 	private int credits;
 	private char color;
@@ -28,11 +30,11 @@ public class PlayerComponent extends JComponent {
 
 	private ChildEventListener listener;
 
-	public PlayerComponent(PlayerInfo pi, char color, ChildEventListener cel) {
-		this.id = pi.id;
-		this.level = pi.level;
-		this.dollars = pi.dollars;
-		this.credits = pi.credits;
+	public PlayerComponent(PlayerContext pc, char color, ChildEventListener cel) {
+		this.id = pc.id;
+		this.rank = pc.rank;
+		this.dollars = pc.dollars;
+		this.credits = pc.credits;
 		this.color = color;
 		System.out.println("setting color: " + color);
 		addMouseListener(new MouseAdapter () {
@@ -49,16 +51,6 @@ public class PlayerComponent extends JComponent {
 				cel.playerUnHoverEvent();
 			}
 		});
-	}
-
-	public PlayerInfo toPlayerInfo() {
-		PlayerInfo ret = new PlayerInfo();
-		ret.id = id;
-		ret.level = level;
-		ret.color = color;
-		ret.dollars = dollars;
-		ret.credits = credits;
-		return ret;
 	}
 
 	public int getId() {
@@ -78,7 +70,7 @@ public class PlayerComponent extends JComponent {
 	}
 
 	public void paintComponent(Graphics g) {
-		String assetName = color + Integer.toString(level);
+		String assetName = color + Integer.toString(rank);
 		Image dieImage = AssetBank.getInstance().getAsset(assetName);
 		// g.drawImage(dieImage, origin.x, origin.y, null);
 		// System.out.println("painting player at: " + origin.x  + ", " + origin.y);

@@ -1,6 +1,6 @@
 package model;
 
-import view.graphics.PlayerInfo;
+import model.player.PlayerContext;
 
 public interface ModelListener {
 
@@ -35,11 +35,13 @@ public interface ModelListener {
 
 	public void playerMoves(int playerId, String from, String to);
 
-	public void newPlayersEvent(PlayerInfo[] infos);
+	public void newPlayersEvent(PlayerContext[] contexts);
 
 	public void playerTakesRoleEvent(int playerId);
 
-	public void updateCurrentPlayerInfo(int playerId);
+	// public void updateCurrentPlayerInfo(int playerId);
+
+	public void updateCurrentPlayerContext(PlayerContext pc);
 	// public void updatePlayerInfo(int playerId, )
 
 }

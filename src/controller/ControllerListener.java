@@ -1,12 +1,12 @@
 package controller;
 
-import view.graphics.PlayerInfo;
+import model.player.PlayerContext;
 
 public interface ControllerListener {
 
 	public void play();
 
-	public PlayerInfo getPlayerInfo(int id);
+	public PlayerContext getPlayerContext(int id);
 
 	// PROTOTYPE_CHAIN: 2
 	public void playerEndsTurn();

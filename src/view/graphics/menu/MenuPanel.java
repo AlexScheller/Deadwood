@@ -14,7 +14,6 @@ import java.awt.event.ActionListener;
 import view.GraphicalView;
 import view.events.ChildEventListener;
 import view.loading.AssetBank;
-import view.graphics.PlayerInfo;
 
 import model.player.PlayerContext;
 import static view.graphics.Dimensions.*;
@@ -62,17 +61,17 @@ public class MenuPanel extends JPanel {
 	}
 
 	// PROTOTYPE_CHAIN: 1
-	public void displayHoveredPlayer(PlayerInfo pi, char color) {
-		hpic.setInfo(pi, color);
+	public void displayHoveredPlayer(PlayerContext pc, char color) {
+		hpic.setInfo(pc, color);
 		add(hpic);
 		repaint();
 	}
 
 	// PROTO_TYPE_CHAIN: 3
-	public void updateCurrentPlayerDisplay(PlayerInfo pi, char color) {
-		cpic.setInfo(pi, color);
-		repaint();
-	}
+	// public void updateCurrentPlayerDisplay(PlayerInfo pi, char color) {
+	// 	cpic.setInfo(pi, color);
+	// 	repaint();
+	// }
 
 	// PROTOTYPE_CHAIN: 1
 	public void removeHoveredPlayer() {
@@ -85,8 +84,14 @@ public class MenuPanel extends JPanel {
 		jta.append("> " + msg + "\n");
 	}
 
-	public void updateActions(PlayerContext pc) {
+	public void update(PlayerContext pc, char color) {
+		cpic.setInfo(pc, color);
 		pac.update(pc);
+		repaint();
 	}
+
+	// public void updateActions(PlayerContext pc) {
+	// 	pac.update(pc);
+	// }
 
 }

@@ -1,6 +1,6 @@
 package view;
 
-import view.graphics.PlayerInfo;
+import model.player.PlayerContext;
 
 public interface ViewListener {
 
@@ -9,7 +9,7 @@ public interface ViewListener {
 	// PROTOTYPE_CHAIN: 2
 	public void endTurnRequest();
 
-	public PlayerInfo getPlayerInfo(int id);
+	public PlayerContext getPlayerContext(int id);
 
 	public void playerActRequest();
 
@@ -19,6 +19,6 @@ public interface ViewListener {
 
 	public void playerTakeRoleRequest(String which);
 
-	public void playerUpgradeRequest(int level, String currency);
+	public void playerUpgradeRequest(int rank, String currency);
 
 }

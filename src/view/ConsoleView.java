@@ -7,7 +7,7 @@ import model.player.Player;
 import model.DeadwoodModel;
 import model.ModelListener;
 
-import view.graphics.PlayerInfo;
+import model.player.PlayerContext;
 // NOTE: this is currently just a dummy class, as major
 // changes to the design of the model and ModelListener
 // took place during the development of the GraphicalView
@@ -24,7 +24,7 @@ public class ConsoleView
 	}
 
 	@Override
-	public void newPlayersEvent(PlayerInfo[] infos) {
+	public void newPlayersEvent(PlayerContext[] context) {
 		System.out.println("new player info event");
 	}
 
@@ -78,7 +78,8 @@ public class ConsoleView
 	}
 
 	@Override
-	public void updateCurrentPlayerInfo(int id) {
+	public void updateCurrentPlayerContext(PlayerContext pc) {
+		System.out.println("updating");
 		// mp.updateCurrentPlayerDisplay(pi);
 	}
 

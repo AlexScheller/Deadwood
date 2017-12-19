@@ -18,7 +18,7 @@ public class Player {
 	private int rank = 1;
 	private int dollars = 0;
 	private int credits = 0;
-	private int rehersalChips = 0;
+	private int rehearsalTokens = 0;
 
 	private boolean hasMoved = false;
 
@@ -69,7 +69,7 @@ public class Player {
 
 	public void act() throws IllegalStateException {
 		if (isActing()) {
-			int roll = rehersalChips + roll();
+			int roll = rehearsalTokens + roll();
 			MovieSet roomAsSet = (MovieSet) currentRoom;
 			// having to provide the current role still seems
 			// a little wrong
@@ -82,11 +82,11 @@ public class Player {
 	public void rehearse() {
 		if (isActing()) {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
-			if (rehersalChips < (roomAsSet.getBudget() - 1)) {
-				rehersalChips++;
+			if (rehearsalTokens < (roomAsSet.getBudget() - 1)) {
+				rehearsalTokens++;
 				listener.playerRehearsesEvent();
 			} else {
-				throw new IllegalStateException("player already has max rehearsal chips");
+				throw new IllegalStateException("player already has max rehearsal tokens");
 			}
 		} else {
 			throw new IllegalStateException("player not in a role");
@@ -103,7 +103,7 @@ public class Player {
 
 	public void finishRole() {
 		this.currentRole = null;
-		this.rehersalChips = 0;
+		this.rehearsalTokens = 0;
 	}
 
 	public void takeRole(String which) throws IllegalStateException, IllegalArgumentException {
@@ -115,7 +115,7 @@ public class Player {
 				currentRole.takeActor(this);
 				listener.playerTakesRoleEvent();
 			} else {
-				throw new IllegalStateException("role to high a level for current player");
+				throw new IllegalStateException("role to high a rank for current player");
 			}
 		} else {
 			throw new IllegalStateException("current room is not a set");
@@ -172,7 +172,7 @@ public class Player {
 		ret += "\nCredits: " + this.credits;
 		if (isActing()) {
 			ret += "\nCurrent Role: " + currentRole.getName();
-			ret += "\nRehearsal chips: " + this.rehersalChips;
+			ret += "\nRehearsal tokens: " + this.rehearsalTokens;
 			MovieSet asSet = (MovieSet) currentRoom;
 			ret += "\nTakes left: " + asSet.getTakesLeft();
 		}
@@ -195,7 +195,7 @@ public class Player {
 		this.credits -= howMany;
 	}
 
-	// might be better named as "set level"
+	// might be better named as "set rank"
 	public void rankUp(int rank) {
 		this.rank = rank;
 	}
@@ -250,7 +250,7 @@ public class Player {
 	public boolean canRehearse() {
 		if (isActing()) {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
-			return rehersalChips < roomAsSet.getBudget();
+			return rehearsalTokens < (roomAsSet.getBudget() - 1);
 		}
 		return false;
 	}
@@ -294,13 +294,15 @@ public class Player {
 		}
 	}
 
-	public PlayerInfo toPlayerInfo() {
-		PlayerInfo ret = new PlayerInfo();
+	public PlayerContext toContext() {
+		PlayerContext ret = new PlayerContext();
+		ret.acting = isActing();
+		ret.canRehearse = canRehearse();
 		ret.id = id;
-		ret.level = rank;
+		ret.rank = rank;
 		ret.dollars = dollars;
 		ret.credits = credits;
-		ret.rehearsalTokens = rehersalChips;
+		ret.rehearsalTokens = rehearsalTokens;
 		return ret;
 	}
 

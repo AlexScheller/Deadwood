@@ -54,7 +54,7 @@ public class GraphicalView
 		System.out.println("new game event intercepted");
 		// number of players is currently hard-coded for
 		// testing purposes
-		listener.newGameRequest(7);
+		listener.newGameRequest(2);
 		repaint();
 	}
 
@@ -73,9 +73,7 @@ public class GraphicalView
 	// PROTOTYPE_CHAIN: 1
 	@Override
 	public void playerHoverEvent(int id) {
-		// Image playerImage = AssetBank.getInstance().getAsset(which);
-		// mp.displayHoveredPlayer(players[id].toPlayerInfo());
-		mp.displayHoveredPlayer(listener.getPlayerInfo(id), playerColors[id]);
+		mp.displayHoveredPlayer(listener.getPlayerContext(id), playerColors[id]);
 	}
 
 	// PROTOTYPE_CHAIN: 1
@@ -97,26 +95,10 @@ public class GraphicalView
 		}
 	}
 
-	// PROTOTYPE_CHAIN: 2
-	// @Override
-	// public void endTurnButtonClickEvent() {
-	// 	listener.endTurnRequest();
-	// }
-
-	// @Override
-	// public void actButtonClickEvent() {
-	// 	listener.playerActRequest();
-	// }
-
 	// @Override
 	// public void rehearseButtonClickEvent() {
 	// 	listener.playerRehearseRequest();
-	// 	// mp.updateCurrentPlayerDisplay(listener.getPlayerInfo(id), playerColors[id]);
-	// }
-
-	// public void cardClickEvent(String where, String which) {
-	// 	System.out.println("card click event intercepted: " + which + " in " + where);
-	// 	listener.playerMoveRequest(where);
+	// 	// mp.updateCurrentPlayerDisplay(listener.getPlayerContext(id), playerColors[id]);
 	// }
 
 	@Override
@@ -138,10 +120,11 @@ public class GraphicalView
 	// view. It's practical, but I wonder if it would be
 	// better not to share any code at all.
 	@Override
-	public void newPlayersEvent(PlayerInfo[] infos) {
-		this.players = new PlayerComponent[infos.length];
-		for (int i = 0; i < infos.length; i++) {
-			PlayerComponent pc = new PlayerComponent(infos[i], playerColors[infos[i].id], this);
+	public void newPlayersEvent(PlayerContext[] contexts) {
+		this.players = new PlayerComponent[contexts.length];
+		for (int i = 0; i < contexts.length; i++) {
+			System.out.println(contexts[i].id);
+			PlayerComponent pc = new PlayerComponent(contexts[i], playerColors[contexts[i].id], this);
 			players[pc.getId()] = pc;
 		}
 	}
@@ -156,17 +139,15 @@ public class GraphicalView
 	// PROTOTYPE_CHAIN: 3
 	@Override
 	public void newTurnEvent(int id) {
-		mp.updateCurrentPlayerDisplay(listener.getPlayerInfo(id), playerColors[id]);
+		mp.update(listener.getPlayerContext(id), playerColors[id]);
 		// hard coded for testing
 		PlayerContext pc = new PlayerContext();
 		pc.acting = true;
 		pc.canRehearse = true;
-		mp.updateActions(pc);
 	}
 
-	@Override
-	public void updateCurrentPlayerInfo(int id) {
-		mp.updateCurrentPlayerDisplay(listener.getPlayerInfo(id), playerColors[id]);
+	public void updateCurrentPlayerContext(PlayerContext pc) {
+		mp.update(pc, playerColors[pc.id]);
 	}
 
 	@Override

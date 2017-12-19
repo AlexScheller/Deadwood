@@ -6,7 +6,7 @@ import java.awt.Point;
 import java.awt.Graphics;
 import javax.swing.JComponent;
 
-import view.graphics.PlayerInfo;
+import model.player.PlayerContext;
 
 import view.loading.AssetBank;
 
@@ -14,7 +14,7 @@ public class PlayerInfoComponent extends JComponent {
 
 	private String title;
 	private Image playerImage;
-	private PlayerInfo pi;
+	private PlayerContext pc;
 	private boolean playing;
 	private Font font;
 
@@ -26,10 +26,10 @@ public class PlayerInfoComponent extends JComponent {
 		this.font = new Font("Helvetica", Font.BOLD, 12);
 	}
 
-	public void setInfo(PlayerInfo pi, char color) {
-		String assetString = color + Integer.toString(pi.level);
+	public void setInfo(PlayerContext pc, char color) {
+		String assetString = color + Integer.toString(pc.rank);
 		this.playerImage = AssetBank.getInstance().getAsset(assetString);
-		this.pi = pi;
+		this.pc = pc;
 		this.playing = true;
 	}
 
@@ -39,9 +39,9 @@ public class PlayerInfoComponent extends JComponent {
 			g.setFont(font);
 			g.drawString(title, 0, 10);
 			g.drawImage(playerImage, 0, 20, null);
-			g.drawString("Dollars: " + pi.dollars, 0, 75);
-			g.drawString("Credits: " + pi.credits, 0, 90);
-			g.drawString("Rehearsal Chips: " + pi.rehearsalTokens, 0, 105);
+			g.drawString("Dollars: " + pc.dollars, 0, 75);
+			g.drawString("Credits: " + pc.credits, 0, 90);
+			g.drawString("Rehearsal Chips: " + pc.rehearsalTokens, 0, 105);
 		}
 	}
 

@@ -59,7 +59,7 @@ public class CastingOffice extends Room {
 			// ret = new int[(4 - 3) + 1] == new int[2] == "int[rank 3, rank 4]"
 			int[] ret = new int[(maxUpgrade - minUpgrade) + 1];
 			//  the base accounts for 1- to 0- based indexing,
-			// and upgrades beginning at level 2
+			// and upgrades beginning at rank 2
 			int base = minUpgrade - 2;
 			for (int i = 0; i <= (maxUpgrade - minUpgrade); i++) {
 				// ex: same as above,

@@ -27,9 +27,11 @@ import model.player.PlayerContext;
 
 public class PossibleActionsComponent extends JComponent {
 
-	private JButton actButton;
-	private JButton endTurnButton;
-	private JButton rehearseButton;
+	// private JButton actButton;
+	// private JButton endTurnButton;
+	// private JButton rehearseButton;
+
+	// private PlayerContext pc;
 
 	private Map<ActionType, JButton> actionButtons;
 
@@ -74,6 +76,8 @@ public class PossibleActionsComponent extends JComponent {
 	}
 
 	public void update(PlayerContext pc) {
+		removeAll(); // clear the container
+		System.out.println("pc can rehearse: " + pc.canRehearse);
 		int numDisplayed = 0;
 		JButton curr = actionButtons.get(ActionType.END_TURN);
 		curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
@@ -92,7 +96,7 @@ public class PossibleActionsComponent extends JComponent {
 			}
 		}
 		// code for upgrading
-		repaint();
+		// repaint();
 	}
 
 }

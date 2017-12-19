@@ -5,12 +5,10 @@ import java.util.Random;
 import java.util.ArrayList;
 
 import model.player.Player;
+import model.player.PlayerContext;
 
 import model.board.Board;
 import model.board.room.Room;
-
-// Not a fan of importing from the view
-import view.graphics.PlayerInfo;
 
 import model.events.ChildEventListener;
 import controller.ControllerListener;
@@ -100,19 +98,19 @@ public class DeadwoodModel
 
 	@Override
 	public void playerRehearsesEvent() {
-		listener.updateCurrentPlayerInfo(currentPlayer.getId());
+		listener.updateCurrentPlayerContext(currentPlayer.toContext());
 		playerEndsTurn();
 	}
 
 	// // this method collects necessary data from the
 	// // players to be shipped to the view.
-	// private PlayerInfo[] playersToPlayerInfos() {
-	// 	PlayerInfo[] ret = new PlayerInfo[players.length];
+	// private PlayerContext[] playerstoContexts() {
+	// 	PlayerContext[] ret = new PlayerContext[players.length];
 	// 	for (int i = 0; i < players.length; i++) {
-	// 		// PlayerInfo pi = new PlayerInfo();
+	// 		// PlayerContext pi = new PlayerContext();
 	// 		// Player curr = players[i];
 	// 		// pi.id = curr.getId();
-	// 		// pi.level = curr.getRank();
+	// 		// pi.rank = curr.getRank();
 	// 		// pi.dollars = curr.getDollars();
 	// 		// pi.credits = curr.getCredits();
 	// 		// pi.rehearsalTokens = curr.getRehearsalTokens();
@@ -130,12 +128,13 @@ public class DeadwoodModel
 			// board.newDay();
 			currentPlayerIndex = (new Random()).nextInt(players.length);
 			currentPlayer = players[currentPlayerIndex];
-			// listener.newPlayersEvent(playersToPlayerInfos());
-			PlayerInfo[] pinfos = new PlayerInfo[players.length];
+			// listener.newPlayersEvent(playerstoContexts());
+			PlayerContext[] contexts = new PlayerContext[players.length];
 			for (int i = 0; i < players.length; i++) {
-				pinfos[i] = players[i].toPlayerInfo();
+				contexts[i] = players[i].toContext();
+				System.out.println(contexts[i].id);
 			}
-			listener.newPlayersEvent(pinfos);
+			listener.newPlayersEvent(contexts);
 			for (int i = 0; i < players.length; i++) {
 				listener.playerMoves(players[i].getId(), null, "trailer");
 			}
@@ -254,12 +253,12 @@ public class DeadwoodModel
 		return currentPlayer.getId();
 	}
 
-	// public PlayerInfo getCurrentPlayerInfo() {
-	// 	return currentPlayer.toPlayerInfo();
+	// public PlayerContext getCurrentPlayerContext() {
+	// 	return currentPlayer.toContext();
 	// }
 
-	public PlayerInfo getPlayerInfo(int id) {
-		return players[id].toPlayerInfo();
+	public PlayerContext getPlayerContext(int id) {
+		return players[id].toContext();
 	}
 
 }

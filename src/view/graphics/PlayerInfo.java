@@ -5,7 +5,7 @@ package view.graphics;
 public class PlayerInfo {
 
 	public int id;
-	public int level;
+	public int rank;
 	public char color;
 	public int dollars;
 	public int credits;
