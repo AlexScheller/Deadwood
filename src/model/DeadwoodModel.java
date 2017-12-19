@@ -99,7 +99,7 @@ public class DeadwoodModel
 	@Override
 	public void playerRehearsesEvent() {
 		listener.updateCurrentPlayerContext(currentPlayer.toContext());
-		playerEndsTurn();
+		// playerEndsTurn();
 	}
 
 	// // this method collects necessary data from the
@@ -202,13 +202,16 @@ public class DeadwoodModel
 
 	public void playerActs() throws IllegalStateException {
 		currentPlayer.act();
-		playerEndsTurn();
+		// playerEndsTurn();
 		// NOTE: This may lead to weirdness when a scene wraps
 	}
 
-	// PROTOTYPE_CHAIN: 2
 	public void playerEndsTurn() {
 		currentPlayer.endTurn();
+	}
+
+	public void playerEndsTurnEvent() {
+		// currentPlayer.endTurn();
 		currentPlayerIndex++;
 		currentPlayerIndex %= players.length;
 		currentPlayer = players[currentPlayerIndex];
@@ -235,7 +238,7 @@ public class DeadwoodModel
 	public void playerTakesRole(String which) throws IllegalArgumentException, IllegalStateException {
 		if (!currentPlayer.isActing()) {
 			currentPlayer.takeRole(which);
-			playerEndsTurn();	
+			// playerEndsTurn();	
 		} else {
 			throw new IllegalStateException("player already in a role");
 		}

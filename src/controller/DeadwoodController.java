@@ -85,7 +85,7 @@ public class DeadwoodController implements ViewListener {
 	// }
 
 	public void playerTakeRoleRequest(String which) {
-		System.out.println("Player " + (model.getCurrentPlayerId() + 1) + " takes roll: " + which);
+		// System.out.println("Player " + (model.getCurrentPlayerId() + 1) + " takes roll: " + which);
 		try {
 			// model.getCurrentPlayer().takeRole(which);
 			listener.playerTakesRole(which);
@@ -94,7 +94,7 @@ public class DeadwoodController implements ViewListener {
 			// TODO: relay to the view that the move
 			// request failed. Perhaps this should be
 			// done in the model instead.
-			// exitOnException(e);
+			exitOnException(e);
 		}
 	}
 	

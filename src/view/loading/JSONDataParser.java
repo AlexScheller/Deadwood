@@ -101,6 +101,7 @@ public class JSONDataParser {
 					// the data set
 					x = part.getJSONObject("area").getInt("x") + 3;
 					y = part.getJSONObject("area").getInt("y") + 3;
+					// System.out.println
 					extraOrigins.put(part.getString("name"), new Point(x, y));
 				}
 				ri.extraOrigins = extraOrigins;

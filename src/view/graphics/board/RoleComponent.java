@@ -59,11 +59,14 @@ public class RoleComponent extends JComponent {
 		repaint();
 	}
 
-	public void evictPlayerComponent() {
+	public PlayerComponent evictPlayerComponent() {
+		PlayerComponent ret = pc;
+		pc.leaveRole();
 		remove(pc);
 		this.pc = null;
-		// setOpaque(true);
+		setOpaque(true);
 		repaint();
+		return ret;
 	}
 
 	// public void setBounds(Point origin) {
@@ -71,7 +74,7 @@ public class RoleComponent extends JComponent {
 	// 	setBounds(origin.x, origin.y, height, width);
 	// }
 
-	private boolean occupied() {
+	public boolean occupied() {
 		return (pc != null);
 	}
 

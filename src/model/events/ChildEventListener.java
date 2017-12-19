@@ -21,4 +21,6 @@ public interface ChildEventListener {
 
 	public void playerRehearsesEvent();
 
+	public void playerEndsTurnEvent();
+
 }

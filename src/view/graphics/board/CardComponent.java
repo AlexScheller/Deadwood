@@ -70,13 +70,13 @@ public class CardComponent extends JComponent {
 		// this.flipped = false;
 		this.stars = new HashMap<>();
 		Map<String, Point> roleOrigins = ab.getRoleOrigins(cardId);
-		for (String name : roleOrigins.keySet()) {
-			RoleComponent rc = new RoleComponent(name, 
-												 roleOrigins.get(name),
+		for (String roleName : roleOrigins.keySet()) {
+			RoleComponent rc = new RoleComponent(roleName, 
+												 roleOrigins.get(roleName),
 												 listener);
 			rc.setDieImage(diceImage); // temporarily hard coded
 			// rc.takePlayerComponent(new PlayerComponent(4, 'b', listener));
-			stars.put(name, rc);
+			stars.put(roleName, rc);
 		}
 		// PlayerComponent pc = new PlayerComponent(3, 'y', listener);
 		// pc.move(new Point(0, 0));
@@ -128,6 +128,10 @@ public class CardComponent extends JComponent {
 				g.drawImage(cardBack, 0, 0, null);
 			}
 		}
+	}
+
+	public Iterable<RoleComponent> getRoles() {
+		return stars.values();
 	}
 
 	private void setBounds(Point origin) {

@@ -54,7 +54,7 @@ public class GraphicalView
 		System.out.println("new game event intercepted");
 		// number of players is currently hard-coded for
 		// testing purposes
-		listener.newGameRequest(2);
+		listener.newGameRequest(7);
 		repaint();
 	}
 
@@ -154,6 +154,7 @@ public class GraphicalView
 	public void sceneWrapEvent(String setName, String sceneName) {
 		// TEMP
 		System.out.println("scene: " + sceneName + " wrapping in: " + setName);
+		bp.wrapOnSet(setName);
 	}
 
 	@Override

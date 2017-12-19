@@ -64,6 +64,11 @@ public class BoardPanel extends JPanel {
 		roomAsSet.newScene(which, cardId);
 	}
 
+	public void wrapOnSet(String where) {
+		SetComponent roomAsSet = (SetComponent) rooms.get(where);
+		roomAsSet.wrap();
+	}
+
 	public void takeFinishEvent(String where) {
 		SetComponent roomAsSet = (SetComponent) rooms.get(where);
 		roomAsSet.takeFinished();

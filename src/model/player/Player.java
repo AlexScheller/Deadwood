@@ -74,6 +74,7 @@ public class Player {
 			// having to provide the current role still seems
 			// a little wrong
 			roomAsSet.playerActs(roll, currentRole);
+			endTurn();
 		} else {
 			throw new IllegalStateException("player not in a role");
 		}
@@ -85,6 +86,7 @@ public class Player {
 			if (rehearsalTokens < (roomAsSet.getBudget() - 1)) {
 				rehearsalTokens++;
 				listener.playerRehearsesEvent();
+				endTurn();
 			} else {
 				throw new IllegalStateException("player already has max rehearsal tokens");
 			}
@@ -114,6 +116,7 @@ public class Player {
 				this.currentRole = newRole;
 				currentRole.takeActor(this);
 				listener.playerTakesRoleEvent();
+				endTurn();
 			} else {
 				throw new IllegalStateException("role to high a rank for current player");
 			}
@@ -130,6 +133,7 @@ public class Player {
 	// PROTOTYPE_CHAIN: 2
 	public void endTurn() {
 		this.hasMoved = false;
+		listener.playerEndsTurnEvent();
 	}
 
 	public void move(String where) throws IllegalArgumentException, IllegalStateException {

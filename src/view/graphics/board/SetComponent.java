@@ -48,7 +48,7 @@ public class SetComponent extends RoomComponent {
 												 ri.extraOrigins.get(roleName),
 												 cel);
 			rc.setDieImage(diceImage); // temporarily hard coded
-			extras.put(name, rc);
+			extras.put(roleName, rc); // HERE IS THE BUG
 			// rc.takePlayerComponent(new PlayerComponent(3, 'g', cel));
 			add(rc);
 		}
@@ -73,6 +73,23 @@ public class SetComponent extends RoomComponent {
 	public void takeFinished() {
 		takesFinished++;
 		repaint();
+	}
+
+	public void wrap() {
+		for (RoleComponent rc : extras.values()) {
+			System.out.println("role name: " + rc.getName());
+			if (rc.occupied()) {
+				System.out.println(rc.getName() + " occupied");
+				super.acceptPlayer(rc.evictPlayerComponent());
+			}
+		}
+		for (RoleComponent rc : card.getRoles()) {
+			System.out.println("role name: " + rc.getName());
+			if (rc.occupied()) {
+				System.out.println(rc.getName() + " occupied");
+				super.acceptPlayer(rc.evictPlayerComponent());
+			}
+		}
 	}
 
 	@Override

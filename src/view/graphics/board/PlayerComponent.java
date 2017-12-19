@@ -64,6 +64,10 @@ public class PlayerComponent extends JComponent {
 		this.currentRole = rc;
 	}
 
+	public void leaveRole() {
+		this.currentRole = null;
+	}
+
 	public void moveToRoom(RoomComponent rc) {
 		this.currentRoom = rc;
 		rc.acceptPlayer(this);
