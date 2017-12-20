@@ -1,8 +1,12 @@
 package view;
 
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 
 // import view.graphics.CardComponent;
 import view.graphics.menu.MenuPanel;
@@ -42,9 +46,26 @@ public class GameFrame
 		this.requestingRole = null;
 		this.bp = bp;
 		this.mp = mp;
-		add(bp);
 		add(mp);
-		setSize(BOARD_LENGTH + MENU_LENGTH, BOARD_HEIGHT);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int sWidth = screenSize.width;
+		int sHeight = screenSize.height;
+		// TODO: Fix this super janky code
+		if (sWidth < BOARD_LENGTH + MENU_LENGTH || sHeight < BOARD_HEIGHT) {
+			setSize(1200, BOARD_HEIGHT - 200);
+			mp.setBounds(1000, 0, MENU_LENGTH, MENU_HEIGHT);
+			JScrollPane jsp = new JScrollPane(bp);
+			// jsp.setBounds(0, 0, sWidth - MENU_LENGTH, sHeight - 10);
+			jsp.setBounds(0, 0, 1000, MENU_HEIGHT - 200);
+			// jsp.setSize(100, 100);
+			jsp.getHorizontalScrollBar().setMaximum(228);
+			jsp.getHorizontalScrollBar().setValue(228);
+			add(jsp);
+			System.out.println("resolution too low, using scroll pane");
+		} else {
+			setSize(BOARD_LENGTH + MENU_LENGTH, BOARD_HEIGHT);
+			add(bp);
+		}
 		setTitle("Deadwood!");
 		setLocationRelativeTo(null); // center window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

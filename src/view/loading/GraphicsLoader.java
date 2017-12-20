@@ -20,6 +20,7 @@ public class GraphicsLoader {
 	public GameFrame loadGameFrame() {
 		JSONDataParser jp = JSONDataParser.getInstance();
 		loadAssetBank(AssetBank.getInstance(), jp);
+		// check user's resolution
 		GameFrame gf = new GameFrame();
 		BoardPanel bp = loadBoard(jp, gf);
 		MenuPanel mp = new MenuPanel(gf);

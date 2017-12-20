@@ -25,7 +25,8 @@ public class BoardPanel extends JPanel {
 					  ChildEventListener cel) {
 		setLayout(null); // absolute positioning is used
 		this.board = new ImageIcon("../resources/board.png").getImage();
-		setBounds(0, 0, board.getWidth(null), board.getHeight(null));
+		// setBounds(0, 0, board.getWidth(null), board.getHeight(null));
+		setPreferredSize(new Dimension(board.getWidth(null), board.getHeight(null)));
 		this.rooms = new HashMap<>();
 		// the below is hard-coded for testing
 		AssetBank ab = AssetBank.getInstance();
