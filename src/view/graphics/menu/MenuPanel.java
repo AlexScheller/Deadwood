@@ -31,14 +31,14 @@ public class MenuPanel extends JPanel {
 	public MenuPanel(ChildEventListener cel) {
 		setLayout(null);
 		setBounds(BOARD_LENGTH, 0, MENU_LENGTH, MENU_HEIGHT);
-		JButton newGameButton = new JButton("New Game");
-		newGameButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cel.newGameButtonClickEvent();
-			}
-		});
-		newGameButton.setBounds(0, 0, 200, 50);
-		add(newGameButton);
+		// JButton newGameButton = new JButton("New Game");
+		// newGameButton.addActionListener(new ActionListener() {
+		// 	public void actionPerformed(ActionEvent e) {
+		// 		cel.newGameButtonClickEvent();
+		// 	}
+		// });
+		// newGameButton.setBounds(0, 0, 200, 50);
+		// add(newGameButton);
 
 		this.hpic = new PlayerInfoComponent(new Point(0, 50), "Hovered player:");
 		// PROTOTYPE_CHAIN: 3

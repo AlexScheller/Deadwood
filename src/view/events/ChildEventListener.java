@@ -5,7 +5,7 @@ import view.graphics.menu.ActionType;
 
 public interface ChildEventListener {
 
-	public void newGameButtonClickEvent();
+	// public void newGameButtonClickEvent();
 
 	public void roleClickEvent(RoleComponent which);
 

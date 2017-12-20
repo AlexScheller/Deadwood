@@ -39,6 +39,8 @@ public interface ModelListener {
 
 	public void playerTakesRoleEvent(int playerId);
 
+	public void playerActsEvent(String name, int roll);
+
 	// public void updateCurrentPlayerInfo(int playerId);
 
 	public void updateCurrentPlayerContext(PlayerContext pc);

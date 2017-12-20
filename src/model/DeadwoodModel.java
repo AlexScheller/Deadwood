@@ -206,6 +206,10 @@ public class DeadwoodModel
 		// NOTE: This may lead to weirdness when a scene wraps
 	}
 
+	public void playerActsEvent(int roll) {
+		listener.playerActsEvent(currentPlayer.getName(), roll);
+	}
+
 	public void playerEndsTurn() {
 		currentPlayer.endTurn();
 	}

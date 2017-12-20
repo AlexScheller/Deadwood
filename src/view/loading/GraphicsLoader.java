@@ -7,7 +7,7 @@ import java.util.Map;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-import view.GraphicalView;
+import view.GameFrame;
 import view.graphics.menu.MenuPanel;
 import view.graphics.board.BoardPanel;
 
@@ -17,18 +17,18 @@ public class GraphicsLoader {
 
 	private GraphicsLoader() {}
 
-	public GraphicalView loadGraphicalView() {
+	public GameFrame loadGameFrame() {
 		JSONDataParser jp = JSONDataParser.getInstance();
 		loadAssetBank(AssetBank.getInstance(), jp);
-		GraphicalView gv = new GraphicalView();
-		BoardPanel bp = loadBoard(jp, gv);
-		MenuPanel mp = new MenuPanel(gv);
-		gv.initUI(bp, mp);
-		return gv;
+		GameFrame gf = new GameFrame();
+		BoardPanel bp = loadBoard(jp, gf);
+		MenuPanel mp = new MenuPanel(gf);
+		gf.initUI(bp, mp);
+		return gf;
 	}
 
-	private BoardPanel loadBoard(JSONDataParser jp, GraphicalView gv) {
-		return new BoardPanel(jp.parseRoomPanelInfo(), gv);
+	private BoardPanel loadBoard(JSONDataParser jp, GameFrame gf) {
+		return new BoardPanel(jp.parseRoomPanelInfo(), gf);
 	}
 
 	// TODO: I know you just coalesced two functions into one for

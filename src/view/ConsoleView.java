@@ -71,6 +71,11 @@ public class ConsoleView
 		System.out.println("Player " + playerId + " takes role");
 	}
 
+	@Override
+	public void playerActsEvent(String who, int roll) {
+		System.out.println(who + " acts, rolling a " + roll);
+	}
+
 	// PROTOTYPE_CHAIN: 3
 	@Override
 	public void newTurnEvent(int playerId) {

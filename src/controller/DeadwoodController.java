@@ -15,10 +15,16 @@ public class DeadwoodController implements ViewListener {
 
 	private ControllerListener listener;
 
-	public DeadwoodController(DeadwoodView view) {//, DeadwoodModel model) {//, boolean logging) {
+	public DeadwoodController() {//, DeadwoodModel model) {//, boolean logging) {
 		this.model = null;
-		this.view = view;
-		view.setListener(this);
+		this.view = null;
+		// this.view = view;
+		// view.setListener(this);
+	}
+
+	public void setView(DeadwoodView dv) {
+		this.view = dv;
+		dv.setListener(this);
 	}
 
 	private void exitOnException(Exception e) {

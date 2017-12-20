@@ -37,6 +37,7 @@ public class Player {
 
 	public Player(int id, Room initialRoom) {
 		this.id = id;
+		this.name = Integer.toString(id);
 		this.currentRoom = initialRoom;
 		this.initialRoom = initialRoom;
 		this.dice = new Random();
@@ -73,6 +74,7 @@ public class Player {
 			MovieSet roomAsSet = (MovieSet) currentRoom;
 			// having to provide the current role still seems
 			// a little wrong
+			listener.playerActsEvent(roll);
 			roomAsSet.playerActs(roll, currentRole);
 			endTurn();
 		} else {

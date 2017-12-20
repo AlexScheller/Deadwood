@@ -21,6 +21,8 @@ public interface ChildEventListener {
 
 	public void playerRehearsesEvent();
 
+	public void playerActsEvent(int roll);
+
 	public void playerEndsTurnEvent();
 
 }
