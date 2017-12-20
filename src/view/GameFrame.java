@@ -18,6 +18,8 @@ import model.player.PlayerContext;
 import model.ModelListener;
 import view.loading.AssetBank;
 
+// TODO: put board and menu panels in JScrollpanes if the
+// native resolution is too low.
 public class GameFrame
 	extends JFrame
 	implements DeadwoodView, ChildEventListener {

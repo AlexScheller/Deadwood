@@ -19,12 +19,12 @@ public class GraphicalView {
 		smf.setVisible(true);
 	}
 
-	public void newGameButtonClickEvent() {
+	public void newGameButtonClickEvent(int numPlayers) {
 		smf.dispose();
 		GraphicsLoader gl = GraphicsLoader.getInstance();
 		gf = gl.loadGameFrame();
 		dc.setView(gf); // also initialized the model
-		int numPlayers = 7;// TODO: get this from the start menu.
+		// int numPlayers = 7;// TODO: get this from the start menu.
 		gf.begin(numPlayers);
 		gf.setVisible(true);
 	}

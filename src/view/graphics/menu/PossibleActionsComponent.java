@@ -66,6 +66,7 @@ public class PossibleActionsComponent extends JComponent {
 		actionButtons.put(ActionType.REHEARSE, rehearseButton);
 
 		JButton endTurnButton = new JButton("End Turn");
+		endTurnButton.setFocusPainted(false);
 		endTurnButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				listener.actionButtonClicked(ActionType.END_TURN);
