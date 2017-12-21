@@ -145,6 +145,9 @@ public class Player {
 			this.hasMoved = true;
 			System.out.println("moving");
 			listener.playerMovesEvent(id, from, where);
+			if (!hasActionLeft()) {
+				endTurn();
+			}
 		} else {
 			throw new IllegalStateException("player cannot move");
 		}
@@ -210,6 +213,18 @@ public class Player {
 		return (!hasMoved && !isActing());
 	}
 
+	public boolean canTakeNewRole() {
+		if (currentRoom instanceof MovieSet) {
+			MovieSet asSet = (MovieSet) currentRoom;
+			return (!isActing() && !asSet.isWrapped() && hasRolesAvailable());
+		}
+		return false;
+	}
+
+	private boolean hasActionLeft() {
+		return (canTakeNewRole() || canUpgrade() || canMove() || canAct()); 
+	}
+
 	public boolean isActing() {
 		return (currentRole != null);
 	}
@@ -259,6 +274,20 @@ public class Player {
 			return rehearsalTokens < (roomAsSet.getBudget() - 1);
 		}
 		return false;
+	}
+
+	// This quite incorrect, as it depends on
+	// on the context of when this question is asked.
+	// For instance, if for some reason this question is
+	// asked when it's not this player's turn, it will
+	// still return true, despite that fact that the
+	// player shouldn't actually be able to take any actions
+	// at all. Currently I believe the code is managed such
+	// that this won't be called in an improper context, but
+	// perhaps there should be some sort of "isMyTurn" boolean,
+	// or some shared lockout semaphore between the players.
+	private boolean canAct() {
+		return isActing();
 	}
 
 	public boolean hasRolesAvailable() {

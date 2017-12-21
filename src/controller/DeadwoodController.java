@@ -100,7 +100,7 @@ public class DeadwoodController implements ViewListener {
 			// TODO: relay to the view that the move
 			// request failed. Perhaps this should be
 			// done in the model instead.
-			exitOnException(e);
+			// exitOnException(e);
 		}
 	}
 	

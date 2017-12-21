@@ -3,6 +3,8 @@ package view;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Dimension;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
@@ -58,6 +60,15 @@ public class GameFrame
 			setSize(COMPACT_GAME_WIDTH, COMPACT_GAME_HEIGHT);
 			JScrollPane jsp = new JScrollPane(bp);
 			jsp.setBounds(0, 0, COMPACT_BOARD_WIDTH, COMPACT_BOARD_HEIGHT);
+			// JScrollBar jsb = jsp.getHorizontalScrollBar();
+			// jsb.setMaximum(138);
+			// jsb.setValue(138);
+			// // System.out.println(jsb.getMaximum());
+			// jsb.addAdjustmentListener(new AdjustmentListener() {
+			// 	public void adjustmentValueChanged(AdjustmentEvent e) {
+			// 		System.out.println("scroll value: " + e.getValue());
+			// 	}
+			// });
 			add(jsp);
 			mp.setBounds(COMPACT_BOARD_WIDTH, 0,
 						 COMPACT_MENU_WIDTH, COMPACT_MENU_HEIGHT);
@@ -83,7 +94,7 @@ public class GameFrame
 		// 	add(bp);
 		// }
 		setTitle("Deadwood!");
-		setLocationRelativeTo(null); // center window
+		// setLocationRelativeTo(null); // center window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

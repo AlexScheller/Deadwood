@@ -240,11 +240,11 @@ public class DeadwoodModel
 	/* for debugging */
 
 	public void playerTakesRole(String which) throws IllegalArgumentException, IllegalStateException {
-		if (!currentPlayer.isActing()) {
+		if (currentPlayer.canTakeNewRole()) {
 			currentPlayer.takeRole(which);
 			// playerEndsTurn();	
 		} else {
-			throw new IllegalStateException("player already in a role");
+			throw new IllegalStateException("player cannot take new role");
 		}
 	}
 
