@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.Point;
 import java.awt.Image;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -29,8 +31,12 @@ public class MenuPanel extends JPanel {
 	// private JScrollPane jsp;
 
 	public MenuPanel(ChildEventListener cel) {
+		
+		// setLayout(new GridBagLayout());
+
 		setLayout(null);
-		setBounds(BOARD_LENGTH, 0, MENU_LENGTH, MENU_HEIGHT);
+		
+		// setBounds(BOARD_LENGTH, 0, MENU_LENGTH, MENU_HEIGHT);
 		// JButton newGameButton = new JButton("New Game");
 		// newGameButton.addActionListener(new ActionListener() {
 		// 	public void actionPerformed(ActionEvent e) {
@@ -41,13 +47,27 @@ public class MenuPanel extends JPanel {
 		// add(newGameButton);
 
 		this.hpic = new PlayerInfoComponent(new Point(0, 50), "Hovered player:");
+		
 		// PROTOTYPE_CHAIN: 3
 		// this.currentPlayerInfoOrigin = new Point(0, 200);
 		this.cpic = new PlayerInfoComponent(new Point(0, 165), "Current player:");
 		add(cpic);
 
+		this.cpic = new PlayerInfoComponent(new Point(0, 165), "Current player:");
+		// GridBagConstraints c = new GridBagConstraints();
+		// c.fill 
+		// c.gridx = 0;
+		// c.gridy = 1;
+		// add(cpic, c);
+		add(cpic);
+
 		this.pac = new PossibleActionsComponent(cel);
+		// c = new GridBagConstraints();
+		// c.fill = GridBagConstraints.HORIZONTAL;
+		// c.gridx = 0;
+		// c.gridy = 2;
 		pac.setBounds(0, 275, 200, 200);
+		// add(pac, c);
 		add(pac);
 
 		this.jta = new JTextArea(10, 10);

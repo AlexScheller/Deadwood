@@ -50,22 +50,38 @@ public class GameFrame
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int sWidth = screenSize.width;
 		int sHeight = screenSize.height;
-		// TODO: Fix this super janky code
-		if (sWidth < BOARD_LENGTH + MENU_LENGTH || sHeight < BOARD_HEIGHT) {
-			setSize(1200, BOARD_HEIGHT - 200);
-			mp.setBounds(1000, 0, MENU_LENGTH, MENU_HEIGHT);
+		// It would be odd for the second case to be true if
+		// the first one isn't.
+		if (sWidth < GAME_WIDTH || sHeight < GAME_HEIGHT) {
+			// TODO: Dynamically adjust game size, rather than
+			// just switching between the 2 hard coded sizes.
+			setSize(COMPACT_GAME_WIDTH, COMPACT_GAME_HEIGHT);
 			JScrollPane jsp = new JScrollPane(bp);
-			// jsp.setBounds(0, 0, sWidth - MENU_LENGTH, sHeight - 10);
-			jsp.setBounds(0, 0, 1000, MENU_HEIGHT - 200);
-			// jsp.setSize(100, 100);
-			jsp.getHorizontalScrollBar().setMaximum(228);
-			jsp.getHorizontalScrollBar().setValue(228);
+			jsp.setBounds(0, 0, COMPACT_BOARD_WIDTH, COMPACT_BOARD_HEIGHT);
 			add(jsp);
-			System.out.println("resolution too low, using scroll pane");
+			mp.setBounds(COMPACT_BOARD_WIDTH, 0,
+						 COMPACT_MENU_WIDTH, COMPACT_MENU_HEIGHT);
 		} else {
-			setSize(BOARD_LENGTH + MENU_LENGTH, BOARD_HEIGHT);
+			setSize(GAME_WIDTH, GAME_HEIGHT);
+			mp.setBounds(BOARD_WIDTH, 0, MENU_WIDTH, MENU_HEIGHT);
 			add(bp);
 		}
+		// TODO: Fix this super janky code
+		// if (sWidth < BOARD_LENGTH + MENU_LENGTH || sHeight < BOARD_HEIGHT) {
+		// 	setSize(1200, BOARD_HEIGHT - 200);
+		// 	mp.setBounds(1000, 0, MENU_LENGTH, MENU_HEIGHT);
+		// 	JScrollPane jsp = new JScrollPane(bp);
+		// 	// jsp.setBounds(0, 0, sWidth - MENU_LENGTH, sHeight - 10);
+		// 	jsp.setBounds(0, 0, 1000, MENU_HEIGHT - 200);
+		// 	// jsp.setSize(100, 100);
+		// 	jsp.getHorizontalScrollBar().setMaximum(228);
+		// 	jsp.getHorizontalScrollBar().setValue(228);
+		// 	add(jsp);
+		// 	System.out.println("resolution too low, using scroll pane");
+		// } else {
+		// 	setSize(BOARD_LENGTH + MENU_LENGTH, BOARD_HEIGHT);
+		// 	add(bp);
+		// }
 		setTitle("Deadwood!");
 		setLocationRelativeTo(null); // center window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
