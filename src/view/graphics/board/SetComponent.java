@@ -57,6 +57,7 @@ public class SetComponent extends RoomComponent {
 	}
 
 	public void newScene(String which, int cardId) {
+		filming = false;
 		card.setNewCard(which, cardId);
 	}
 

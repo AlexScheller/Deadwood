@@ -76,7 +76,7 @@ public class CardComponent extends JComponent {
 		this.cardFront = ab.getAsset(cardId);
 		this.occupied = true;
 		this.wrapped = false;
-		// this.flipped = false;
+		this.flipped = false;
 		this.stars = new HashMap<>();
 		Map<String, Point> roleOrigins = ab.getRoleOrigins(cardId);
 		for (String roleName : roleOrigins.keySet()) {

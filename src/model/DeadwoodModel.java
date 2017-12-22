@@ -21,6 +21,7 @@ public class DeadwoodModel
 	private int currentPlayerIndex = 0;
 	// private int day;
 	private int daysLeft;
+	private int currentDay;
 	private int unwrappedScenes;
 	private boolean playing;
 	private Board board;
@@ -28,6 +29,9 @@ public class DeadwoodModel
 	private ModelListener listener;
 
 	public DeadwoodModel(Player[] players, Board board) {
+		// TODO: technically this doesn't apply for games
+		// of 3 or fewer players.
+		this.currentDay = 1;
 		this.daysLeft = 4;
 		this.unwrappedScenes = 10;
 		this.playing = false;
@@ -80,7 +84,9 @@ public class DeadwoodModel
 	public void sceneWrapEvent(String setName, String sceneTitle) {
 		listener.sceneWrapEvent(setName, sceneTitle);
 		unwrappedScenes--;
+		System.out.println("wrapping, scenes left: " + unwrappedScenes);
 		if (unwrappedScenes == 1) {
+			System.out.println("calling newDay()");
 			newDay();
 		}
 	}
@@ -135,9 +141,9 @@ public class DeadwoodModel
 				System.out.println(contexts[i].id);
 			}
 			listener.newPlayersEvent(contexts);
-			for (int i = 0; i < players.length; i++) {
-				listener.playerMoves(players[i].getId(), null, "trailer");
-			}
+			// for (int i = 0; i < players.length; i++) {
+			// 	listener.playerMoves(players[i].getId(), null, "trailer");
+			// }
 			newDay();
 		}
 		// while (day <= 4) {
@@ -170,6 +176,12 @@ public class DeadwoodModel
 		for (Player p : players) {
 			p.newDay();
 		}
+		// return players to the trailers
+		for (int i = 0; i < players.length; i++) {
+			listener.playerMoves(players[i].getId(), null, "trailer");
+		}
+		listener.newDayEvent(currentDay, daysLeft);
+		currentDay--;
 		listener.newTurnEvent(currentPlayerIndex);
 	}
 

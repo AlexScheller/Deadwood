@@ -161,9 +161,11 @@ public class GameFrame
 	}
 
 	@Override
-	public void newDayEvent() {
+	public void newDayEvent(int curr, int left) {
 		// TEMP
 		System.out.println("new day event intercepted");
+		// bp.newDay();
+		mp.updateDayLabel(curr, left);
 		mp.newMessage("new day event intercepted");
 	}
 

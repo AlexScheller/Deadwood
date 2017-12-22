@@ -8,6 +8,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,8 @@ import model.player.PlayerContext;
 import static view.graphics.Dimensions.*;
 
 public class MenuPanel extends JPanel {
+
+	private JLabel dayLabel;
 
 	private PlayerInfoComponent hpic;
 	private PlayerInfoComponent cpic;
@@ -45,6 +48,10 @@ public class MenuPanel extends JPanel {
 		// });
 		// newGameButton.setBounds(0, 0, 200, 50);
 		// add(newGameButton);
+
+		this.dayLabel = new JLabel();
+		dayLabel.setBounds(0, 0, 200, 20);
+		add(dayLabel);
 
 		this.hpic = new PlayerInfoComponent(new Point(0, 50), "Hovered player:");
 		
@@ -98,6 +105,10 @@ public class MenuPanel extends JPanel {
 		remove(hpic);
 		repaint();
 		// getGraphics().drawImage(nullImage, HoverPlayerPoint.x, HoverPlayerPoint.y, null);
+	}
+
+	public void updateDayLabel(int day, int daysLeft) {
+		dayLabel.setText("Day: " + day + ", days left: " + daysLeft);
 	}
 
 	public void newMessage(String msg) {

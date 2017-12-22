@@ -17,7 +17,7 @@ public interface ModelListener {
 
 	/* Main game event methods*/
 
-	public void newDayEvent();
+	public void newDayEvent(int currentDay, int daysLeft);
 
 	// PROTOTYPE_CHAIN: 3
 	public void newTurnEvent(int playerId);
