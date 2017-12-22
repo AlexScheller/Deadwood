@@ -9,6 +9,9 @@ public interface ViewListener {
 	// PROTOTYPE_CHAIN: 2
 	public void endTurnRequest();
 
+	// for debugging
+	public void endDayRequest();
+
 	public PlayerContext getPlayerContext(int id);
 
 	public void playerActRequest();

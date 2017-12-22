@@ -103,6 +103,11 @@ public class DeadwoodController implements ViewListener {
 			// exitOnException(e);
 		}
 	}
+
+	// for debugging
+	public void endDayRequest() {
+		listener.newDay();
+	}
 	
 	public void playerUpgradeRequest(int rank, String currency) {
 		try {

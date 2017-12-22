@@ -11,6 +11,9 @@ public interface ControllerListener {
 	// PROTOTYPE_CHAIN: 2
 	public void playerEndsTurn();
 
+	// for debugging
+	public void newDay();
+
 	public void playerActs();
 
 	public void playerRehearses();

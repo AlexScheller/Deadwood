@@ -74,6 +74,17 @@ public class PossibleActionsComponent extends JComponent {
 		});
 		actionButtons.put(ActionType.END_TURN, endTurnButton);
 
+		// for debugging
+		JButton endDayButton = new JButton("End Day");
+		endDayButton.setFocusPainted(false);
+		endDayButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listener.actionButtonClicked(ActionType.END_DAY);
+			}
+		});
+		actionButtons.put(ActionType.END_DAY, endDayButton);
+
+
 	}
 
 	public void update(PlayerContext pc) {
@@ -96,6 +107,10 @@ public class PossibleActionsComponent extends JComponent {
 				numDisplayed++;
 			}
 		}
+		// for debugging
+		curr = actionButtons.get(ActionType.END_DAY);
+		curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
+		add(curr);
 		// code for upgrading
 		// repaint();
 	}

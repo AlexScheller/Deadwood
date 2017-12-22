@@ -181,7 +181,7 @@ public class DeadwoodModel
 			listener.playerMoves(players[i].getId(), null, "trailer");
 		}
 		listener.newDayEvent(currentDay, daysLeft);
-		currentDay--;
+		currentDay++;
 		listener.newTurnEvent(currentPlayerIndex);
 	}
 

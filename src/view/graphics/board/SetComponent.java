@@ -91,6 +91,7 @@ public class SetComponent extends RoomComponent {
 				super.acceptPlayer(rc.evictPlayerComponent());
 			}
 		}
+		takesFinished = 0;
 		card.wrap();
 	}
 

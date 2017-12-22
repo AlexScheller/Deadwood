@@ -121,6 +121,9 @@ public class GameFrame
 			listener.playerRehearseRequest();
 		} else if (at == ActionType.ACT) {
 			listener.playerActRequest();
+		// for debugging
+		} else if (at == ActionType.END_DAY) {
+			listener.endDayRequest();
 		} else {
 			throw new IllegalArgumentException("No such action: " + at);
 		}
@@ -167,6 +170,7 @@ public class GameFrame
 		// bp.newDay();
 		mp.updateDayLabel(curr, left);
 		mp.newMessage("new day event intercepted");
+		repaint();
 	}
 
 	// PROTOTYPE_CHAIN: 3

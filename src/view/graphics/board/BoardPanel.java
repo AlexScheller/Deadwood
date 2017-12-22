@@ -80,6 +80,7 @@ public class BoardPanel extends JPanel {
 		if (from != null) {
 			rooms.get(from).evictPlayer(pc.getId());
 		}
+		// leave role
 		pc.moveToRoom(rooms.get(to));
 		// rooms.get(to).acceptPlayer(pc);
 	}

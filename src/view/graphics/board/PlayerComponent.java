@@ -69,8 +69,20 @@ public class PlayerComponent extends JComponent {
 	}
 
 	public void moveToRoom(RoomComponent rc) {
-		this.currentRoom = rc;
-		rc.acceptPlayer(this);
+		if (currentRole != null) {
+			currentRole.evictPlayerComponent();
+		}
+		// I wrote these conditionals when i was tired,
+		// I'm sure there's a better way.
+		if (this.currentRoom != null) {
+			if (!this.currentRoom.equals(rc)) {
+				this.currentRoom = rc;
+				rc.acceptPlayer(this);
+			}
+		} else {
+			this.currentRoom = rc;
+			rc.acceptPlayer(this);
+		}
 	}
 
 	public void paintComponent(Graphics g) {
