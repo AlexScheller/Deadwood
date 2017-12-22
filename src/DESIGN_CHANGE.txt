@@ -5,7 +5,9 @@ and simply thrown away, because they aren't actually game breaking. This should
 be changed in one of two ways. Either these methods should c-style return
 a boolean indicating success or failure, or they should require an additional
 function call that checks to see if they can be validly called with given
-input. I lean towards the former.
+input. I lean towards the former. Some exceptions should remain however in the
+cases where a function call is actually game breaking, these cases should all
+have comments justifying the use of an Exception.
 
 Currently all exceptions must now have an accompanying comment justifying
 their existence.
