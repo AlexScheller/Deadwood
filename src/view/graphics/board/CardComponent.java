@@ -4,8 +4,12 @@ import java.util.Map;
 import java.util.HashMap;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.awt.Point;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JComponent;
@@ -13,6 +17,8 @@ import javax.swing.JComponent;
 import view.loading.CardInfo;
 import view.loading.AssetBank;
 import view.events.ChildEventListener;
+
+import static view.graphics.Dimensions.*;
 
 public class CardComponent extends JComponent {
 
@@ -23,6 +29,7 @@ public class CardComponent extends JComponent {
 
 	private boolean occupied;
 	private boolean flipped;
+	private boolean wrapped;
 
 	private String title;
 	private String setName;
@@ -46,6 +53,7 @@ public class CardComponent extends JComponent {
 		this.diceImage = AssetBank.getInstance().getAsset("b1");
 		this.occupied = false;
 		this.flipped = false;
+		this.wrapped = false;
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				// System.out.println("Card Clicked");
@@ -67,6 +75,7 @@ public class CardComponent extends JComponent {
 		AssetBank ab = AssetBank.getInstance();
 		this.cardFront = ab.getAsset(cardId);
 		this.occupied = true;
+		this.wrapped = false;
 		// this.flipped = false;
 		this.stars = new HashMap<>();
 		Map<String, Point> roleOrigins = ab.getRoleOrigins(cardId);
@@ -82,6 +91,10 @@ public class CardComponent extends JComponent {
 		// pc.move(new Point(0, 0));
 		// add(pc);
 		// setBounds(origin);
+	}
+
+	public void wrap() {
+		this.wrapped = true;
 	}
 	
 	// TODO: look into speeding this up
@@ -118,10 +131,22 @@ public class CardComponent extends JComponent {
 		// System.out.println(" at origin {" + origin.x + ", " + origin.y + "}");
 		if (occupied) {
 			if (flipped) {
-				g.drawImage(cardFront, 0, 0, null);
-				for (RoleComponent rc : stars.values()) {
-					// System.out.println("hello");
-					rc.paintComponent(g);
+				if (wrapped) {
+					BufferedImage greyScale = new BufferedImage(CARD_WIDTH, CARD_HEIGHT, BufferedImage.TYPE_BYTE_GRAY);
+					greyScale.getGraphics().drawImage(cardFront, 0, 0, null);
+					Graphics2D g2d = (Graphics2D) g;
+					g2d.drawImage(greyScale, 0, 0, null);
+					// draw wrapped
+					g2d.setColor(Color.RED);
+					g2d.setFont(new Font("Helvetica", Font.ITALIC, 40));
+					g2d.rotate(Math.toRadians(-20));
+					g2d.drawString("WRAPPED", -22, 104);
+				} else {
+					g.drawImage(cardFront, 0, 0, null);
+					for (RoleComponent rc : stars.values()) {
+						// System.out.println("hello");
+						rc.paintComponent(g);
+					}
 				}
 			} else {
 				// System.out.println("drawing card back");

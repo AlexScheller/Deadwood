@@ -23,3 +23,7 @@ clean:
 	-rm controller/*.class
 
 clena: clean
+
+lcena: clena
+
+lcean: clean

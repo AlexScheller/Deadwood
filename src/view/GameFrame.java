@@ -60,39 +60,15 @@ public class GameFrame
 			setSize(COMPACT_GAME_WIDTH, COMPACT_GAME_HEIGHT);
 			JScrollPane jsp = new JScrollPane(bp);
 			jsp.setBounds(0, 0, COMPACT_BOARD_WIDTH, COMPACT_BOARD_HEIGHT);
-			// JScrollBar jsb = jsp.getHorizontalScrollBar();
-			// jsb.setMaximum(138);
-			// jsb.setValue(138);
-			// // System.out.println(jsb.getMaximum());
-			// jsb.addAdjustmentListener(new AdjustmentListener() {
-			// 	public void adjustmentValueChanged(AdjustmentEvent e) {
-			// 		System.out.println("scroll value: " + e.getValue());
-			// 	}
-			// });
 			add(jsp);
 			mp.setBounds(COMPACT_BOARD_WIDTH, 0,
 						 COMPACT_MENU_WIDTH, COMPACT_MENU_HEIGHT);
 		} else {
 			setSize(GAME_WIDTH, GAME_HEIGHT);
 			mp.setBounds(BOARD_WIDTH, 0, MENU_WIDTH, MENU_HEIGHT);
+			bp.setBounds(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
 			add(bp);
 		}
-		// TODO: Fix this super janky code
-		// if (sWidth < BOARD_LENGTH + MENU_LENGTH || sHeight < BOARD_HEIGHT) {
-		// 	setSize(1200, BOARD_HEIGHT - 200);
-		// 	mp.setBounds(1000, 0, MENU_LENGTH, MENU_HEIGHT);
-		// 	JScrollPane jsp = new JScrollPane(bp);
-		// 	// jsp.setBounds(0, 0, sWidth - MENU_LENGTH, sHeight - 10);
-		// 	jsp.setBounds(0, 0, 1000, MENU_HEIGHT - 200);
-		// 	// jsp.setSize(100, 100);
-		// 	jsp.getHorizontalScrollBar().setMaximum(228);
-		// 	jsp.getHorizontalScrollBar().setValue(228);
-		// 	add(jsp);
-		// 	System.out.println("resolution too low, using scroll pane");
-		// } else {
-		// 	setSize(BOARD_LENGTH + MENU_LENGTH, BOARD_HEIGHT);
-		// 	add(bp);
-		// }
 		setTitle("Deadwood!");
 		// setLocationRelativeTo(null); // center window
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

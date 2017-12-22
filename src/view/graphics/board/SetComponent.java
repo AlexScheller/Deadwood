@@ -90,6 +90,7 @@ public class SetComponent extends RoomComponent {
 				super.acceptPlayer(rc.evictPlayerComponent());
 			}
 		}
+		card.wrap();
 	}
 
 	@Override
