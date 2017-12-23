@@ -22,6 +22,8 @@ public interface ViewListener {
 
 	public void playerTakeRoleRequest(String which);
 
+	public void upgradeInfoRequest();
+
 	public void playerUpgradeRequest(int rank, String currency);
 
 }

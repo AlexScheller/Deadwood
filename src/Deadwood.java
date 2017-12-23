@@ -1,4 +1,4 @@
-import view.ConsoleView;
+// import view.ConsoleView;
 import view.DeadwoodView;
 import view.GraphicalView;
 // import view.loading.GraphicsLoader;

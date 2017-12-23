@@ -121,8 +121,9 @@ public class MenuPanel extends JPanel {
 		repaint();
 	}
 
-	public void displayUpgradeChoices() {
-		pac.displayUpgradeChoices();
+	public void displayUpgradeChoices(int playerLevel, int cashRankMax,
+									  int creditsRankMax) {
+		pac.displayUpgradeChoices(playerLevel, cashRankMax, creditsRankMax);
 	}
 
 	// public void updateActions(PlayerContext pc) {

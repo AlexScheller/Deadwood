@@ -123,7 +123,8 @@ public class GameFrame
 			listener.playerActRequest();
 		} else if (at == ActionType.UPGRADE) {
 			//listener.getPossibleUpgradesRequest();
-			mp.displayUpgradeChoices();
+			listener.upgradeInfoRequest();
+			// mp.displayUpgradeChoices();
 		// for debugging
 		} else if (at == ActionType.END_DAY) {
 			listener.endDayRequest();
@@ -188,6 +189,11 @@ public class GameFrame
 
 	public void updateCurrentPlayerContext(PlayerContext pc) {
 		mp.update(pc, playerColors[pc.id]);
+	}
+
+	@Override
+	public void upgradeInfoReturn(int playerRank, int cashRanks, int creditsRanks) {
+		mp.displayUpgradeChoices(playerRank, cashRanks, creditsRanks);
 	}
 
 	@Override

@@ -117,6 +117,10 @@ public class DeadwoodController implements ViewListener {
 		}
 	}
 
+	public void upgradeInfoRequest() {
+		listener.upgradeInfoRequest();
+	}
+
 	public PlayerContext getPlayerContext(int id) {
 		return listener.getPlayerContext(id);
 	}

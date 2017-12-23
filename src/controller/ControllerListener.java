@@ -22,6 +22,8 @@ public interface ControllerListener {
 
 	public void playerTakesRole(String which);
 
+	public void upgradeInfoRequest();
+
 	public void playerUpgrades(int rank, String currency);
 
 }

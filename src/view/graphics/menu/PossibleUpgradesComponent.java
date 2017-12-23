@@ -18,10 +18,10 @@ public class PossibleUpgradesComponent extends JComponent {
 	public PossibleUpgradesComponent(PossibleActionsComponent pac) {
 		setLayout(null);
 		this.listener = pac;
-		initButtons();
 	}
 
-	private void initButtons() {
+	public void initButtons(int playerLevel, int cashRankMax,
+							 int creditsRankMax) {
 
 		this.cashButton = new JButton("Cash:");
 		cashButton.setFocusPainted(false);
@@ -43,17 +43,30 @@ public class PossibleUpgradesComponent extends JComponent {
 		});
 		add(creditsButton);
 
-		Integer[] ranks = {2, 3, 4, 5, 6};
+		// Integer[] ranks = {2, 3, 4, 5, 6};
+		if (cashRankMax > playerLevel) {
+			System.out.println("cash rank max: " + cashRankMax);
+			this.cashRanks = new JComboBox();
+			for (int i = playerLevel + 1; i <= cashRankMax; i++) {
+				cashRanks.addItem(i);
+				System.out.println("enumerating cash rank: " + i);
+			}
+			cashRanks.setSelectedIndex(0);
+			cashRanks.setBounds(0, 20, 100, 20);
+			add(cashRanks);
+		}
 
-		this.cashRanks = new JComboBox(ranks);
-		cashRanks.setSelectedIndex(0);
-		cashRanks.setBounds(0, 20, 100, 20);
-		add(cashRanks);
-
-		this.creditRanks = new JComboBox(ranks);
-		creditRanks.setSelectedIndex(0);
-		creditRanks.setBounds(100, 20, 100, 20);
-		add(creditRanks);
+		if (creditsRankMax > playerLevel) {
+			System.out.println("credit rank max: " + creditsRankMax);
+			this.creditRanks = new JComboBox();
+			for (int i = playerLevel + 1; i <= creditsRankMax; i++) {
+				creditRanks.addItem(i);
+				System.out.println("enumerating credit rank: " + i);
+			}
+			creditRanks.setSelectedIndex(0);
+			creditRanks.setBounds(100, 20, 100, 20);
+			add(creditRanks);
+		}
 	}
 
 }

@@ -41,6 +41,8 @@ public interface ModelListener {
 
 	public void playerActsEvent(String name, int roll);
 
+	public void upgradeInfoReturn(int playerRank, int cashRanks, int creditsRanks);
+
 	// public void updateCurrentPlayerInfo(int playerId);
 
 	public void updateCurrentPlayerContext(PlayerContext pc);

@@ -229,15 +229,32 @@ public class Player {
 		return (currentRole != null);
 	}
 
-	private int getMaxUpgradeAvailable() throws IllegalStateException {
+	public int getMaxUpgradeAvailable(String currency) throws IllegalStateException, IllegalArgumentException {
 		if (currentRoom instanceof CastingOffice) {
 			CastingOffice asOffice = (CastingOffice) currentRoom;
-			// TODO: see TODO in getRolesAvailable()
-			return asOffice.getMaxUpgradeAvailable(this);
+			int amount = 0;
+			if (currency.equals("dollars")) {
+				amount = dollars;
+			} else if (currency.equals("credits")) {
+				amount = credits;
+			} else {
+				throw new IllegalArgumentException("no such currency: " + currency);
+			}
+			return asOffice.getMaxUpgradeAvailable(currency, amount);
 		} else {
-			throw new IllegalStateException("Current room is not the Casting Office");
+			throw new IllegalStateException("current room is not the Casting Office");
 		}
 	}
+
+	// private int getMaxUpgradeAvailable() throws IllegalStateException {
+	// 	if (currentRoom instanceof CastingOffice) {
+	// 		CastingOffice asOffice = (CastingOffice) currentRoom;
+	// 		// TODO: see TODO in getRolesAvailable()
+	// 		return asOffice.getMaxUpgradeAvailable(this);
+	// 	} else {
+	// 		throw new IllegalStateException("Current room is not the Casting Office");
+	// 	}
+	// }
 
 	// public int[][] getUpgradePricesAvailable() {
 	// 	if (currentRoom instanceof CastingOffice) {
@@ -250,20 +267,21 @@ public class Player {
 	// }
 
 	// winner of the longest method name award
-	public int[] getUpgradePricesAvailableWith(String which) throws IllegalStateException, IllegalArgumentException {
-		if (currentRoom instanceof CastingOffice) {
-			CastingOffice asOffice = (CastingOffice) currentRoom;
-			return asOffice.getUpgradePricesAvailableWith(this, which);
-		} else {
-			throw new IllegalStateException("Current room is not the Casting Office");
-		}
-	}
+	// public int[] getUpgradePricesAvailableWith(String which) throws IllegalStateException, IllegalArgumentException {
+	// 	if (currentRoom instanceof CastingOffice) {
+	// 		CastingOffice asOffice = (CastingOffice) currentRoom;
+	// 		return asOffice.getUpgradePricesAvailableWith(this, which);
+	// 	} else {
+	// 		throw new IllegalStateException("Current room is not the Casting Office");
+	// 	}
+	// }
 
 	// TODO: check money
 	public boolean canUpgrade() {
 		if ((currentRoom instanceof CastingOffice) && rank < 6) {
 			// hasUpgradesAvailable()
-			return (getMaxUpgradeAvailable() > this.rank);
+			return (getMaxUpgradeAvailable("dollars") > this.rank ||
+					getMaxUpgradeAvailable("credits") > this.rank);
 		}
 		return false;
 	}

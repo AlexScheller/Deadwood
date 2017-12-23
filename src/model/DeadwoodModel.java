@@ -261,8 +261,15 @@ public class DeadwoodModel
 		}
 	}
 
+	@Override
+	public void upgradeInfoRequest() {
+		listener.upgradeInfoReturn(currentPlayer.getRank(),
+								   currentPlayer.getMaxUpgradeAvailable("dollars"),
+								   currentPlayer.getMaxUpgradeAvailable("credits"));
+	}
+
 	public void playerUpgrades(int rank, String currency) {
-		players[currentPlayerIndex].upgrade(rank, currency);
+		currentPlayer.upgrade(rank, currency);
 	}
 
 	// public Player getCurrentPlayer() {

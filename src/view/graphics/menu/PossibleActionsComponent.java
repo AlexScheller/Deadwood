@@ -106,10 +106,14 @@ public class PossibleActionsComponent extends JComponent {
 	// when attempting to upgrade to a level the player
 	// either cannot afford or shouldn't be able to upgrade
 	// to.
-	public void displayUpgradeChoices() {
+	public void displayUpgradeChoices(int playerLevel, int cashRankMax,
+									  int creditsRankMax) {
 		removeAll();
 		puc.setBounds(0, 0, getWidth(), getHeight());
+		puc.initButtons(playerLevel, cashRankMax, creditsRankMax);
 		add(puc);
+		// Currently this needs to be called to get drop down
+		// arrows for some reason.
 		puc.revalidate();
 		puc.repaint();
 		repaint();
