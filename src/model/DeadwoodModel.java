@@ -242,6 +242,7 @@ public class DeadwoodModel
 
 	public void playerMoves(String where) throws IllegalArgumentException {
 		currentPlayer.move(where);
+		listener.updateCurrentPlayerContext(currentPlayer.toContext());
 		// players[currentPlayerIndex].move(where);
 	}
 

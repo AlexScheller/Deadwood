@@ -3,6 +3,7 @@ package model.player;
 public class PlayerContext {
 	public boolean acting;
 	public boolean canRehearse;
+	public boolean canUpgrade;
 	public int id;
 	public int dollars;
 	public int credits;

@@ -333,6 +333,7 @@ public class Player {
 		PlayerContext ret = new PlayerContext();
 		ret.acting = isActing();
 		ret.canRehearse = canRehearse();
+		ret.canUpgrade= canUpgrade();
 		ret.id = id;
 		ret.rank = rank;
 		ret.dollars = dollars;

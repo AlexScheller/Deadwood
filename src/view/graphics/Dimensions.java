@@ -24,7 +24,10 @@ public final class Dimensions {
 	public static final int COMPACT_MENU_WIDTH = MENU_WIDTH;
 
 	public static final int COMPACT_GAME_HEIGHT = COMPACT_BOARD_HEIGHT;
-	public static final int COMPACT_GAME_WIDTH = COMPACT_BOARD_WIDTH + COMPACT_MENU_WIDTH;
+	// TODO: for some reason the menu seems to start drawing 1 pixel in,
+	// so a pixel has been added here so that the elements of the menu
+	// aren't squished up against the side. Figure this out.
+	public static final int COMPACT_GAME_WIDTH = COMPACT_BOARD_WIDTH + COMPACT_MENU_WIDTH + 1;
 
 	// common dimensions
 

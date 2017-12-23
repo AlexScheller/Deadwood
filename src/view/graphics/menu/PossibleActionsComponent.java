@@ -5,7 +5,9 @@ import java.util.HashMap;
 
 import java.awt.Point;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JComponent;
+import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -39,9 +41,12 @@ public class PossibleActionsComponent extends JComponent {
 
 	private ChildEventListener listener;
 
+	private PossibleUpgradesComponent puc;
+
 	public PossibleActionsComponent(ChildEventListener cel) {
 		setLayout(null);
 		// setBounds(p.x, p.y, width, height);
+		this.puc = new PossibleUpgradesComponent(this);
 		this.listener = cel;
 		this.actionButtons = new HashMap<>();
 		initButtons();
@@ -74,6 +79,15 @@ public class PossibleActionsComponent extends JComponent {
 		});
 		actionButtons.put(ActionType.END_TURN, endTurnButton);
 
+		JButton upgradeButton = new JButton("Upgrade");
+		upgradeButton.setFocusPainted(false);
+		upgradeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listener.actionButtonClicked(ActionType.UPGRADE);
+			}
+		});
+		actionButtons.put(ActionType.UPGRADE, upgradeButton);
+
 		// for debugging
 		JButton endDayButton = new JButton("End Day");
 		endDayButton.setFocusPainted(false);
@@ -85,6 +99,24 @@ public class PossibleActionsComponent extends JComponent {
 		actionButtons.put(ActionType.END_DAY, endDayButton);
 
 
+	}
+
+	// TODO: display only upgrades that are possible,
+	// instead of causing an error/false/exception
+	// when attempting to upgrade to a level the player
+	// either cannot afford or shouldn't be able to upgrade
+	// to.
+	public void displayUpgradeChoices() {
+		removeAll();
+		puc.setBounds(0, 0, getWidth(), getHeight());
+		add(puc);
+		puc.revalidate();
+		puc.repaint();
+		repaint();
+	}
+
+	public void upgradeSelected(int rank, String currency) {
+		System.out.println("rank selected: " + rank + ", with currency: " + currency);
 	}
 
 	public void update(PlayerContext pc) {
@@ -107,12 +139,19 @@ public class PossibleActionsComponent extends JComponent {
 				numDisplayed++;
 			}
 		}
+		if (pc.canUpgrade) {
+			System.out.println("can upgrade");
+			curr = actionButtons.get(ActionType.UPGRADE);
+			curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
+			add(curr);
+			numDisplayed++;
+			// displayUpgradeButtons(numDisplayed);
+		}
 		// for debugging
 		curr = actionButtons.get(ActionType.END_DAY);
 		curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
 		add(curr);
-		// code for upgrading
-		// repaint();
+		repaint();
 	}
 
 }

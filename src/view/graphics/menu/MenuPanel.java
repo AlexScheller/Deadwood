@@ -121,6 +121,10 @@ public class MenuPanel extends JPanel {
 		repaint();
 	}
 
+	public void displayUpgradeChoices() {
+		pac.displayUpgradeChoices();
+	}
+
 	// public void updateActions(PlayerContext pc) {
 	// 	pac.update(pc);
 	// }

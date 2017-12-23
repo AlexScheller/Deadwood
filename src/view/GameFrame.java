@@ -121,6 +121,9 @@ public class GameFrame
 			listener.playerRehearseRequest();
 		} else if (at == ActionType.ACT) {
 			listener.playerActRequest();
+		} else if (at == ActionType.UPGRADE) {
+			//listener.getPossibleUpgradesRequest();
+			mp.displayUpgradeChoices();
 		// for debugging
 		} else if (at == ActionType.END_DAY) {
 			listener.endDayRequest();
@@ -213,6 +216,7 @@ public class GameFrame
 	public void playerMoves(int playerId, String from, String to) {
 		System.out.println("moving player: " + players[playerId].getId());
 		bp.movePlayer(players[playerId], from, to);
+		// mp.update()
 	}
 
 	@Override
