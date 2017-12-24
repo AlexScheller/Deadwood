@@ -23,6 +23,8 @@ public class PossibleUpgradesComponent extends JComponent {
 	public void initButtons(int playerLevel, int cashRankMax,
 							 int creditsRankMax) {
 
+		System.out.println("player level: " + playerLevel);
+
 		this.cashButton = new JButton("Cash:");
 		cashButton.setFocusPainted(false);
 		cashButton.setBounds(0, 0, 100, 20);

@@ -153,9 +153,9 @@ public class PossibleActionsComponent extends JComponent {
 			// displayUpgradeButtons(numDisplayed);
 		}
 		// for debugging
-		curr = actionButtons.get(ActionType.END_DAY);
-		curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
-		add(curr);
+		// curr = actionButtons.get(ActionType.END_DAY);
+		// curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
+		// add(curr);
 		repaint();
 	}
 

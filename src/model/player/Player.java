@@ -329,7 +329,7 @@ public class Player {
 
 	public String getName() {
 		// return name;
-		return Integer.toString(id);
+		return Integer.toString(id + 1);
 	}
 
 	public int getId() {
@@ -355,6 +355,7 @@ public class Player {
 		ret.canRehearse = canRehearse();
 		ret.canUpgrade= canUpgrade();
 		ret.id = id;
+		ret.name = getName();
 		ret.rank = rank;
 		ret.dollars = dollars;
 		ret.credits = credits;

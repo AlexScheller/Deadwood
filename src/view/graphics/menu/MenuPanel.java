@@ -53,20 +53,20 @@ public class MenuPanel extends JPanel {
 		dayLabel.setBounds(0, 0, 200, 20);
 		add(dayLabel);
 
-		this.hpic = new PlayerInfoComponent(new Point(0, 50), "Hovered player:");
+		this.hpic = new PlayerInfoComponent(new Point(0, 50), "Hovered player");
 		
 		// PROTOTYPE_CHAIN: 3
 		// this.currentPlayerInfoOrigin = new Point(0, 200);
-		this.cpic = new PlayerInfoComponent(new Point(0, 165), "Current player:");
+		this.cpic = new PlayerInfoComponent(new Point(0, 165), "Current player");
 		add(cpic);
 
-		this.cpic = new PlayerInfoComponent(new Point(0, 165), "Current player:");
+		// this.cpic = new PlayerInfoComponent(new Point(0, 165), "Current player");
 		// GridBagConstraints c = new GridBagConstraints();
 		// c.fill 
 		// c.gridx = 0;
 		// c.gridy = 1;
 		// add(cpic, c);
-		add(cpic);
+		// add(cpic);
 
 		this.pac = new PossibleActionsComponent(cel);
 		// c = new GridBagConstraints();

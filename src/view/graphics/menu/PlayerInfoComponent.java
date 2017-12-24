@@ -37,7 +37,7 @@ public class PlayerInfoComponent extends JComponent {
 	public void paintComponent(Graphics g) {
 		if (playing) {
 			g.setFont(font);
-			g.drawString(title, 0, 10);
+			g.drawString(title + ": " + pc.name, 0, 10);
 			g.drawImage(playerImage, 0, 20, null);
 			g.drawString("Dollars: " + pc.dollars, 0, 75);
 			g.drawString("Credits: " + pc.credits, 0, 90);
