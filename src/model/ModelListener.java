@@ -48,6 +48,8 @@ public interface ModelListener {
 	public void updatePlayer(PlayerContext pc);
 
 	public void updateCurrentPlayerContext(PlayerContext pc);
+
+	public void displayWinners(PlayerContext[] pacs);
 	// public void updatePlayerInfo(int playerId, )
 
 }

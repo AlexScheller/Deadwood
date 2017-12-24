@@ -253,6 +253,14 @@ public class GameFrame
 		mp.newMessage(who + " acts, rolling a " + roll);
 	}
 
+	@Override
+	public void displayWinners(PlayerContext[] pacs) {
+		System.out.println("Winner(s)");
+		for (int i = 0; i < pacs.length; i++) {
+			System.out.println(pacs[i].name);
+		}
+	}
+
 	// @Override
 	// public void playerRehearses() {
 	// 	// TEMP

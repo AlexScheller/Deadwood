@@ -170,19 +170,20 @@ public class DeadwoodModel
 		daysLeft--;
 		unwrappedScenes = 10;
 		if (daysLeft == 0) {
-			System.out.println("game over bud");
-		}
+			listener.displayWinners(determineWinners());
+		} else {
 		board.newDay();
-		for (Player p : players) {
-			p.newDay();
+			for (Player p : players) {
+				p.newDay();
+			}
+			// return players to the trailers
+			for (int i = 0; i < players.length; i++) {
+				listener.playerMoves(players[i].getId(), null, "trailer");
+			}
+			listener.newDayEvent(currentDay, daysLeft);
+			currentDay++;
+			listener.newTurnEvent(currentPlayerIndex);
 		}
-		// return players to the trailers
-		for (int i = 0; i < players.length; i++) {
-			listener.playerMoves(players[i].getId(), null, "trailer");
-		}
-		listener.newDayEvent(currentDay, daysLeft);
-		currentDay++;
-		listener.newTurnEvent(currentPlayerIndex);
 	}
 
 	// public void nextTurn() {
@@ -190,25 +191,28 @@ public class DeadwoodModel
 	// 	currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
 	// }
 
-	private String[] determineWinners() {
-		// String currHighScorerName = "";
-		List<String> highScorers = new ArrayList<>();
+	private PlayerContext[] determineWinners() {
+		List<PlayerContext> highScorers = new ArrayList<>();
 		int currHighScore = -1;
 		for (Player p : players) {
 			if (!(currHighScore == -1)) {
 				if (currHighScore < p.calculateScore()) {
 					currHighScore = p.calculateScore();
+					// System.out.println("curr high score: " + currHighScore);
 					highScorers.clear();
-					highScorers.add(p.getName());
+					highScorers.add(p.toContext());
 				} else if (currHighScore == p.calculateScore()) {
-					highScorers.add(p.getName());
+					// System.out.println("curr high score: " + currHighScore);
+					highScorers.add(p.toContext());
 				}
 			} else {
 				currHighScore = p.calculateScore();
-				highScorers.add(p.getName());
+				// System.out.println("curr high score: " + currHighScore);
+				highScorers.add(p.toContext());
 			}
 		}
-		return highScorers.toArray(new String[0]);
+		// System.out.println(highScorers.toString());
+		return highScorers.toArray(new PlayerContext[0]);
 	}
 
 
