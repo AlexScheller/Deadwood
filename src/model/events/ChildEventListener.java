@@ -23,6 +23,8 @@ public interface ChildEventListener {
 
 	public void playerActsEvent(int roll);
 
+	public void playerUpgradesEvent();
+
 	public void playerEndsTurnEvent();
 
 }

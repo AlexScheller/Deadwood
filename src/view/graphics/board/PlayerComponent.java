@@ -85,6 +85,11 @@ public class PlayerComponent extends JComponent {
 		}
 	}
 
+	public void updateRank(int rank) {
+		this.rank = rank;
+		repaint();
+	}
+
 	public void paintComponent(Graphics g) {
 		String assetName = color + Integer.toString(rank);
 		Image dieImage = AssetBank.getInstance().getAsset(assetName);

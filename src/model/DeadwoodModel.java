@@ -246,6 +246,10 @@ public class DeadwoodModel
 		// players[currentPlayerIndex].move(where);
 	}
 
+	public void playerUpgradesEvent() {
+		listener.updatePlayer(currentPlayer.toContext());
+	}
+
 	/* for debugging */
 	public Room getRoomForTeleport(String which) {
 		return board.getRoomForTeleport(which);

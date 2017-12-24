@@ -133,6 +133,11 @@ public class GameFrame
 		}
 	}
 
+	@Override
+	public void upgradeSelected(int rank, String currency) {
+		listener.playerUpgradeRequest(rank, currency);
+	}
+
 	// @Override
 	// public void rehearseButtonClickEvent() {
 	// 	listener.playerRehearseRequest();
@@ -182,9 +187,15 @@ public class GameFrame
 	public void newTurnEvent(int id) {
 		mp.update(listener.getPlayerContext(id), playerColors[id]);
 		// hard coded for testing
-		PlayerContext pc = new PlayerContext();
-		pc.acting = true;
-		pc.canRehearse = true;
+		// PlayerContext pc = new PlayerContext();
+		// pc.acting = true;
+		// pc.canRehearse = true;
+	}
+
+	// TODO: make use of this for more than just rank.
+	// make an update(PlayerContext) method in playerComponent
+	public void updatePlayer(PlayerContext pc) {
+		players[pc.id].updateRank(pc.rank);
 	}
 
 	public void updateCurrentPlayerContext(PlayerContext pc) {

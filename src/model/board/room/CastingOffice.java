@@ -119,7 +119,7 @@ public class CastingOffice extends Room {
 			throw new IllegalArgumentException("No such method of purchase: " + currency);
 		}
 		int i = 0;
-		while (i < upgradeTable.length && upgradeTable[i][currencyIndex] < amount) {
+		while (i < upgradeTable.length && upgradeTable[i][currencyIndex] <= amount) {
 			i++;
 		}
 		i--; // since last case failed.

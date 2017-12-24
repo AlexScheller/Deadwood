@@ -28,7 +28,7 @@ public class PossibleUpgradesComponent extends JComponent {
 		cashButton.setBounds(0, 0, 100, 20);
 		cashButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				listener.upgradeSelected((Integer) cashRanks.getSelectedItem(), "cash");
+				listener.upgradeSelected((Integer) cashRanks.getSelectedItem(), "dollars");
 			}
 		});
 		add(cashButton);

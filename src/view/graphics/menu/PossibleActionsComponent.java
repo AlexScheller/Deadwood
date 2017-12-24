@@ -120,7 +120,8 @@ public class PossibleActionsComponent extends JComponent {
 	}
 
 	public void upgradeSelected(int rank, String currency) {
-		System.out.println("rank selected: " + rank + ", with currency: " + currency);
+		listener.upgradeSelected(rank, currency);
+		// System.out.println("rank selected: " + rank + ", with currency: " + currency);
 	}
 
 	public void update(PlayerContext pc) {

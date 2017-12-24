@@ -165,6 +165,8 @@ public class Player {
 		if (currentRoom instanceof CastingOffice) {
 			CastingOffice asOffice = (CastingOffice) currentRoom;
 			asOffice.upgradePlayer(this, rank, currency);
+			listener.playerUpgradesEvent();
+			endTurn();
 		} else {
 			throw new IllegalStateException("Player not in office");
 		}

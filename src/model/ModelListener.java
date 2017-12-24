@@ -45,6 +45,8 @@ public interface ModelListener {
 
 	// public void updateCurrentPlayerInfo(int playerId);
 
+	public void updatePlayer(PlayerContext pc);
+
 	public void updateCurrentPlayerContext(PlayerContext pc);
 	// public void updatePlayerInfo(int playerId, )
 

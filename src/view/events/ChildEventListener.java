@@ -19,6 +19,8 @@ public interface ChildEventListener {
 
 	public void actionButtonClicked(ActionType at);
 
+	public void upgradeSelected(int rank, String currency);
+
 	// PROTOTYPE_CHAIN: 2
 	// public void endTurnButtonClickEvent();
 
