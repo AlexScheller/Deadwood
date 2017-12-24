@@ -108,24 +108,6 @@ public class DeadwoodModel
 		// playerEndsTurn();
 	}
 
-	// // this method collects necessary data from the
-	// // players to be shipped to the view.
-	// private PlayerContext[] playerstoContexts() {
-	// 	PlayerContext[] ret = new PlayerContext[players.length];
-	// 	for (int i = 0; i < players.length; i++) {
-	// 		// PlayerContext pi = new PlayerContext();
-	// 		// Player curr = players[i];
-	// 		// pi.id = curr.getId();
-	// 		// pi.rank = curr.getRank();
-	// 		// pi.dollars = curr.getDollars();
-	// 		// pi.credits = curr.getCredits();
-	// 		// pi.rehearsalTokens = curr.getRehearsalTokens();
-	// 		// ret[i] = pi;
-
-	// 	}
-	// 	return ret;
-	// }
-
 	/* ControllerListener Methods*/
 	
 	public void play() {
@@ -141,29 +123,8 @@ public class DeadwoodModel
 				System.out.println(contexts[i].id);
 			}
 			listener.newPlayersEvent(contexts);
-			// for (int i = 0; i < players.length; i++) {
-			// 	listener.playerMoves(players[i].getId(), null, "trailer");
-			// }
 			newDay();
 		}
-		// while (day <= 4) {
-		// 	currentPlayerIndex = firstPlayerId;
-		// 	while (!board.oneSceneLeft()) {
-		// 		// players[(currentPlayerId++) % players.length].playTurn();
-		// 		listener.newTurn();
-		// 		players[currentPlayerIndex].resetMove();
-		// 		currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-				
-		// 	}
-		// 	board.newDay();
-		// 	for (int i = 0; i < players.length; i++) {
-		// 		// maybe find a better way to do this
-		// 		players[i].teleport(board.getRoomForTeleport("trailer"));
-		// 	}
-		// 	listener.newDay();
-		// 	day++;
-		// }
-		// listener.displayWinners(determineWinners());
 	}
 
 	public void newDay() {
@@ -231,7 +192,6 @@ public class DeadwoodModel
 	}
 
 	public void playerEndsTurnEvent() {
-		// currentPlayer.endTurn();
 		currentPlayerIndex++;
 		currentPlayerIndex %= players.length;
 		currentPlayer = players[currentPlayerIndex];
@@ -240,25 +200,16 @@ public class DeadwoodModel
 
 	public void playerRehearses() throws IllegalStateException {
 		players[currentPlayerIndex].rehearse();
-		// String res = players[currentPlayerIndex].rehearse();
-		// listener.playerRehearseResponse(res);
 	}
 
 	public void playerMoves(String where) throws IllegalArgumentException {
 		currentPlayer.move(where);
 		listener.updateCurrentPlayerContext(currentPlayer.toContext());
-		// players[currentPlayerIndex].move(where);
 	}
 
 	public void playerUpgradesEvent() {
 		listener.updatePlayer(currentPlayer.toContext());
 	}
-
-	/* for debugging */
-	public Room getRoomForTeleport(String which) {
-		return board.getRoomForTeleport(which);
-	}
-	/* for debugging */
 
 	public void playerTakesRole(String which) throws IllegalArgumentException, IllegalStateException {
 		if (currentPlayer.canTakeNewRole()) {
@@ -280,17 +231,9 @@ public class DeadwoodModel
 		currentPlayer.upgrade(rank, currency);
 	}
 
-	// public Player getCurrentPlayer() {
-	// 	return players[currentPlayerIndex];
-	// }
-
 	public int getCurrentPlayerId() {
 		return currentPlayer.getId();
 	}
-
-	// public PlayerContext getCurrentPlayerContext() {
-	// 	return currentPlayer.toContext();
-	// }
 
 	public PlayerContext getPlayerContext(int id) {
 		return players[id].toContext();

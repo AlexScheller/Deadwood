@@ -15,7 +15,6 @@ public class RoleComponent extends JComponent {
 // public class RoleComponent extends JPanel {
 
 	private String name;
-	private Image die;
 	private Point origin;
 
 	private PlayerComponent pc;
@@ -47,10 +46,6 @@ public class RoleComponent extends JComponent {
 		return name;
 	}
 
-	public void setDieImage(Image die) {
-		this.die = die;
-	}
-
 	public void takePlayerComponent(PlayerComponent npc) {
 		this.pc = npc;
 		pc.move(new Point(0, 0));
@@ -69,22 +64,13 @@ public class RoleComponent extends JComponent {
 		return ret;
 	}
 
-	// public void setBounds(Point origin) {
-	// 	this.origin = origin;
-	// 	setBounds(origin.x, origin.y, height, width);
-	// }
-
 	public boolean occupied() {
 		return (pc != null);
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-		// g.drawImage(die, origin.x, origin.y, null);
 		super.paintComponent(g);
-		if (occupied()) {
-			// pc.paintComponent(g);
-		}
 	}
 
 }

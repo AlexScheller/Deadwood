@@ -18,7 +18,6 @@ public class SetComponent extends RoomComponent {
 	private CardComponent card;
 	private Point cardOrigin;
 	private Image takeImage;
-	private Image diceImage;
 	private Point[] takeOrigins;
 	private int takesFinished;
 	private boolean filming;
@@ -26,12 +25,11 @@ public class SetComponent extends RoomComponent {
 
 	// TODO: maybe hard code the image
 	public SetComponent(RoomInfo ri, Image takeImage,
-					Image diceImage, ChildEventListener cel) {
+						ChildEventListener cel) {
 		setLayout(null);
 		this.name = ri.name;
 		this.filming = false;
 		this.takeImage = takeImage;
-		this.diceImage = diceImage;
 		this.cardOrigin = ri.cardOrigin;
 		Point pbcOrigin = new Point(cardOrigin.x, cardOrigin.y + CARD_HEIGHT);
 		this.pbc = new PlayerBenchComponent(pbcOrigin);
@@ -47,7 +45,6 @@ public class SetComponent extends RoomComponent {
 			RoleComponent rc = new RoleComponent(roleName,
 												 ri.extraOrigins.get(roleName),
 												 cel);
-			rc.setDieImage(diceImage); // temporarily hard coded
 			extras.put(roleName, rc); // HERE IS THE BUG
 			// rc.takePlayerComponent(new PlayerComponent(3, 'g', cel));
 			add(rc);
@@ -99,9 +96,9 @@ public class SetComponent extends RoomComponent {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		// paintOccupants(g);
-		for (RoleComponent rc : extras.values()) {
-			// rc.paintComponent(g);
-		}
+		// for (RoleComponent rc : extras.values()) {
+		// 	// rc.paintComponent(g);
+		// }
 		for (int i = 0; i < takesFinished; i++) {
 			// TODO: these values should really be adjusted in the 
 			// dataset, not here.
@@ -109,7 +106,6 @@ public class SetComponent extends RoomComponent {
 			int y = takeOrigins[i].y + 2;
 			g.drawImage(takeImage, x, y, null);
 		}
-		// cardPanel.paintComponent(g);
 	}
 
 	public void setBounds() {

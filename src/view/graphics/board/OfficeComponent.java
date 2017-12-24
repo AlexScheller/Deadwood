@@ -25,9 +25,4 @@ public class OfficeComponent extends RoomComponent {
 		add(pbc);
 	}
 
-	// @Override
-	// public void paintComponent(Graphics g) {
-	// 	paintOccupants(g);
-	// }
-
 }

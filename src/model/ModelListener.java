@@ -43,13 +43,10 @@ public interface ModelListener {
 
 	public void upgradeInfoReturn(int playerRank, int cashRanks, int creditsRanks);
 
-	// public void updateCurrentPlayerInfo(int playerId);
-
 	public void updatePlayer(PlayerContext pc);
 
 	public void updateCurrentPlayerContext(PlayerContext pc);
 
 	public void displayWinners(PlayerContext[] pacs);
-	// public void updatePlayerInfo(int playerId, )
 
 }

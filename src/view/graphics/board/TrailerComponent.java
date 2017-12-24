@@ -20,17 +20,9 @@ public class TrailerComponent extends RoomComponent {
 			}
 		});
 		this.name = "trailer";
-		// temporarily hard coded for testing purposes
 		this.pbc = new PlayerBenchComponent(new Point(0, 0));
-		// pbc.takePlayerComponent(new PlayerComponent(1, 'o', cel));
 		add(pbc);
 		// setOpaque(false);
 	}
-
-	// @Override
-	// public void paintComponent(Graphics g) {
-	// 	// System.out.println("painting trailers");
-	// 	paintOccupants(g);
-	// }
 
 }

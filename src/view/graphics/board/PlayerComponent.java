@@ -93,7 +93,6 @@ public class PlayerComponent extends JComponent {
 	public void paintComponent(Graphics g) {
 		String assetName = color + Integer.toString(rank);
 		Image dieImage = AssetBank.getInstance().getAsset(assetName);
-		// g.drawImage(dieImage, origin.x, origin.y, null);
 		// System.out.println("painting player at: " + origin.x  + ", " + origin.y);
 		g.drawImage(dieImage, 0, 0, null);
 	}

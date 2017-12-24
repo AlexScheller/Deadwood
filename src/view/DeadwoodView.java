@@ -11,11 +11,6 @@ import model.ModelListener;
 
 public interface DeadwoodView extends ModelListener {
 
-	// public void update();
-
-	// public void newTurn();
-	// public void newDay();
-
 	public void setListener(ViewListener vl);
 
 }

@@ -38,7 +38,6 @@ public class CardComponent extends JComponent {
 	private final int width = 205;
 	private final int height = 115;
 
-	private Image diceImage; // temporary
 	private Map<String, RoleComponent> stars;
 
 	public CardComponent(String setName, Point origin, ChildEventListener cel) {
@@ -50,21 +49,12 @@ public class CardComponent extends JComponent {
 		setBounds(origin);
 		this.origin = origin;
 		this.cardBack = AssetBank.getInstance().getAsset("cardback");
-		this.diceImage = AssetBank.getInstance().getAsset("b1");
 		this.occupied = false;
 		this.flipped = false;
 		this.wrapped = false;
 		addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				// System.out.println("Card Clicked");
-				// listener.cardClickEvent(setName, title);
 				listener.roomClickEvent(setName);
-				// try {
-				// 	flip();
-				// } catch (IllegalStateException ex) {
-				// 	ex.printStackTrace();
-				// 	System.exit(1);
-				// }
 			}
 		});
 	}
@@ -83,14 +73,9 @@ public class CardComponent extends JComponent {
 			RoleComponent rc = new RoleComponent(roleName, 
 												 roleOrigins.get(roleName),
 												 listener);
-			rc.setDieImage(diceImage); // temporarily hard coded
-			// rc.takePlayerComponent(new PlayerComponent(4, 'b', listener));
 			stars.put(roleName, rc);
 		}
-		// PlayerComponent pc = new PlayerComponent(3, 'y', listener);
-		// pc.move(new Point(0, 0));
-		// add(pc);
-		// setBounds(origin);
+	
 	}
 
 	public void wrap() {
@@ -107,13 +92,6 @@ public class CardComponent extends JComponent {
 				flipped = true;
 				repaint();
 			}
-			// } else {
-			// 	for (String key : stars.keySet()) {
-			// 		remove(stars.get(key));
-			// 	}
-			// }
-			// flipped = !flipped
-			// repaint();
 		} else {
 			throw new IllegalStateException("Cannot flip, Card Panel unoccupied.");
 		}

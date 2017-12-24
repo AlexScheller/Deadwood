@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
-// import view.graphics.CardComponent;
 import view.graphics.menu.MenuPanel;
 import view.graphics.menu.ActionType;
 import view.graphics.board.BoardPanel;
@@ -79,16 +78,6 @@ public class GameFrame
 		repaint();
 	}
 
-	/* ChildEventListener methods */
-	// @Override
-	// public void newGameButtonClickEvent() {
-	// 	System.out.println("new game event intercepted");
-	// 	// number of players is currently hard-coded for
-	// 	// testing purposes
-	// 	listener.newGameRequest(7);
-	// 	repaint();
-	// }
-
 	@Override
 	public void roleClickEvent(RoleComponent which) {// String which) {
 		// System.out.println("role click event intercepted: " + which);
@@ -101,13 +90,11 @@ public class GameFrame
 		System.out.println("player click event intercepted: " + id);
 	}
 
-	// PROTOTYPE_CHAIN: 1
 	@Override
 	public void playerHoverEvent(int id) {
 		mp.displayHoveredPlayer(listener.getPlayerContext(id), playerColors[id]);
 	}
 
-	// PROTOTYPE_CHAIN: 1
 	@Override
 	public void playerUnHoverEvent() {
 		mp.removeHoveredPlayer();
@@ -137,12 +124,6 @@ public class GameFrame
 	public void upgradeSelected(int rank, String currency) {
 		listener.playerUpgradeRequest(rank, currency);
 	}
-
-	// @Override
-	// public void rehearseButtonClickEvent() {
-	// 	listener.playerRehearseRequest();
-	// 	// mp.updateCurrentPlayerDisplay(listener.getPlayerContext(id), playerColors[id]);
-	// }
 
 	@Override
 	public void roomClickEvent(String where) {
@@ -186,10 +167,6 @@ public class GameFrame
 	@Override
 	public void newTurnEvent(int id) {
 		mp.update(listener.getPlayerContext(id), playerColors[id]);
-		// hard coded for testing
-		// PlayerContext pc = new PlayerContext();
-		// pc.acting = true;
-		// pc.canRehearse = true;
 	}
 
 	// TODO: make use of this for more than just rank.
@@ -238,14 +215,9 @@ public class GameFrame
 
 	@Override
 	public void playerTakesRoleEvent(int playerId) {
-		// this seems bad practice, but a player will
-		// never take a roll unless that action was
-		// requested from the view.
 		players[playerId].takeRole(requestingRole);
-		// requestingRole.takePlayerComponent(players[playerId]);
 		mp.newMessage("player taking role: " + requestingRole.getName());
 		requestingRole = null;
-		// bo.assignRoleToPlayer(players[playerId], which);
 	}
 
 	@Override
@@ -260,11 +232,5 @@ public class GameFrame
 			System.out.println(pacs[i].name);
 		}
 	}
-
-	// @Override
-	// public void playerRehearses() {
-	// 	// TEMP
-	// 	System.out.println("player rehearses");
-	// }
 
 }

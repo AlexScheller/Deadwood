@@ -31,23 +31,10 @@ public class MenuPanel extends JPanel {
 	private PossibleActionsComponent pac;
 
 	private JTextArea jta;
-	// private JScrollPane jsp;
 
 	public MenuPanel(ChildEventListener cel) {
-		
-		// setLayout(new GridBagLayout());
 
 		setLayout(null);
-		
-		// setBounds(BOARD_LENGTH, 0, MENU_LENGTH, MENU_HEIGHT);
-		// JButton newGameButton = new JButton("New Game");
-		// newGameButton.addActionListener(new ActionListener() {
-		// 	public void actionPerformed(ActionEvent e) {
-		// 		cel.newGameButtonClickEvent();
-		// 	}
-		// });
-		// newGameButton.setBounds(0, 0, 200, 50);
-		// add(newGameButton);
 
 		this.dayLabel = new JLabel();
 		dayLabel.setBounds(0, 0, 200, 20);
@@ -55,26 +42,11 @@ public class MenuPanel extends JPanel {
 
 		this.hpic = new PlayerInfoComponent(new Point(0, 50), "Hovered player");
 		
-		// PROTOTYPE_CHAIN: 3
-		// this.currentPlayerInfoOrigin = new Point(0, 200);
 		this.cpic = new PlayerInfoComponent(new Point(0, 165), "Current player");
 		add(cpic);
 
-		// this.cpic = new PlayerInfoComponent(new Point(0, 165), "Current player");
-		// GridBagConstraints c = new GridBagConstraints();
-		// c.fill 
-		// c.gridx = 0;
-		// c.gridy = 1;
-		// add(cpic, c);
-		// add(cpic);
-
 		this.pac = new PossibleActionsComponent(cel);
-		// c = new GridBagConstraints();
-		// c.fill = GridBagConstraints.HORIZONTAL;
-		// c.gridx = 0;
-		// c.gridy = 2;
 		pac.setBounds(0, 275, 200, 200);
-		// add(pac, c);
 		add(pac);
 
 		this.jta = new JTextArea(10, 10);
@@ -87,24 +59,16 @@ public class MenuPanel extends JPanel {
 		add(jsp);
 	}
 
-	// PROTOTYPE_CHAIN: 1
 	public void displayHoveredPlayer(PlayerContext pc, char color) {
 		hpic.setInfo(pc, color);
 		add(hpic);
 		repaint();
 	}
 
-	// PROTO_TYPE_CHAIN: 3
-	// public void updateCurrentPlayerDisplay(PlayerInfo pi, char color) {
-	// 	cpic.setInfo(pi, color);
-	// 	repaint();
-	// }
-
 	// PROTOTYPE_CHAIN: 1
 	public void removeHoveredPlayer() {
 		remove(hpic);
 		repaint();
-		// getGraphics().drawImage(nullImage, HoverPlayerPoint.x, HoverPlayerPoint.y, null);
 	}
 
 	public void updateDayLabel(int day, int daysLeft) {
@@ -125,9 +89,5 @@ public class MenuPanel extends JPanel {
 									  int creditsRankMax) {
 		pac.displayUpgradeChoices(playerLevel, cashRankMax, creditsRankMax);
 	}
-
-	// public void updateActions(PlayerContext pc) {
-	// 	pac.update(pc);
-	// }
 
 }

@@ -30,19 +30,11 @@ public class BoardPanel extends JPanel {
 		this.rooms = new HashMap<>();
 		// the below is hard-coded for testing
 		AssetBank ab = AssetBank.getInstance();
-		// Image placeHolderCardImage = ab.getAsset("04");
 		Image clapper  = new ImageIcon("../resources/clapper.png").getImage();
-		Image die = ab.getAsset("g6");
 		// TODO put office and trailers into this loop
 		for (RoomInfo ri : ris) {
-			// CardPanel ncp = new CardPanel(placeHolderCardImage,
-			// 							  rpi.cardPanelOrigin);
-			// ncp.setBounds();
-			// CardPanel ncp = new CardPanel(placeHolderCardImage);
-			// CardPanel ncp = new CardPanel(iel);
-			SetComponent sc = new SetComponent(ri, clapper, die, cel);
+			SetComponent sc = new SetComponent(ri, clapper, cel);
 			sc.setBounds();
-			// sp.setCardPanel(ncp);
 			rooms.put(ri.name, sc);
 			add(sc);
 		}
@@ -54,9 +46,6 @@ public class BoardPanel extends JPanel {
 		rooms.put("trailer", trailer);
 		add(office);
 		add(trailer);
-		// PlayerComponent pc = new PlayerComponent(3, 'y', cel);
-		// pc.move(new Point(0, 0));
-		// add(pc);
 	}
 
 	public void newSceneInSet(String where, String which, 
