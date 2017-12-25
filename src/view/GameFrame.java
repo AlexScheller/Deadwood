@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.event.AdjustmentEvent;
@@ -16,6 +17,7 @@ import view.graphics.board.BoardPanel;
 import view.graphics.board.PlayerComponent;
 import view.graphics.board.RoleComponent;
 import view.graphics.PlayerInfo;
+import view.graphics.WinnersComponent;
 import view.events.ChildEventListener;
 import static view.graphics.Dimensions.*;
 
@@ -227,10 +229,18 @@ public class GameFrame
 
 	@Override
 	public void displayWinners(PlayerContext[] pacs) {
-		System.out.println("Winner(s)");
-		for (int i = 0; i < pacs.length; i++) {
-			System.out.println(pacs[i].name);
-		}
+		System.out.println("removing all");
+		// getContentPane().removeAll();
+		// revalidate();
+		// repaint();
+		WinnersComponent winners = new WinnersComponent(pacs, playerColors);
+		int originX = (bp.getWidth() / 2) - winners.getHalfWidth();
+		int originY = (bp.getHeight() / 2) - winners.getHalfHeight();
+		winners.setBounds(originX, originY);
+		// bp.setOpaque(true);
+		bp.removeAll();
+		bp.add(winners);
+		repaint();
 	}
 
 }
