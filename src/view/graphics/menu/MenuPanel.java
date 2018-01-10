@@ -65,7 +65,6 @@ public class MenuPanel extends JPanel {
 		repaint();
 	}
 
-	// PROTOTYPE_CHAIN: 1
 	public void removeHoveredPlayer() {
 		remove(hpic);
 		repaint();

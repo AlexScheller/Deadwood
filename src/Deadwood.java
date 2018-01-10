@@ -1,13 +1,7 @@
-// import view.ConsoleView;
 import view.DeadwoodView;
 import view.GraphicalView;
-// import view.loading.GraphicsLoader;
-
-// import model.DeadwoodModel;
-// import model.loading.GameLoader;
 
 import controller.DeadwoodController;
-
 
 public class Deadwood {
 

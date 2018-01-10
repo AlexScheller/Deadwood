@@ -59,7 +59,4 @@ public abstract class Room {
 		return ret;
 	}
 
-	@Override
-	public abstract String toString();
-
 }

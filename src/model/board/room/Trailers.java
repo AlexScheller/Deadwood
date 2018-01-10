@@ -6,9 +6,4 @@ public class Trailers extends Room {
 		super(ri);
 	}
 
-	@Override
-	public String toString() {
-		return "trailers\n\n" + getTabbedNeighborStrings();
-	}
-
 }

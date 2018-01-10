@@ -41,8 +41,4 @@ public class Board {
 		return rs.getRoom("trailer");
 	}
 
-	public boolean oneSceneLeft() {
-		return rs.oneSceneLeft();
-	}
-
 }

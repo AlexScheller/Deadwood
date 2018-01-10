@@ -25,7 +25,7 @@ import model.board.role.RoleInfo;
 import model.board.room.RoomInfo;
 import model.board.scene.SceneCardInfo;
 
-public class JSONDataParser implements DataParser {
+public class JSONDataParser {
 
 	private static final JSONDataParser instance = new JSONDataParser();
 

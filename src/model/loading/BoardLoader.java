@@ -30,10 +30,10 @@ public class BoardLoader {
 		return new SceneCardSet(ret);
 	}
 
-	public Board getBoard(DataParser p) {
+	public Board getBoard(JSONDataParser jdp) {
 		// System.out.println("\tloading board...");
-		RoomSet rs = loadRooms(p.parseRoomInfos());
-		SceneCardSet scs = loadCards(p.parseSceneCardInfos());
+		RoomSet rs = loadRooms(jdp.parseRoomInfos());
+		SceneCardSet scs = loadCards(jdp.parseSceneCardInfos());
 		return new Board(rs, scs);
 	}
 

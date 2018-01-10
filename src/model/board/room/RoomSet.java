@@ -4,10 +4,15 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-import model.ModelListener;
 import model.board.scene.SceneCardSet;
 
 import model.events.ChildEventListener;
+
+/*
+ * The RoomSet class serves as the primary container for
+ * Room objects in the Board. It handles some high-level
+ * functionality concerning the Rooms as a group.
+ */
 
 public class RoomSet {
 
@@ -20,14 +25,7 @@ public class RoomSet {
 			rooms.put(ri.name, rf.getRoom(ri));
 		}
 		assignNeighbors(ris);
-		// System.out.println(" successful!");
 	}
-
-	// public void setBoardEventListener(BoardEventListener bel) {
-	// 	for (Room r : rooms.values()) {
-	// 		r.setBoardEventListener(bel);
-	// 	}
-	// }
 
 	public void setListener(ChildEventListener cel) {
 		for (Room r : rooms.values()) {
@@ -35,14 +33,8 @@ public class RoomSet {
 		}
 	}
 
-	public String toString() {
-		String ret = "";
-		for (String key : rooms.keySet()) {
-			ret += rooms.get(key).toString() + "\n";
-		}
-		return ret;
-	}
-
+	// After rooms are loaded, the implicit neighbor-graph
+	// must be established.
 	private void assignNeighbors(List<RoomInfo> ris) {
 		for (RoomInfo ri : ris) {
 			Map<String, Room> neighbors = new HashMap<>();
@@ -53,6 +45,8 @@ public class RoomSet {
 		}
 	}
 
+	// When a new day event occurs, each room is dealt
+	// a new scene card.
 	public void dealSceneCards(SceneCardSet scs) {
 		for (Room r : rooms.values()) {
 			if (r instanceof MovieSet) {
@@ -62,30 +56,8 @@ public class RoomSet {
 		}
 	}
 
-	// public void addRoom(String name, Room newRoom) {
-	// 	rooms.put(name, newRoom);
-	// }
-
 	public Room getRoom(String which) {
 		return rooms.get(which);
-	}
-
-	// Note that this is technically less efficient that
-	// having some counter variable that gets updated
-	// when scenes wrap, however the number of scenes
-	// is small enough that it doesn't matter, also the code
-	// is a lot cleaner this way.
-	public boolean oneSceneLeft() {
-		int scenesLeft = 0;
-		for (Room r : rooms.values()) {
-			if (r instanceof MovieSet) {
-				MovieSet asMovieSet = (MovieSet) r;
-				if (!asMovieSet.isWrapped()) {
-					scenesLeft++;
-				}
-			}
-		}
-		return (scenesLeft == 1);
 	}
 
 }

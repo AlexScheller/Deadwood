@@ -248,36 +248,6 @@ public class Player {
 		}
 	}
 
-	// private int getMaxUpgradeAvailable() throws IllegalStateException {
-	// 	if (currentRoom instanceof CastingOffice) {
-	// 		CastingOffice asOffice = (CastingOffice) currentRoom;
-	// 		// TODO: see TODO in getRolesAvailable()
-	// 		return asOffice.getMaxUpgradeAvailable(this);
-	// 	} else {
-	// 		throw new IllegalStateException("Current room is not the Casting Office");
-	// 	}
-	// }
-
-	// public int[][] getUpgradePricesAvailable() {
-	// 	if (currentRoom instanceof CastingOffice) {
-	// 		CastingOffice asOffice = (CastingOffice) currentRoom;
-	// 		// TODO: see TODO in getRolesAvailable()
-	// 		return asOffice.getUpgradePricesAvailable(this);
-	// 	} else {
-	// 		throw new IllegalStateException("Current room is not the CastingOffice");
-	// 	}
-	// }
-
-	// winner of the longest method name award
-	// public int[] getUpgradePricesAvailableWith(String which) throws IllegalStateException, IllegalArgumentException {
-	// 	if (currentRoom instanceof CastingOffice) {
-	// 		CastingOffice asOffice = (CastingOffice) currentRoom;
-	// 		return asOffice.getUpgradePricesAvailableWith(this, which);
-	// 	} else {
-	// 		throw new IllegalStateException("Current room is not the Casting Office");
-	// 	}
-	// }
-
 	// TODO: check money
 	public boolean canUpgrade() {
 		if ((currentRoom instanceof CastingOffice) && rank < 6) {
