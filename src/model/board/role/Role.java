@@ -32,7 +32,11 @@ public abstract class Role {
 	// unsuccessful rolls on the part of a player.
 	public abstract void success();
 
-	public abstract void failure();
+	// failure is empty, rather than abstract, as
+	// only extra roles actually do anything with
+	// failure, as opposed to success where both
+	// starring and extra roles have unique behavior 
+	public void failure() {};
 
 	public void takeActor(Player p) {
 		this.residentActor = p;

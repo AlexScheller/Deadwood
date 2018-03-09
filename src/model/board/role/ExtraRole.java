@@ -11,6 +11,7 @@ public class ExtraRole extends Role {
 		this.residentActor.earnCredits(1);
 	}
 
+	@Override
 	public void failure() {
 		this.residentActor.earnDollars(1);
 	}
