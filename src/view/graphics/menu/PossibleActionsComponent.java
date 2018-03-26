@@ -29,12 +29,6 @@ import model.player.PlayerContext;
 
 public class PossibleActionsComponent extends JComponent {
 
-	// private JButton actButton;
-	// private JButton endTurnButton;
-	// private JButton rehearseButton;
-
-	// private PlayerContext pc;
-
 	private Map<ActionType, JButton> actionButtons;
 
 	private final int buttonHeight = 50;
@@ -89,7 +83,7 @@ public class PossibleActionsComponent extends JComponent {
 		actionButtons.put(ActionType.UPGRADE, upgradeButton);
 
 		// for debugging
-		JButton endDayButton = new JButton("End Day");
+		JButton endDayButton = new JButton("End Day (debug)");
 		endDayButton.setFocusPainted(false);
 		endDayButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -157,6 +151,12 @@ public class PossibleActionsComponent extends JComponent {
 		curr.setBounds(0, numDisplayed * 50, 200, buttonHeight);
 		add(curr);
 		repaint();
+	}
+
+	public void disableButtons() {
+		for (ActionType at : actionButtons.keySet()) {
+			actionButtons.get(at).setEnabled(false);
+		}
 	}
 
 }

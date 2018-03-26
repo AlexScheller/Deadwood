@@ -47,6 +47,6 @@ public interface ModelListener {
 
 	public void updateCurrentPlayerContext(PlayerContext pc);
 
-	public void displayWinners(PlayerContext[] pacs);
+	public void displayWinners(PlayerContext[] pcs);
 
 }

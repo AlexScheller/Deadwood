@@ -89,4 +89,8 @@ public class MenuPanel extends JPanel {
 		pac.displayUpgradeChoices(playerLevel, cashRankMax, creditsRankMax);
 	}
 
+	public void disableButtons() {
+		pac.disableButtons();
+	}
+
 }

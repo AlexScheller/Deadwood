@@ -227,9 +227,10 @@ public class GameFrame
 		mp.newMessage(who + " acts, rolling a " + roll);
 	}
 
+	// game over
 	@Override
 	public void displayWinners(PlayerContext[] pacs) {
-		System.out.println("removing all");
+		// System.out.println("removing all");
 		// getContentPane().removeAll();
 		// revalidate();
 		// repaint();
@@ -240,6 +241,9 @@ public class GameFrame
 		// bp.setOpaque(true);
 		bp.removeAll();
 		bp.add(winners);
+		// mp.setOpaque(true);
+		// mp.setVisible(false);
+		mp.disableButtons();
 		repaint();
 	}
 
